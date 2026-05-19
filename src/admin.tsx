@@ -1,57 +1,10 @@
 import { useState } from "react";
 import { DECKS } from "../data/index";
-import type { Deck, HistoryEvent } from "../data/index";
+import type { Deck, HistoryEvent } from "../data/types";
 import { formatYear } from "./utils";
 
 function generateDeckFile(deck: Deck): string {
-  const header =
-    deck.id === "argentina"
-      ? `export interface HistoryEvent {
-  id: string;
-  event: string;
-  year: number;
-  context: string;
-  image?: string;
-}
-
-export interface Deck {
-  id: string;
-  name: string;
-  emoji: string;
-  events: HistoryEvent[];
-  puzzleSize?: number;
-}
-
-`
-      : `import type { Deck } from "./argentina";\n\n`;
-
-  function fmtEvent(ev: HistoryEvent): string {
-    const lines = [
-      `    {`,
-      `      id: "${ev.id}",`,
-      `      event: ${JSON.stringify(ev.event)},`,
-      `      year: ${ev.year},`,
-      `      context: ${JSON.stringify(ev.context)},`,
-    ];
-    if (ev.image) lines.push(`      image: ${JSON.stringify(ev.image)},`);
-    lines.push(`    },`);
-    return lines.join("\n");
-  }
-
-  const eventsStr = deck.events.map(fmtEvent).join("\n");
-  const puzzleSizeLine =
-    deck.puzzleSize !== undefined && deck.puzzleSize !== 6
-      ? `  puzzleSize: ${deck.puzzleSize},\n`
-      : "";
-
-  return `${header}export const ${deck.id}: Deck = {
-  id: "${deck.id}",
-  name: ${JSON.stringify(deck.name)},
-  emoji: "${deck.emoji}",
-${puzzleSizeLine}  events: [
-${eventsStr}
-  ],
-};\n`;
+  return JSON.stringify(deck, null, 2) + "\n";
 }
 
 const inputCls =

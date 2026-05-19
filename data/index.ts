@@ -1,10 +1,12 @@
-export type { HistoryEvent, Deck } from "./argentina";
-export { argentina } from "./argentina";
-export { mundo } from "./mundo";
-export { filosofia } from "./filosofia";
+export type { HistoryEvent, Deck } from "./types";
+import type { Deck } from "./types";
 
-import { argentina } from "./argentina";
-import { mundo } from "./mundo";
-import { filosofia } from "./filosofia";
+import argentinaData from "./argentina.json";
+import mundoData from "./mundo.json";
+import filosofiaData from "./filosofia.json";
 
-export const DECKS = [argentina, mundo, filosofia];
+export const DECKS: Deck[] = [
+  argentinaData as Deck,
+  mundoData as Deck,
+  filosofiaData as Deck,
+];

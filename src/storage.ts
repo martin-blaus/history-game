@@ -1,4 +1,4 @@
-import type { Deck, HistoryEvent } from "../data/index";
+import type { Deck, HistoryEvent } from "../data/types";
 
 const STORAGE_KEY = "historia-ar-stats";
 

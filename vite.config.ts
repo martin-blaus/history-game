@@ -28,7 +28,7 @@ export default defineConfig({
                 return;
               }
               const dataDir = path.join(process.cwd(), "data");
-              const filePath = path.join(dataDir, `${deckId}.ts`);
+              const filePath = path.join(dataDir, `${deckId}.json`);
               if (!filePath.startsWith(dataDir + path.sep)) {
                 res.statusCode = 400;
                 res.end(JSON.stringify({ ok: false, error: "invalid path" }));
