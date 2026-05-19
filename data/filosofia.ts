@@ -1,0 +1,65 @@
+import type { Deck } from "./argentina";
+
+export const filosofia: Deck = {
+  id: "filosofia",
+  name: "Historia de la Filosofía",
+  emoji: "🏛️",
+  puzzles: [
+    [
+      { id: "fi-1",  event: "Sócrates",                   year: -470, context: "" },
+      { id: "fi-2",  event: "Platón",                     year: -428, context: "" },
+      { id: "fi-3",  event: "Aristóteles",                year: -384, context: "" },
+      { id: "fi-4",  event: "Epicuro",                    year: -341, context: "" },
+      { id: "fi-5",  event: "Cicerón",                    year: -106, context: "" },
+      { id: "fi-6",  event: "Marco Aurelio",              year: 121,  context: "" },
+    ],
+    [
+      { id: "fi-7",  event: "Plotino",                    year: 204,  context: "" },
+      { id: "fi-8",  event: "Agustín de Hipona",          year: 354,  context: "" },
+      { id: "fi-9",  event: "Tomás de Aquino",            year: 1225, context: "" },
+      { id: "fi-10", event: "Guillermo de Ockham",        year: 1287, context: "" },
+      { id: "fi-11", event: "Nicolás Maquiavelo",         year: 1469, context: "" },
+      { id: "fi-12", event: "Michel de Montaigne",        year: 1533, context: "" },
+    ],
+    [
+      { id: "fi-13", event: "Francis Bacon",              year: 1561, context: "" },
+      { id: "fi-14", event: "Thomas Hobbes",              year: 1588, context: "" },
+      { id: "fi-15", event: "René Descartes",             year: 1596, context: "" },
+      { id: "fi-16", event: "Baruch Spinoza",             year: 1632, context: "" },
+      { id: "fi-17", event: "Gottfried Wilhelm Leibniz",  year: 1646, context: "" },
+      { id: "fi-18", event: "George Berkeley",            year: 1685, context: "" },
+    ],
+    [
+      { id: "fi-19", event: "John Locke",                 year: 1632, context: "" },
+      { id: "fi-20", event: "Montesquieu",                year: 1689, context: "" },
+      { id: "fi-21", event: "Voltaire",                   year: 1694, context: "" },
+      { id: "fi-22", event: "David Hume",                 year: 1711, context: "" },
+      { id: "fi-23", event: "Immanuel Kant",              year: 1724, context: "" },
+      { id: "fi-24", event: "Johann Gottlieb Fichte",     year: 1762, context: "" },
+    ],
+    [
+      { id: "fi-25", event: "Jean-Jacques Rousseau",      year: 1712, context: "" },
+      { id: "fi-26", event: "Georg Wilhelm Friedrich Hegel", year: 1770, context: "" },
+      { id: "fi-27", event: "Arthur Schopenhauer",        year: 1788, context: "" },
+      { id: "fi-28", event: "Auguste Comte",              year: 1798, context: "" },
+      { id: "fi-29", event: "John Stuart Mill",           year: 1806, context: "" },
+      { id: "fi-30", event: "Søren Kierkegaard",          year: 1813, context: "" },
+    ],
+    [
+      { id: "fi-31", event: "Karl Marx",                  year: 1818, context: "" },
+      { id: "fi-32", event: "Friedrich Nietzsche",        year: 1844, context: "" },
+      { id: "fi-33", event: "Gottlob Frege",              year: 1848, context: "" },
+      { id: "fi-34", event: "Edmund Husserl",             year: 1859, context: "" },
+      { id: "fi-35", event: "Bertrand Russell",           year: 1872, context: "" },
+      { id: "fi-36", event: "Ludwig Wittgenstein",        year: 1889, context: "" },
+    ],
+    [
+      { id: "fi-37", event: "Martin Heidegger",           year: 1889, context: "" },
+      { id: "fi-38", event: "Jean-Paul Sartre",           year: 1905, context: "" },
+      { id: "fi-39", event: "John Rawls",                 year: 1921, context: "" },
+      { id: "fi-40", event: "Michel Foucault",            year: 1926, context: "" },
+      { id: "fi-41", event: "Jacques Derrida",            year: 1930, context: "" },
+      { id: "fi-42", event: "Peter Singer",               year: 1946, context: "" },
+    ],
+  ],
+};

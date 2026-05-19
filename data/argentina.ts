@@ -3,6 +3,7 @@ export interface HistoryEvent {
   event: string;
   year: number;
   context: string;
+  image?: string;
 }
 
 export type PuzzleSet = HistoryEvent[];
@@ -37,12 +38,14 @@ export const argentina: Deck = {
         event: "Revolución de Mayo",
         year: 1810,
         context: "El 25 de mayo, una junta de gobierno reemplazó al virrey Baltasar Hidalgo de Cisneros en Buenos Aires. Aunque se mantuvo la lealtad formal a la corona española, fue el primer paso hacia la independencia.",
+        image: "https://upload.wikimedia.org/wikipedia/commons/c/ca/Cabildoabierto-Subercaseaux.jpg",
       },
       {
         id: "ar-4",
         event: "Declaración de Independencia Argentina",
         year: 1816,
         context: "El Congreso reunido en Tucumán declaró la independencia de las Provincias Unidas del Río de la Plata el 9 de julio. La declaración llegó en plena guerra de independencia contra España en toda América del Sur.",
+        image: "https://upload.wikimedia.org/wikipedia/commons/e/e3/Independencia_Argentina.JPG",
       },
       {
         id: "ar-5",
@@ -131,6 +134,7 @@ export const argentina: Deck = {
         event: "Argentina campeona del mundo — México 1986",
         year: 1986,
         context: "Dirigida por Diego Maradona, quien marcó el célebre 'Gol del Siglo' y el polémico 'Gol de la Mano de Dios' ante Inglaterra en cuartos de final. Argentina venció a Alemania Occidental 3-2 en la final.",
+        image: "https://upload.wikimedia.org/wikipedia/commons/2/2c/Maradona-Mundial_86_con_la_copa.JPG",
       },
     ],
     [
@@ -151,6 +155,7 @@ export const argentina: Deck = {
         event: "Guerra de las Malvinas",
         year: 1982,
         context: "La junta militar invadió las Islas Malvinas para desviar la atención de la crisis interna. Gran Bretaña respondió con una fuerza de tareas; Argentina fue derrotada en 74 días con 649 militares muertos y aceleró la caída del régimen.",
+        image: "https://upload.wikimedia.org/wikipedia/commons/3/36/Action_stations_Falklands_1982.JPG",
       },
       {
         id: "ar-22",
@@ -201,6 +206,7 @@ export const argentina: Deck = {
         event: "San Martín cruza los Andes — campaña libertadora",
         year: 1817,
         context: "El cruce de los Andes fue una hazaña militar sin precedentes: 5.000 soldados cruzaron por varios pasos a más de 4.000 metros. Permitió la liberación de Chile y fue el punto de partida de la campaña al Perú.",
+        image: "https://upload.wikimedia.org/wikipedia/commons/1/15/El_cruce_de_los_Andes_por_el_Gral._San_Mart%C3%ADn.JPG",
       },
       {
         id: "ar-30",
@@ -239,6 +245,7 @@ export const argentina: Deck = {
         event: "Muerte de Eva Perón — Evita",
         year: 1952,
         context: "Eva Perón murió de cáncer a los 33 años siendo una de las figuras más amadas y polémicas de la historia argentina. Fue la gran impulsora del voto femenino (1947) y de la Fundación Eva Perón que ayudó a millones.",
+        image: "https://upload.wikimedia.org/wikipedia/commons/1/12/Evita_%28cropped2%29.JPG",
       },
       {
         id: "ar-36",

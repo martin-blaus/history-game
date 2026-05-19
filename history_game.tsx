@@ -69,6 +69,8 @@ function Card({
   status: CardStatus;
   revealedCount: number;
 }) {
+  const [descExpanded, setDescExpanded] = useState(false);
+
   const isDragging = dragging === index;
   const isRevealed = revealedCount > index;
   const statusClasses = status ? STATUS_CARD_CLASSES[status] : "bg-bg-card border-border border-l-ar-blue";
@@ -79,7 +81,7 @@ function Card({
 
   return (
     <div
-      className={`sort-card flex flex-col px-4 py-3.5 rounded-xl border border-l-[3px] select-none touch-none transition-all duration-150 ${statusClasses} ${isHinted && !isRevealed ? "border-l-ar-gold border-ar-gold" : ""} ${dragClasses} ${shakeClass}`}
+      className={`sort-card flex flex-col rounded-xl border border-l-[3px] overflow-hidden select-none touch-none transition-all duration-150 ${statusClasses} ${isHinted && !isRevealed ? "border-l-ar-gold border-ar-gold" : ""} ${dragClasses} ${shakeClass}`}
       draggable={!isRevealed && !isHinted}
       onDragStart={() => onDragStart(index)}
       onDragOver={e => { e.preventDefault(); onDragOver(index); }}
@@ -88,35 +90,60 @@ function Card({
       onTouchMove={onTouchMove}
       onTouchEnd={onTouchEnd}
     >
-      <div className="flex items-center gap-3">
-        <span className="text-xs font-bold text-text-tertiary min-w-[18px] bg-bg rounded px-[5px] py-[2px] text-center shrink-0">
-          {index + 1}
-        </span>
-        <span className="flex-1 text-sm text-text-primary leading-[1.45]">
-          {item.event}
-        </span>
-        {isRevealed ? (
-          <span className={`text-xs font-semibold whitespace-nowrap px-2 py-[3px] rounded-md shrink-0 ${
-            status === "correct"
-              ? "text-success bg-[rgba(34,197,94,0.1)]"
-              : "text-danger bg-[rgba(239,68,68,0.1)]"
-          }`}>
-            {formatYear(item.year)}
+      {item.image && (
+        <img
+          src={item.image}
+          alt={item.event}
+          className="w-full h-20 object-cover shrink-0"
+          loading="lazy"
+          draggable={false}
+        />
+      )}
+
+      <div className="px-4 py-3 flex flex-col gap-2">
+        <div className="flex items-center gap-3">
+          <span className="text-xs font-bold text-text-tertiary min-w-[18px] bg-bg rounded px-[5px] py-[2px] text-center shrink-0">
+            {index + 1}
           </span>
-        ) : isHinted ? (
-          <span className="text-xs font-semibold text-ar-gold bg-[rgba(245,197,24,0.1)] px-2 py-[3px] rounded-md shrink-0">
-            📌
+          <span className="flex-1 text-sm text-text-primary leading-[1.45]">
+            {item.event}
           </span>
-        ) : (
-          <GripIcon />
+          {isRevealed ? (
+            <span className={`text-xs font-semibold whitespace-nowrap px-2 py-[3px] rounded-md shrink-0 ${
+              status === "correct"
+                ? "text-success bg-[rgba(34,197,94,0.1)]"
+                : "text-danger bg-[rgba(239,68,68,0.1)]"
+            }`}>
+              {formatYear(item.year)}
+            </span>
+          ) : isHinted ? (
+            <span className="text-xs font-semibold text-ar-gold bg-[rgba(245,197,24,0.1)] px-2 py-[3px] rounded-md shrink-0">
+              📌
+            </span>
+          ) : (
+            <GripIcon />
+          )}
+        </div>
+
+        {item.context && (
+          <div className="flex items-start gap-1">
+            <p className={`text-xs text-text-secondary leading-relaxed m-0 flex-1 overflow-hidden transition-[max-height] duration-300 ${
+              isRevealed || descExpanded ? "max-h-40" : "max-h-[2.8em] hover:max-h-40"
+            }`}>
+              {item.context}
+            </p>
+            {!isRevealed && (
+              <button
+                onClick={e => { e.stopPropagation(); setDescExpanded(v => !v); }}
+                className="text-text-tertiary hover:text-text-secondary text-xs shrink-0 mt-0.5 leading-none bg-transparent border-none cursor-pointer p-0"
+                aria-label={descExpanded ? "Colapsar" : "Expandir"}
+              >
+                {descExpanded ? "⌃" : "⌄"}
+              </button>
+            )}
+          </div>
         )}
       </div>
-
-      {isRevealed && item.context && (
-        <p className="context-reveal text-xs text-text-secondary italic mt-2 leading-relaxed pl-[30px]">
-          {item.context}
-        </p>
-      )}
     </div>
   );
 }
