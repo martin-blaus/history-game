@@ -1,12 +1,7 @@
 import { useState } from "react";
 import { DECKS } from "../data/index";
 import type { Deck, HistoryEvent } from "../data/index";
-
-function formatYear(y: number): string {
-  if (y < 0) return `${Math.abs(y)} a.C.`;
-  if (y < 1000) return `${y} d.C.`;
-  return `${y}`;
-}
+import { formatYear } from "./utils";
 
 function generateDeckFile(deck: Deck): string {
   const header =
@@ -66,6 +61,67 @@ const btnPrimary =
 const btnSecondary =
   "px-4 py-2 rounded-lg border border-border bg-transparent text-text-secondary text-sm cursor-pointer hover:text-text-primary transition-colors";
 
+const SAVE_BTN_CLS: Record<"idle" | "saved" | "error", string> = {
+  idle: "bg-ar-blue hover:bg-ar-blue-dark",
+  saved: "bg-success",
+  error: "bg-danger",
+};
+
+function EventDraftFields({
+  draft,
+  onChange,
+  editableId,
+}: {
+  draft: HistoryEvent;
+  onChange: (d: HistoryEvent) => void;
+  editableId?: boolean;
+}) {
+  return (
+    <>
+      <input
+        className={inputCls}
+        placeholder="Nombre del evento"
+        value={draft.event}
+        onChange={e => onChange({ ...draft, event: e.target.value })}
+      />
+      <div className="flex gap-2">
+        <div className="flex flex-col gap-1">
+          <label className="text-xs text-text-tertiary">Año (negativo = a.C.)</label>
+          <input
+            className={`${inputCls} w-36`}
+            type="number"
+            value={draft.year}
+            onChange={e => onChange({ ...draft, year: Number(e.target.value) })}
+          />
+        </div>
+        {editableId && (
+          <div className="flex flex-col gap-1 flex-1">
+            <label className="text-xs text-text-tertiary">ID</label>
+            <input
+              className={inputCls}
+              value={draft.id}
+              onChange={e => onChange({ ...draft, id: e.target.value })}
+            />
+          </div>
+        )}
+      </div>
+      <textarea
+        className={`${inputCls} resize-y`}
+        rows={3}
+        placeholder="Descripción (opcional)"
+        value={draft.context}
+        onChange={e => onChange({ ...draft, context: e.target.value })}
+      />
+      <input
+        className={inputCls}
+        placeholder="URL de imagen (opcional)"
+        value={draft.image ?? ""}
+        onChange={e => onChange({ ...draft, image: e.target.value || undefined })}
+      />
+    </>
+  );
+}
+
 function AddRowForm({
   deckId,
   onAdd,
@@ -84,50 +140,11 @@ function AddRowForm({
 
   return (
     <div className="flex flex-col gap-2 p-3 rounded-xl border border-ar-blue bg-bg-secondary">
-      <input
-        className={inputCls}
-        placeholder="Nombre del evento *"
-        value={draft.event}
-        onChange={e => setDraft(d => ({ ...d, event: e.target.value }))}
-      />
-      <div className="flex gap-2">
-        <div className="flex flex-col gap-1">
-          <label className="text-xs text-text-tertiary">Año (negativo = a.C.)</label>
-          <input
-            className={`${inputCls} w-36`}
-            type="number"
-            value={draft.year}
-            onChange={e => setDraft(d => ({ ...d, year: Number(e.target.value) }))}
-          />
-        </div>
-        <div className="flex flex-col gap-1 flex-1">
-          <label className="text-xs text-text-tertiary">ID</label>
-          <input
-            className={inputCls}
-            value={draft.id}
-            onChange={e => setDraft(d => ({ ...d, id: e.target.value }))}
-          />
-        </div>
-      </div>
-      <textarea
-        className={`${inputCls} resize-y`}
-        rows={2}
-        placeholder="Descripción (opcional)"
-        value={draft.context}
-        onChange={e => setDraft(d => ({ ...d, context: e.target.value }))}
-      />
-      <input
-        className={inputCls}
-        placeholder="URL de imagen (opcional)"
-        value={draft.image ?? ""}
-        onChange={e => setDraft(d => ({ ...d, image: e.target.value || undefined }))}
-      />
+      <EventDraftFields draft={draft} onChange={setDraft} editableId />
       <div className="flex gap-2">
         <button
           className={btnPrimary}
-          onClick={() => {
-            if (draft.event.trim()) onAdd(draft);
-          }}
+          onClick={() => { if (draft.event.trim()) onAdd(draft); }}
         >
           Agregar
         </button>
@@ -163,52 +180,17 @@ function EventRow({
     return (
       <div className="flex flex-col gap-2 p-3 rounded-xl border border-ar-blue bg-bg-secondary">
         <span className="text-xs text-text-tertiary font-mono">{event.id}</span>
-        <input
-          className={inputCls}
-          placeholder="Nombre del evento"
-          value={draft.event}
-          onChange={e => setDraft(d => ({ ...d, event: e.target.value }))}
-        />
-        <div className="flex gap-2">
-          <div className="flex flex-col gap-1">
-            <label className="text-xs text-text-tertiary">Año (negativo = a.C.)</label>
-            <input
-              className={`${inputCls} w-36`}
-              type="number"
-              value={draft.year}
-              onChange={e => setDraft(d => ({ ...d, year: Number(e.target.value) }))}
-            />
-          </div>
-        </div>
-        <textarea
-          className={`${inputCls} resize-y`}
-          rows={3}
-          placeholder="Descripción"
-          value={draft.context}
-          onChange={e => setDraft(d => ({ ...d, context: e.target.value }))}
-        />
-        <input
-          className={inputCls}
-          placeholder="URL de imagen (opcional)"
-          value={draft.image ?? ""}
-          onChange={e => setDraft(d => ({ ...d, image: e.target.value || undefined }))}
-        />
+        <EventDraftFields draft={draft} onChange={setDraft} />
         <div className="flex gap-2">
           <button
             className={btnPrimary}
-            onClick={() => {
-              onSave(draft);
-              setEditing(false);
-            }}
+            onClick={() => { onSave(draft); setEditing(false); }}
           >
             Guardar
           </button>
           <button
             className={btnSecondary}
-            onClick={() => {
-              setDraft(event);
-              setEditing(false);
-            }}
+            onClick={() => { setDraft(event); setEditing(false); }}
           >
             Cancelar
           </button>
@@ -326,7 +308,6 @@ function AdminDeckEditor({ deck, onBack }: { deck: Deck; onBack: () => void }) {
   return (
     <div className="min-h-screen bg-bg">
       <div className="max-w-[800px] mx-auto px-4 py-6">
-        {/* Header */}
         <div className="flex items-center gap-3 mb-5">
           <button
             onClick={onBack}
@@ -357,25 +338,12 @@ function AdminDeckEditor({ deck, onBack }: { deck: Deck; onBack: () => void }) {
           <button
             onClick={saveToFile}
             disabled={saving}
-            className={`shrink-0 px-4 py-2 rounded-xl border-none text-sm font-semibold cursor-pointer transition-colors ${
-              saveStatus === "saved"
-                ? "bg-success text-white"
-                : saveStatus === "error"
-                  ? "bg-danger text-white"
-                  : "bg-ar-blue hover:bg-ar-blue-dark text-white"
-            } ${saving ? "opacity-60 cursor-not-allowed" : ""}`}
+            className={`shrink-0 px-4 py-2 rounded-xl border-none text-sm font-semibold cursor-pointer transition-colors text-white ${SAVE_BTN_CLS[saveStatus]} ${saving ? "opacity-60 cursor-not-allowed" : ""}`}
           >
-            {saving
-              ? "Guardando…"
-              : saveStatus === "saved"
-                ? "¡Guardado!"
-                : saveStatus === "error"
-                  ? "Error"
-                  : "Guardar en archivo"}
+            {saving ? "Guardando…" : saveStatus === "saved" ? "¡Guardado!" : saveStatus === "error" ? "Error" : "Guardar en archivo"}
           </button>
         </div>
 
-        {/* Column headers */}
         <div className="flex items-center gap-2 px-3 py-1.5 mb-1.5">
           <span className="text-xs font-bold text-text-tertiary uppercase tracking-wider w-8 shrink-0 text-center">#</span>
           <span className="text-xs font-bold text-text-tertiary uppercase tracking-wider w-20 shrink-0">ID</span>
@@ -386,7 +354,6 @@ function AdminDeckEditor({ deck, onBack }: { deck: Deck; onBack: () => void }) {
           <span className="w-24 shrink-0" />
         </div>
 
-        {/* Event rows */}
         <div className="flex flex-col gap-1.5 mb-3">
           {events.map((ev, i) => (
             <EventRow

@@ -7,6 +7,7 @@ import {
   type AppStats,
 } from "./src/storage";
 import { AdminScreen } from "./src/admin";
+import { formatYear } from "./src/utils";
 
 type CardStatus = "correct" | "wrong" | null;
 
@@ -45,11 +46,6 @@ function GripIcon() {
   );
 }
 
-function formatYear(y: number): string {
-  if (y < 0) return `${Math.abs(y)} a.C.`;
-  if (y < 1000) return `${y} d.C.`;
-  return `${y}`;
-}
 
 function Card({
   item, index, dragging, isHinted,

@@ -22,7 +22,18 @@ export default defineConfig({
           req.on("end", () => {
             try {
               const { deckId, content } = JSON.parse(body);
-              const filePath = path.join(process.cwd(), `data/${deckId}.ts`);
+              if (!/^[a-z0-9_-]+$/i.test(deckId)) {
+                res.statusCode = 400;
+                res.end(JSON.stringify({ ok: false, error: "invalid deckId" }));
+                return;
+              }
+              const dataDir = path.join(process.cwd(), "data");
+              const filePath = path.join(dataDir, `${deckId}.ts`);
+              if (!filePath.startsWith(dataDir + path.sep)) {
+                res.statusCode = 400;
+                res.end(JSON.stringify({ ok: false, error: "invalid path" }));
+                return;
+              }
               fs.writeFileSync(filePath, content, "utf-8");
               res.setHeader("Content-Type", "application/json");
               res.end(JSON.stringify({ ok: true }));
