@@ -6,6 +6,7 @@ import {
   loadStats, saveStats, selectPuzzle, recordResult,
   type AppStats,
 } from "./src/storage";
+import { AdminScreen } from "./src/admin";
 
 type CardStatus = "correct" | "wrong" | null;
 
@@ -157,7 +158,7 @@ function StatsScreen({ stats, onBack, onReset }: {
     .map(([id, s]) => ({ id, ...s }))
     .sort((a, b) => b.shown - a.shown);
 
-  const allEvents = DECKS.flatMap(d => d.puzzles.flat());
+  const allEvents = DECKS.flatMap(d => d.events);
   const eventMap = Object.fromEntries(allEvents.map(e => [e.id, e]));
 
   return (
@@ -222,7 +223,7 @@ function StatsScreen({ stats, onBack, onReset }: {
 }
 
 export default function App() {
-  const [screen, setScreen] = useState<"home" | "game" | "stats">("home");
+  const [screen, setScreen] = useState<"home" | "game" | "stats" | "admin">("home");
   const [selectedDeck, setSelectedDeck] = useState<Deck | null>(null);
   const [puzzle, setPuzzle] = useState<HistoryEvent[]>([]);
   const [cards, setCards] = useState<HistoryEvent[]>([]);
@@ -363,6 +364,10 @@ export default function App() {
     saveStats(empty);
   }
 
+  if (screen === "admin") return (
+    <AdminScreen onBack={() => setScreen("home")} />
+  );
+
   if (screen === "stats") return (
     <StatsScreen
       stats={stats}
@@ -412,6 +417,13 @@ export default function App() {
           className="w-full py-3 rounded-xl border border-border bg-transparent text-text-tertiary text-sm hover:text-text-primary hover:border-borderLight transition-colors cursor-pointer"
         >
           📊 Estadísticas
+        </button>
+
+        <button
+          onClick={() => setScreen("admin")}
+          className="mt-3 bg-transparent border-none cursor-pointer text-xs text-text-tertiary hover:text-text-secondary transition-colors"
+        >
+          ⚙ Admin
         </button>
       </div>
     </div>

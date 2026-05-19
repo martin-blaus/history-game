@@ -1,4 +1,4 @@
-export type { HistoryEvent, PuzzleSet, Deck } from "./argentina";
+export type { HistoryEvent, Deck } from "./argentina";
 export { argentina } from "./argentina";
 export { mundo } from "./mundo";
 export { filosofia } from "./filosofia";

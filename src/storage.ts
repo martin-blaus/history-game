@@ -26,15 +26,15 @@ export function saveStats(stats: AppStats): void {
   } catch {}
 }
 
-export function selectPuzzle(deck: Deck, stats: AppStats) {
-  const scored = deck.puzzles.map((set, i) => ({
-    i,
-    score: set.reduce((sum, e) => sum + (stats.events[e.id]?.shown ?? 0), 0),
+export function selectPuzzle(deck: Deck, stats: AppStats): HistoryEvent[] {
+  const n = deck.puzzleSize ?? 6;
+  const tagged = deck.events.map(ev => ({
+    ev,
+    shown: stats.events[ev.id]?.shown ?? 0,
+    r: Math.random(),
   }));
-  const minScore = Math.min(...scored.map(s => s.score));
-  const candidates = scored.filter(s => s.score === minScore);
-  const pick = candidates[Math.floor(Math.random() * candidates.length)];
-  return deck.puzzles[pick.i];
+  tagged.sort((a, b) => a.shown - b.shown || a.r - b.r);
+  return tagged.slice(0, n).map(t => t.ev);
 }
 
 export function recordResult(
