@@ -1,6 +1,17 @@
-import { useState, useRef } from "react";
+import { useMemo, useState, useRef } from "react";
 import { deck } from "./data/argentina";
 import type { HistoryEvent } from "./data/argentina";
+
+type CardStatus = "correct" | "wrong" | null;
+
+const STATUS_CARD_CLASSES: Record<"correct" | "wrong", string> = {
+  correct: "bg-success-bg border-success border-l-success",
+  wrong:   "bg-danger-bg border-danger border-l-danger",
+};
+
+function statusEmoji(s: string): "🟩" | "🟥" {
+  return s === "correct" ? "🟩" : "🟥";
+}
 
 function shuffle<T>(arr: T[]): T[] {
   const a = [...arr];
@@ -12,13 +23,11 @@ function shuffle<T>(arr: T[]): T[] {
 }
 
 function getDailyPuzzle() {
-  const day = new Date().getDate();
-  return deck.daily[day % deck.daily.length];
+  return deck.daily[new Date().getDate() % deck.daily.length];
 }
 
 function getDailyPuzzleNum() {
-  const origin = new Date("2026-05-18");
-  const diff = Math.floor((new Date().getTime() - origin.getTime()) / 86400000);
+  const diff = Math.floor((Date.now() - new Date("2026-05-18").getTime()) / 86400000);
   return 34 + diff;
 }
 
@@ -35,10 +44,9 @@ function formatDateSpanish(): string {
 }
 
 function buildShareText(statuses: string[], mode: string, puzzleNum: number): string {
-  const emojis = statuses.map(s => s === "correct" ? "🟩" : "🟥").join("");
-  const correct = statuses.filter(s => s === "correct").length;
+  const emojis = statuses.map(statusEmoji).join("");
   const label = mode === "daily" ? `#${puzzleNum}` : "Sin fin";
-  return `Historia AR ${label}\n${emojis}\n${correct}/6 correctos\nhistoria-ar.app`;
+  return `Historia AR ${label}\n${emojis}\n${statuses.filter(s => s === "correct").length}/6 correctos\nhistoria-ar.app`;
 }
 
 function GripIcon() {
@@ -68,16 +76,11 @@ function Card({
   onTouchStart: (e: React.TouchEvent, i: number) => void;
   onTouchMove: (e: React.TouchEvent) => void;
   onTouchEnd: () => void;
-  status: string | null;
+  status: CardStatus;
   revealed: boolean;
 }) {
   const isDragging = dragging === index;
-
-  const statusClasses =
-    status === "correct" ? "bg-success-bg border-success border-l-success" :
-    status === "wrong"   ? "bg-danger-bg border-danger border-l-danger" :
-                           "bg-bg-card border-border border-l-ar-blue";
-
+  const statusClasses = status ? STATUS_CARD_CLASSES[status] : "bg-bg-card border-border border-l-ar-blue";
   const dragClasses = isDragging
     ? "opacity-45 scale-[1.02] shadow-2xl cursor-grabbing"
     : "opacity-100 scale-100 cursor-grab";
@@ -120,36 +123,34 @@ export default function App() {
   const [puzzle, setPuzzle] = useState<HistoryEvent[]>([]);
   const [cards, setCards] = useState<HistoryEvent[]>([]);
   const [dragging, setDragging] = useState<number | null>(null);
-  const [submitted, setSubmitted] = useState(false);
-  const [statuses, setStatuses] = useState<string[]>([]);
+  const [statuses, setStatuses] = useState<("correct" | "wrong")[]>([]);
   const [endlessPuzzleIdx, setEndlessPuzzleIdx] = useState(0);
   const [copied, setCopied] = useState(false);
   const touchRef = useRef<{ startIdx: number | null; currentIdx: number | null; startY: number }>({
     startIdx: null, currentIdx: null, startY: 0,
   });
 
-  const puzzleNum = getDailyPuzzleNum();
+  const puzzleNum = useMemo(() => getDailyPuzzleNum(), []);
+  const submitted = statuses.length > 0;
+
+  function loadPuzzle(p: HistoryEvent[]) {
+    setPuzzle(p);
+    setCards(shuffle(p));
+    setStatuses([]);
+  }
 
   function startGame(m: "daily" | "endless") {
     setMode(m);
-    const p = m === "daily"
+    loadPuzzle(m === "daily"
       ? getDailyPuzzle()
-      : deck.endless[endlessPuzzleIdx % deck.endless.length];
-    setPuzzle(p);
-    setCards(shuffle(p));
-    setSubmitted(false);
-    setStatuses([]);
+      : deck.endless[endlessPuzzleIdx % deck.endless.length]);
     setScreen("game");
   }
 
   function nextEndless() {
     const nextIdx = (endlessPuzzleIdx + 1) % deck.endless.length;
     setEndlessPuzzleIdx(nextIdx);
-    const p = deck.endless[nextIdx];
-    setPuzzle(p);
-    setCards(shuffle(p));
-    setSubmitted(false);
-    setStatuses([]);
+    loadPuzzle(deck.endless[nextIdx]);
   }
 
   function handleDragStart(i: number) { setDragging(i); }
@@ -198,27 +199,22 @@ export default function App() {
 
   function submit() {
     const sorted = [...puzzle].sort((a, b) => a.year - b.year);
-    const s = cards.map((c, i) => c.id === sorted[i].id ? "correct" : "wrong");
-    setStatuses(s);
-    setSubmitted(true);
+    setStatuses(cards.map((c, i) => c.id === sorted[i].id ? "correct" : "wrong"));
   }
 
   function share() {
-    const text = buildShareText(statuses, mode, puzzleNum);
-    navigator.clipboard.writeText(text).then(() => {
+    navigator.clipboard.writeText(buildShareText(statuses, mode, puzzleNum)).then(() => {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     });
   }
 
-  const correctCount = statuses.filter(s => s === "correct").length;
+  const titleCls = "text-[48px] font-extrabold tracking-[-2px] m-0 leading-none";
 
-  // ── Home Screen ──────────────────────────────────────────────────────────
   if (screen === "home") return (
     <div className="min-h-screen bg-bg flex items-center justify-center">
       <div className="w-full max-w-[420px] px-6 py-12 text-center">
 
-        {/* Argentine flag stripe */}
         <div className="flex h-[5px] rounded-full overflow-hidden gap-0.5 mb-8">
           <div className="flex-1 bg-ar-blue" />
           <div className="flex-1 bg-text-primary" />
@@ -226,12 +222,8 @@ export default function App() {
         </div>
 
         <div className="mb-2">
-          <h1 className="text-[48px] font-extrabold tracking-[-2px] m-0 text-text-primary leading-none">
-            Historia
-          </h1>
-          <h1 className="text-[48px] font-extrabold tracking-[-2px] m-0 text-ar-blue leading-none">
-            Argentina
-          </h1>
+          <h1 className={`${titleCls} text-text-primary`}>Historia</h1>
+          <h1 className={`${titleCls} text-ar-blue`}>Argentina</h1>
         </div>
 
         <div className="w-12 h-[3px] bg-ar-gold rounded-sm mx-auto my-3" />
@@ -262,7 +254,6 @@ export default function App() {
     </div>
   );
 
-  // ── Game Screen ──────────────────────────────────────────────────────────
   return (
     <div className="min-h-screen bg-bg">
       <div className="max-w-[500px] mx-auto px-4 py-6">
@@ -301,7 +292,7 @@ export default function App() {
               onTouchStart={handleTouchStart}
               onTouchMove={handleTouchMove}
               onTouchEnd={handleTouchEnd}
-              status={submitted ? statuses[i] : null}
+              status={statuses[i] ?? null}
               revealed={submitted}
             />
           ))}
@@ -317,19 +308,17 @@ export default function App() {
         ) : (
           <div className="text-center bg-bg-card border border-border rounded-2xl p-6">
             <div className="text-[36px] font-extrabold text-ar-gold mb-1">
-              {correctCount}/6
+              {statuses.filter(s => s === "correct").length}/6
             </div>
-            <div className="text-sm text-text-secondary mb-4">
-              correctos
-            </div>
+            <div className="text-sm text-text-secondary mb-4">correctos</div>
             <div className="text-[26px] tracking-[6px] mb-6">
-              {statuses.map((s, i) => s === "correct" ? "🟩" : "🟥")}
+              {statuses.map(statusEmoji)}
             </div>
             <div className="flex gap-2 justify-center flex-wrap">
               <button
                 onClick={share}
                 className={`py-2.5 px-5 rounded-[10px] border border-border bg-bg-secondary text-sm font-medium cursor-pointer transition-colors ${
-                  copied ? "text-success" : "text-text-primary hover:text-text-primary"
+                  copied ? "text-success" : "text-text-primary"
                 }`}
               >
                 {copied ? "¡Copiado!" : "Compartir resultado"}
