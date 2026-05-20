@@ -5,442 +5,1704 @@
   "puzzleSize": 10,
   "events": [
     {
-      "id": "ar-1",
-      "event": "Juan de Garay funda Buenos Aires (segunda fundación)",
-      "year": 1580,
-      "context": "La primera fundación de Buenos Aires, en 1536, fracasó por conflictos con los pueblos originarios. Garay llegó desde Asunción con colonos y estableció la ciudad que se convertiría en capital del futuro país."
+      "id": "ar-01",
+      "event": "Auge de la exportación de cueros y tasajo en el puerto de Buenos Aires",
+      "year": 1790,
+      "context": "Consolidación del modelo comercial virreinal basado en la ganadería y el puerto, bajo el sistema de monopolio español."
     },
     {
-      "id": "ar-2",
-      "event": "Invasiones Inglesas al Río de la Plata",
+      "id": "ar-02",
+      "event": "Primera Invasión Inglesa y ocupación de Buenos Aires",
       "year": 1806,
-      "context": "Gran Bretaña intentó tomar Buenos Aires y Montevideo para controlar el comercio sudamericano. La resistencia popular —sin apoyo de España— fue clave para expulsarlos y despertó el sentimiento autonomista criollo."
+      "context": "Tropas británicas toman la capital; la reconquista local inicia la militarización y politización de las milicias criollas."
     },
     {
-      "id": "ar-3",
-      "event": "Revolución de Mayo",
+      "id": "ar-03",
+      "event": "Segunda Invasión Inglesa y defensa de la ciudad",
+      "year": 1807,
+      "context": "Rechazo definitivo de las fuerzas británicas por milicias locales, cuyos oficiales fueron elegidos democráticamente."
+    },
+    {
+      "id": "ar-04",
+      "event": "Revolución de Mayo y formación de la Primera Junta",
       "year": 1810,
-      "context": "El 25 de mayo, una junta de gobierno reemplazó al virrey Baltasar Hidalgo de Cisneros en Buenos Aires. Aunque se mantuvo la lealtad formal a la corona española, fue el primer paso hacia la independencia.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/c/ca/Cabildoabierto-Subercaseaux.jpg"
+      "context": "Destitución del virrey Cisneros y asunción del primer gobierno patrio presidido por Cornelio Saavedra."
     },
     {
-      "id": "ar-4",
-      "event": "Declaración de Independencia Argentina",
-      "year": 1816,
-      "context": "El Congreso reunido en Tucumán declaró la independencia de las Provincias Unidas del Río de la Plata el 9 de julio. La declaración llegó en plena guerra de independencia contra España en toda América del Sur.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/e/e3/Independencia_Argentina.JPG"
+      "id": "ar-05",
+      "event": "Establecimiento de la Junta Grande",
+      "year": 1811,
+      "context": "Incorporación de diputados de las provincias al órgano de gobierno tras la presión de los líderes del interior."
     },
     {
-      "id": "ar-5",
-      "event": "Batalla de Caseros — caída de Rosas",
-      "year": 1852,
-      "context": "El gobernador Juan Manuel de Rosas fue derrotado por una coalición de fuerzas de Uruguay, Brasil y el general Urquiza. Terminó así su segundo gobierno de 17 años y abrió el camino a la organización nacional."
+      "id": "ar-06",
+      "event": "Creación del Primer Triunvirato",
+      "year": 1811,
+      "context": "Concentración del poder ejecutivo en tres miembros para agilizar la gestión de la guerra de independencia."
     },
     {
-      "id": "ar-6",
-      "event": "Sanción de la Constitución Nacional Argentina",
-      "year": 1853,
-      "context": "Inspirada en la Constitución de EE.UU. y en el pensamiento de Alberdi, estableció el sistema federal y republicano. Buenos Aires la rechazó y no se incorporó a la Confederación hasta 1859."
+      "id": "ar-07",
+      "event": "Llegada de José de San Martín a Buenos Aires",
+      "year": 1812,
+      "context": "Arribo del oficial formado en España para organizar el Regimiento de Granaderos a Caballo."
     },
     {
-      "id": "ar-7",
-      "event": "Creación del Virreinato del Río de la Plata",
-      "year": 1776,
-      "context": "España creó este virreinato para contener el avance portugués desde Brasil y administrar mejor la región. Buenos Aires se convirtió en capital, desplazando a Lima, y el territorio incluía hoy Argentina, Bolivia, Uruguay y Paraguay."
+      "id": "ar-08",
+      "event": "Asamblea General Constituyente o Asamblea del Año XIII",
+      "year": 1813,
+      "context": "Sanción de la Libertad de Vientres, beneficiando a hijos de africanas esclavizadas, y eliminación de títulos de nobleza."
     },
     {
-      "id": "ar-8",
-      "event": "Muerte de Manuel Belgrano, creador de la bandera",
-      "year": 1820,
-      "context": "Belgrano murió en la pobreza el mismo día en que Buenos Aires caía en el caos político de la Anarquía del Año XX. Creó la bandera celeste y blanca en 1812 y dirigió la campaña del Norte contra los realistas."
-    },
-    {
-      "id": "ar-9",
-      "event": "Ley Sáenz Peña — voto secreto y obligatorio",
-      "year": 1912,
-      "context": "La ley instauró el sufragio universal masculino secreto y obligatorio, acabando con el fraude electoral sistemático. Fue impulsada por el presidente Roque Sáenz Peña y llevó a la UCR al poder en 1916."
+      "id": "ar-09",
+      "event": "Creación del Directorio",
+      "year": 1814,
+      "context": "Instauración de un ejecutivo unipersonal para centralizar el mando ante el avance realista y las disidencias internas."
     },
     {
       "id": "ar-10",
-      "event": "Presidencia de Hipólito Yrigoyen — primer gobierno radical",
-      "year": 1916,
-      "context": "Yrigoyen fue el primer presidente elegido por voto popular secreto en Argentina. Su gobierno amplió derechos laborales y representó el acceso de las clases medias al poder por primera vez en la historia del país."
+      "event": "Declaración de la Independencia de las Provincias Unidas",
+      "year": 1816,
+      "context": "El Congreso de Tucumán proclama la ruptura formal con la corona española y toda otra potencia extranjera."
     },
     {
       "id": "ar-11",
-      "event": "Primera transmisión de radio en el mundo — Argentina",
-      "year": 1920,
-      "context": "El 27 de agosto, el grupo Sociedad Radio Argentina transmitió ópera desde el Teatro Coliseo, siendo considerada la primera transmisión radial pública del mundo. Fue pionera en telecomunicaciones de masas."
+      "event": "Sanción de la Constitución Centralista",
+      "year": 1819,
+      "context": "Dictado de una carta magna unitaria que provocó el rechazo inmediato de las provincias y el fin del consenso nacional."
     },
     {
       "id": "ar-12",
-      "event": "Golpe de Estado de Uriburu — primera dictadura militar",
-      "year": 1930,
-      "context": "El general José Félix Uriburu derrocó a Yrigoyen iniciando la llamada 'Década Infame'. Fue el primer golpe de Estado exitoso en Argentina y marcó el inicio de décadas de inestabilidad institucional."
+      "event": "Batalla de Cepeda y caída del Directorio",
+      "year": 1820,
+      "context": "López y Ramírez derrotan al poder central, iniciando el periodo de las autonomías provinciales."
     },
     {
       "id": "ar-13",
-      "event": "Primer ferrocarril argentino en funcionamiento",
-      "year": 1857,
-      "context": "El Ferrocarril del Oeste inauguró su primer tramo entre La Porteña y el Parque (hoy Plaza Lavalle) en Buenos Aires. Fue el inicio de la extensa red ferroviaria que integró el país y potenció la exportación agrícola."
+      "event": "Tratado del Cuadrilátero",
+      "year": 1822,
+      "context": "Pacto de paz y unión entre Buenos Aires, Santa Fe, Entre Ríos y Corrientes para regular relaciones interprovinciales."
     },
     {
       "id": "ar-14",
-      "event": "Creación de YPF — Yacimientos Petrolíferos Fiscales",
-      "year": 1922,
-      "context": "YPF fue la primera empresa petrolera estatal del mundo y una del mundo en explotar el petróleo a escala nacional. Creada por el presidente Yrigoyen, nació del hallazgo de petróleo en Comodoro Rivadavia en 1907."
+      "event": "Inicio del periodo de estudio de la Confederación por Adolfo Saldías",
+      "year": 1824,
+      "context": "Punto de anclaje cronológico para la investigación revisionista sobre la gobernación de Rosas."
     },
     {
       "id": "ar-15",
-      "event": "Primera presidencia de Juan Domingo Perón",
-      "year": 1946,
-      "context": "Perón llegó al poder con un masivo apoyo obrero y fue reelecto en 1951. Su gobierno creó el Estado de bienestar argentino, nacionalizó empresas clave y su esposa Eva Perón se convirtió en figura mítica."
+      "event": "Sanción de la Constitución Unitaria bajo Rivadavia",
+      "year": 1826,
+      "context": "Segundo intento de organización centralizada, rechazado por las provincias bajo la influencia de caudillos federales."
     },
     {
       "id": "ar-16",
-      "event": "Golpe de 1955 — Revolución Libertadora derroca a Perón",
-      "year": 1955,
-      "context": "La alianza entre militares y sectores civiles antiperonistas derrocó a Perón y lo envió al exilio. Se prohibió el peronismo durante 18 años, pero el movimiento sobrevivió clandestinamente con enorme fuerza popular."
+      "event": "Asunción de Juan Manuel de Rosas como gobernador de Buenos Aires",
+      "year": 1829,
+      "context": "Inicio de la hegemonía rosista tras la crisis del orden unitario y el fusilamiento de Dorrego."
     },
     {
       "id": "ar-17",
-      "event": "Regreso de Perón al país tras 18 años de exilio",
-      "year": 1973,
-      "context": "El 20 de junio, más de dos millones de personas fueron a Ezeiza para recibirlo, pero el acto terminó en una masacre entre facciones peronistas rivales. Perón asumió la presidencia en octubre y murió en julio de 1974."
+      "event": "Firma del Pacto Federal",
+      "year": 1831,
+      "context": "Acuerdo entre provincias federales que delegó las relaciones exteriores en Buenos Aires y reguló la Confederación."
     },
     {
       "id": "ar-18",
-      "event": "Argentina campeona del mundo — México 1986",
-      "year": 1986,
-      "context": "Dirigida por Diego Maradona, quien marcó el célebre 'Gol del Siglo' y el polémico 'Gol de la Mano de Dios' ante Inglaterra en cuartos de final. Argentina venció a Alemania Occidental 3-2 en la final.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/2/2c/Maradona-Mundial_86_con_la_copa.JPG"
+      "event": "Suma del Poder Público para Rosas",
+      "year": 1835,
+      "context": "Asunción del segundo mandato con facultades extraordinarias, persiguiendo a la oposición unitaria."
     },
     {
       "id": "ar-19",
-      "event": "Dictadura militar — inicio del Proceso de Reorganización Nacional",
-      "year": 1976,
-      "context": "El golpe del 24 de marzo instauró la dictadura más sangrienta de la historia argentina: entre 10.000 y 30.000 personas fueron desaparecidas. Los militares gobernaron hasta 1983 con represión sistemática y plan económico neoliberal."
+      "event": "Sanción de la Ley de Aduanas",
+      "year": 1835,
+      "context": "Medida proteccionista de Rosas que favoreció industrias del interior y consolidó el control portuario porteño."
     },
     {
       "id": "ar-20",
-      "event": "Argentina campeona del mundo — Argentina 1978",
-      "year": 1978,
-      "context": "El torneo se disputó bajo la dictadura militar en medio de denuncias internacionales por violaciones a los derechos humanos. Argentina venció a Holanda 3-1 en la final en el Estadio Monumental de Buenos Aires."
+      "event": "Bloqueo Francés al Río de la Plata",
+      "year": 1838,
+      "context": "Conflicto diplomático y militar defendido por Rosas bajo el principio de soberanía nacional."
     },
     {
       "id": "ar-21",
-      "event": "Guerra de las Malvinas",
-      "year": 1982,
-      "context": "La junta militar invadió las Islas Malvinas para desviar la atención de la crisis interna. Gran Bretaña respondió con una fuerza de tareas; Argentina fue derrotada en 74 días con 649 militares muertos y aceleró la caída del régimen.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/3/36/Action_stations_Falklands_1982.JPG"
+      "event": "Guerra civil de la Coalición del Norte",
+      "year": 1840,
+      "context": "Levantamiento de provincias del interior contra el centralismo de Rosas, liderado por Marco Avellaneda."
     },
     {
       "id": "ar-22",
-      "event": "Retorno de la democracia — asume Raúl Alfonsín",
-      "year": 1983,
-      "context": "Alfonsín ganó las primeras elecciones libres tras la dictadura, derrotando al peronismo por primera vez. Su gobierno ordenó el histórico Juicio a las Juntas, condenando a los principales responsables del terrorismo de Estado."
+      "event": "Bloqueo Anglo-Francés",
+      "year": 1845,
+      "context": "Intervención de potencias europeas para forzar la libre navegación de los ríos interiores argentinos."
     },
     {
       "id": "ar-23",
-      "event": "Crisis económica, corralito y default",
-      "year": 2001,
-      "context": "En diciembre, el gobierno congeló los depósitos bancarios (el 'corralito') detonando una crisis social: cinco presidentes en dos semanas y la mayor cesación de pagos de la historia hasta ese momento."
+      "event": "Gran migración irlandesa por la hambruna europea",
+      "year": 1845,
+      "context": "Llegada masiva de inmigrantes especializados en pastoreo que impulsarían el ciclo de la lana."
     },
     {
       "id": "ar-24",
-      "event": "Argentina campeona del mundo — Qatar 2022",
-      "year": 2022,
-      "context": "Liderada por Lionel Messi, Argentina derrotó a Francia en la final más emocionante de la historia del fútbol, definiéndose por penales. Fue el tercer título mundial del país y el primero de Messi, sellando su legado."
+      "event": "Tratado de Paz con Gran Bretaña",
+      "year": 1849,
+      "context": "Reconocimiento británico de la soberanía argentina sobre sus ríos, cerrando el conflicto del bloqueo."
     },
     {
       "id": "ar-25",
-      "event": "Primer asentamiento europeo en territorio argentino — Sancti Spiritu",
-      "year": 1527,
-      "context": "Fundado por Sebastián Caboto en la confluencia de los ríos Carcarañá y Coronda, fue el primer establecimiento europeo permanente en lo que hoy es Argentina. Fue destruido por los timbúes dos años después."
+      "event": "Pronunciamiento de Justo José de Urquiza",
+      "year": 1851,
+      "context": "El gobernador de Entre Ríos rompe con Rosas reclamando la organización constitucional del país."
     },
     {
       "id": "ar-26",
-      "event": "Fundación de Córdoba por Jerónimo Luis de Cabrera",
-      "year": 1573,
-      "context": "Córdoba fue fundada como punto estratégico entre el Alto Perú y el Río de la Plata. Sería sede de la primera universidad de lo que hoy es Argentina, la Universidad Nacional de Córdoba, fundada en 1613."
+      "event": "Invasión del Ejército Grande al Uruguay",
+      "year": 1851,
+      "context": "Acción militar de Urquiza para desplazar a las tropas rosistas y unificar fuerzas contra Buenos Aires."
     },
     {
       "id": "ar-27",
-      "event": "Fundación de Salta por Hernando de Lerma",
-      "year": 1582,
-      "context": "Salta fue fundada para dominar las rutas comerciales entre el Virreinato del Perú y el Río de la Plata. Su ubicación estratégica la convirtió en sede del Ejército del Norte durante las guerras de independencia."
+      "event": "Batalla de Caseros",
+      "year": 1852,
+      "context": "Derrota definitiva de Rosas frente al Ejército Grande; el gobernador porteño parte al exilio en Inglaterra."
     },
     {
       "id": "ar-28",
-      "event": "Asamblea del Año XIII — abolición de la esclavitud",
-      "year": 1813,
-      "context": "La Asamblea estableció la 'libertad de vientres', por la que los hijos de esclavos nacerían libres. También suprimió la Inquisición, los títulos de nobleza y el uso de instrumentos de tortura."
+      "event": "Protocolo de Palermo",
+      "year": 1852,
+      "context": "Acuerdo tras Caseros que encarga a Urquiza las relaciones exteriores de la Confederación."
     },
     {
       "id": "ar-29",
-      "event": "San Martín cruza los Andes — campaña libertadora",
-      "year": 1817,
-      "context": "El cruce de los Andes fue una hazaña militar sin precedentes: 5.000 soldados cruzaron por varios pasos a más de 4.000 metros. Permitió la liberación de Chile y fue el punto de partida de la campaña al Perú.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/1/15/El_cruce_de_los_Andes_por_el_Gral._San_Mart%C3%ADn.JPG"
+      "event": "Firma del Acuerdo de San Nicolás",
+      "year": 1852,
+      "context": "Pacto para convocar al Congreso Constituyente; Buenos Aires lo rechaza por la igualdad de representación."
     },
     {
       "id": "ar-30",
-      "event": "Buenos Aires se convierte en capital federal del país",
-      "year": 1880,
-      "context": "Tras décadas de conflicto entre Buenos Aires y las provincias, la ciudad fue federalizada bajo el presidente Julio Roca. Se creó la Gobernación de Buenos Aires con La Plata como nueva capital provincial."
+      "event": "Revolución del 11 de Septiembre",
+      "year": 1852,
+      "context": "Levantamiento porteño contra Urquiza que marca la secesión de Buenos Aires del resto del país."
     },
     {
       "id": "ar-31",
-      "event": "Muerte de José de San Martín en Boulogne-sur-Mer",
-      "year": 1850,
-      "context": "San Martín murió en Francia a los 72 años, exiliado voluntariamente desde 1824 para no intervenir en las guerras civiles argentinas. Sus restos fueron repatriados en 1880 y descansan en la Catedral Metropolitana."
+      "event": "Asunción de Valentín Alsina como gobernador de Buenos Aires",
+      "year": 1852,
+      "context": "Liderazgo de la facción autonomista 'cruda' tras la ruptura con la Confederación Argentina."
     },
     {
       "id": "ar-32",
-      "event": "Guerra de la Triple Alianza — Argentina, Brasil y Uruguay vs. Paraguay",
-      "year": 1864,
-      "context": "Fue la guerra más devastadora de América del Sur: Paraguay perdió entre el 60% y el 70% de su población total. Argentina recuperó el territorio de Misiones y parte del Chaco al término del conflicto en 1870."
+      "event": "Levantamiento de Hilario Lagos en la campaña bonaerense",
+      "year": 1852,
+      "context": "Jefes rosistas se rebelan contra el gobierno liberal de Alsina, buscando la unión con Urquiza."
     },
     {
       "id": "ar-33",
-      "event": "Conquista del Desierto — campaña militar de Roca",
-      "year": 1879,
-      "context": "El general Julio A. Roca lanzó una campaña sistemática contra los pueblos mapuches y tehuelches en la Patagonia. Incorporó millones de hectáreas al Estado y permitió la expansión de la frontera agropecuaria."
+      "event": "Inicio del Sitio de Buenos Aires",
+      "year": 1852,
+      "context": "Bloqueo terrestre de la capital por fuerzas de Lagos y apoyo militar de la Confederación."
     },
     {
       "id": "ar-34",
-      "event": "Semana Trágica — huelga obrera y represión en Buenos Aires",
-      "year": 1919,
-      "context": "Una huelga en los talleres metalúrgicos Vasena desencadenó una semana de violencia con centenares de muertos. Fue la primera gran confrontación entre el movimiento obrero y el Estado en Argentina."
+      "event": "Batalla de San Gregorio",
+      "year": 1852,
+      "context": "Victoria federal sobre el gobierno porteño durante el intento de ocupar el interior provincial."
     },
     {
       "id": "ar-35",
-      "event": "Muerte de Eva Perón — Evita",
-      "year": 1952,
-      "context": "Eva Perón murió de cáncer a los 33 años siendo una de las figuras más amadas y polémicas de la historia argentina. Fue la gran impulsora del voto femenino (1947) y de la Fundación Eva Perón que ayudó a millones.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/1/12/Evita_%28cropped2%29.JPG"
+      "event": "Sanción de la Constitución Nacional en Santa Fe",
+      "year": 1853,
+      "context": "Aprobación de la carta magna federal; establece la división de poderes y la libertad de cultos."
     },
     {
       "id": "ar-36",
-      "event": "Juicio a las Juntas Militares",
-      "year": 1985,
-      "context": "Por primera vez en América Latina, los máximos responsables de una dictadura militar fueron juzgados y condenados por un tribunal civil. Videla y Massera recibieron cadena perpetua en un proceso histórico."
+      "event": "Nacionalización de los derechos de aduana",
+      "year": 1853,
+      "context": "Disposición constitucional que declara los recursos portuarios como patrimonio de toda la Confederación."
     },
     {
       "id": "ar-37",
-      "event": "Hiperinflación — caída anticipada del gobierno de Alfonsín",
-      "year": 1989,
-      "context": "La inflación llegó al 3.000% anual, provocando saqueos y una crisis social sin precedentes. Alfonsín entregó anticipadamente el poder a Carlos Menem, siendo el primer traspaso presidencial entre partidos opuestos en décadas."
+      "event": "Traición de John Halstead Coe",
+      "year": 1853,
+      "context": "El comandante de la flota federal entrega la escuadra a Buenos Aires tras recibir un soborno de la dirigencia porteña."
     },
     {
       "id": "ar-38",
-      "event": "Firma del Tratado de Asunción — creación del MERCOSUR",
-      "year": 1991,
-      "context": "Argentina, Brasil, Paraguay y Uruguay crearon el Mercado Común del Sur, el mayor bloque regional de América Latina. Fue la apuesta por la integración económica sudamericana en la era de la globalización."
+      "event": "Elección de Justo José de Urquiza como Presidente",
+      "year": 1854,
+      "context": "Asunción del primer mandatario constitucional con capital provisional en Paraná, Entre Ríos."
     },
     {
       "id": "ar-39",
-      "event": "Atentado terrorista a la AMIA en Buenos Aires",
-      "year": 1994,
-      "context": "Un coche bomba destruyó la sede de la Asociación Mutual Israelita Argentina matando a 85 personas. Es el mayor atentado terrorista en la historia argentina y permanece impune más de 30 años después."
+      "event": "Creación del Banco Nacional de la Confederación",
+      "year": 1854,
+      "context": "Intento de Mariano Fragueiro de impulsar el crédito público mediante la emisión de papel moneda sin respaldo."
     },
     {
       "id": "ar-40",
-      "event": "Néstor Kirchner asume la presidencia",
-      "year": 2003,
-      "context": "Kirchner asumió con apenas el 22% de los votos, luego de que Carlos Menem renunciara al ballotage. Su gobierno renegó la deuda con el FMI, reabrió los juicios por crímenes de la dictadura y reactivó la economía."
+      "event": "Sanción de la Constitución del Estado de Buenos Aires",
+      "year": 1854,
+      "context": "La provincia disidente se organiza como estado soberano, ejerciendo su propio manejo exterior."
     },
     {
       "id": "ar-41",
-      "event": "Argentina campeona de la Copa América — Brasil 2021",
-      "year": 2021,
-      "context": "Argentina derrotó a Brasil en el Maracaná, rompiendo una sequía de 28 años sin títulos. Fue el primer gran trofeo de Messi con la Selección y abrió el camino al Mundial de Qatar."
+      "event": "Invasión fallida de Jerónimo Costa a Buenos Aires",
+      "year": 1854,
+      "context": "Intento de federales exiliados por recuperar la provincia, repelido por el gobierno de Pastor Obligado."
     },
     {
       "id": "ar-42",
-      "event": "Javier Milei asume la presidencia de Argentina",
-      "year": 2023,
-      "context": "Milei ganó las elecciones con un programa de shock económico liberal, la dolarización como propuesta y la 'motosierra' como símbolo. Su gobierno inició el mayor ajuste fiscal de la historia argentina reciente."
+      "event": "Fundación de la colonia agrícola Esperanza",
+      "year": 1855,
+      "context": "Aarón Castellanos establece la primera colonia de inmigrantes suizos exitosa en Santa Fe."
     },
     {
       "id": "ar-43",
-      "event": "Aparición de El Telégrafo Mercantil",
-      "year": 1801,
-      "context": "Primer periódico del Río de la Plata, fundado por Francisco Cabello y Mesa. Fue fundamental para la difusión de ideas ilustradas que germinarían en la Revolución de Mayo."
+      "event": "Masacre de Villamayor",
+      "year": 1856,
+      "context": "Fusilamiento de Jerónimo Costa y sus oficiales por orden de Buenos Aires, declarándolos bandidos."
     },
     {
       "id": "ar-44",
-      "event": "Segunda Invasión Inglesa - Defensa de Buenos Aires",
-      "year": 1807,
-      "context": "Tras la reconquista en 1806, las fuerzas británicas regresaron con mayor número al mando de John Whitelocke, pero fueron derrotadas por las milicias urbanas lideradas por Santiago de Liniers."
+      "event": "Sanción de la Ley de Derechos Diferenciales",
+      "year": 1856,
+      "context": "Estrategia económica de Urquiza para favorecer el puerto de Rosario y desviar el comercio de Buenos Aires."
     },
     {
       "id": "ar-45",
-      "event": "Batalla de Suipacha",
-      "year": 1810,
-      "context": "Primer triunfo de las armas patriotas en el Alto Perú. Las fuerzas del Ejército del Norte derrotaron a los realistas, consolidando temporalmente la Revolución de Mayo en la región."
+      "event": "Inauguración del Ferrocarril Oeste de Buenos Aires",
+      "year": 1857,
+      "context": "Primer ramal ferroviario del país, uniendo la estación Parque con el pueblo de Floresta."
     },
     {
       "id": "ar-46",
-      "event": "Creación del Primer Triunvirato",
-      "year": 1811,
-      "context": "Órgano ejecutivo compuesto por Feliciano Chiclana, Manuel de Sarratea y Juan José Paso, que reemplazó a la Junta Grande para centralizar el poder en medio de las guerras de independencia."
+      "event": "Fundación de la Colonia San José",
+      "year": 1857,
+      "context": "Establecimiento agrícola impulsado por Urquiza en Entre Ríos con inmigrantes europeos."
     },
     {
       "id": "ar-47",
-      "event": "Creación de la Bandera Nacional",
-      "year": 1812,
-      "context": "Manuel Belgrano izó por primera vez la bandera celeste y blanca a orillas del río Paraná, en Rosario, para unificar e identificar a las tropas patriotas frente al enemigo."
+      "event": "Triunfo de Valentín Alsina en elecciones porteñas",
+      "year": 1857,
+      "context": "Consolidación del ala segregacionista mediante el uso de fraude y presión sobre los federales reformistas."
     },
     {
       "id": "ar-48",
-      "event": "El Éxodo Jujeño",
-      "year": 1812,
-      "context": "Ante el avance del ejército realista, Manuel Belgrano ordenó a la población de San Salvador de Jujuy abandonar la ciudad y destruir todo aquello que pudiera ser de utilidad para el enemigo."
+      "event": "Masacre de Quinteros en Uruguay",
+      "year": 1858,
+      "context": "Ejecución de revolucionarios apoyados por Buenos Aires, exacerbando la tensión entre unitarios y federales."
     },
     {
       "id": "ar-49",
-      "event": "Batalla de Tucumán",
-      "year": 1812,
-      "context": "Victoria crucial de las fuerzas de Manuel Belgrano sobre los realistas de Pío Tristán. Frenó el avance español hacia el sur y salvó a la Revolución de Mayo."
+      "event": "Asesinato de Nazario Benavídez en San Juan",
+      "year": 1858,
+      "context": "Crimen político contra el caudillo federal que precipitó la intervención nacional y la guerra civil."
     },
     {
       "id": "ar-50",
-      "event": "Batalla de Salta",
-      "year": 1813,
-      "context": "El Ejército del Norte liderado por Manuel Belgrano derrotó nuevamente a los realistas, logrando la capitulación de las fuerzas de Pío Tristán y consolidando la frontera norte."
+      "event": "Batalla de Cepeda (1859)",
+      "year": 1859,
+      "context": "Urquiza derrota al ejército porteño de Mitre, forzando a Buenos Aires a negociar su reincorporación."
     },
     {
       "id": "ar-51",
-      "event": "Combate de San Lorenzo",
-      "year": 1813,
-      "context": "Bautismo de fuego del Regimiento de Granaderos a Caballo liderado por José de San Martín. Derrotaron a una expedición realista que asolaba las costas del río Paraná."
+      "event": "Firma del Pacto de San José de Flores",
+      "year": 1859,
+      "context": "Acuerdo de unión nacional; Buenos Aires acepta integrarse previa revisión de la Constitución de 1853."
     },
     {
       "id": "ar-52",
-      "event": "Victoria Naval de Montevideo",
-      "year": 1814,
-      "context": "La escuadra patriota al mando del almirante Guillermo Brown derrotó a la flota realista, provocando la rendición de Montevideo y terminando con el dominio marítimo español en el Río de la Plata."
+      "event": "Reconocimiento de independencia por España",
+      "year": 1859,
+      "context": "Firma del tratado diplomático en Madrid por Juan Bautista Alberdi, representando a la Confederación."
     },
     {
       "id": "ar-53",
-      "event": "Creación del Directorio Supremo",
-      "year": 1814,
-      "context": "Se estableció un poder ejecutivo unipersonal a cargo de un Director Supremo para concentrar el mando político y militar. Gervasio Antonio de Posadas fue el primero en ocupar el cargo."
+      "event": "Asunción presidencial de Santiago Derqui",
+      "year": 1860,
+      "context": "Periodo de frágil convivencia con el gobernador porteño Mitre y tensión creciente con Urquiza."
     },
     {
       "id": "ar-54",
-      "event": "Congreso de Oriente y Liga de los Pueblos Libres",
-      "year": 1815,
-      "context": "Convocado por José Gervasio Artigas, reunió a las provincias del litoral y la Banda Oriental, declarando tempranamente la independencia de España y proclamando un sistema federal."
+      "event": "Reforma Constitucional de 1860",
+      "year": 1860,
+      "context": "Convención Nacional que incorpora cambios pedidos por Buenos Aires y adopta el nombre República Argentina."
     },
     {
       "id": "ar-55",
-      "event": "Batalla de Cepeda",
-      "year": 1820,
-      "context": "Los caudillos federales Estanislao López y Francisco Ramírez derrotaron al Directorio, provocando la caída del gobierno central y el inicio del período de las autonomías provinciales."
+      "event": "Convenio Complementario del 6 de junio",
+      "year": 1860,
+      "context": "Acuerdo donde Buenos Aires se compromete a entregar 1,5 millones de pesos mensuales a la Confederación."
     },
     {
       "id": "ar-56",
-      "event": "Firma del Tratado del Pilar",
-      "year": 1820,
-      "context": "Pacto firmado entre Buenos Aires, Santa Fe y Entre Ríos tras la Batalla de Cepeda, estableciendo la paz y sentando las primeras bases formales del sistema federal en Argentina."
+      "event": "Asesinato de José Antonio Virasoro en San Juan",
+      "year": 1860,
+      "context": "Homicidio del interventor federal que provoca la ruptura definitiva entre Derqui y Mitre."
     },
     {
       "id": "ar-57",
-      "event": "Fundación de la Universidad de Buenos Aires",
-      "year": 1821,
-      "context": "Inaugurada bajo el gobierno de Martín Rodríguez y su ministro Bernardino Rivadavia, se convirtió con el tiempo en una de las instituciones de educación superior más importantes de América Latina."
+      "event": "Fusilamiento de Antonino Aberastain",
+      "year": 1861,
+      "context": "Ejecución del líder liberal sanjuanino tras la intervención de Juan Saá, agravando el conflicto nacional."
     },
     {
       "id": "ar-58",
-      "event": "Entrevista de Guayaquil",
-      "year": 1822,
-      "context": "Reunión secreta entre los libertadores José de San Martín y Simón Bolívar para discutir el futuro del Perú y la culminación estratégica de la guerra de independencia sudamericana."
+      "event": "Terremoto devastador de Mendoza",
+      "year": 1861,
+      "context": "Sismo que destruye por completo la capital provincial, obligando a su reconstrucción en una nueva ubicación."
     },
     {
       "id": "ar-59",
-      "event": "Congreso General Constituyente",
-      "year": 1824,
-      "context": "Reunión de representantes de las provincias convocada en Buenos Aires para intentar reunificar el país, dictar una constitución nacional y hacer frente a los desafíos externos."
+      "event": "Batalla de Pavón",
+      "year": 1861,
+      "context": "Enfrentamiento entre Mitre y Urquiza; el retiro inesperado de Urquiza otorga el triunfo a Buenos Aires."
     },
     {
       "id": "ar-60",
-      "event": "Inicio de la Guerra del Brasil",
-      "year": 1825,
-      "context": "Estalló el conflicto armado entre las Provincias Unidas del Río de la Plata y el Imperio del Brasil por el control de la Provincia Oriental, luego de la Cruzada Libertadora de los Treinta y Tres Orientales."
+      "event": "Matanza de Cañada de Gómez",
+      "year": 1861,
+      "context": "Destrucción de los restos del ejército federal por las tropas porteñas de Venancio Flores."
     },
     {
       "id": "ar-61",
-      "event": "Bernardino Rivadavia asume como primer Presidente",
-      "year": 1826,
-      "context": "En el marco de la Guerra del Brasil, el Congreso sancionó la Ley de Presidencia y Rivadavia asumió como el primer jefe de Estado con el título de Presidente de las Provincias Unidas del Río de la Plata."
+      "event": "Disolución del Gobierno Nacional de la Confederación",
+      "year": 1861,
+      "context": "El vicepresidente Pedernera declara en receso el ejecutivo nacional tras la deserción de las provincias."
     },
     {
       "id": "ar-62",
-      "event": "Sanción de la Constitución Unitaria",
-      "year": 1826,
-      "context": "El Congreso dictó una constitución de fuerte carácter centralista que fue rápidamente rechazada por la mayoría de las provincias, lo que precipitó la renuncia de Rivadavia."
+      "event": "Firma de la Paz de la Banderita",
+      "year": 1862,
+      "context": "Tratado donde el Chacho Peñaloza reconoce la autoridad de Mitre a cambio del cese de hostilidades."
     },
     {
       "id": "ar-63",
-      "event": "Batalla de Ituzaingó",
-      "year": 1827,
-      "context": "Importante victoria táctica de las tropas republicanas (argentinas y orientales) sobre el ejército imperial brasileño, aunque no logró forzar una conclusión inmediata a la Guerra del Brasil."
+      "event": "Presidencia de Bartolomé Mitre",
+      "year": 1862,
+      "context": "Inicio del primer mandato de la nación unificada bajo la hegemonía del Partido Nacional de Buenos Aires."
     },
     {
       "id": "ar-64",
-      "event": "Fusilamiento de Manuel Dorrego",
-      "year": 1828,
-      "context": "El gobernador federal de Buenos Aires fue derrocado mediante un motín y fusilado sin juicio previo por el general unitario Juan Lavalle, desatando una etapa de cruenta guerra civil."
+      "event": "Ley de Compromiso sobre la residencia de las autoridades",
+      "year": 1862,
+      "context": "Acuerdo para que el gobierno nacional resida en Buenos Aires por cinco años sin federalizar la ciudad."
     },
     {
       "id": "ar-65",
-      "event": "Primer gobierno de Juan Manuel de Rosas",
-      "year": 1829,
-      "context": "Rosas asumió la gobernación de Buenos Aires con el título de 'Restaurador de las Leyes' y Facultades Extraordinarias para pacificar la provincia tras el derrocamiento y ejecución de Dorrego."
+      "event": "Organización de la Corte Suprema de Justicia de la Nación",
+      "year": 1863,
+      "context": "Puesta en marcha del máximo tribunal nacional y de la estructura judicial federal en provincias."
     },
     {
       "id": "ar-66",
-      "event": "Firma del Pacto Federal",
-      "year": 1831,
-      "context": "Alianza política y militar establecida entre Buenos Aires, Santa Fe y Entre Ríos para enfrentar a la Liga Unitaria, convirtiéndose en el principal pilar y marco normativo de la Confederación Argentina."
+      "event": "Insurrección de Ángel Vicente Peñaloza",
+      "year": 1863,
+      "context": "Levantamiento federal en el noroeste contra la persecución política y el centralismo mitrista."
     },
     {
       "id": "ar-67",
-      "event": "Ocupación británica de las Islas Malvinas",
-      "year": 1833,
-      "context": "Fuerzas militares del Reino Unido expulsaron a las autoridades argentinas y a la guarnición militar apostada en las islas, iniciando una usurpación territorial que desencadenó el histórico reclamo de soberanía."
+      "event": "Batalla de Las Playas",
+      "year": 1863,
+      "context": "Derrota del Chacho Peñaloza ante las fuerzas de Paunero en Córdoba, debilitando la resistencia federal."
     },
     {
       "id": "ar-68",
-      "event": "Campaña al Desierto de Juan Manuel de Rosas",
-      "year": 1833,
-      "context": "Expedición militar y estratégica liderada por Rosas hacia el sur de la llanura pampeana y el norte de la Patagonia para extender la frontera productiva y establecer pactos o someter a los pueblos originarios."
+      "event": "Asesinato del Chacho Peñaloza en Olta",
+      "year": 1863,
+      "context": "Ejecución del líder riojano por el comandante Irrazábal; su cabeza es exhibida como escarmiento."
     },
     {
       "id": "ar-69",
-      "event": "Bloqueo francés al Río de la Plata",
-      "year": 1838,
-      "context": "La armada naval de Francia bloqueó el puerto de Buenos Aires exigiendo beneficios comerciales y en apoyo a opositores a Rosas, afectando severamente la economía de la Confederación."
+      "event": "Invasión de Venancio Flores al Uruguay",
+      "year": 1863,
+      "context": "Acción apoyada logísticamente por Buenos Aires que precipita la intervención paraguaya en la región."
     },
     {
       "id": "ar-70",
-      "event": "Revolución de los Libres del Sur",
-      "year": 1839,
-      "context": "Levantamiento armado de importantes estancieros en el sur de la provincia de Buenos Aires, opuestos a las políticas económicas de Rosas en el contexto del bloqueo francés. Fue derrotado en la Batalla de Chascomús."
+      "event": "Declaración de Guerra de Paraguay a Argentina",
+      "year": 1865,
+      "context": "Solano López declara el conflicto tras la negativa de Mitre a permitir el paso de tropas por Corrientes."
     },
     {
       "id": "ar-71",
-      "event": "Formación de la Coalición del Norte",
-      "year": 1840,
-      "context": "Alianza política y militar integrada por varias provincias del norte argentino, impulsada por figuras como Marco Avellaneda, cuyo objetivo era oponerse al poder hegemónico de Juan Manuel de Rosas."
+      "event": "Firma del Tratado de la Triple Alianza",
+      "year": 1865,
+      "context": "Pacto secreto entre Argentina, Brasil y Uruguay para derrocar a López y definir límites territoriales."
     },
     {
       "id": "ar-72",
-      "event": "Batalla de la Vuelta de Obligado",
-      "year": 1845,
-      "context": "Las fuerzas de la Confederación Argentina intentaron bloquear el paso de una poderosa flota comercial y militar anglo-francesa en el río Paraná, en una heroica defensa de la soberanía sobre los ríos interiores."
+      "event": "Sublevación de las milicias en Basualdo",
+      "year": 1865,
+      "context": "Desbande masivo de tropas entrerrianas que se negaban a combatir contra el Paraguay."
+    },
+    {
+      "id": "ar-73",
+      "event": "Batalla de Curupaytí",
+      "year": 1866,
+      "context": "Peor derrota de las fuerzas aliadas frente a las defensas paraguayas, causando miles de bajas."
+    },
+    {
+      "id": "ar-74",
+      "event": "Revolución de los Colorados en Cuyo",
+      "year": 1866,
+      "context": "Levantamiento federal liderado por Saá y Rodríguez contra la participación argentina en la guerra externa."
+    },
+    {
+      "id": "ar-75",
+      "event": "Batalla de San Ignacio",
+      "year": 1867,
+      "context": "Victoria de las fuerzas nacionales sobre el ejército federal en San Luis, utilizando armamento superior."
+    },
+    {
+      "id": "ar-76",
+      "event": "Batalla de Pozo de Vargas",
+      "year": 1867,
+      "context": "Antonino Taboada derrota a Felipe Varela en La Rioja, desarticulando la última gran montonera federal."
+    },
+    {
+      "id": "ar-77",
+      "event": "Presidencia de Domingo Faustino Sarmiento",
+      "year": 1868,
+      "context": "Triunfo de la Liga de Gobernadores sobre el mitrismo, con un programa centrado en la educación."
+    },
+    {
+      "id": "ar-78",
+      "event": "Realización del Primer Censo Nacional de Población",
+      "year": 1869,
+      "context": "Registro de 1.836.490 habitantes; revela un 71% de analfabetismo y un 70% de población rural."
+    },
+    {
+      "id": "ar-79",
+      "event": "Fin de la Guerra del Paraguay y muerte de Solano López",
+      "year": 1870,
+      "context": "Combate de Cerro Corá pone fin al conflicto que devastó a la población masculina paraguaya."
+    },
+    {
+      "id": "ar-80",
+      "event": "Asesinato de Justo José de Urquiza en el Palacio San José",
+      "year": 1870,
+      "context": "Magnicidio cometido por seguidores de López Jordán durante el inicio de la revolución entrerriana."
+    },
+    {
+      "id": "ar-81",
+      "event": "Fundación del Colegio Militar de la Nación",
+      "year": 1870,
+      "context": "Creación de la institución para la formación profesional de los oficiales bajo la dirección de Juan Czetz."
+    },
+    {
+      "id": "ar-82",
+      "event": "Fundación de la Escuela Normal de Paraná",
+      "year": 1870,
+      "context": "Inicio de la formación de maestras para expandir la educación pública bajo modelos pedagógicos modernos."
+    },
+    {
+      "id": "ar-83",
+      "event": "Epidemia de Fiebre Amarilla en Buenos Aires",
+      "year": 1871,
+      "context": "Crisis sanitaria que causa 14.000 muertes y obliga a crear infraestructuras de higiene y el cementerio de la Chacarita."
+    },
+    {
+      "id": "ar-84",
+      "event": "Batalla de Ñaembé en Corrientes",
+      "year": 1871,
+      "context": "Derrota definitiva de las fuerzas federales de Ricardo López Jordán ante el ejército nacional."
+    },
+    {
+      "id": "ar-85",
+      "event": "Sanción de la Ley de Subvenciones Escolares",
+      "year": 1871,
+      "context": "Asignación de fondos específicos (herencias vacantes) para garantizar el mantenimiento de las escuelas primarias."
+    },
+    {
+      "id": "ar-86",
+      "event": "Batalla de San Carlos contra el cacique Calfucurá",
+      "year": 1872,
+      "context": "Victoria militar que detiene el malón más grande de la historia y marca un giro en la política de fronteras."
+    },
+    {
+      "id": "ar-87",
+      "event": "Batalla de Don Gonzalo",
+      "year": 1873,
+      "context": "Derrota de la segunda rebelión de López Jordán frente a las tropas nacionales de Martín de Gainza."
+    },
+    {
+      "id": "ar-88",
+      "event": "Presidencia de Nicolás Avellaneda",
+      "year": 1874,
+      "context": "Asunción del candidato tucumano apoyado por la alianza entre el Partido Nacional y el Autonomista (PAN)."
+    },
+    {
+      "id": "ar-89",
+      "event": "Revolución de 1874 iniciada por Mitre",
+      "year": 1874,
+      "context": "Levantamiento armado del mitrismo contra el resultado electoral; termina con la derrota de La Verde."
+    },
+    {
+      "id": "ar-90",
+      "event": "Sanción de la Ley de Inmigración y Colonización (Ley Avellaneda)",
+      "year": 1876,
+      "context": "Fomento masivo del poblamiento mediante garantías de alojamiento y trabajo para inmigrantes europeos."
+    },
+    {
+      "id": "ar-91",
+      "event": "Construcción de la Zanja de Alsina",
+      "year": 1876,
+      "context": "Línea defensiva de 374 km para proteger territorios ganaderos de las incursiones de Catriel y Namuncurá."
+    },
+    {
+      "id": "ar-92",
+      "event": "Tratado de Límites con Paraguay",
+      "year": 1876,
+      "context": "Acuerdo que adjudica Misiones y parte del Chaco a la Argentina, sometiendo el sur del Chaco Boreal a arbitraje."
+    },
+    {
+      "id": "ar-93",
+      "event": "Muerte de Adolfo Alsina y ascenso de Julio Argentino Roca",
+      "year": 1877,
+      "context": "El fallecimiento del ministro de guerra permite el cambio hacia una estrategia ofensiva contra el indígena."
+    },
+    {
+      "id": "ar-94",
+      "event": "Lanzamiento de la Conquista del Desierto",
+      "year": 1879,
+      "context": "Campaña militar definitiva que ocupa el territorio hasta los ríos Negro y Neuquén, triplicando la superficie nacional."
+    },
+    {
+      "id": "ar-95",
+      "event": "Revolución de Carlos Tejedor",
+      "year": 1880,
+      "context": "Levantamiento de Buenos Aires contra la federalización de la ciudad y el triunfo electoral de Roca."
+    },
+    {
+      "id": "ar-96",
+      "event": "Sanción de la Ley de Federalización de Buenos Aires",
+      "year": 1880,
+      "context": "Resolución de la cuestión capital; Buenos Aires pasa a ser territorio federal subordinado a la Nación Argentina."
+    },
+    {
+      "id": "ar-97",
+      "event": "Presidencia de Julio Argentino Roca y la Generación del 80",
+      "year": 1880,
+      "context": "Inicio de la hegemonía del PAN que se mantendría en el poder sin alternancias por 42 años."
+    },
+    {
+      "id": "ar-98",
+      "event": "Publicación de 'Historia de la Confederación Argentina' de Adolfo Saldías",
+      "year": 1888,
+      "context": "Obra fundacional del revisionismo basada en los Archivos de Rosas cedidos por Manuelita Rosas en Londres."
+    },
+    {
+      "id": "ar-99",
+      "event": "Publicación de 'Buenos Aires, sus hombres, su política' de Carlos D'Amico",
+      "year": 1890,
+      "context": "Crítica visceral a la hegemonía de Mitre y los círculos gobernantes de la época conservadora."
+    },
+    {
+      "id": "ar-100",
+      "event": "Publicación de 'La época de Rosas' de Ernesto Quesada",
+      "year": 1898,
+      "context": "Consolidación de la mirada revisionista que revaloriza el orden rosista desde un análisis documental riguroso."
+    },
+    {
+      "id": "ar-01",
+      "event": "Debate sobre la integración del inmigrante y la democratización social",
+      "year": 1900,
+      "context": "Inicio de la transición hacia una sociedad de masas con alta movilidad ascendente y perfiles de clase poco definidos."
+    },
+    {
+      "id": "ar-02",
+      "event": "Influencia de 'La época de Rosas' de Ernesto Quesada en el debate historiográfico",
+      "year": 1900,
+      "context": "Aparición de visiones que cuestionan el binarismo civilización-barbarie, reevaluando el papel de la autoridad fuerte."
+    },
+    {
+      "id": "ar-03",
+      "event": "Sanción de la Ley de Servicio Militar Obligatorio",
+      "year": 1901,
+      "context": "Instrumento jurídico fundamental para la nacionalización del 'ciudadano soldado' bajo la custodia del Ejército."
+    },
+    {
+      "id": "ar-04",
+      "event": "Sanción de la Ley de Residencia",
+      "year": 1902,
+      "context": "Respuesta coercitiva de la elite ante la conflictividad laboral y la agitación social de origen inmigrante."
+    },
+    {
+      "id": "ar-05",
+      "event": "Consolidación de las sociedades de fomento barriales",
+      "year": 1902,
+      "context": "Espacios de aprendizaje práctico de la ciudadanía donde los vecinos ensayan la gestión ante autoridades."
+    },
+    {
+      "id": "ar-06",
+      "event": "Análisis sobre mujeres inmigrantes en el manicomio",
+      "year": 1903,
+      "context": "Hito en la historia de las mujeres que revela los dispositivos de encierro y sujeción estatal sobre sujetos vulnerables."
+    },
+    {
+      "id": "ar-07",
+      "event": "Huelgas ferroviarias y primer arbitraje estatal",
+      "year": 1904,
+      "context": "El Estado comienza a actuar como regulador de intereses en una sociedad cada vez más compleja y corporativa."
+    },
+    {
+      "id": "ar-08",
+      "event": "Difusión del 'nacionalismo pluralista' en las élites dirigentes",
+      "year": 1904,
+      "context": "Fase de convivencia cosmopolita que convocaba a vivir bajo una ley común sin exigir homogeneidad absoluta."
+    },
+    {
+      "id": "ar-09",
+      "event": "Expansión de la educación primaria gratuita y obligatoria",
+      "year": 1905,
+      "context": "Uso de la escuela pública como el principal taller de argentinidad para hijos de extranjeros."
+    },
+    {
+      "id": "ar-10",
+      "event": "Primeras tesis universitarias realizadas por mujeres en la UBA",
+      "year": 1905,
+      "context": "Inicio del proceso de profesionalización femenina y cuestionamiento de los roles domésticos asignados."
+    },
+    {
+      "id": "ar-11",
+      "event": "Debates sobre la prostitución y el control de los cuerpos en cuarteles",
+      "year": 1905,
+      "context": "Tensiones entre la moralidad pública y la organización de instituciones masculinas de control estatal."
+    },
+    {
+      "id": "ar-12",
+      "event": "Publicación de estudios sobre el caudillismo por David Peña",
+      "year": 1906,
+      "context": "Reivindicación inicial de figuras como Facundo Quiroga frente al relato sarmientino de la barbarie."
+    },
+    {
+      "id": "ar-13",
+      "event": "Huelga de inquilinos en Buenos Aires",
+      "year": 1907,
+      "context": "Acción colectiva que visibiliza la crisis habitacional y la agencia política de las familias trabajadoras."
+    },
+    {
+      "id": "ar-14",
+      "event": "Surgimiento de reclamos gremiales en peones rurales",
+      "year": 1907,
+      "context": "Organización de sectores trabajadores del campo para negociar reglas de juego con el Estado."
+    },
+    {
+      "id": "ar-15",
+      "event": "Transición hacia un nacionalismo de identidad nacional homogénea",
+      "year": 1908,
+      "context": "Abandono del cosmopolitismo por una búsqueda de la 'argentinidad' singular y a menudo excluyente."
+    },
+    {
+      "id": "ar-16",
+      "event": "Creación de escuelas-hogar para niñas huérfanas",
+      "year": 1908,
+      "context": "Políticas de protección y disciplinamiento de sujetos femeninos bajo la tutela de la beneficencia estatal."
+    },
+    {
+      "id": "ar-17",
+      "event": "Estallido de la Primera Guerra Mundial e impacto en el modelo exportador",
+      "year": 1914,
+      "context": "Crisis de los mercados externos que obliga a repensar la autonomía económica y la producción local."
+    },
+    {
+      "id": "ar-18",
+      "event": "Centenario de la Revolución de Mayo",
+      "year": 1910,
+      "context": "Momento de introspección sobre la construcción del imaginario social y la definición de la raza argentina."
+    },
+    {
+      "id": "ar-19",
+      "event": "Primeras marchas organizadas por el sufragio femenino",
+      "year": 1911,
+      "context": "Emanación de la democratización social hacia la demanda de autonomía política plena para las mujeres."
+    },
+    {
+      "id": "ar-20",
+      "event": "Organización de asociaciones de médicos e ingenieros",
+      "year": 1911,
+      "context": "Consolidación de grupos profesionales como corporaciones que dialogan directamente con el poder ejecutivo."
+    },
+    {
+      "id": "ar-21",
+      "event": "Sanción de la Ley Sáenz Peña",
+      "year": 1912,
+      "context": "Establecimiento del sufragio universal, secreto y obligatorio como herramienta de integración y ciudadanización."
+    },
+    {
+      "id": "ar-22",
+      "event": "Grito de Alcorta: huelga de los chacareros",
+      "year": 1912,
+      "context": "Surgimiento de la Federación Agraria como grupo de interés que desafía el monopolio de los estancieros."
+    },
+    {
+      "id": "ar-23",
+      "event": "Primeras elecciones legislativas bajo el nuevo régimen electoral",
+      "year": 1913,
+      "context": "Activación de la máquina partidaria y los comités como centros de sociabilidad y consenso."
+    },
+    {
+      "id": "ar-24",
+      "event": "Desarrollo de la sociabilidad en centros nativistas por inmigrantes",
+      "year": 1914,
+      "context": "Integración cultural donde extranjeros asumen la identidad criolla vistiendo de gauchos como acto de nacionalización."
+    },
+    {
+      "id": "ar-25",
+      "event": "Asunción presidencial de Hipólito Yrigoyen",
+      "year": 1916,
+      "context": "Triunfo de la 'causa nacional' frente al 'régimen' conservador, inaugurando la democracia plebiscitaria."
+    },
+    {
+      "id": "ar-26",
+      "event": "Movilizaciones de mujeres obreras en el cordón industrial",
+      "year": 1917,
+      "context": "Expresión de la lucha femenina contra las condiciones de opresión en fábricas y talleres."
+    },
+    {
+      "id": "ar-27",
+      "event": "Intervenciones federales del Radicalismo a provincias opositoras",
+      "year": 1917,
+      "context": "Uso del poder central para regenerar la nación y desplazar a las élites tradicionales locales."
+    },
+    {
+      "id": "ar-28",
+      "event": "Reforma Universitaria de Córdoba",
+      "year": 1918,
+      "context": "Cuestionamiento de los prestigios establecidos y democratización de las instituciones educativas superiores."
+    },
+    {
+      "id": "ar-29",
+      "event": "Afirmación del modelo de ciudadano consciente",
+      "year": 1918,
+      "context": "Consolidación del voto como derecho y deber en la construcción de la soberanía popular."
+    },
+    {
+      "id": "ar-30",
+      "event": "Debates sobre la autarquía económica en círculos militares",
+      "year": 1919,
+      "context": "El Ejército comienza a vincular la unidad nacional con el mando unificado y el desarrollo estratégico."
+    },
+    {
+      "id": "ar-31",
+      "event": "Nombramiento de jueces federales con afinidad radical",
+      "year": 1919,
+      "context": "Intento de democratizar el Poder Judicial para alinearlo con las nuevas mayorías electorales."
+    },
+    {
+      "id": "ar-32",
+      "event": "Querellas sobre el criollismo y el uso de la lengua",
+      "year": 1920,
+      "context": "Disputas identitarias en la prensa que reflejan la inestabilidad de la definición de lo argentino."
+    },
+    {
+      "id": "ar-33",
+      "event": "Lobismo de empresarios industriales ante el Estado",
+      "year": 1920,
+      "context": "Los grupos económicos demandan aranceles y protección, superando la representación de los partidos."
+    },
+    {
+      "id": "ar-34",
+      "event": "Institucionalización de los sindicatos como grupos de interés",
+      "year": 1921,
+      "context": "Los trabajadores optan por la negociación corporativa directa para establecer reglas de juego laborales."
+    },
+    {
+      "id": "ar-35",
+      "event": "Publicación de 'Juan Manuel de Rosas' por Carlos Ibarguren",
+      "year": 1922,
+      "context": "Hito historiográfico que inicia la revalorización sistemática del Restaurador desde una óptica nacionalista."
+    },
+    {
+      "id": "ar-36",
+      "event": "Creación de la Dirección General de YPF",
+      "year": 1922,
+      "context": "Hito en la soberanía energética y participación militar en la gestión de recursos estratégicos."
+    },
+    {
+      "id": "ar-37",
+      "event": "Conflictos por el patronato eclesiástico en la designación de obispos",
+      "year": 1923,
+      "context": "Tensiones entre el Estado liberal y la Iglesia por el control de las jerarquías institucionales."
+    },
+    {
+      "id": "ar-38",
+      "event": "Interés militar por el desarrollo del petróleo y la industria pesada",
+      "year": 1923,
+      "context": "Contribución castrense a la autarquía nacional bajo una mirada tecnocrática de la defensa."
+    },
+    {
+      "id": "ar-39",
+      "event": "Establecimiento de leyes de seguridad social y jubilación",
+      "year": 1924,
+      "context": "Avance en la regulación estatal para atender los reclamos de la creciente burocracia y los trabajadores."
+    },
+    {
+      "id": "ar-40",
+      "event": "Publicación de 'Historia de la historiografía argentina' de Rómulo Carbia",
+      "year": 1925,
+      "context": "Nacimiento del revisionismo hispanocatólico que cuestiona el relato liberal mitrista."
+    },
+    {
+      "id": "ar-41",
+      "event": "Análisis del trabajo doméstico femenino y la identidad de clase",
+      "year": 1926,
+      "context": "Investigación sobre las formas del servir que definen la domesticidad y la subordinación de género."
+    },
+    {
+      "id": "ar-42",
+      "event": "Expansión de la red de transporte bajo control estatal",
+      "year": 1927,
+      "context": "Esfuerzo por integrar el territorio nacional y modernizar las comunicaciones internas."
+    },
+    {
+      "id": "ar-43",
+      "event": "Retorno de Yrigoyen a la presidencia mediante el plebiscito",
+      "year": 1928,
+      "context": "Reafirmación del liderazgo personalista como voluntad encarnada del pueblo argentino."
+    },
+    {
+      "id": "ar-44",
+      "event": "Publicación de 'Rosas' por Dardo Corvalán Mendilaharsu",
+      "year": 1929,
+      "context": "Obra de divulgación que busca exculpar el periodo rosista ante un público de masas no académico."
+    },
+    {
+      "id": "ar-45",
+      "event": "Cuestionamiento militar a las instituciones de la democracia liberal",
+      "year": 1930,
+      "context": "El Ejército antepone los intereses superiores de la nación a los conflictos de la política partidaria."
+    },
+    {
+      "id": "ar-46",
+      "event": "Golpe de Estado y caída del orden constitucional",
+      "year": 1930,
+      "context": "Crisis de la legitimidad del sufragio y ascenso de soluciones corporativas ante la inestabilidad social."
+    },
+    {
+      "id": "ar-47",
+      "event": "Aspiración de la Iglesia a la fundación de una sociedad cristiana",
+      "year": 1931,
+      "context": "Modelo de Estado propuesto por Pío XI para regular conflictos sociales bajo la advocación de Cristo Rey."
+    },
+    {
+      "id": "ar-48",
+      "event": "Difusión del concepto de 'Justicia Social' en el pensamiento católico",
+      "year": 1932,
+      "context": "Propuesta de una 'democracia cristiana' no republicana como respuesta a la cuestión social."
+    },
+    {
+      "id": "ar-49",
+      "event": "Configuración de la hipótesis de conflicto armado con países limítrofes",
+      "year": 1932,
+      "context": "El Ejército refuerza el nacionalismo defensivo para garantizar la unidad interior y el mando unificado."
+    },
+    {
+      "id": "ar-50",
+      "event": "Organización de la Junta de Homenaje y Repatriación de Rosas",
+      "year": 1934,
+      "context": "Reunión de intelectuales revisionistas para consolidar una red de resistencia al relato histórico oficial."
+    },
+    {
+      "id": "ar-51",
+      "event": "Afirmación de la identidad católica como base de la nación",
+      "year": 1934,
+      "context": "La Iglesia se proclama vocera de la argentinidad frente al liberalismo y el comunismo."
+    },
+    {
+      "id": "ar-52",
+      "event": "Desarrollo de la industria aeronáutica estatal",
+      "year": 1935,
+      "context": "Impulso militar a sectores estratégicos buscando la autarquía ante un contexto internacional incierto."
+    },
+    {
+      "id": "ar-53",
+      "event": "Imbricación de discursos entre la jerarquía católica y la oficialidad militar",
+      "year": 1936,
+      "context": "Articulación de la visión de una nación católica unida por el mando estratégico del Ejército."
+    },
+    {
+      "id": "ar-54",
+      "event": "Publicación de 'Política británica en el Río de la Plata' de Scalabrini Ortiz",
+      "year": 1936,
+      "context": "Denuncia de la dependencia económica y el papel de las élites liberales como agentes extranjeros."
+    },
+    {
+      "id": "ar-55",
+      "event": "Fundación de la Academia Nacional de la Historia",
+      "year": 1938,
+      "context": "Consolidación de la historiografía clásica liberal en respuesta al avance de las tesis revisionistas."
+    },
+    {
+      "id": "ar-56",
+      "event": "Creación del Instituto de Investigaciones Federalistas en Santa Fe",
+      "year": 1938,
+      "context": "Formalización de la lucha por la revisión histórica del federalismo y sus líderes regionales."
+    },
+    {
+      "id": "ar-57",
+      "event": "Misión de historiadores en archivos europeos para documentar la soberanía",
+      "year": 1939,
+      "context": "Búsqueda de evidencias sobre la defensa de la integridad territorial por parte de caudillos federales."
+    },
+    {
+      "id": "ar-58",
+      "event": "Publicación de 'Historia falsificada' por Ernesto Palacio",
+      "year": 1939,
+      "context": "Crítica demoledora al sistema de valores liberal y defensa abierta del nacionalismo político."
+    },
+    {
+      "id": "ar-59",
+      "event": "Periodo de polarización ideológica sin fórmulas ganadoras",
+      "year": 1940,
+      "context": "Inestabilidad donde ninguna fuerza lograba interpelar unánimemente al pueblo como fuente de soberanía."
+    },
+    {
+      "id": "ar-60",
+      "event": "Surgimiento de la revista Feminaria en el ámbito intelectual",
+      "year": 1940,
+      "context": "Espacio de debate sobre los derechos de la mujer y su participación en la esfera pública académica."
+    },
+    {
+      "id": "ar-61",
+      "event": "Publicación de la novela histórica revisionista de Manuel Gálvez",
+      "year": 1940,
+      "context": "Intento de popularizar las figuras federales mediante una narrativa accesible para el gran público."
+    },
+    {
+      "id": "ar-62",
+      "event": "Fundación del Instituto de Investigaciones Históricas Juan Manuel de Rosas",
+      "year": 1941,
+      "context": "Combate al 'coloniaje espiritual' mediante el rescate de la tradición heroica nacional."
+    },
+    {
+      "id": "ar-63",
+      "event": "Creación de la Flota Mercante del Estado",
+      "year": 1941,
+      "context": "Hito de soberanía económica e impulso a la autonomía comercial en medio del conflicto mundial."
+    },
+    {
+      "id": "ar-64",
+      "event": "Defensa de la independencia económica por José María Rosa",
+      "year": 1941,
+      "context": "Vinculación historiográfica entre la soberanía política de Rosas y la economía nacional contemporánea."
+    },
+    {
+      "id": "ar-65",
+      "event": "Percepción de la democracia electoral como obstáculo para el interés nacional",
+      "year": 1942,
+      "context": "Los grupos de interés perciben al sufragio como ineficaz para la gestión de funciones estatales complejas."
+    },
+    {
+      "id": "ar-66",
+      "event": "Creación de la Secretaría de Trabajo y Previsión",
+      "year": 1943,
+      "context": "Espacio institucional para el vínculo directo entre el mando estatal y el movimiento obrero organizado."
+    },
+    {
+      "id": "ar-67",
+      "event": "Emergencia de liderazgos carismáticos en el Ejército",
+      "year": 1943,
+      "context": "Ascenso de figuras que buscan integrar a las masas en un proyecto de nación orgánica y mando unificado."
+    },
+    {
+      "id": "ar-68",
+      "event": "Sanción del Estatuto del Peón de Campo",
+      "year": 1944,
+      "context": "Formalización de los derechos laborales en el ámbito rural, rompiendo la hegemonía del estanciero."
+    },
+    {
+      "id": "ar-69",
+      "event": "Movilización popular del 17 de octubre",
+      "year": 1945,
+      "context": "Reconocimiento del pueblo en un líder, rompiendo la polarización previa y fundando un movimiento de masas."
+    },
+    {
+      "id": "ar-70",
+      "event": "Surgimiento del sindicalismo de Estado como pieza de gobierno",
+      "year": 1945,
+      "context": "Los sindicatos se integran como corporaciones fundamentales para la regulación de la vida social."
+    },
+    {
+      "id": "ar-71",
+      "event": "Triunfo electoral del Peronismo",
+      "year": 1946,
+      "context": "Consolidación de la identificación entre movimiento, nación y pueblo bajo una lógica plebiscitaria."
+    },
+    {
+      "id": "ar-72",
+      "event": "Instauración del discurso de la 'Antipatria' para los opositores",
+      "year": 1946,
+      "context": "Consolidación de una identidad excluyente que desplaza el ideal republicano de convivencia pacífica."
+    },
+    {
+      "id": "ar-73",
+      "event": "Sanción de la Ley de Voto Femenino",
+      "year": 1947,
+      "context": "Culminación de décadas de lucha por la inclusión política y la ciudadanización plena de las mujeres."
+    },
+    {
+      "id": "ar-74",
+      "event": "Declaración de la Independencia Económica en Tucumán",
+      "year": 1947,
+      "context": "Acto simbólico que asume la soberanía financiera y el fin de la influencia externa en decisiones públicas."
+    },
+    {
+      "id": "ar-75",
+      "event": "Implementación masiva de políticas de Justicia Social",
+      "year": 1947,
+      "context": "El Estado asume la tarea de integrar a los sectores postergados como base del orden social nacional."
+    },
+    {
+      "id": "ar-76",
+      "event": "Consolidación de la industria del acero bajo control militar",
+      "year": 1947,
+      "context": "Aplicación de la doctrina de autarquía económica mediante la creación de industrias pesadas soberanas."
+    },
+    {
+      "id": "ar-77",
+      "event": "Auge del revisionismo histórico en la educación pública",
+      "year": 1948,
+      "context": "La visión nacional y popular comienza a desplazar formalmente a la historiografía clásica en la academia."
+    },
+    {
+      "id": "ar-78",
+      "event": "Nacionalización de los ferrocarriles ingleses",
+      "year": 1948,
+      "context": "Transferencia de la infraestructura estratégica al control soberano, celebrada como victoria nacionalista."
+    },
+    {
+      "id": "ar-79",
+      "event": "Creación de la Fundación Eva Perón",
+      "year": 1948,
+      "context": "Institución que centraliza la ayuda social directa, reemplazando el modelo de beneficencia de las élites."
+    },
+    {
+      "id": "ar-80",
+      "event": "Afirmación de la soberanía argentina en la Antártida",
+      "year": 1948,
+      "context": "Defensa del territorio nacional en zonas extremas bajo la custodia y exploración del Ejército."
+    },
+    {
+      "id": "ar-81",
+      "event": "Sanción de la Constitución de 1949",
+      "year": 1949,
+      "context": "Hito jurídico que consagra los derechos sociales y la función social de la propiedad en la carta magna."
+    },
+    {
+      "id": "ar-82",
+      "event": "Congreso de Filosofía en Mendoza y la 'Comunidad Organizada'",
+      "year": 1949,
+      "context": "Definición de la base doctrinaria que busca un equilibrio entre individuo, sociedad y Estado."
+    },
+    {
+      "id": "ar-83",
+      "event": "Adopción del 'ius soli' en la reforma constitucional",
+      "year": 1949,
+      "context": "Definición de la nacionalidad basada en el suelo para amalgamar a la población en una identidad única."
+    },
+    {
+      "id": "ar-84",
+      "event": "Celebración del 'Año del Libertador General San Martín'",
+      "year": 1950,
+      "context": "Uso de la figura máxima nacional para legitimar la unidad del movimiento y el mando estatal."
+    },
+    {
+      "id": "ar-85",
+      "event": "Publicación de 'La caída de Rosas' por José María Rosa",
+      "year": 1950,
+      "context": "Análisis historiográfico sobre la derrota del federalismo que refuerza la crítica al orden liberal de 1852."
+    },
+    {
+      "id": "ar-86",
+      "event": "Institucionalización de la Justicia Social como derecho inalienable",
+      "year": 1950,
+      "context": "Culminación de medio siglo de transición hacia un Estado que prioriza a los sujetos colectivos."
+    },
+    {
+      "id": "ar-87",
+      "event": "Debates sobre la 'identidad homogénea' en la prensa oficialista",
+      "year": 1950,
+      "context": "Fase final de la construcción de una argentinidad que excluye las disidencias en pos de la unidad."
+    },
+    {
+      "id": "ar-88",
+      "event": "Homenaje a los caudillos federales en actos públicos nacionales",
+      "year": 1950,
+      "context": "Reparación simbólica que integra a los antiguos 'bárbaros' como padres de la patria federal."
+    },
+    {
+      "id": "ar-89",
+      "event": "Establecimiento de redes de salud para mujeres trabajadoras",
+      "year": 1948,
+      "context": "Atención preferencial a la salud femenina como pilar de la nueva política de bienestar social."
+    },
+    {
+      "id": "ar-90",
+      "event": "Debate sobre el binarismo en la historia de las mujeres en la academia",
+      "year": 1950,
+      "context": "Cuestionamiento historiográfico a las visiones que reducen a la mujer a lo doméstico frente a su agencia política."
+    },
+    {
+      "id": "ar-91",
+      "event": "Consolidación de las máquinas partidarias en comités barriales",
+      "year": 1913,
+      "context": "Transformación de los espacios de sociabilidad en centros de movilización electoral bajo la ley de 1912."
+    },
+    {
+      "id": "ar-92",
+      "event": "Uso de la radio como herramienta de interpelación masiva",
+      "year": 1945,
+      "context": "Modernización de la comunicación política para llegar directamente al 'pueblo' sin intermediarios."
+    },
+    {
+      "id": "ar-93",
+      "event": "Surgimiento del interés por la historiografía de género",
+      "year": 1950,
+      "context": "Primeros indicios de una revisión de la historia nacional que incluye a sujetos femeninos activos."
+    },
+    {
+      "id": "ar-94",
+      "event": "Crisis de la tradición liberal y del prestigio de las élites",
+      "year": 1946,
+      "context": "Erosión definitiva de la influencia de las familias tradicionales sobre el ánimo democrático."
+    },
+    {
+      "id": "ar-95",
+      "event": "Afirmación de la soberanía nacional sobre los ríos interiores",
+      "year": 1949,
+      "context": "Retorno a la política rosista de control de las vías fluviales como acto de independencia."
+    },
+    {
+      "id": "ar-96",
+      "event": "Desarrollo de complejos industriales en el conurbano bonaerense",
+      "year": 1948,
+      "context": "Cambio en la geografía social que consolida al obrero industrial como el nuevo sujeto político."
+    },
+    {
+      "id": "ar-97",
+      "event": "Consolidación de la 'Causa' como identidad política nacional",
+      "year": 1930,
+      "context": "El movimiento político se asume como la nación misma, desplazando la noción de partido opositor."
+    },
+    {
+      "id": "ar-98",
+      "event": "Debate sobre el papel de la Iglesia en la educación moral",
+      "year": 1947,
+      "context": "Restablecimiento de la enseñanza religiosa como herramienta de cohesión nacional frente al laicismo."
+    },
+    {
+      "id": "ar-99",
+      "event": "Surgimiento de la noción de 'pueblo' como fuente única de poder",
+      "year": 1945,
+      "context": "El sufragio universal se transmuta en una ratificación plebiscitaria del liderazgo carismático."
+    },
+    {
+      "id": "ar-100",
+      "event": "Fijación de la polarización política como rasgo estructural",
+      "year": 1950,
+      "context": "Culminación de medio siglo de tensiones identitarias entre visiones contrapuestas de la argentinidad."
+    },
+    {
+      "year": 1950,
+      "event": "Acentuación del modelo de ciudadano consciente interpelado por la ley",
+      "context": "Luis Alberto Romero identifica este año como parte del proceso donde el Estado afirma un modelo de ciudadanía que gestiona ante autoridades y crea consensos asociativos."
+    },
+    {
+      "year": 1951,
+      "event": "Sistematización revisionista del Pronunciamiento de Urquiza",
+      "context": "Los historiadores revisionistas de la época analizan el quiebre de 1851 desde una óptica de tensión entre federalismo y centralismo porteño."
+    },
+    {
+      "year": 1952,
+      "event": "Publicación de la obra El cóndor ciego sobre la muerte de Lavalle",
+      "context": "José María Rosa inicia una serie de investigaciones que revisan figuras de la historia oficial, influyendo en la memoria popular."
+    },
+    {
+      "year": 1953,
+      "event": "Publicación del estudio sobre los constituyentes liberales de 1853",
+      "context": "En la obra Nos, los representantes del pueblo, José María Rosa realiza una crítica demoledora al método de sanción de la Constitución de 1853."
+    },
+    {
+      "year": 1954,
+      "event": "Auge del asociativismo práctico como aprendizaje de ciudadanía",
+      "context": "Romero destaca que las sociedades de fomento y comités barriales consolidan una cultura de discusión pública y gestión ciudadana."
+    },
+    {
+      "year": 1955,
+      "event": "Cierre de la primera experiencia democrática nacional y popular",
+      "context": "Luis Alberto Romero define este momento como el fin de un ciclo de integración social que terminó profundamente faccionalizado."
+    },
+    {
+      "year": 1955,
+      "event": "Intervención estatal y clausura de canales de transmisión revisionista",
+      "context": "Tras el golpe, se produce el cierre temporal de instituciones dedicadas a la investigación de la figura de Juan Manuel de Rosas."
+    },
+    {
+      "year": 1955,
+      "event": "Inicio de la propaganda antirevisionista gubernamental",
+      "context": "El gobierno de facto utiliza la memoria de Caseros para contrarrestar el imaginario histórico del federalismo rosista."
+    },
+    {
+      "year": 1955,
+      "event": "Intervención de la Confederación General del Trabajo",
+      "context": "La intervención incluyó la imposición de cursos de capacitación con una visión histórica opuesta al revisionismo."
+    },
+    {
+      "year": 1955,
+      "event": "Uso político de símbolos del imaginario liberal por la Marina",
+      "context": "Isaac Rojas evoca figuras de la historiografía tradicional para legitimar el nuevo orden institucional tras la caída del peronismo."
+    },
+    {
+      "year": 1956,
+      "event": "Modificación de programas escolares bajo lineamientos antirevisionistas",
+      "context": "La propaganda oficial se extiende al ámbito educativo para moldear la memoria histórica de las nuevas generaciones."
+    },
+    {
+      "year": 1957,
+      "event": "Debate institucional sobre la identidad católica de la nación",
+      "context": "La Iglesia afirma su papel como vocero de la nacionalidad, definiendo enemigos internos frente a la catolicidad."
+    },
+    {
+      "year": 1958,
+      "event": "Reapertura del Instituto de Investigaciones Históricas Juan Manuel de Rosas",
+      "context": "Bajo la presidencia de Frondizi, el revisionismo recupera su espacio tras un periodo de proscripción académica."
+    },
+    {
+      "year": 1958,
+      "event": "Lanzamiento de la obra Política nacional y revisionismo histórico",
+      "context": "Arturo Jauretche vincula la interpretación de la historia con la soberanía política y la lucha contra el coloniaje espiritual."
+    },
+    {
+      "year": 1959,
+      "event": "Fallecimiento del historiador federal José Luis Busaniche",
+      "context": "Su muerte deja inconclusa su Historia Argentina, una obra que buscaba equilibrar el federalismo con el rigor documental."
+    },
+    {
+      "year": 1960,
+      "event": "Límite del proceso de democratización social y movilidad ascendente",
+      "context": "Romero señala esta década como el fin del impulso igualitario iniciado a principios de siglo en la sociedad argentina."
+    },
+    {
+      "year": 1960,
+      "event": "Publicación del análisis revisionista sobre la caída de Rosas",
+      "context": "José María Rosa profundiza en los factores internos y externos que llevaron al fin de la Confederación en 1852."
+    },
+    {
+      "year": 1961,
+      "event": "Debate historiográfico sobre el centenario de la Batalla de Pavón",
+      "context": "Revisionistas cuestionan la unificación nacional bajo la tutela porteña de Bartolomé Mitre tras 1861."
+    },
+    {
+      "year": 1962,
+      "event": "Edición de Rosas visto por sus contemporáneos",
+      "context": "Compilación documental de Busaniche que aporta una visión plural sobre el Restaurador de las Leyes."
+    },
+    {
+      "year": 1963,
+      "event": "Inicio de la publicación de la Historia Argentina de 14 tomos",
+      "context": "La obra monumental de José María Rosa se convierte en el pilar del revisionismo histórico de masas."
+    },
+    {
+      "year": 1964,
+      "event": "Análisis de la dependencia económica en la historiografía nacional",
+      "context": "Surgimiento de estudios que vinculan la organización del Estado con los intereses financieros británicos."
+    },
+    {
+      "year": 1965,
+      "event": "Publicación de La guerra del Paraguay y las montoneras argentinas",
+      "context": "José María Rosa interpreta el conflicto de la Triple Alianza como una agresión a la soberanía regional y al federalismo."
+    },
+    {
+      "year": 1966,
+      "event": "Cuestionamiento del modelo de mando unificado militar",
+      "context": "Romero analiza cómo el Ejército se posicionó como custodio del territorio por encima de las instituciones republicanas."
+    },
+    {
+      "year": 1967,
+      "event": "Fundación de la revista Todo es Historia",
+      "context": "Félix Luna crea un medio fundamental para la divulgación histórica que inicialmente dio espacio a tesis revisionistas."
+    },
+    {
+      "year": 1968,
+      "event": "Denuncia senatorial sobre el costo humano del centralismo mitrista",
+      "context": "Nicasio Oroño cuantifica las muertes en el interior durante las rebeliones contra el gobierno nacional post-1862."
+    },
+    {
+      "year": 1969,
+      "event": "Evaluación estadística del analfabetismo y la integración nacional",
+      "context": "Se analizan los resultados del primer censo como herramienta de control y nacionalización estatal."
+    },
+    {
+      "year": 1970,
+      "event": "Consolidación de la corriente historiográfica de la izquierda nacional",
+      "context": "Autores como Jorge Abelardo Ramos integran el revisionismo con el análisis de clase y la unidad iberoamericana."
+    },
+    {
+      "year": 1971,
+      "event": "Lanzamiento de la colección Memorial de la Patria",
+      "context": "Esfuerzo editorial coordinado por Todo es Historia para narrar el pasado argentino desde múltiples perspectivas."
+    },
+    {
+      "year": 1972,
+      "event": "Investigación sobre la historia de los ferrocarriles y la deuda pública",
+      "context": "Raúl Scalabrini Ortiz sistematiza la denuncia sobre la entrega del patrimonio nacional a capitales extranjeros."
+    },
+    {
+      "year": 1974,
+      "event": "Incorporación de Arturo Jauretche al Instituto Juan Manuel de Rosas",
+      "context": "Consolidación de la alianza entre el pensamiento nacional y la investigación histórica militante."
+    },
+    {
+      "year": 1976,
+      "event": "Inicio de la decadencia relativa de la producción historiográfica nacional",
+      "context": "El golpe de Estado desplaza el interés intelectual hacia la supervivencia política y la censura."
+    },
+    {
+      "year": 1980,
+      "event": "Centenario de la Federalización de Buenos Aires",
+      "context": "Revisión de la 'Cuestión Capital' de 1880 como el cierre definitivo de las guerras civiles del siglo XIX."
+    },
+    {
+      "year": 1983,
+      "event": "Recuperación de la democracia institucional y el sufragio",
+      "context": "Luis Alberto Romero destaca este hito como el mayor esfuerzo contemporáneo por establecer consensos básicos gubernamentales."
+    },
+    {
+      "year": 1983,
+      "event": "Reorientación de la agenda intelectual hacia los Derechos Humanos",
+      "context": "La historiografía académica comienza a priorizar el pasado reciente y la violencia estatal."
+    },
+    {
+      "year": 1985,
+      "event": "Debate sobre el impacto fundacional de la Ley Sáenz Peña",
+      "context": "Historiadores revisan la ley de 1912 como el origen de la modernidad política y sus conflictos posteriores."
+    },
+    {
+      "year": 1987,
+      "event": "Estudio sobre la expansión territorial y la Conquista del Desierto",
+      "context": "Análisis crítico de la Ley 215 de 1867 y su ejecución definitiva bajo el mando de Julio A. Roca."
+    },
+    {
+      "year": 1989,
+      "event": "Crisis de eficacia en la selección de administradores estatales",
+      "context": "Romero observa un derrotero de la democracia que comienza a recordar las tensiones facciosas del pasado."
+    },
+    {
+      "year": 1990,
+      "event": "Auge de la historiografía económica y financiera",
+      "context": "Los grandes relatos revisionistas ceden espacio ante el análisis técnico de mercados y flujos de capital."
+    },
+    {
+      "year": 1991,
+      "event": "Primeras Jornadas de Historia de las Mujeres en Luján",
+      "context": "Evento fundacional para la institucionalización de los estudios de género en la academia argentina."
+    },
+    {
+      "year": 1992,
+      "event": "Segundas Jornadas de Historia de las Mujeres en la Facultad de Ciencias Sociales",
+      "context": "Consolidación de la perspectiva de género y la historia contributiva en la Universidad de Buenos Aires."
+    },
+    {
+      "year": 1994,
+      "event": "Publicación de Relaciones peligrosas: Universidad y Estudios de la Mujer",
+      "context": "Marcela Nari analiza las tensiones iniciales entre la academia tradicional y las nuevas búsquedas feministas."
+    },
+    {
+      "year": 1995,
+      "event": "Terceras Jornadas de Historia de las Mujeres en Rosario",
+      "context": "Expansión geográfica del debate sobre el pasado femenino hacia las provincias."
+    },
+    {
+      "year": 1996,
+      "event": "Cuartas Jornadas de Historia de las Mujeres en Tucumán",
+      "context": "La publicación de actas con más de 100 trabajos evidencia la densidad alcanzada por este campo de investigación."
+    },
+    {
+      "year": 1998,
+      "event": "Sextas Jornadas de Historia de las Mujeres en Santa Rosa",
+      "context": "Inclusión formal del concepto 'Estudios de Género' en la denominación de las jornadas nacionales."
+    },
+    {
+      "year": 1998,
+      "event": "Publicación de Estudios de Género e Historia: Situación y perspectivas",
+      "context": "Valeria Pita mapea las matrices feministas e historiográficas que inspiraron la empresa colectiva de fin de siglo."
+    },
+    {
+      "year": 1999,
+      "event": "Gestación del proyecto editorial Historia de las Mujeres en Argentina",
+      "context": "Reuniones de historiadoras para planificar una obra colectiva que desafiara los sesgos androcéntricos de la disciplina."
+    },
+    {
+      "year": 2000,
+      "event": "Publicación del Tomo I de la Historia de las Mujeres en Argentina",
+      "context": "Obra colectiva de Taurus que sistematiza investigaciones sobre la Colonia y el siglo XIX desde la perspectiva de género."
+    },
+    {
+      "year": 2000,
+      "event": "Publicación del Tomo II de la Historia de las Mujeres en Argentina",
+      "context": "Continuidad del proyecto editorial centrada en las experiencias femeninas durante el siglo XX."
+    },
+    {
+      "year": 2000,
+      "event": "Investigación sobre indias del Litoral y cautivas en las pampas",
+      "context": "Inclusión de sujetos históricamente borrados por las narrativas nacionales tradicionales en la nueva historiografía."
+    },
+    {
+      "year": 2000,
+      "event": "Estudio sobre africanas esclavizadas en el Río de la Plata",
+      "context": "Rescate de testimonios involuntarios sobre la opresión y los márgenes de acción de mujeres afrodescendientes."
+    },
+    {
+      "year": 2000,
+      "event": "Análisis de inmigrantes italianas en instituciones psiquiátricas",
+      "context": "Uso de fuentes no convencionales para rescatar la voz de mujeres en el sistema de salud mental del pasado."
+    },
+    {
+      "year": 2000,
+      "event": "Investigación sobre la prostitución en las fronteras militares",
+      "context": "Exploración de la sexualidad y el control estatal sobre los cuerpos femeninos en contextos periféricos."
+    },
+    {
+      "year": 2000,
+      "event": "Estudio sobre obreras del conurbano y luchas laborales",
+      "context": "La historia social de las mujeres cuestiona la visión binaria del trabajo y el espacio público."
+    },
+    {
+      "year": 2000,
+      "event": "Adopción del género como categoría relacional e histórica",
+      "context": "Inspiradas en Gisela Bock, las historiadoras proponen que el género es un producto social y cultural cambiante."
+    },
+    {
+      "year": 2000,
+      "event": "Cuestionamiento de las periodizaciones establecidas por el poder",
+      "context": "Valeria Pita sostiene que hitos como guerras o revoluciones afectan de manera desigual a varones y mujeres."
+    },
+    {
+      "year": 2000,
+      "event": "Implementación de la pregunta a la fuente sobre la disponibilidad documental",
+      "context": "Innovación metodológica que prioriza el rastreo de evidencias visuales y judiciales frente a los silencios oficiales."
+    },
+    {
+      "year": 2000,
+      "event": "Análisis de las viudas coloniales en La Rioja",
+      "context": "Investigación sobre la autonomía económica y legal de las mujeres en el orden colonial."
+    },
+    {
+      "year": 2000,
+      "event": "Estudio sobre hechiceras santiagueñas y dispositivos disciplinarios",
+      "context": "Reflexión sobre el disciplinamiento moral y religioso de las mujeres fuera de la norma social."
+    },
+    {
+      "year": 2000,
+      "event": "Investigación sobre las Madres de Plaza de Mayo",
+      "context": "Análisis de la maternidad como motor de acción política y resistencia frente al terrorismo de Estado."
+    },
+    {
+      "year": 2000,
+      "event": "Exploración de la domesticidad como espacio de identidad política",
+      "context": "La nueva historiografía demuestra que en el hogar se forjaron imaginarios de clase y pertenencia social."
+    },
+    {
+      "year": 2000,
+      "event": "Desnaturalización de los roles asignados a las mujeres en la historia",
+      "context": "Crítica a la 'historia contributiva' que solo añadía capítulos femeninos sin interpelar el relato central."
+    },
+    {
+      "year": 2003,
+      "event": "Surgimiento del neorrevisionismo histórico bajo la gestión de Kirchner",
+      "context": "Impulso estatal a una visión nacional, popular y federal de la historia argentina e iberoamericana."
+    },
+    {
+      "year": 2004,
+      "event": "Publicación de Historia, historiografía y género por Dora Barrancos",
+      "context": "Reflexión sobre la inserción de las mujeres en la agenda historiográfica de la democracia recuperada."
+    },
+    {
+      "year": 2005,
+      "event": "Publicación de Contra Mitre por Eduardo Luis Duhalde",
+      "context": "Obra que sistematiza la crítica a la historiografía liberal y reivindica la figura de los caudillos federales."
+    },
+    {
+      "year": 2006,
+      "event": "Reedición de la obra de Arturo Jauretche en la agenda política",
+      "context": "Retorno de los textos clásicos del revisionismo como insumo para el debate sobre la autonomía nacional."
+    },
+    {
+      "year": 2008,
+      "event": "Mapeo de dilemas historiográficos en Estudios de Filosofía Práctica",
+      "context": "Mirta Lobato analiza las intersecciones entre trabajo, cultura y poder desde una perspectiva de género."
+    },
+    {
+      "year": 2009,
+      "event": "Sistematización de corrientes históricas en Historia de la historiografía argentina",
+      "context": "Devoto y Pagano analizan el revisionismo como objeto de estudio académico y su evolución."
+    },
+    {
+      "year": 2010,
+      "event": "Celebración del Bicentenario con eje en los próceres oscurecidos",
+      "context": "Políticas de memoria que honran a caudillos federales y líderes populares como Manuel Dorrego."
+    },
+    {
+      "year": 2010,
+      "event": "Decreto de feriado nacional para el Día de la Soberanía",
+      "context": "Reivindicación de la gesta de la Vuelta de Obligado de 1845 como hito fundamental de la identidad nacional."
+    },
+    {
+      "year": 2010,
+      "event": "Ascenso al generalato de Juana Azurduy",
+      "context": "Acto de política de memoria destinado a integrar figuras femeninas en la jerarquía militar histórica."
+    },
+    {
+      "year": 2010,
+      "event": "Reconocimiento póstumo al caudillo federal Felipe Varela",
+      "context": "Incorporación de líderes de las montoneras del interior en el panteón oficial de héroes nacionales."
+    },
+    {
+      "year": 2011,
+      "event": "Creación del Instituto Manuel Dorrego por Decreto 1880/2011",
+      "context": "Institucionalización estatal del revisionismo histórico bajo la presidencia de Cristina Fernández de Kirchner."
+    },
+    {
+      "year": 2011,
+      "event": "Nombramiento de Mario Pacho O'Donnell como presidente del Instituto",
+      "context": "Inicio de una tarea de divulgación masiva de pensadores como Ramos, Rosa, Ugarte y Jauretche."
+    },
+    {
+      "year": 2011,
+      "event": "Producción de programas de televisión por el Instituto Dorrego",
+      "context": "Uso de medios masivos para difundir la historia nacional y popular fuera de los círculos académicos."
+    },
+    {
+      "year": 2011,
+      "event": "Crítica de la academia tradicional al neorrevisionismo estatal",
+      "context": "Beatriz Sarlo califica al revisionismo como un 'fósil de best-sellers' frente a la investigación universitaria."
+    },
+    {
+      "year": 2012,
+      "event": "Reflexiones sobre la Ley Sáenz Peña en el centenario de su sanción",
+      "context": "Luis Alberto Romero evalúa el impacto de la ley desde la perspectiva de 2012, comparando crisis pasadas y presentes."
+    },
+    {
+      "year": 2012,
+      "event": "Debate sobre la nacionalización legal y la construcción del imaginario",
+      "context": "Análisis del papel del Estado en la creación de una identidad argentina homogénea y singular."
+    },
+    {
+      "year": 2014,
+      "event": "Renuncia de Pacho O'Donnell a la presidencia del Instituto Dorrego",
+      "context": "Inicio de tensiones internas y crisis de gobernabilidad dentro del organismo revisionista estatal."
+    },
+    {
+      "year": 2014,
+      "event": "Alejamiento de divulgadores clave como Brienza y Pigna del ámbito institucional",
+      "context": "Desarticulación del núcleo original de historiadores que sustentaban el proyecto del Instituto Dorrego."
+    },
+    {
+      "year": 2014,
+      "event": "Conflicto presupuestario con el Ministerio de Cultura",
+      "context": "Víctor Jorge Ramos denuncia la falta de partidas para el funcionamiento del Instituto bajo la gestión de Teresa Parodi."
+    },
+    {
+      "year": 2014,
+      "event": "Repudio interno a las declaraciones de Ramos bajo la presidencia de Launay",
+      "context": "Evidencia de la fragmentación ideológica definitiva del revisionismo institucionalizado."
+    },
+    {
+      "year": 2016,
+      "event": "Disolución del Instituto Manuel Dorrego por decreto presidencial",
+      "context": "Mauricio Macri firma el cierre del organismo argumentando que el Estado no debe promover visiones únicas de la historia."
+    },
+    {
+      "year": 2016,
+      "event": "Fin de la política oficial de reivindicación historiográfica específica",
+      "context": "El Estado abandona la tutela sobre el revisionismo, devolviendo el debate a la investigación libre."
+    },
+    {
+      "year": 2018,
+      "event": "Análisis de la correspondencia privada del historiador David Peña",
+      "context": "Investigación sobre las zonas grises entre la tradición liberal y la revisión histórica a principios del siglo XX."
+    },
+    {
+      "year": 2020,
+      "event": "Publicación de Mirando hacia atrás por Valeria Pita",
+      "context": "Reflexión a veinte años de la Historia de las Mujeres sobre los puntos de condensación historiográfica y sus marcas."
+    },
+    {
+      "year": 2020,
+      "event": "Evaluación de la estabilidad de la categoría de género en la academia",
+      "context": "Se constata que el género ya no depende de la historia para su legitimidad profesional y académica."
+    },
+    {
+      "year": 2020,
+      "event": "Análisis de la performatividad del género según Judith Butler",
+      "context": "Ampliación de las categorías de análisis para incluir cuerpos abyectos y significaciones trans en el relato histórico."
+    },
+    {
+      "year": 2020,
+      "event": "Revisión de interpretaciones sobre el Estado terrorista con perspectiva de género",
+      "context": "Uso de la historia 'engenerizada' para analizar cómo las violencias estatales se entrecruzaron con la identidad sexual."
+    },
+    {
+      "year": 2020,
+      "event": "Debate sobre los trabajos del servir y la feminización laboral",
+      "context": "Nuevas preguntas analíticas sobre la construcción social del salario y los derechos de las trabajadoras."
+    },
+    {
+      "year": 2020,
+      "event": "Constatación del crecimiento nacional de la investigación de género",
+      "context": "El mundo académico documenta experiencias femeninas desde la Patagonia hasta el norte del país."
+    },
+    {
+      "year": 2020,
+      "event": "Evaluación de la agencia histórica de los sujetos comunes",
+      "context": "Consolidación de la 'history from below' como método para impugnar los olvidos de la historia oficial."
+    },
+    {
+      "year": 2022,
+      "event": "Análisis del faccionalismo persistente en la democracia contemporánea",
+      "context": "Historiadores advierten que el derrotero actual recuerda los conflictos de intereses de la primera experiencia democrática."
+    },
+    {
+      "year": 2023,
+      "event": "Revisión del impacto de la urbanización en la inclusión social",
+      "context": "Estudios sobre cómo la movilidad social generó tensiones permanentes por el acceso a bienes disponibles."
+    },
+    {
+      "year": 2024,
+      "event": "Evaluación de la autonomía política en los movimientos sociales",
+      "context": "Síntesis sobre cómo las resistencias cotidianas han reconfigurado la comprensión de la historia desde abajo."
+    },
+    {
+      "year": 2025,
+      "event": "Situación de los consensos básicos para el Estado democrático",
+      "context": "Evaluación final sobre la persistencia de identidades excluyentes y la dificultad de políticas de largo plazo."
+    },
+    {
+      "year": 2025,
+      "event": "Persistencia de la polarización facciosa en los imaginarios nacionales",
+      "context": "Conclusión sobre la turbulenta historia de intereses y creencias que aún impide un consenso nacional unificado."
+    },
+    {
+      "year": 2025,
+      "event": "Estado del debate sobre la unidad nacional y el federalismo",
+      "context": "Reflexión final sobre la vigencia de los conflictos entre el centro y las provincias en la Argentina del siglo XXI."
+    },
+    {
+      "year": 2025,
+      "event": "Evaluación de la desnaturalización de los relatos históricos oficiales",
+      "context": "Balance sobre cómo la incorporación de mujeres y sujetos populares transformó definitivamente la historiografía."
+    },
+    {
+      "year": 2025,
+      "event": "Reflexión sobre el papel del historiador en una sociedad polarizada",
+      "context": "Sintésis sobre el desafío de construir conocimiento objetivo en un contexto de uso político del pasado."
+    },
+    {
+      "year": 2025,
+      "event": "Análisis de la fragmentación de la identidad nacional contemporánea",
+      "context": "Evaluación de cómo la multiplicidad de narrativas históricas convive en un estado de tensión democrática."
     }
   ]
 }

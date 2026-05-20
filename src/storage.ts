@@ -28,13 +28,32 @@ export function saveStats(stats: AppStats): void {
 
 export function selectPuzzle(deck: Deck, stats: AppStats): HistoryEvent[] {
   const n = deck.puzzleSize ?? 6;
-  const tagged = deck.events.map(ev => ({
-    ev,
-    shown: stats.events[ev.id]?.shown ?? 0,
-    r: Math.random(),
-  }));
-  tagged.sort((a, b) => a.shown - b.shown || a.r - b.r);
-  return tagged.slice(0, n).map(t => t.ev);
+  const sorted = [...deck.events].sort((a, b) => a.year - b.year);
+
+  if (sorted.length <= n) return sorted;
+
+  const shownOf = (ev: HistoryEvent) => stats.events[ev.id]?.shown ?? 0;
+
+  type Window = { start: number; totalShown: number; maxGap: number; r: number };
+  const windows: Window[] = [];
+  for (let i = 0; i <= sorted.length - n; i++) {
+    let maxGap = 0;
+    let totalShown = 0;
+    for (let j = i; j < i + n; j++) {
+      totalShown += shownOf(sorted[j]);
+      if (j > i) maxGap = Math.max(maxGap, sorted[j].year - sorted[j - 1].year);
+    }
+    windows.push({ start: i, totalShown, maxGap, r: Math.random() });
+  }
+
+  const valid = windows.filter(w => w.maxGap <= 50);
+  let pool = valid;
+  if (pool.length === 0) {
+    const minGap = Math.min(...windows.map(w => w.maxGap));
+    pool = windows.filter(w => w.maxGap === minGap);
+  }
+  pool.sort((a, b) => a.totalShown - b.totalShown || a.r - b.r);
+  return sorted.slice(pool[0].start, pool[0].start + n);
 }
 
 export function recordResult(

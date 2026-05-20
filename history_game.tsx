@@ -383,22 +383,22 @@ export default function App() {
         </div>
 
         <div className="mb-2">
-          <h1 className={`${titleCls} text-text-primary`}>Historia</h1>
-          <h1 className={`${titleCls} text-ar-blue`}>Argentina</h1>
+          <h1 className={`${titleCls} text-text-primary`}>History</h1>
+          <h1 className={`${titleCls} text-ar-blue`}>Game</h1>
         </div>
 
         <div className="w-12 h-[3px] bg-ar-gold rounded-sm mx-auto my-3" />
 
         <p className="text-[15px] text-text-secondary mb-8 leading-relaxed">
-          Ordená 6 eventos históricos de más antiguo a más reciente.
+          Ordená eventos históricos de más antiguo a más reciente.
         </p>
 
-        <div className="grid grid-cols-2 gap-3 mb-6">
+        <div className="grid grid-cols-3 gap-2 mb-6">
           {DECKS.map(deck => (
             <button
               key={deck.id}
               onClick={() => startGame(deck)}
-              className="flex flex-col items-center gap-2 py-6 px-4 rounded-2xl border border-border bg-bg-card hover:border-ar-blue hover:bg-bg-secondary transition-all duration-150 cursor-pointer group"
+              className="flex flex-col items-center gap-2 py-4 px-2 rounded-2xl border border-border bg-bg-card hover:border-ar-blue hover:bg-bg-secondary transition-all duration-150 cursor-pointer group"
             >
               <span className="text-4xl">{deck.emoji}</span>
               <span className="text-sm font-semibold text-text-primary group-hover:text-ar-blue transition-colors leading-tight">

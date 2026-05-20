@@ -1,1 +1,1 @@
-{"root":["./src/main.tsx","./src/storage.ts","./data/argentina.ts","./data/index.ts","./data/mundo.ts"],"version":"5.9.3"}
+{"root":["./src/admin.tsx","./src/main.tsx","./src/storage.ts","./src/utils.ts","./data/index.ts","./data/types.ts"],"version":"5.9.3"}
