@@ -626,7 +626,7 @@ export default function App() {
 
         {/* Cards — horizontal row with insertion indicators */}
         <div
-          className="flex items-start gap-3 mb-6 overflow-x-auto py-2 px-1"
+          className="flex items-start gap-3 mb-6 overflow-x-auto overflow-y-hidden py-2 px-1 h-[430px]"
           onDragOver={(e) => {
             // catch drags past the last card
             e.preventDefault();
@@ -670,7 +670,7 @@ export default function App() {
 
         {/* Controls */}
         {!submitted ? (
-          <div className="flex flex-col items-center gap-3 mt-16">
+          <div className="flex flex-col items-center gap-3 mt-6">
             <p className="text-sm text-text-secondary">
               Intentos restantes: {attemptsLeft}
             </p>
