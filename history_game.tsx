@@ -18,6 +18,7 @@ import {
 } from "./src/storage";
 import { AdminScreen } from "./src/admin";
 import { formatYear } from "./src/utils";
+import { YearGuessr } from "./src/year_guessr";
 
 type CardStatus = "correct" | "wrong" | null;
 
@@ -248,7 +249,7 @@ function StatsScreen({
 }
 
 export default function App() {
-  const [screen, setScreen] = useState<"home" | "game" | "stats" | "admin">(
+  const [screen, setScreen] = useState<"home" | "mode_select" | "game" | "year_guessr" | "stats" | "admin">(
     "home"
   );
   const [selectedDeck, setSelectedDeck] = useState<Deck | null>(null);
@@ -295,8 +296,12 @@ export default function App() {
     setAttemptsLeft(5);
   }
 
-  function startGame(deck: Deck) {
+  function selectDeck(deck: Deck) {
     setSelectedDeck(deck);
+    setScreen("mode_select");
+  }
+
+  function startGame(deck: Deck) {
     loadPuzzle(selectPuzzle(deck, stats));
     setPuzzleNum(1);
     setScreen("game");
@@ -524,6 +529,52 @@ export default function App() {
       />
     );
 
+  if (screen === "year_guessr" && selectedDeck)
+    return <YearGuessr deck={selectedDeck} onBack={() => setScreen("mode_select")} />;
+
+  if (screen === "mode_select" && selectedDeck)
+    return (
+      <div className="min-h-screen bg-bg flex items-center justify-center">
+        <div className="w-full max-w-sm px-6 py-12">
+          <button
+            onClick={() => setScreen("home")}
+            className="bg-transparent border-none cursor-pointer text-text-tertiary text-sm hover:text-text-secondary transition-colors mb-8 block"
+          >
+            ← Volver
+          </button>
+
+          <div className="text-center mb-8">
+            <span className="text-6xl block mb-3">{selectedDeck.emoji}</span>
+            <h2 className="text-2xl font-extrabold text-text-primary m-0">{selectedDeck.name}</h2>
+          </div>
+
+          <div className="flex flex-col gap-3">
+            <button
+              onClick={() => startGame(selectedDeck)}
+              className="flex items-center gap-4 px-5 py-4 rounded-2xl border border-border bg-bg-card hover:border-ar-blue hover:bg-bg-secondary transition-all duration-150 cursor-pointer text-left group"
+            >
+              <span className="text-3xl shrink-0">📅</span>
+              <div>
+                <div className="font-semibold text-text-primary group-hover:text-ar-blue transition-colors">Ordenar eventos</div>
+                <div className="text-xs text-text-tertiary mt-0.5">Arrastrá para ordenar cronológicamente</div>
+              </div>
+            </button>
+
+            <button
+              onClick={() => setScreen("year_guessr")}
+              className="flex items-center gap-4 px-5 py-4 rounded-2xl border border-border bg-bg-card hover:border-ar-blue hover:bg-bg-secondary transition-all duration-150 cursor-pointer text-left group"
+            >
+              <span className="text-3xl shrink-0">🎯</span>
+              <div>
+                <div className="font-semibold text-text-primary group-hover:text-ar-blue transition-colors">Year Guessr</div>
+                <div className="text-xs text-text-tertiary mt-0.5">Adiviná en qué año ocurrió cada evento</div>
+              </div>
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+
   if (screen === "home")
     return (
       <div className="min-h-screen bg-bg flex items-center justify-center">
@@ -549,7 +600,7 @@ export default function App() {
             {DECKS.map((deck) => (
               <button
                 key={deck.id}
-                onClick={() => startGame(deck)}
+                onClick={() => selectDeck(deck)}
                 className="flex flex-col items-center gap-2 py-4 px-2 rounded-2xl border border-border bg-bg-card hover:border-ar-blue hover:bg-bg-secondary transition-all duration-150 cursor-pointer group"
               >
                 <span className="text-4xl">{deck.emoji}</span>
