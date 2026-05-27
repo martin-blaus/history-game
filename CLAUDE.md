@@ -38,3 +38,7 @@ interface Deck { id: string; name: string; emoji: string; events: HistoryEvent[]
 **Styling:** Tailwind CSS v4 (via `@tailwindcss/vite`). Custom design tokens (colors like `ar-blue`, `bg-card`, `text-primary`, etc.) are defined in `src/index.css`.
 
 **Touch drag-and-drop:** Implemented manually in `history_game.tsx` using `onTouchStart/Move/End` handlers that track positions against `.sort-card` element bounding rects. The hint feature pins the chronological middle card in place and locks it from dragging.
+
+## Deployment Rules
+
+- **Do not deploy automatically**: Do not run deployment commands (like Firebase Hosting deploy) on every change. Only deploy the application when explicitly requested or instructed by the user.
