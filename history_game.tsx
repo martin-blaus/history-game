@@ -11,11 +11,6 @@ import { formatYear } from "./src/utils";
 
 type CardStatus = "correct" | "wrong" | null;
 
-const STATUS_CARD_CLASSES: Record<"correct" | "wrong", string> = {
-  correct: "bg-success-bg border-success border-l-success",
-  wrong:   "bg-danger-bg border-danger border-l-danger",
-};
-
 function statusEmoji(s: string): "🟩" | "🟥" {
   return s === "correct" ? "🟩" : "🟥";
 }
@@ -34,24 +29,11 @@ function buildShareText(statuses: string[], deckName: string): string {
   return `${deckName}\n${emojis}\n${statuses.filter(s => s === "correct").length}/6 correctos\nhistoria-ar.app`;
 }
 
-function GripIcon() {
-  return (
-    <svg width="14" height="18" viewBox="0 0 14 18" fill="none" className="shrink-0">
-      {[2, 7, 12].flatMap(x =>
-        [3, 9, 15].map(y => (
-          <circle key={`${x}-${y}`} cx={x} cy={y} r="1.5" fill="#475569" />
-        ))
-      )}
-    </svg>
-  );
-}
-
-
 function Card({
   item, index, dragging, isHinted,
   onDragStart, onDragOver, onDrop,
   onTouchStart, onTouchMove, onTouchEnd,
-  status, revealedCount,
+  status, revealed,
 }: {
   item: HistoryEvent;
   index: number;
@@ -64,81 +46,69 @@ function Card({
   onTouchMove: (e: React.TouchEvent) => void;
   onTouchEnd: () => void;
   status: CardStatus;
-  revealedCount: number;
+  revealed: boolean;
 }) {
-  const [descExpanded, setDescExpanded] = useState(false);
-
   const isDragging = dragging === index;
-  const isRevealed = revealedCount > index;
-  const statusClasses = status ? STATUS_CARD_CLASSES[status] : "bg-bg-card border-border border-l-ar-blue";
-  const dragClasses = isDragging
-    ? "opacity-45 scale-[1.02] shadow-2xl cursor-grabbing"
-    : "opacity-100 scale-100 cursor-grab";
-  const shakeClass = isRevealed && status === "wrong" ? "card-shake" : "";
+  const canDrag = !revealed && !isHinted;
+
+  const ringClass = status === "correct"
+    ? "ring-2 ring-success"
+    : status === "wrong"
+    ? "ring-2 ring-danger"
+    : isHinted && !revealed
+    ? "ring-2 ring-ar-gold"
+    : "";
+
+  const shakeClass = status === "wrong" ? "card-shake" : "";
+  const dragClass = isDragging ? "opacity-50 scale-[1.03] shadow-2xl" : "";
 
   return (
     <div
-      className={`sort-card flex flex-col rounded-xl border border-l-[3px] overflow-hidden select-none touch-none transition-all duration-150 ${statusClasses} ${isHinted && !isRevealed ? "border-l-ar-gold border-ar-gold" : ""} ${dragClasses} ${shakeClass}`}
-      draggable={!isRevealed && !isHinted}
-      onDragStart={() => onDragStart(index)}
+      className={`sort-card flex-1 min-w-[150px] flex flex-col rounded-xl overflow-hidden select-none bg-bg-card transition-all duration-150 ${ringClass} ${shakeClass} ${dragClass} ${canDrag ? "cursor-grab active:cursor-grabbing" : ""}`}
+      draggable={canDrag}
+      onDragStart={() => canDrag && onDragStart(index)}
       onDragOver={e => { e.preventDefault(); onDragOver(index); }}
       onDrop={onDrop}
-      onTouchStart={e => onTouchStart(e, index)}
-      onTouchMove={onTouchMove}
-      onTouchEnd={onTouchEnd}
+      onTouchStart={canDrag ? e => onTouchStart(e, index) : undefined}
+      onTouchMove={canDrag ? onTouchMove : undefined}
+      onTouchEnd={canDrag ? onTouchEnd : undefined}
     >
-      {item.image && (
-        <img
-          src={item.image}
-          alt={item.event}
-          className="w-full h-20 object-cover shrink-0"
-          loading="lazy"
-          draggable={false}
-        />
-      )}
-
-      <div className="px-4 py-3 flex flex-col gap-2">
-        <div className="flex items-center gap-3">
-          <span className="text-xs font-bold text-text-tertiary min-w-[18px] bg-bg rounded px-[5px] py-[2px] text-center shrink-0">
-            {index + 1}
-          </span>
-          <span className="flex-1 text-sm text-text-primary leading-[1.45]">
-            {item.event}
-          </span>
-          {isRevealed ? (
-            <span className={`text-xs font-semibold whitespace-nowrap px-2 py-[3px] rounded-md shrink-0 ${
-              status === "correct"
-                ? "text-success bg-[rgba(34,197,94,0.1)]"
-                : "text-danger bg-[rgba(239,68,68,0.1)]"
-            }`}>
-              {formatYear(item.year)}
-            </span>
-          ) : isHinted ? (
-            <span className="text-xs font-semibold text-ar-gold bg-[rgba(245,197,24,0.1)] px-2 py-[3px] rounded-md shrink-0">
-              📌
-            </span>
-          ) : (
-            <GripIcon />
-          )}
-        </div>
-
-        {item.context && (
-          <div className="flex items-start gap-1">
-            <p className={`text-xs text-text-secondary leading-relaxed m-0 flex-1 overflow-hidden transition-[max-height] duration-300 ${
-              isRevealed || descExpanded ? "max-h-40" : "max-h-[2.8em] hover:max-h-40"
-            }`}>
-              {item.context}
-            </p>
-            {!isRevealed && (
-              <button
-                onClick={e => { e.stopPropagation(); setDescExpanded(v => !v); }}
-                className="text-text-tertiary hover:text-text-secondary text-xs shrink-0 mt-0.5 leading-none bg-transparent border-none cursor-pointer p-0"
-                aria-label={descExpanded ? "Colapsar" : "Expandir"}
-              >
-                {descExpanded ? "⌃" : "⌄"}
-              </button>
-            )}
+      <div className="relative">
+        {item.image ? (
+          <img
+            src={item.image}
+            alt={item.event}
+            className="w-full h-44 object-cover block"
+            loading="lazy"
+            draggable={false}
+          />
+        ) : (
+          <div className="w-full h-44 bg-bg-secondary flex items-center justify-center">
+            <span className="text-5xl opacity-20">📅</span>
           </div>
+        )}
+        {revealed && (
+          <div className={`absolute top-2 right-2 text-xs font-bold px-2 py-1 rounded-md ${
+            status === "correct" ? "bg-success text-white" : "bg-danger text-white"
+          }`}>
+            {formatYear(item.year)}
+          </div>
+        )}
+        {isHinted && !revealed && (
+          <div className="absolute top-2 right-2 bg-ar-gold text-black text-xs font-bold px-2 py-1 rounded-md">
+            📌
+          </div>
+        )}
+      </div>
+
+      <div className="px-3 py-3 flex flex-col gap-1.5">
+        <p className="text-sm font-bold text-text-primary leading-snug m-0 line-clamp-2">
+          {item.event}
+        </p>
+        {item.context && (
+          <p className="text-xs text-text-secondary leading-relaxed m-0 line-clamp-3">
+            {item.context}
+          </p>
         )}
       </div>
     </div>
@@ -225,16 +195,18 @@ export default function App() {
   const [cards, setCards] = useState<HistoryEvent[]>([]);
   const [dragging, setDragging] = useState<number | null>(null);
   const [statuses, setStatuses] = useState<("correct" | "wrong")[]>([]);
+  const [finalStatuses, setFinalStatuses] = useState<("correct" | "wrong")[]>([]);
+  const [submitted, setSubmitted] = useState(false);
   const [revealedCount, setRevealedCount] = useState(0);
   const [hintCardId, setHintCardId] = useState<string | null>(null);
+  const [attemptsLeft, setAttemptsLeft] = useState(5);
+  const [puzzleNum, setPuzzleNum] = useState(1);
   const [copied, setCopied] = useState(false);
   const [stats, setStats] = useState<AppStats>(() => loadStats());
-  const touchRef = useRef<{ startIdx: number | null; currentIdx: number | null; startY: number }>({
-    startIdx: null, currentIdx: null, startY: 0,
+  const touchRef = useRef<{ startIdx: number | null; currentIdx: number | null; startX: number }>({
+    startIdx: null, currentIdx: null, startX: 0,
   });
   const revealIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
-
-  const submitted = statuses.length > 0;
 
   const titleCls = useMemo(() => "text-[48px] font-extrabold tracking-[-2px] m-0 leading-none", []);
 
@@ -242,19 +214,24 @@ export default function App() {
     setPuzzle(p);
     setCards(shuffle(p));
     setStatuses([]);
+    setFinalStatuses([]);
+    setSubmitted(false);
     setRevealedCount(0);
     setHintCardId(null);
+    setAttemptsLeft(5);
   }
 
   function startGame(deck: Deck) {
     setSelectedDeck(deck);
     loadPuzzle(selectPuzzle(deck, stats));
+    setPuzzleNum(1);
     setScreen("game");
   }
 
   function nextPuzzle() {
     if (!selectedDeck) return;
     loadPuzzle(selectPuzzle(selectedDeck, stats));
+    setPuzzleNum(n => n + 1);
   }
 
   function useHint() {
@@ -290,20 +267,23 @@ export default function App() {
   function handleDrop() { setDragging(null); }
 
   function handleTouchStart(e: React.TouchEvent, i: number) {
-    touchRef.current = { startIdx: i, currentIdx: i, startY: e.touches[0].clientY };
+    touchRef.current = { startIdx: i, currentIdx: i, startX: e.touches[0].clientX };
+    setDragging(i);
   }
 
   function handleTouchMove(e: React.TouchEvent) {
+    if (touchRef.current.startIdx === null) return;
     e.preventDefault();
-    const y = e.touches[0].clientY;
+    const x = e.touches[0].clientX;
     const els = document.querySelectorAll(".sort-card");
     let newIdx = touchRef.current.currentIdx!;
     els.forEach((el, i) => {
       const rect = el.getBoundingClientRect();
-      if (y >= rect.top && y <= rect.bottom) newIdx = i;
+      if (x >= rect.left && x <= rect.right) newIdx = i;
     });
     if (newIdx !== touchRef.current.currentIdx) {
       const from = touchRef.current.currentIdx!;
+      if (cards[newIdx]?.id === hintCardId) return;
       setCards(prev => {
         const next = [...prev];
         const [moved] = next.splice(from, 1);
@@ -311,11 +291,13 @@ export default function App() {
         return next;
       });
       touchRef.current.currentIdx = newIdx;
+      setDragging(newIdx);
     }
   }
 
   function handleTouchEnd() {
-    touchRef.current = { startIdx: null, currentIdx: null, startY: 0 };
+    touchRef.current = { startIdx: null, currentIdx: null, startX: 0 };
+    setDragging(null);
   }
 
   function submit() {
@@ -323,22 +305,34 @@ export default function App() {
     const s: ("correct" | "wrong")[] = cards.map((c, i) =>
       c.id === sorted[i].id ? "correct" : "wrong"
     );
-    setStatuses(s);
 
-    let count = 0;
-    revealIntervalRef.current = setInterval(() => {
-      count++;
-      setRevealedCount(count);
-      if (count >= cards.length) {
-        clearInterval(revealIntervalRef.current!);
-        if (s.every(x => x === "correct")) {
-          setTimeout(() => confetti({ particleCount: 120, spread: 80, origin: { y: 0.5 } }), 100);
+    const allCorrect = s.every(x => x === "correct");
+    const newAttemptsLeft = attemptsLeft - 1;
+
+    setStatuses(s);
+    setAttemptsLeft(newAttemptsLeft);
+
+    if (allCorrect || newAttemptsLeft === 0) {
+      setSubmitted(true);
+      setFinalStatuses(s);
+
+      let count = 0;
+      revealIntervalRef.current = setInterval(() => {
+        count++;
+        setRevealedCount(count);
+        if (count >= cards.length) {
+          clearInterval(revealIntervalRef.current!);
+          if (allCorrect) {
+            setTimeout(() => confetti({ particleCount: 120, spread: 80, origin: { y: 0.5 } }), 100);
+          }
+          const newStats = recordResult(stats, cards.map((c, i) => ({ event: c, status: s[i] })));
+          setStats(newStats);
+          saveStats(newStats);
         }
-        const newStats = recordResult(stats, cards.map((c, i) => ({ event: c, status: s[i] })));
-        setStats(newStats);
-        saveStats(newStats);
-      }
-    }, 80);
+      }, 80);
+    } else {
+      setTimeout(() => setStatuses([]), 1200);
+    }
   }
 
   useEffect(() => () => {
@@ -346,7 +340,7 @@ export default function App() {
   }, []);
 
   function share() {
-    const text = buildShareText(statuses, selectedDeck?.name ?? "Historia AR");
+    const text = buildShareText(finalStatuses, selectedDeck?.name ?? "Historia AR");
     navigator.clipboard.writeText(text).then(() => {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
@@ -427,30 +421,41 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-bg">
-      <div className="max-w-[500px] mx-auto px-4 py-6">
+      <div className="max-w-[1400px] mx-auto px-6 py-8">
 
-        <div className="flex items-center mb-6">
-          <button
-            onClick={() => setScreen("home")}
-            className="bg-transparent border-none cursor-pointer text-text-secondary text-sm font-medium p-0 hover:text-text-primary transition-colors"
-          >
-            ← Volver
-          </button>
-          <div className="flex-1 text-center">
-            <span className="text-xs text-ar-blue font-bold tracking-widest uppercase">
-              {selectedDeck?.name}
-            </span>
+        {/* Header */}
+        <div className="text-center mb-8">
+          <h1 className="text-4xl font-extrabold text-text-primary mb-1">Think you know history?</h1>
+          <p className="text-xl font-semibold text-text-secondary mb-1">Put it in order.</p>
+          <p className="text-sm text-text-tertiary mb-3">
+            Drag to arrange events chronologically
+          </p>
+          <span className="inline-block text-xs bg-bg-secondary border border-border px-3 py-1.5 rounded-full text-text-tertiary">
+            {selectedDeck?.name} — Puzzle #{puzzleNum}
+          </span>
+          <div className="mt-3">
+            <button
+              onClick={() => setScreen("home")}
+              className="bg-transparent border-none cursor-pointer text-text-tertiary text-sm hover:text-text-secondary transition-colors"
+            >
+              ← Back
+            </button>
           </div>
-          <span className="w-14" />
         </div>
 
-        {!submitted && (
-          <p className="text-xs text-text-tertiary text-center mb-4">
-            Arrastrá para ordenar de más antiguo → más reciente
-          </p>
-        )}
+        {/* Timeline */}
+        <div className="flex items-center gap-3 mb-4">
+          <span className="text-xs font-semibold text-text-tertiary tracking-widest uppercase shrink-0">Earlier</span>
+          <div className="flex-1 flex items-center gap-1">
+            <span className="text-text-tertiary text-sm leading-none">←</span>
+            <div className="flex-1 h-px bg-border" />
+            <span className="text-text-tertiary text-sm leading-none">→</span>
+          </div>
+          <span className="text-xs font-semibold text-text-tertiary tracking-widest uppercase shrink-0">Later</span>
+        </div>
 
-        <div className="flex flex-col gap-2 mb-4">
+        {/* Cards — horizontal row */}
+        <div className="flex gap-3 mb-6 overflow-x-auto pb-2">
           {cards.map((card, i) => (
             <Card
               key={card.id}
@@ -465,42 +470,48 @@ export default function App() {
               onTouchMove={handleTouchMove}
               onTouchEnd={handleTouchEnd}
               status={statuses[i] ?? null}
-              revealedCount={revealedCount}
+              revealed={submitted && revealedCount > i}
             />
           ))}
         </div>
 
+        {/* Controls */}
         {!submitted ? (
-          <div className="flex gap-2">
-            <button
-              onClick={useHint}
-              disabled={!!hintCardId}
-              className={`px-4 py-[15px] rounded-xl border text-sm font-medium transition-colors cursor-pointer ${
-                hintCardId
-                  ? "border-border text-text-tertiary bg-transparent cursor-not-allowed"
-                  : "border-ar-gold text-ar-gold bg-[rgba(245,197,24,0.08)] hover:bg-[rgba(245,197,24,0.15)]"
-              }`}
-            >
-              💡 Pista
-            </button>
-            <button
-              onClick={submit}
-              className="flex-1 py-[15px] rounded-xl border-none bg-ar-blue hover:bg-ar-blue-dark text-white text-base font-semibold cursor-pointer transition-colors"
-            >
-              Enviar
-            </button>
+          <div className="flex flex-col items-center gap-3">
+            <p className="text-sm text-text-secondary">
+              Attempts remaining: {attemptsLeft}
+            </p>
+            <div className="flex gap-3 w-full max-w-sm">
+              <button
+                onClick={useHint}
+                disabled={!!hintCardId}
+                className={`px-4 py-3 rounded-xl border text-sm font-medium transition-colors cursor-pointer shrink-0 ${
+                  hintCardId
+                    ? "border-border text-text-tertiary bg-transparent cursor-not-allowed"
+                    : "border-ar-gold text-ar-gold bg-[rgba(245,197,24,0.08)] hover:bg-[rgba(245,197,24,0.15)]"
+                }`}
+              >
+                💡 Hint
+              </button>
+              <button
+                onClick={submit}
+                className="flex-1 py-3 rounded-xl bg-white hover:bg-gray-100 text-black text-base font-semibold cursor-pointer transition-colors border-none"
+              >
+                Check Order
+              </button>
+            </div>
           </div>
         ) : (
-          <div className="text-center bg-bg-card border border-border rounded-2xl p-6">
+          <div className="text-center bg-bg-card border border-border rounded-2xl p-6 max-w-sm mx-auto">
             <div className="text-[36px] font-extrabold text-ar-gold mb-1">
-              {statuses.filter(s => s === "correct").length}/6
+              {finalStatuses.filter(s => s === "correct").length}/6
             </div>
             <div className="text-sm text-text-secondary mb-1">correctos</div>
             {hintCardId && (
               <div className="text-xs text-ar-gold mb-3">★ con pista</div>
             )}
             <div className="text-[26px] tracking-[6px] mb-6">
-              {statuses.map(statusEmoji)}
+              {finalStatuses.map(statusEmoji)}
             </div>
             <div className="flex gap-2 justify-center flex-wrap">
               <button
