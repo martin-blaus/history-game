@@ -20,6 +20,8 @@ import { AdminScreen } from "./src/admin";
 import { formatYear } from "./src/utils";
 import { YearGuessr } from "./src/year_guessr";
 import { WhichCameFirst } from "./src/which_came_first";
+import { ContextDetective } from "./src/context_detective";
+import { WhoWasThere } from "./src/who_was_there";
 
 type CardStatus = "correct" | "wrong" | null;
 
@@ -250,7 +252,7 @@ function StatsScreen({
 }
 
 export default function App() {
-  const [screen, setScreen] = useState<"home" | "mode_select" | "game" | "year_guessr" | "which_came_first" | "stats" | "admin">(
+  const [screen, setScreen] = useState<"home" | "mode_select" | "game" | "year_guessr" | "which_came_first" | "context_detective" | "who_was_there" | "stats" | "admin">(
     "home"
   );
   const [selectedDeck, setSelectedDeck] = useState<Deck | null>(null);
@@ -536,6 +538,12 @@ export default function App() {
   if (screen === "which_came_first" && selectedDeck)
     return <WhichCameFirst deck={selectedDeck} onBack={() => setScreen("mode_select")} />;
 
+  if (screen === "context_detective" && selectedDeck)
+    return <ContextDetective deck={selectedDeck} onBack={() => setScreen("mode_select")} />;
+
+  if (screen === "who_was_there" && selectedDeck)
+    return <WhoWasThere deck={selectedDeck} onBack={() => setScreen("mode_select")} />;
+
   if (screen === "mode_select" && selectedDeck)
     return (
       <div className="min-h-screen bg-bg flex items-center justify-center">
@@ -583,6 +591,28 @@ export default function App() {
               <div>
                 <div className="font-semibold text-text-primary group-hover:text-ar-blue transition-colors">¿Cuál fue primero?</div>
                 <div className="text-xs text-text-tertiary mt-0.5">Elegí el evento más antiguo — construí tu racha</div>
+              </div>
+            </button>
+
+            <button
+              onClick={() => setScreen("context_detective")}
+              className="flex items-center gap-4 px-5 py-4 rounded-2xl border border-border bg-bg-card hover:border-ar-blue hover:bg-bg-secondary transition-all duration-150 cursor-pointer text-left group"
+            >
+              <span className="text-3xl shrink-0">🔍</span>
+              <div>
+                <div className="font-semibold text-text-primary group-hover:text-ar-blue transition-colors">Context Detective</div>
+                <div className="text-xs text-text-tertiary mt-0.5">Leé la descripción y adiviná el evento</div>
+              </div>
+            </button>
+
+            <button
+              onClick={() => setScreen("who_was_there")}
+              className="flex items-center gap-4 px-5 py-4 rounded-2xl border border-border bg-bg-card hover:border-ar-blue hover:bg-bg-secondary transition-all duration-150 cursor-pointer text-left group"
+            >
+              <span className="text-3xl shrink-0">👥</span>
+              <div>
+                <div className="font-semibold text-text-primary group-hover:text-ar-blue transition-colors">¿Quién estuvo ahí?</div>
+                <div className="text-xs text-text-tertiary mt-0.5">Asociá figuras históricas con sus eventos correspondientes</div>
               </div>
             </button>
           </div>

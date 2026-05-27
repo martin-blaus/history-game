@@ -3,6 +3,7 @@ export interface HistoryEvent {
   year: number;
   context: string;
   image?: string;
+  people?: string[];
 }
 
 export interface Deck {

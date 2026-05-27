@@ -1,1 +1,1 @@
-{"root":["./src/admin.tsx","./src/main.tsx","./src/storage.ts","./src/utils.ts","./data/index.ts","./data/types.ts"],"version":"5.9.3"}
+{"root":["./src/admin.tsx","./src/context_detective.tsx","./src/main.tsx","./src/storage.ts","./src/utils.ts","./src/which_came_first.tsx","./src/who_was_there.tsx","./src/year_guessr.tsx","./data/index.ts","./data/types.ts"],"version":"5.9.3"}
