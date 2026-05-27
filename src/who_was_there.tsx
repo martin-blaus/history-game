@@ -7,111 +7,221 @@ const ROUNDS = 6;
 
 type RoundTypeA = {
   type: "A";
-  person: string;
-  choices: HistoryEvent[];
-  correctEvents: string[];
+  person: string; // Underneath, can be figure (People mode) or idea name (Ideas mode)
+  definition?: string; // For Ideas mode
+  choices: HistoryEvent[]; // 6 options
+  correctEvents: string[]; // correct choices' names
 };
 
 type RoundTypeB = {
   type: "B";
-  event: HistoryEvent;
-  choices: string[];
-  correctPerson: string;
+  event: HistoryEvent; // Card clue
+  choices: string[]; // 4 text options
+  correctPerson: string; // correct choice
 };
 
 type Round = RoundTypeA | RoundTypeB;
 
 function buildRounds(deck: Deck): Round[] {
-  const personToEvents: Record<string, HistoryEvent[]> = {};
-  const eventsWithPeople: HistoryEvent[] = [];
-  const allPeopleSet = new Set<string>();
+  const isIdeasMode = deck.id === "filosofia";
 
-  deck.events.forEach((e) => {
-    if (e.people && e.people.length > 0) {
-      eventsWithPeople.push(e);
-      e.people.forEach((p) => {
-        allPeopleSet.add(p);
-        if (!personToEvents[p]) personToEvents[p] = [];
-        personToEvents[p].push(e);
-      });
+  if (isIdeasMode) {
+    // -------------------------------------------------------------
+    // IDEAS MODE (Philosophy)
+    // -------------------------------------------------------------
+    const ideaToPhilosophers: Record<string, HistoryEvent[]> = {};
+    const ideaToDefinition: Record<string, string> = {};
+    const allIdeasSet = new Set<string>();
+
+    deck.events.forEach((e) => {
+      if (e.ideas && e.ideas.length > 0) {
+        e.ideas.forEach((ideaStr) => {
+          const parts = ideaStr.split(": ");
+          const name = parts[0];
+          const definition = parts[1] || "";
+
+          allIdeasSet.add(name);
+          ideaToDefinition[name] = definition;
+
+          if (!ideaToPhilosophers[name]) ideaToPhilosophers[name] = [];
+          ideaToPhilosophers[name].push(e);
+        });
+      }
+    });
+
+    const allIdeas = Array.from(allIdeasSet);
+    const typeACandidates = Object.keys(ideaToPhilosophers).filter(
+      (idea) => ideaToPhilosophers[idea].length >= 3
+    );
+
+    if (typeACandidates.length < 1 || allIdeas.length < 4 || deck.events.length < 6) {
+      return [];
     }
-  });
 
-  const allPeople = Array.from(allPeopleSet);
-  const typeACandidates = Object.keys(personToEvents).filter(
-    (p) => personToEvents[p].length >= 3
-  );
+    const rounds: Round[] = [];
+    const shuffledIdeas = [...typeACandidates].sort(() => Math.random() - 0.5);
+    const shuffledPhilosophers = [...deck.events].sort(() => Math.random() - 0.5);
 
-  // If there's not enough data, return empty list (fallback handled in component)
-  if (typeACandidates.length < 1 || allPeople.length < 4 || eventsWithPeople.length < 6) {
-    return [];
-  }
+    let ideaIdx = 0;
+    let philIdx = 0;
 
-  const rounds: Round[] = [];
-  const shuffledCandidates = [...typeACandidates].sort(() => Math.random() - 0.5);
-  const shuffledEvents = [...eventsWithPeople].sort(() => Math.random() - 0.5);
+    for (let i = 0; i < ROUNDS; i++) {
+      const type = i % 2 === 0 ? "A" : "B";
 
-  let candidateIdx = 0;
-  let eventIdx = 0;
+      if (type === "A" && ideaIdx < shuffledIdeas.length) {
+        const idea = shuffledIdeas[ideaIdx++];
+        const myPhilosophers = ideaToPhilosophers[idea];
 
-  for (let i = 0; i < ROUNDS; i++) {
-    // Alternate: A, B, A, B, A, B
-    const type = i % 2 === 0 ? "A" : "B";
+        // 3 correct philosophers
+        const correctChoices = [...myPhilosophers].sort(() => Math.random() - 0.5).slice(0, 3);
+        const correctNames = correctChoices.map((c) => c.event);
 
-    if (type === "A" && candidateIdx < shuffledCandidates.length) {
-      const person = shuffledCandidates[candidateIdx++];
-      const myEvents = personToEvents[person];
+        // 3 distractor philosophers (who do NOT have this idea)
+        const distractors = deck.events
+          .filter((e) => !e.ideas || !e.ideas.some((idStr) => idStr.split(": ")[0] === idea))
+          .sort(() => Math.random() - 0.5)
+          .slice(0, 3);
 
-      const correctChoices = [...myEvents].sort(() => Math.random() - 0.5).slice(0, 3);
-      const correctNames = correctChoices.map((c) => c.event);
+        const choices = [...correctChoices, ...distractors].sort(() => Math.random() - 0.5);
 
-      const distractors = deck.events
-        .filter((e) => !e.people || !e.people.includes(person))
-        .sort(() => Math.random() - 0.5)
-        .slice(0, 3);
-
-      const choices = [...correctChoices, ...distractors].sort(() => Math.random() - 0.5);
-
-      rounds.push({
-        type: "A",
-        person,
-        choices,
-        correctEvents: correctNames,
-      });
-    } else {
-      let event: HistoryEvent | null = null;
-      while (eventIdx < shuffledEvents.length) {
-        const candidateEvent = shuffledEvents[eventIdx++];
-        if (candidateEvent.people && candidateEvent.people.length > 0) {
-          event = candidateEvent;
-          break;
+        rounds.push({
+          type: "A",
+          person: idea,
+          definition: ideaToDefinition[idea],
+          choices,
+          correctEvents: correctNames,
+        });
+      } else {
+        // Find a philosopher who has at least one idea
+        let philosopher: HistoryEvent | null = null;
+        while (philIdx < shuffledPhilosophers.length) {
+          const candidate = shuffledPhilosophers[philIdx++];
+          if (candidate.ideas && candidate.ideas.length > 0) {
+            philosopher = candidate;
+            break;
+          }
         }
+
+        if (!philosopher) {
+          philosopher = shuffledPhilosophers[Math.floor(Math.random() * shuffledPhilosophers.length)];
+        }
+
+        const correctIdeaStr =
+          philosopher.ideas![Math.floor(Math.random() * philosopher.ideas!.length)];
+        const correctIdeaName = correctIdeaStr.split(": ")[0];
+
+        // 3 distractor ideas (not proposed by this philosopher)
+        const proposedNames = philosopher.ideas!.map((idStr) => idStr.split(": ")[0]);
+        const distractors = allIdeas
+          .filter((name) => !proposedNames.includes(name))
+          .sort(() => Math.random() - 0.5)
+          .slice(0, 3);
+
+        const choices = [correctIdeaName, ...distractors].sort(() => Math.random() - 0.5);
+
+        rounds.push({
+          type: "B",
+          event: philosopher,
+          choices,
+          correctPerson: correctIdeaName,
+        });
       }
-
-      if (!event) {
-        event = shuffledEvents[Math.floor(Math.random() * shuffledEvents.length)];
-      }
-
-      const correctPerson =
-        event.people![Math.floor(Math.random() * event.people!.length)];
-
-      const distractors = allPeople
-        .filter((p) => !event!.people!.includes(p))
-        .sort(() => Math.random() - 0.5)
-        .slice(0, 3);
-
-      const choices = [correctPerson, ...distractors].sort(() => Math.random() - 0.5);
-
-      rounds.push({
-        type: "B",
-        event,
-        choices,
-        correctPerson,
-      });
     }
-  }
 
-  return rounds;
+    return rounds;
+  } else {
+    // -------------------------------------------------------------
+    // PEOPLE MODE (Original, e.g. Argentina deck)
+    // -------------------------------------------------------------
+    const personToEvents: Record<string, HistoryEvent[]> = {};
+    const eventsWithPeople: HistoryEvent[] = [];
+    const allPeopleSet = new Set<string>();
+
+    deck.events.forEach((e) => {
+      if (e.people && e.people.length > 0) {
+        eventsWithPeople.push(e);
+        e.people.forEach((p) => {
+          allPeopleSet.add(p);
+          if (!personToEvents[p]) personToEvents[p] = [];
+          personToEvents[p].push(e);
+        });
+      }
+    });
+
+    const allPeople = Array.from(allPeopleSet);
+    const typeACandidates = Object.keys(personToEvents).filter(
+      (p) => personToEvents[p].length >= 3
+    );
+
+    if (typeACandidates.length < 1 || allPeople.length < 4 || eventsWithPeople.length < 6) {
+      return [];
+    }
+
+    const rounds: Round[] = [];
+    const shuffledCandidates = [...typeACandidates].sort(() => Math.random() - 0.5);
+    const shuffledEvents = [...eventsWithPeople].sort(() => Math.random() - 0.5);
+
+    let candidateIdx = 0;
+    let eventIdx = 0;
+
+    for (let i = 0; i < ROUNDS; i++) {
+      const type = i % 2 === 0 ? "A" : "B";
+
+      if (type === "A" && candidateIdx < shuffledCandidates.length) {
+        const person = shuffledCandidates[candidateIdx++];
+        const myEvents = personToEvents[person];
+
+        const correctChoices = [...myEvents].sort(() => Math.random() - 0.5).slice(0, 3);
+        const correctNames = correctChoices.map((c) => c.event);
+
+        const distractors = deck.events
+          .filter((e) => !e.people || !e.people.includes(person))
+          .sort(() => Math.random() - 0.5)
+          .slice(0, 3);
+
+        const choices = [...correctChoices, ...distractors].sort(() => Math.random() - 0.5);
+
+        rounds.push({
+          type: "A",
+          person,
+          choices,
+          correctEvents: correctNames,
+        });
+      } else {
+        let event: HistoryEvent | null = null;
+        while (eventIdx < shuffledEvents.length) {
+          const candidateEvent = shuffledEvents[eventIdx++];
+          if (candidateEvent.people && candidateEvent.people.length > 0) {
+            event = candidateEvent;
+            break;
+          }
+        }
+
+        if (!event) {
+          event = shuffledEvents[Math.floor(Math.random() * shuffledEvents.length)];
+        }
+
+        const correctPerson =
+          event.people![Math.floor(Math.random() * event.people!.length)];
+
+        const distractors = allPeople
+          .filter((p) => !event!.people!.includes(p))
+          .sort(() => Math.random() - 0.5)
+          .slice(0, 3);
+
+        const choices = [correctPerson, ...distractors].sort(() => Math.random() - 0.5);
+
+        rounds.push({
+          type: "B",
+          event,
+          choices,
+          correctPerson,
+        });
+      }
+    }
+
+    return rounds;
+  }
 }
 
 export function WhoWasThere({
@@ -121,6 +231,7 @@ export function WhoWasThere({
   deck: Deck;
   onBack: () => void;
 }) {
+  const isIdeasMode = deck.id === "filosofia";
   const [rounds, setRounds] = useState<Round[]>(() => buildRounds(deck));
   const [roundIdx, setRoundIdx] = useState(0);
   const [score, setScore] = useState(0);
@@ -207,7 +318,7 @@ export function WhoWasThere({
       <div className="min-h-screen bg-bg flex items-center justify-center">
         <div className="text-center px-6">
           <p className="text-text-secondary text-sm mb-4">
-            Este mazo no tiene suficientes personajes asociados para jugar.
+            Este mazo no tiene suficiente información para jugar a este modo.
           </p>
           <button onClick={onBack} className="text-ar-blue text-sm border-none bg-transparent cursor-pointer font-semibold">
             ← Volver
@@ -230,7 +341,7 @@ export function WhoWasThere({
       <div className="min-h-screen bg-bg flex items-center justify-center">
         <div className="max-w-md w-full px-6 py-12 text-center">
           <div className="text-xs font-bold text-ar-blue tracking-widest uppercase mb-6">
-            ¿Quién estuvo ahí?
+            {isIdeasMode ? "¿Quién lo pensó?" : "¿Quién estuvo ahí?"}
           </div>
           <div className={`text-6xl font-extrabold mb-1 ${color}`}>
             {score}/{ROUNDS}
@@ -244,16 +355,24 @@ export function WhoWasThere({
                 className="flex items-center gap-3 px-4 py-3 bg-bg-card rounded-xl border border-border text-left"
               >
                 <span className="text-sm">
-                  {r.type === "A" ? "👥" : "📅"}
+                  {isIdeasMode
+                    ? r.type === "A" ? "💡" : "👤"
+                    : r.type === "A" ? "👥" : "📅"
+                  }
                 </span>
                 <div className="flex-1 min-w-0">
                   <p className="text-text-primary text-xs font-bold m-0 truncate">
                     {r.type === "A" ? r.person : r.event.event}
                   </p>
                   <p className="text-text-tertiary text-[10px] m-0 truncate">
-                    {r.type === "A"
-                      ? `Involucrado en: ${r.correctEvents.join(", ")}`
-                      : `Involucrado: ${r.correctPerson}`}
+                    {isIdeasMode
+                      ? r.type === "A"
+                        ? `Defendida por: ${r.correctEvents.join(", ")}`
+                        : `Idea: ${r.correctPerson}`
+                      : r.type === "A"
+                        ? `Involucrado en: ${r.correctEvents.join(", ")}`
+                        : `Involucrado: ${r.correctPerson}`
+                    }
                   </p>
                 </div>
               </div>
@@ -292,7 +411,7 @@ export function WhoWasThere({
           </button>
           <div className="flex-1 text-center">
             <span className="text-xs font-bold text-ar-blue tracking-widest uppercase">
-              ¿Quién estuvo ahí?
+              {isIdeasMode ? "¿Quién lo pensó?" : "¿Quién estuvo ahí?"}
             </span>
           </div>
           <span className="text-xs text-text-tertiary w-10 text-right">
@@ -321,17 +440,30 @@ export function WhoWasThere({
           <div>
             <div className="text-center mb-6">
               <span className="text-xs font-bold text-text-tertiary uppercase tracking-widest">
-                Pregunta de Personaje
+                {isIdeasMode ? "Pregunta de Doctrina / Idea" : "Pregunta de Personaje"}
               </span>
               <h2 className="text-xl md:text-2xl font-extrabold text-text-primary mt-1 mb-2">
-                ¿Cuáles de estos 3 eventos involucraron a <span className="text-ar-gold">{round.person}</span>?
+                {isIdeasMode ? (
+                  <>
+                    ¿Cuáles de estos 3 filósofos sostuvieron la idea <span className="text-ar-gold">{round.person}</span>?
+                  </>
+                ) : (
+                  <>
+                    ¿Cuáles de estos 3 eventos involucraron a <span className="text-ar-gold">{round.person}</span>?
+                  </>
+                )}
               </h2>
-              <p className="text-xs text-text-secondary m-0">
+              {isIdeasMode && round.definition && (
+                <p className="text-sm text-text-secondary max-w-2xl mx-auto italic mt-0 mb-3 leading-relaxed">
+                  "{round.definition}"
+                </p>
+              )}
+              <p className="text-xs text-text-tertiary m-0">
                 Seleccioná exactamente 3 opciones y luego verificá.
               </p>
             </div>
 
-            {/* Event cards grid */}
+            {/* Choices grid */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
               {round.choices.map((choice) => {
                 const isSelected = selectedEvents.includes(choice.event);
@@ -365,12 +497,12 @@ export function WhoWasThere({
                       <img
                         src={choice.image}
                         alt={choice.event}
-                        className="w-full h-24 object-cover"
+                        className="w-full h-32 object-cover object-top"
                         loading="lazy"
                       />
                     ) : (
-                      <div className="w-full h-24 bg-bg-secondary flex items-center justify-center">
-                        <span className="text-3xl opacity-20">📅</span>
+                      <div className="w-full h-32 bg-bg-secondary flex items-center justify-center">
+                        <span className="text-3xl opacity-20">👤</span>
                       </div>
                     )}
                     <div className="p-3 flex flex-col gap-1 flex-1">
@@ -389,7 +521,7 @@ export function WhoWasThere({
                       </p>
                       {submittedA && (
                         <p className="text-[9px] text-text-tertiary mt-auto pt-1 font-semibold">
-                          Año: {formatYear(choice.year)}
+                          {isIdeasMode ? "Año de nacimiento/activo:" : "Año:"} {formatYear(choice.year)}
                         </p>
                       )}
                     </div>
@@ -426,14 +558,18 @@ export function WhoWasThere({
           <div className="max-w-xl mx-auto">
             <div className="text-center mb-6">
               <span className="text-xs font-bold text-text-tertiary uppercase tracking-widest">
-                Pregunta de Evento
+                {isIdeasMode ? "Pregunta de Filósofo" : "Pregunta de Evento"}
               </span>
               <h2 className="text-xl md:text-2xl font-extrabold text-text-primary mt-1 mb-2">
-                ¿Qué figura histórica estuvo involucrada en este evento?
+                {isIdeasMode ? (
+                  <>¿Qué idea o concepto fue propuesto por <span className="text-ar-gold">{round.event.event}</span>?</>
+                ) : (
+                  <>¿Qué figura histórica estuvo involucrada en este evento?</>
+                )}
               </h2>
             </div>
 
-            {/* Event Display */}
+            {/* Event/Philosopher Display */}
             <div className="bg-bg-card rounded-2xl border border-border p-5 mb-5 shadow-sm">
               {round.event.image && (
                 <img
@@ -450,12 +586,12 @@ export function WhoWasThere({
               </p>
               {selectedPerson && (
                 <div className="mt-3 text-xs text-text-tertiary font-semibold">
-                  Año del evento: {formatYear(round.event.year)}
+                  {isIdeasMode ? "Año de nacimiento/activo:" : "Año del evento:"} {formatYear(round.event.year)}
                 </div>
               )}
             </div>
 
-            {/* Person choices */}
+            {/* Choices */}
             <div className="flex flex-col gap-2.5 mb-6">
               {round.choices.map((choice) => {
                 const isThis = choice === round.correctPerson;

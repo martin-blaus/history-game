@@ -609,10 +609,14 @@ export default function App() {
               onClick={() => setScreen("who_was_there")}
               className="flex items-center gap-4 px-5 py-4 rounded-2xl border border-border bg-bg-card hover:border-ar-blue hover:bg-bg-secondary transition-all duration-150 cursor-pointer text-left group"
             >
-              <span className="text-3xl shrink-0">👥</span>
+              <span className="text-3xl shrink-0">{selectedDeck.id === "filosofia" ? "💡" : "👥"}</span>
               <div>
-                <div className="font-semibold text-text-primary group-hover:text-ar-blue transition-colors">¿Quién estuvo ahí?</div>
-                <div className="text-xs text-text-tertiary mt-0.5">Asociá figuras históricas con sus eventos correspondientes</div>
+                <div className="font-semibold text-text-primary group-hover:text-ar-blue transition-colors">
+                  {selectedDeck.id === "filosofia" ? "¿Quién lo pensó?" : "¿Quién estuvo ahí?"}
+                </div>
+                <div className="text-xs text-text-tertiary mt-0.5">
+                  {selectedDeck.id === "filosofia" ? "Asociá filósofos con sus ideas correspondientes" : "Asociá figuras históricas con sus eventos correspondientes"}
+                </div>
               </div>
             </button>
           </div>

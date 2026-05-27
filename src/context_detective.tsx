@@ -150,7 +150,7 @@ export function ContextDetective({ deck, onBack }: {
         {/* Context clue */}
         <div className="bg-bg-card rounded-2xl border border-border p-5 mb-5">
           <p className="text-xs font-bold text-text-tertiary uppercase tracking-widest mb-3">
-            ¿De qué evento es este contexto?
+            {deck.id === "filosofia" ? "¿De quién es esta descripción?" : "¿De qué evento es este contexto?"}
           </p>
 
           {/* Reveal image after answering */}

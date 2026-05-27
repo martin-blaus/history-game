@@ -4,6 +4,7 @@ export interface HistoryEvent {
   context: string;
   image?: string;
   people?: string[];
+  ideas?: string[];
 }
 
 export interface Deck {
