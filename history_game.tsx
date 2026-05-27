@@ -1,4 +1,4 @@
-import { useMemo, useState, useRef, useEffect } from "react";
+import { Fragment, useMemo, useState, useRef, useEffect } from "react";
 import confetti from "canvas-confetti";
 import { DECKS } from "./data/index";
 import type { Deck, HistoryEvent } from "./data/index";
@@ -30,17 +30,18 @@ function buildShareText(statuses: string[], deckName: string): string {
 }
 
 function Card({
-  item, index, dragging, isHinted,
-  onDragStart, onDragOver, onDrop,
+  item, index, isDragSource, isHinted,
+  onDragStart, onDragOver, onDragEnd, onDrop,
   onTouchStart, onTouchMove, onTouchEnd,
   status, revealed,
 }: {
   item: HistoryEvent;
   index: number;
-  dragging: number | null;
+  isDragSource: boolean;
   isHinted: boolean;
   onDragStart: (i: number) => void;
-  onDragOver: (i: number) => void;
+  onDragOver: (i: number, clientX: number, rect: DOMRect) => void;
+  onDragEnd: () => void;
   onDrop: () => void;
   onTouchStart: (e: React.TouchEvent, i: number) => void;
   onTouchMove: (e: React.TouchEvent) => void;
@@ -48,7 +49,6 @@ function Card({
   status: CardStatus;
   revealed: boolean;
 }) {
-  const isDragging = dragging === index;
   const canDrag = !revealed && !isHinted;
 
   const ringClass = status === "correct"
@@ -60,14 +60,19 @@ function Card({
     : "";
 
   const shakeClass = status === "wrong" ? "card-shake" : "";
-  const dragClass = isDragging ? "opacity-50 scale-[1.03] shadow-2xl" : "";
+  const sourceClass = isDragSource ? "opacity-40 scale-95" : "";
 
   return (
     <div
-      className={`sort-card flex-1 min-w-[150px] flex flex-col rounded-xl overflow-hidden select-none bg-bg-card transition-all duration-150 ${ringClass} ${shakeClass} ${dragClass} ${canDrag ? "cursor-grab active:cursor-grabbing" : ""}`}
+      className={`sort-card flex-1 min-w-[150px] flex flex-col rounded-xl overflow-hidden select-none bg-bg-card transition-all duration-150 ${ringClass} ${shakeClass} ${sourceClass} ${canDrag ? "cursor-grab active:cursor-grabbing" : ""}`}
       draggable={canDrag}
       onDragStart={() => canDrag && onDragStart(index)}
-      onDragOver={e => { e.preventDefault(); onDragOver(index); }}
+      onDragOver={e => {
+        e.preventDefault();
+        e.stopPropagation();
+        onDragOver(index, e.clientX, e.currentTarget.getBoundingClientRect());
+      }}
+      onDragEnd={onDragEnd}
       onDrop={onDrop}
       onTouchStart={canDrag ? e => onTouchStart(e, index) : undefined}
       onTouchMove={canDrag ? onTouchMove : undefined}
@@ -112,6 +117,15 @@ function Card({
         )}
       </div>
     </div>
+  );
+}
+
+function InsertionIndicator({ visible }: { visible: boolean }) {
+  return (
+    <div
+      className="shrink-0 self-stretch rounded-full bg-white transition-all duration-100"
+      style={{ width: visible ? 3 : 0, opacity: visible ? 1 : 0 }}
+    />
   );
 }
 
@@ -193,7 +207,8 @@ export default function App() {
   const [selectedDeck, setSelectedDeck] = useState<Deck | null>(null);
   const [puzzle, setPuzzle] = useState<HistoryEvent[]>([]);
   const [cards, setCards] = useState<HistoryEvent[]>([]);
-  const [dragging, setDragging] = useState<number | null>(null);
+  const [dragSource, setDragSource] = useState<number | null>(null);
+  const [dropTarget, setDropTarget] = useState<number | null>(null);
   const [statuses, setStatuses] = useState<("correct" | "wrong")[]>([]);
   const [finalStatuses, setFinalStatuses] = useState<("correct" | "wrong")[]>([]);
   const [submitted, setSubmitted] = useState(false);
@@ -203,8 +218,8 @@ export default function App() {
   const [puzzleNum, setPuzzleNum] = useState(1);
   const [copied, setCopied] = useState(false);
   const [stats, setStats] = useState<AppStats>(() => loadStats());
-  const touchRef = useRef<{ startIdx: number | null; currentIdx: number | null; startX: number }>({
-    startIdx: null, currentIdx: null, startX: 0,
+  const touchRef = useRef<{ startIdx: number | null; dropTarget: number | null; startX: number }>({
+    startIdx: null, dropTarget: null, startX: 0,
   });
   const revealIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
@@ -250,54 +265,77 @@ export default function App() {
     setHintCardId(middle.id);
   }
 
-  function handleDragStart(i: number) { setDragging(i); }
-
-  function handleDragOver(i: number) {
-    if (dragging === null || dragging === i) return;
-    if (cards[i]?.id === hintCardId) return;
+  function commitDrop(src: number, dst: number) {
+    if (src === dst || src + 1 === dst) return;
     setCards(prev => {
       const next = [...prev];
-      const [moved] = next.splice(dragging, 1);
-      next.splice(i, 0, moved);
+      const [moved] = next.splice(src, 1);
+      const adj = dst > src ? dst - 1 : dst;
+      next.splice(adj, 0, moved);
       return next;
     });
-    setDragging(i);
   }
 
-  function handleDrop() { setDragging(null); }
+  function handleDragStart(i: number) {
+    setDragSource(i);
+    setDropTarget(i);
+  }
+
+  function handleDragOver(i: number, clientX: number, rect: DOMRect) {
+    if (dragSource === null) return;
+    if (cards[i]?.id === hintCardId) return;
+    const insertBefore = clientX < rect.left + rect.width / 2;
+    setDropTarget(insertBefore ? i : i + 1);
+  }
+
+  function handleDragEnd() {
+    setDragSource(null);
+    setDropTarget(null);
+  }
+
+  function handleDrop() {
+    if (dragSource !== null && dropTarget !== null) {
+      commitDrop(dragSource, dropTarget);
+    }
+    setDragSource(null);
+    setDropTarget(null);
+  }
 
   function handleTouchStart(e: React.TouchEvent, i: number) {
-    touchRef.current = { startIdx: i, currentIdx: i, startX: e.touches[0].clientX };
-    setDragging(i);
+    touchRef.current = { startIdx: i, dropTarget: i, startX: e.touches[0].clientX };
+    setDragSource(i);
+    setDropTarget(i);
   }
 
   function handleTouchMove(e: React.TouchEvent) {
     if (touchRef.current.startIdx === null) return;
     e.preventDefault();
     const x = e.touches[0].clientX;
-    const els = document.querySelectorAll(".sort-card");
-    let newIdx = touchRef.current.currentIdx!;
+    const els = document.querySelectorAll<HTMLElement>(".sort-card");
+    let newTarget: number | null = null;
+
     els.forEach((el, i) => {
       const rect = el.getBoundingClientRect();
-      if (x >= rect.left && x <= rect.right) newIdx = i;
+      if (x >= rect.left && x <= rect.right) {
+        newTarget = x < rect.left + rect.width / 2 ? i : i + 1;
+      }
     });
-    if (newIdx !== touchRef.current.currentIdx) {
-      const from = touchRef.current.currentIdx!;
-      if (cards[newIdx]?.id === hintCardId) return;
-      setCards(prev => {
-        const next = [...prev];
-        const [moved] = next.splice(from, 1);
-        next.splice(newIdx, 0, moved);
-        return next;
-      });
-      touchRef.current.currentIdx = newIdx;
-      setDragging(newIdx);
-    }
+
+    if (newTarget === null) return;
+    if (newTarget < cards.length && cards[newTarget]?.id === hintCardId) return;
+    touchRef.current.dropTarget = newTarget;
+    setDropTarget(newTarget);
   }
 
   function handleTouchEnd() {
-    touchRef.current = { startIdx: null, currentIdx: null, startX: 0 };
-    setDragging(null);
+    const src = touchRef.current.startIdx;
+    const dst = touchRef.current.dropTarget;
+    if (src !== null && dst !== null) {
+      commitDrop(src, dst);
+    }
+    touchRef.current = { startIdx: null, dropTarget: null, startX: 0 };
+    setDragSource(null);
+    setDropTarget(null);
   }
 
   function submit() {
@@ -419,6 +457,8 @@ export default function App() {
     </div>
   );
 
+  const isDragging = dragSource !== null;
+
   return (
     <div className="min-h-screen bg-bg">
       <div className="max-w-[1400px] mx-auto px-6 py-8">
@@ -454,25 +494,44 @@ export default function App() {
           <span className="text-xs font-semibold text-text-tertiary tracking-widest uppercase shrink-0">Later</span>
         </div>
 
-        {/* Cards — horizontal row */}
-        <div className="flex gap-3 mb-6 overflow-x-auto pb-2">
-          {cards.map((card, i) => (
-            <Card
-              key={card.id}
-              item={card}
-              index={i}
-              dragging={submitted ? null : dragging}
-              isHinted={card.id === hintCardId}
-              onDragStart={handleDragStart}
-              onDragOver={handleDragOver}
-              onDrop={handleDrop}
-              onTouchStart={handleTouchStart}
-              onTouchMove={handleTouchMove}
-              onTouchEnd={handleTouchEnd}
-              status={statuses[i] ?? null}
-              revealed={submitted && revealedCount > i}
-            />
-          ))}
+        {/* Cards — horizontal row with insertion indicators */}
+        <div
+          className="flex items-stretch gap-3 mb-6 overflow-x-auto pb-2"
+          onDragOver={e => {
+            // catch drags past the last card
+            e.preventDefault();
+            if (dragSource !== null) setDropTarget(cards.length);
+          }}
+        >
+          {cards.map((card, i) => {
+            const isNoOp = dragSource === i || dragSource === i - 1;
+            const showBefore = isDragging && dropTarget === i && !isNoOp;
+
+            return (
+              <Fragment key={card.id}>
+                <InsertionIndicator visible={showBefore} />
+                <Card
+                  item={card}
+                  index={i}
+                  isDragSource={dragSource === i}
+                  isHinted={card.id === hintCardId}
+                  onDragStart={handleDragStart}
+                  onDragOver={handleDragOver}
+                  onDragEnd={handleDragEnd}
+                  onDrop={handleDrop}
+                  onTouchStart={handleTouchStart}
+                  onTouchMove={handleTouchMove}
+                  onTouchEnd={handleTouchEnd}
+                  status={submitted ? null : (statuses[i] ?? null)}
+                  revealed={submitted && revealedCount > i}
+                />
+              </Fragment>
+            );
+          })}
+          {/* Indicator for appending after the last card */}
+          <InsertionIndicator
+            visible={isDragging && dropTarget === cards.length && dragSource !== cards.length - 1}
+          />
         </div>
 
         {/* Controls */}
