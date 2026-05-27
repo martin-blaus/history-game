@@ -5,287 +5,246 @@
   "puzzleSize": 20,
   "events": [
     {
-      "id": "fi-1",
       "event": "Sócrates",
       "year": -470,
       "context": "",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Socrates_Louvre.jpg/400px-Socrates_Louvre.jpg"
     },
     {
-      "id": "fi-2",
       "event": "Platón",
       "year": -428,
       "context": "",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Plato_Silanion_Musei_Capitolini_MC1377.png/400px-Plato_Silanion_Musei_Capitolini_MC1377.png"
     },
     {
-      "id": "fi-3",
       "event": "Aristóteles",
       "year": -384,
       "context": "",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Aristotle_Altemps_Inv8575.jpg/400px-Aristotle_Altemps_Inv8575.jpg"
     },
     {
-      "id": "fi-4",
       "event": "Epicuro",
       "year": -341,
       "context": "",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Epikouros_BM_1843.jpg/400px-Epikouros_BM_1843.jpg"
     },
     {
-      "id": "fi-5",
       "event": "Cicerón",
       "year": -106,
       "context": "",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Bust_of_Cicero_%281st-cent._BC%29_-_Palazzo_Nuovo_-_Musei_Capitolini_-_Rome_2016.jpg/400px-Bust_of_Cicero_%281st-cent._BC%29_-_Palazzo_Nuovo_-_Musei_Capitolini_-_Rome_2016.jpg"
     },
     {
-      "id": "fi-6",
       "event": "Marco Aurelio",
       "year": 121,
       "context": "",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/MSR-ra-61-b-1-DM.jpg/400px-MSR-ra-61-b-1-DM.jpg"
     },
     {
-      "id": "fi-7",
       "event": "Plotino",
       "year": 204,
       "context": "",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Plotinos.jpg/400px-Plotinos.jpg"
     },
     {
-      "id": "fi-8",
       "event": "Agustín de Hipona",
       "year": 354,
       "context": "",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Saint_Augustine_by_Philippe_de_Champaigne.jpg/400px-Saint_Augustine_by_Philippe_de_Champaigne.jpg"
     },
     {
-      "id": "fi-9",
       "event": "Tomás de Aquino",
       "year": 1225,
       "context": "",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/St-thomas-aquinasFXD.jpg/400px-St-thomas-aquinasFXD.jpg"
     },
     {
-      "id": "fi-10",
       "event": "Guillermo de Ockham",
       "year": 1287,
       "context": "",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/William_of_Ockham.png/400px-William_of_Ockham.png"
     },
     {
-      "id": "fi-11",
       "event": "Nicolás Maquiavelo",
       "year": 1469,
       "context": "",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Portrait_of_Niccol%C3%B2_Machiavelli_by_Santi_di_Tito.jpg/400px-Portrait_of_Niccol%C3%B2_Machiavelli_by_Santi_di_Tito.jpg"
     },
     {
-      "id": "fi-12",
       "event": "Michel de Montaigne",
       "year": 1533,
       "context": "",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Portrait_of_Michel_de_Montaigne%2C_circa_unknown.jpg/400px-Portrait_of_Michel_de_Montaigne%2C_circa_unknown.jpg"
     },
     {
-      "id": "fi-13",
       "event": "Francis Bacon",
       "year": 1561,
       "context": "",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Somer_Francis_Bacon.jpg/400px-Somer_Francis_Bacon.jpg"
     },
     {
-      "id": "fi-14",
       "event": "Thomas Hobbes",
       "year": 1588,
       "context": "",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Thomas_Hobbes_by_John_Michael_Wright_%28colour%29_%283x4_cropped%29.jpg/400px-Thomas_Hobbes_by_John_Michael_Wright_%28colour%29_%283x4_cropped%29.jpg"
     },
     {
-      "id": "fi-15",
       "event": "René Descartes",
       "year": 1596,
       "context": "",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Frans_Hals_-_Portret_van_Ren%C3%A9_Descartes.jpg/400px-Frans_Hals_-_Portret_van_Ren%C3%A9_Descartes.jpg"
     },
     {
-      "id": "fi-16",
       "event": "Baruch Spinoza",
       "year": 1632,
       "context": "",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Spinoza.jpg/400px-Spinoza.jpg"
     },
     {
-      "id": "fi-17",
       "event": "Gottfried Wilhelm Leibniz",
       "year": 1646,
       "context": "",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Christoph_Bernhard_Francke_-_Bildnis_des_Philosophen_Leibniz_%28ca._1695%29.jpg/400px-Christoph_Bernhard_Francke_-_Bildnis_des_Philosophen_Leibniz_%28ca._1695%29.jpg"
     },
     {
-      "id": "fi-18",
       "event": "George Berkeley",
       "year": 1685,
       "context": "",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/George_Berkeley_by_John_Smibert.jpg/400px-George_Berkeley_by_John_Smibert.jpg"
     },
     {
-      "id": "fi-19",
       "event": "John Locke",
       "year": 1632,
       "context": "",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Godfrey_Kneller_-_Portrait_of_John_Locke_%28Hermitage%29.jpg/400px-Godfrey_Kneller_-_Portrait_of_John_Locke_%28Hermitage%29.jpg"
     },
     {
-      "id": "fi-20",
       "event": "Montesquieu",
       "year": 1689,
       "context": "",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Charles_Montesquieu.jpg/400px-Charles_Montesquieu.jpg"
     },
     {
-      "id": "fi-21",
       "event": "Voltaire",
       "year": 1694,
       "context": "",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Nicolas_de_Largilli%C3%A8re_-_Portrait_de_Voltaire_%281694-1778%29_en_1718_-_P208_-_mus%C3%A9e_Carnavalet_-_5_%28cropped%29.jpg/400px-Nicolas_de_Largilli%C3%A8re_-_Portrait_de_Voltaire_%281694-1778%29_en_1718_-_P208_-_mus%C3%A9e_Carnavalet_-_5_%28cropped%29.jpg"
     },
     {
-      "id": "fi-22",
       "event": "David Hume",
       "year": 1711,
       "context": "",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/David_Hume_Ramsay.jpg/400px-David_Hume_Ramsay.jpg"
     },
     {
-      "id": "fi-23",
       "event": "Immanuel Kant",
       "year": 1724,
       "context": "",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Immanuel_Kant_-_Gemaelde_1.jpg/400px-Immanuel_Kant_-_Gemaelde_1.jpg"
     },
     {
-      "id": "fi-24",
       "event": "Johann Gottlieb Fichte",
       "year": 1762,
       "context": "",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Johann_Gottlieb_Fichte.jpg/400px-Johann_Gottlieb_Fichte.jpg"
     },
     {
-      "id": "fi-25",
       "event": "Jean-Jacques Rousseau",
       "year": 1712,
       "context": "",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Maurice_Quentin_de_La_Tour_-_Portrait_of_Jean-Jacques_Rousseau_-_adjusted.jpg/400px-Maurice_Quentin_de_La_Tour_-_Portrait_of_Jean-Jacques_Rousseau_-_adjusted.jpg"
     },
     {
-      "id": "fi-26",
       "event": "Georg Wilhelm Friedrich Hegel",
       "year": 1770,
       "context": "",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Jakob_Schlesinger_-_Hegel_1831.jpg/400px-Jakob_Schlesinger_-_Hegel_1831.jpg"
     },
     {
-      "id": "fi-27",
       "event": "Arthur Schopenhauer",
       "year": 1788,
       "context": "",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Arthur_Schopenhauer_by_J_Sch%C3%A4fer%2C_1859b.jpg/400px-Arthur_Schopenhauer_by_J_Sch%C3%A4fer%2C_1859b.jpg"
     },
     {
-      "id": "fi-28",
       "event": "Auguste Comte",
       "year": 1798,
       "context": "",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Auguste_Comte.jpg/400px-Auguste_Comte.jpg"
     },
     {
-      "id": "fi-29",
       "event": "John Stuart Mill",
       "year": 1806,
       "context": "",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/John_Stuart_Mill_by_London_Stereoscopic_Company%2C_c1870.jpg/400px-John_Stuart_Mill_by_London_Stereoscopic_Company%2C_c1870.jpg"
     },
     {
-      "id": "fi-30",
       "event": "Søren Kierkegaard",
       "year": 1813,
       "context": "",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/S%C3%B8ren_Kierkegaard_%281813-1855%29_-_%28cropped%29.jpg/400px-S%C3%B8ren_Kierkegaard_%281813-1855%29_-_%28cropped%29.jpg"
     },
     {
-      "id": "fi-31",
       "event": "Karl Marx",
       "year": 1818,
       "context": "",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Karl_Marx_by_John_Jabez_Edwin_Mayall_1875_-_Restored_%26_Adjusted_%283x4_cropped_b%29.png/400px-Karl_Marx_by_John_Jabez_Edwin_Mayall_1875_-_Restored_%26_Adjusted_%283x4_cropped_b%29.png"
     },
     {
-      "id": "fi-32",
       "event": "Friedrich Nietzsche",
       "year": 1844,
       "context": "",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Nietzsche187a.jpg/400px-Nietzsche187a.jpg"
     },
     {
-      "id": "fi-33",
       "event": "Gottlob Frege",
       "year": 1848,
       "context": "",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Young_frege.jpg/400px-Young_frege.jpg"
     },
     {
-      "id": "fi-34",
       "event": "Edmund Husserl",
       "year": 1859,
       "context": "",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Edmund_Husserl_1910s.jpg/400px-Edmund_Husserl_1910s.jpg"
     },
     {
-      "id": "fi-35",
       "event": "Bertrand Russell",
       "year": 1872,
       "context": "",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Bertrand_Russell_smoking_in_1936.jpg/400px-Bertrand_Russell_smoking_in_1936.jpg"
     },
     {
-      "id": "fi-36",
       "event": "Ludwig Wittgenstein",
       "year": 1889,
       "context": "",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Ludwig_Wittgenstein_1929.jpg/400px-Ludwig_Wittgenstein_1929.jpg"
     },
     {
-      "id": "fi-37",
       "event": "Martin Heidegger",
       "year": 1889,
       "context": "",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Freiburg%2C_Z%C3%A4hringen-_Jahnhalle%2C_Prof._Martin_Heidegger_w%C3%A4hrend_eines_Vortrags_-_LABW_-_Staatsarchiv_Freiburg_W_134_Nr._023740f_%28cropped%29.jpeg/400px-Freiburg%2C_Z%C3%A4hringen-_Jahnhalle%2C_Prof._Martin_Heidegger_w%C3%A4hrend_eines_Vortrags_-_LABW_-_Staatsarchiv_Freiburg_W_134_Nr._023740f_%28cropped%29.jpeg"
     },
     {
-      "id": "fi-38",
       "event": "Jean-Paul Sartre",
       "year": 1905,
       "context": "",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Jean_Paul_Sartre_1965.jpg/400px-Jean_Paul_Sartre_1965.jpg"
     },
     {
-      "id": "fi-39",
       "event": "John Rawls",
       "year": 1921,
       "context": "",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/John_Rawls_%281971_photo_portrait%29.jpg/400px-John_Rawls_%281971_photo_portrait%29.jpg"
     },
     {
-      "id": "fi-40",
       "event": "Michel Foucault",
       "year": 1926,
       "context": "",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Photo_of_Michel_Foucault_on_1970_dustjacket_of_The_Order_of_Things.jpg/400px-Photo_of_Michel_Foucault_on_1970_dustjacket_of_The_Order_of_Things.jpg"
     },
     {
-      "id": "fi-41",
       "event": "Jacques Derrida",
       "year": 1930,
       "context": "",

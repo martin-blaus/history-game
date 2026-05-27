@@ -32,7 +32,7 @@ export function selectPuzzle(deck: Deck, stats: AppStats): HistoryEvent[] {
 
   if (sorted.length <= n) return sorted;
 
-  const shownOf = (ev: HistoryEvent) => stats.events[ev.id]?.shown ?? 0;
+  const shownOf = (ev: HistoryEvent) => stats.events[ev.event]?.shown ?? 0;
 
   type Window = { start: number; totalShown: number; maxGap: number; r: number };
   const windows: Window[] = [];
@@ -62,8 +62,8 @@ export function recordResult(
 ): AppStats {
   const next = { events: { ...stats.events } };
   for (const { event, status } of results) {
-    const prev = next.events[event.id] ?? { shown: 0, correct: 0, wrong: 0 };
-    next.events[event.id] = {
+    const prev = next.events[event.event] ?? { shown: 0, correct: 0, wrong: 0 };
+    next.events[event.event] = {
       shown: prev.shown + 1,
       correct: prev.correct + (status === "correct" ? 1 : 0),
       wrong: prev.wrong + (status === "wrong" ? 1 : 0),

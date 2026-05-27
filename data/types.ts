@@ -1,5 +1,4 @@
 export interface HistoryEvent {
-  id: string;
   event: string;
   year: number;
   context: string;

@@ -139,7 +139,7 @@ function StatsScreen({ stats, onBack, onReset }: {
     .sort((a, b) => b.shown - a.shown);
 
   const allEvents = DECKS.flatMap(d => d.events);
-  const eventMap = Object.fromEntries(allEvents.map(e => [e.id, e]));
+  const eventMap = Object.fromEntries(allEvents.map(e => [e.event, e]));
 
   return (
     <div className="min-h-screen bg-bg">
@@ -256,13 +256,13 @@ export default function App() {
     const correctIdx = sorted.indexOf(middle);
     setCards(prev => {
       const next = [...prev];
-      const currentIdx = next.findIndex(c => c.id === middle.id);
+      const currentIdx = next.findIndex(c => c.event === middle.event);
       if (currentIdx === correctIdx) return prev;
       next.splice(currentIdx, 1);
       next.splice(correctIdx, 0, middle);
       return next;
     });
-    setHintCardId(middle.id);
+    setHintCardId(middle.event);
   }
 
   function commitDrop(src: number, dst: number) {
@@ -283,7 +283,7 @@ export default function App() {
 
   function handleDragOver(i: number, clientX: number, rect: DOMRect) {
     if (dragSource === null) return;
-    if (cards[i]?.id === hintCardId) return;
+    if (cards[i]?.event === hintCardId) return;
     const insertBefore = clientX < rect.left + rect.width / 2;
     setDropTarget(insertBefore ? i : i + 1);
   }
@@ -322,7 +322,7 @@ export default function App() {
     });
 
     if (newTarget === null) return;
-    if (newTarget < cards.length && cards[newTarget]?.id === hintCardId) return;
+    if (newTarget < cards.length && cards[newTarget]?.event === hintCardId) return;
     touchRef.current.dropTarget = newTarget;
     setDropTarget(newTarget);
   }
@@ -341,7 +341,7 @@ export default function App() {
   function submit() {
     const sorted = [...puzzle].sort((a, b) => a.year - b.year);
     const s: ("correct" | "wrong")[] = cards.map((c, i) =>
-      c.id === sorted[i].id ? "correct" : "wrong"
+      c.event === sorted[i].event ? "correct" : "wrong"
     );
 
     const allCorrect = s.every(x => x === "correct");
@@ -508,13 +508,13 @@ export default function App() {
             const showBefore = isDragging && dropTarget === i && !isNoOp;
 
             return (
-              <Fragment key={card.id}>
+              <Fragment key={card.event}>
                 <InsertionIndicator visible={showBefore} />
                 <Card
                   item={card}
                   index={i}
                   isDragSource={dragSource === i}
-                  isHinted={card.id === hintCardId}
+                  isHinted={card.event === hintCardId}
                   onDragStart={handleDragStart}
                   onDragOver={handleDragOver}
                   onDragEnd={handleDragEnd}

@@ -23,11 +23,9 @@ const SAVE_BTN_CLS: Record<"idle" | "saved" | "error", string> = {
 function EventDraftFields({
   draft,
   onChange,
-  editableId,
 }: {
   draft: HistoryEvent;
   onChange: (d: HistoryEvent) => void;
-  editableId?: boolean;
 }) {
   return (
     <>
@@ -47,16 +45,6 @@ function EventDraftFields({
             onChange={e => onChange({ ...draft, year: Number(e.target.value) })}
           />
         </div>
-        {editableId && (
-          <div className="flex flex-col gap-1 flex-1">
-            <label className="text-xs text-text-tertiary">ID</label>
-            <input
-              className={inputCls}
-              value={draft.id}
-              onChange={e => onChange({ ...draft, id: e.target.value })}
-            />
-          </div>
-        )}
       </div>
       <textarea
         className={`${inputCls} resize-y`}
@@ -76,16 +64,13 @@ function EventDraftFields({
 }
 
 function AddRowForm({
-  deckId,
   onAdd,
   onCancel,
 }: {
-  deckId: string;
   onAdd: (ev: HistoryEvent) => void;
   onCancel: () => void;
 }) {
   const [draft, setDraft] = useState<HistoryEvent>({
-    id: `${deckId}-new-${Date.now()}`,
     event: "",
     year: 2024,
     context: "",
@@ -93,7 +78,7 @@ function AddRowForm({
 
   return (
     <div className="flex flex-col gap-2 p-3 rounded-xl border border-ar-blue bg-bg-secondary">
-      <EventDraftFields draft={draft} onChange={setDraft} editableId />
+      <EventDraftFields draft={draft} onChange={setDraft} />
       <div className="flex gap-2">
         <button
           className={btnPrimary}
@@ -132,7 +117,6 @@ function EventRow({
   if (editing) {
     return (
       <div className="flex flex-col gap-2 p-3 rounded-xl border border-ar-blue bg-bg-secondary">
-        <span className="text-xs text-text-tertiary font-mono">{event.id}</span>
         <EventDraftFields draft={draft} onChange={setDraft} />
         <div className="flex gap-2">
           <button
@@ -156,9 +140,6 @@ function EventRow({
     <div className="flex items-center gap-2 px-3 py-2.5 rounded-xl bg-bg-card border border-border">
       <span className="text-xs text-text-tertiary w-8 shrink-0 text-center font-mono">
         {index + 1}
-      </span>
-      <span className="text-xs text-text-tertiary font-mono w-20 shrink-0 truncate" title={event.id}>
-        {event.id}
       </span>
       <span className="flex-1 text-sm text-text-primary leading-snug min-w-0">{event.event}</span>
       <span className="text-xs text-ar-blue font-semibold w-20 shrink-0 text-right whitespace-nowrap">
@@ -299,7 +280,6 @@ function AdminDeckEditor({ deck, onBack }: { deck: Deck; onBack: () => void }) {
 
         <div className="flex items-center gap-2 px-3 py-1.5 mb-1.5">
           <span className="text-xs font-bold text-text-tertiary uppercase tracking-wider w-8 shrink-0 text-center">#</span>
-          <span className="text-xs font-bold text-text-tertiary uppercase tracking-wider w-20 shrink-0">ID</span>
           <span className="flex-1 text-xs font-bold text-text-tertiary uppercase tracking-wider">Evento</span>
           <span className="text-xs font-bold text-text-tertiary uppercase tracking-wider w-20 shrink-0 text-right">Año</span>
           <span className="text-xs font-bold text-text-tertiary uppercase tracking-wider w-48 shrink-0 hidden md:block">Descripción</span>
@@ -310,7 +290,7 @@ function AdminDeckEditor({ deck, onBack }: { deck: Deck; onBack: () => void }) {
         <div className="flex flex-col gap-1.5 mb-3">
           {events.map((ev, i) => (
             <EventRow
-              key={ev.id}
+              key={ev.event}
               index={i}
               event={ev}
               total={events.length}
@@ -324,7 +304,6 @@ function AdminDeckEditor({ deck, onBack }: { deck: Deck; onBack: () => void }) {
 
         {showAddRow ? (
           <AddRowForm
-            deckId={deck.id}
             onAdd={addEvent}
             onCancel={() => setShowAddRow(false)}
           />
