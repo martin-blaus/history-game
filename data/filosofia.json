@@ -8,7 +8,7 @@
       "event": "Sócrates",
       "year": -470,
       "context": "Filósofo ateniense considerado el padre de la filosofía occidental. No dejó escritos; su pensamiento nos llegó a través de Platón. Se centró en la ética, la virtud y la búsqueda de la verdad a través del diálogo. Murió condenado a beber cicuta.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Socrates_Louvre.jpg/400px-Socrates_Louvre.jpg",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Socrates_Louvre.jpg/500px-Socrates_Louvre.jpg",
       "ideas": [
         "Mayéutica: Método de diálogo para ayudar a dar a luz ideas y conocimientos innatos",
         "Método socrático: Proceso inquisitivo de preguntas y respuestas para examinar creencias",
@@ -19,7 +19,7 @@
       "event": "Platón",
       "year": -428,
       "context": "Discípulo de Sócrates y fundador de la Academia de Atenas. Desarrolló un sistema filosófico que abarca metafísica, epistemología, política y ética. Su obra está escrita en forma de diálogos.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Plato_Silanion_Musei_Capitolini_MC1377.png/400px-Plato_Silanion_Musei_Capitolini_MC1377.png",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Plato_Silanion_Musei_Capitolini_MC1377.png/500px-Plato_Silanion_Musei_Capitolini_MC1377.png",
       "ideas": [
         "Teoría de las ideas: Afirma que la realidad sensible es solo una copia imperfecta de un mundo inteligible eterno",
         "Dualismo ontológico: División del universo en el mundo sensible (material) y el mundo inteligible (de las formas)",
@@ -31,7 +31,7 @@
       "event": "Aristóteles",
       "year": -384,
       "context": "Discípulo de Platón en la Academia y tutor de Alejandro Magno. Fundó el Liceo. Es el gran sistematizador de la antigüedad, escribiendo sobre lógica, física, metafísica, ética, política y biología.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Aristotle_Altemps_Inv8575.jpg/400px-Aristotle_Altemps_Inv8575.jpg",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Aristotle_Altemps_Inv8575.jpg/500px-Aristotle_Altemps_Inv8575.jpg",
       "ideas": [
         "Hilemorfismo: Teoría de que todo cuerpo se compone de materia (hyle) y forma (morphe)",
         "Teoría del acto y la potencia: Explicación del cambio físico como el paso del ser en potencia al ser en acto",
@@ -43,7 +43,7 @@
       "event": "Epicuro",
       "year": -341,
       "context": "Fundador del epicureísmo y de la escuela \"El Jardín\". Propuso una filosofía materialista y atomista enfocada en la felicidad práctica y la ausencia de dolor.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Epikouros_BM_1843.jpg/400px-Epikouros_BM_1843.jpg",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Epikouros_BM_1843.jpg/500px-Epikouros_BM_1843.jpg",
       "ideas": [
         "Hedonismo racional: Búsqueda del placer y evitación del dolor mediante el cálculo prudente y moderado",
         "Ataraxia: Estado de tranquilidad espiritual y paz mental libre de miedos",
@@ -54,7 +54,7 @@
       "event": "Cicerón",
       "year": -106,
       "context": "Orador, político y filósofo romano. Divulgó la filosofía griega en el mundo romano, defendiendo los valores republicanos y combinando el escepticismo académico con el estoicismo.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Bust_of_Cicero_%281st-cent._BC%29_-_Palazzo_Nuovo_-_Musei_Capitolini_-_Rome_2016.jpg/400px-Bust_of_Cicero_%281st-cent._BC%29_-_Palazzo_Nuovo_-_Musei_Capitolini_-_Rome_2016.jpg",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Bust_of_Cicero_%281st-cent._BC%29_-_Palazzo_Nuovo_-_Musei_Capitolini_-_Rome_2016.jpg/500px-Bust_of_Cicero_%281st-cent._BC%29_-_Palazzo_Nuovo_-_Musei_Capitolini_-_Rome_2016.jpg",
       "ideas": [
         "Humanismo republicano: Filosofía política que valora la participación cívica y la virtud moral en la res publica",
         "Ley natural: Concepto de que existe una ley moral racional universal previa a las leyes humanas"
@@ -64,7 +64,7 @@
       "event": "Marco Aurelio",
       "year": 121,
       "context": "Emperador romano y filósofo estoico. Autor de las \"Meditaciones\", una serie de escritos personales sobre el autocontrol, el deber y la aceptación del destino en medio de campañas militares.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/MSR-ra-61-b-1-DM.jpg/400px-MSR-ra-61-b-1-DM.jpg",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/MSR-ra-61-b-1-DM.jpg/500px-MSR-ra-61-b-1-DM.jpg",
       "ideas": [
         "Estoicismo tardío: Filosofía de la resiliencia, centrada en la autodisciplina moral y la hermandad humana",
         "Aceptación del destino: Actitud estoica de abrazar los sucesos externos que no podemos controlar (Amor Fati)"
@@ -74,7 +74,7 @@
       "event": "Plotino",
       "year": 204,
       "context": "Filósofo neoplatónico nacido en Egipto que enseñó en Roma. Su pensamiento influyó enormemente en la mística cristiana y medieval, planteando una realidad jerárquica que emana de un principio único.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Plotinos.jpg/400px-Plotinos.jpg",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Plotinos.jpg/500px-Plotinos.jpg",
       "ideas": [
         "El Uno: Principio supremo inefable, absoluto y transcendente origen de toda la realidad",
         "Emanación: Proceso por el cual la realidad fluye por sobreabundancia desde el Uno hasta la materia"
@@ -84,7 +84,7 @@
       "event": "Agustín de Hipona",
       "year": 354,
       "context": "Uno de los más importantes Padres de la Iglesia y filósofo de la patrística. Realizó la primera gran síntesis entre el cristianismo y la filosofía platónica, abordando el tiempo, el libre albedrío y la gracia divina.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Saint_Augustine_by_Philippe_de_Champaigne.jpg/400px-Saint_Augustine_by_Philippe_de_Champaigne.jpg",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Saint_Augustine_by_Philippe_de_Champaigne.jpg/500px-Saint_Augustine_by_Philippe_de_Champaigne.jpg",
       "ideas": [
         "Iluminación divina: Teoría de que la verdad racional solo es alcanzable mediante la luz que Dios otorga al alma",
         "Las dos ciudades: Visión de la historia como el conflicto místico entre la ciudad terrenal (del egoísmo) y la ciudad de Dios",
@@ -95,7 +95,7 @@
       "event": "Tomás de Aquino",
       "year": 1225,
       "context": "Filósofo y teólogo dominico medieval, máximo exponente de la escolástica. Realizó la monumental síntesis entre el cristianismo y la filosofía aristotélica, definiendo la relación entre fe y razón.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/St-thomas-aquinasFXD.jpg/400px-St-thomas-aquinasFXD.jpg",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/St-thomas-aquinasFXD.jpg/500px-St-thomas-aquinasFXD.jpg",
       "ideas": [
         "Las cinco vías: Argumentos racionales a posteriori para demostrar la existencia de Dios como causa primera",
         "Síntesis fe-razón: Postura de que la filosofía racional y la teología revelada son distintas pero armónicas",
@@ -106,7 +106,7 @@
       "event": "Guillermo de Ockham",
       "year": 1287,
       "context": "Filósofo franciscano inglés tardomedieval, exponente del nominalismo. Su pensamiento rompió la síntesis escolástica al separar radicalmente la fe de la razón y defender la simplicidad explicativa.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/William_of_Ockham.png/400px-William_of_Ockham.png",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/William_of_Ockham.png/500px-William_of_Ockham.png",
       "ideas": [
         "Nominalismo: Afirmación de que los conceptos universales no existen en la realidad, sino que son solo nombres colectivos",
         "Navaja de Ockham: Principio metodológico de parsimonia que aconseja no multiplicar los entes sin necesidad"
@@ -116,7 +116,7 @@
       "event": "Nicolás Maquiavelo",
       "year": 1469,
       "context": "Diplomático y filósofo político renacentista italiano. Considerado el padre de la ciencia política moderna por describir el poder político real independientemente de valoraciones morales o religiosas.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Portrait_of_Niccol%C3%B2_Machiavelli_by_Santi_di_Tito.jpg/400px-Portrait_of_Niccol%C3%B2_Machiavelli_by_Santi_di_Tito.jpg",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Portrait_of_Niccol%C3%B2_Machiavelli_by_Santi_di_Tito.jpg/500px-Portrait_of_Niccol%C3%B2_Machiavelli_by_Santi_di_Tito.jpg",
       "ideas": [
         "Realismo político: Estudio de la política basándose en los hechos prácticos de la conducta humana en lugar de la moral ideal",
         "Razón de Estado: Justificación de medidas excepcionales o inmorales por parte del soberano para conservar el orden y la seguridad",
@@ -127,7 +127,7 @@
       "event": "Michel de Montaigne",
       "year": 1533,
       "context": "Filósofo, escritor y humanista francés que inventó el ensayo como género literario. Su pensamiento estuvo marcado por un profundo escepticismo y un agudo análisis de la propia subjetividad.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Portrait_of_Michel_de_Montaigne%2C_circa_unknown.jpg/400px-Portrait_of_Michel_de_Montaigne%2C_circa_unknown.jpg",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Portrait_of_Michel_de_Montaigne%2C_circa_unknown.jpg/500px-Portrait_of_Michel_de_Montaigne%2C_circa_unknown.jpg",
       "ideas": [
         "Escepticismo humanista: Actitud de duda tolerante resumida en su famosa divisa '¿Qué sé yo?' (Que sais-je?)",
         "El ensayo subjetivo: Método de exploración filosófica libre que toma el propio yo como materia prima de estudio"
@@ -137,7 +137,7 @@
       "event": "Francis Bacon",
       "year": 1561,
       "context": "Filósofo y estadista inglés, pionero del empirismo y de la revolución científica. Formuló una crítica al saber tradicional escolástico y propuso el método inductivo basado en la experimentación.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Somer_Francis_Bacon.jpg/400px-Somer_Francis_Bacon.jpg",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Somer_Francis_Bacon.jpg/500px-Somer_Francis_Bacon.jpg",
       "ideas": [
         "Empirismo: Corriente que sostiene que todo conocimiento deriva de la experiencia sensible y rechaza las ideas innatas",
         "Método inductivo: Enfoque científico de recopilación de observaciones sistemáticas para generalizar principios",
@@ -148,7 +148,7 @@
       "event": "Thomas Hobbes",
       "year": 1588,
       "context": "Filósofo político inglés. En su obra 'Leviatán' fundó la teoría del contrato social moderno, describiendo el estado de naturaleza como una guerra de todos contra todos que justifica el poder estatal absoluto.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Thomas_Hobbes_by_John_Michael_Wright_%28colour%29_%283x4_cropped%29.jpg/400px-Thomas_Hobbes_by_John_Michael_Wright_%28colour%29_%283x4_cropped%29.jpg",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Thomas_Hobbes_by_John_Michael_Wright_%28colour%29_%283x4_cropped%29.jpg/500px-Thomas_Hobbes_by_John_Michael_Wright_%28colour%29_%283x4_cropped%29.jpg",
       "ideas": [
         "Contrato social: Teoría que explica el origen del Estado y la sociedad mediante un pacto de sometimiento o convivencia pacífica",
         "Estado de naturaleza bélico: Condición hipotética original donde domina el miedo y la hostilidad colectiva",
@@ -159,7 +159,7 @@
       "event": "René Descartes",
       "year": 1596,
       "context": "Filósofo y matemático francés, considerado el padre del racionalismo moderno. Estableció la duda metódica para refundar el conocimiento sobre bases indudables, formulando la división de la realidad en mente y cuerpo.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Frans_Hals_-_Portret_van_Ren%C3%A9_Descartes.jpg/400px-Frans_Hals_-_Portret_van_Ren%C3%A9_Descartes.jpg",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Frans_Hals_-_Portret_van_Ren%C3%A9_Descartes.jpg/500px-Frans_Hals_-_Portret_van_Ren%C3%A9_Descartes.jpg",
       "ideas": [
         "Racionalismo: Corriente que considera la razón como la fuente principal del conocimiento y defiende las ideas innatas",
         "Duda metódica: Procedimiento para encontrar certezas absolutas descartando sistemáticamente creencias dudosas",
@@ -171,7 +171,7 @@
       "event": "Baruch Spinoza",
       "year": 1632,
       "context": "Filósofo racionalista de origen hispano-portugués excomulgado de la comunidad judía. Propuso un sistema monista radical donde Dios y la Naturaleza son una sola y única sustancia infinita.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Spinoza.jpg/400px-Spinoza.jpg",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Spinoza.jpg/500px-Spinoza.jpg",
       "ideas": [
         "Racionalismo: Corriente que considera la razón como la fuente principal del conocimiento y defiende las ideas innatas",
         "Panteísmo: Identificación absoluta de Dios con la totalidad del universo natural (Deus sive Natura)",
@@ -183,7 +183,7 @@
       "event": "Gottfried Wilhelm Leibniz",
       "year": 1646,
       "context": "Filósofo, matemático y polímata alemán que codescubrió el cálculo. Propuso una metafísica racionalista donde el universo está compuesto por infinitas sustancias simples inmateriales llamadas mónadas.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Christoph_Bernhard_Francke_-_Bildnis_des_Philosophen_Leibniz_%28ca._1695%29.jpg/400px-Christoph_Bernhard_Francke_-_Bildnis_des_Philosophen_Leibniz_%28ca._1695%29.jpg",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Christoph_Bernhard_Francke_-_Bildnis_des_Philosophen_Leibniz_%28ca._1695%29.jpg/500px-Christoph_Bernhard_Francke_-_Bildnis_des_Philosophen_Leibniz_%28ca._1695%29.jpg",
       "ideas": [
         "Racionalismo: Corriente que considera la razón como la fuente principal del conocimiento y defiende las ideas innatas",
         "Mónadas: Átomos metafísicos espirituales, indivisibles y autónomos que componen la realidad",
@@ -195,7 +195,7 @@
       "event": "John Locke",
       "year": 1632,
       "context": "Filósofo inglés fundador del empirismo moderno y del liberalismo político. Rechazó las ideas innatas de Descartes y propuso que la mente es una tabula rasa que adquiere conocimiento por la experiencia.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Godfrey_Kneller_-_Portrait_of_John_Locke_%28Hermitage%29.jpg/400px-Godfrey_Kneller_-_Portrait_of_John_Locke_%28Hermitage%29.jpg",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Godfrey_Kneller_-_Portrait_of_John_Locke_%28Hermitage%29.jpg/500px-Godfrey_Kneller_-_Portrait_of_John_Locke_%28Hermitage%29.jpg",
       "ideas": [
         "Empirismo: Corriente que sostiene que todo conocimiento deriva de la experiencia sensible y rechaza las ideas innatas",
         "Contrato social: Teoría que explica el origen del Estado y la sociedad mediante un pacto de sometimiento o convivencia pacífica",
@@ -207,7 +207,7 @@
       "event": "George Berkeley",
       "year": 1685,
       "context": "Filósofo y obispo anglicano irlandés, exponente del empirismo e idealismo subjetivo. Formuló la célebre tesis de que para las cosas físicas \"ser es ser percibido\" (esse est percipi).",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/George_Berkeley_by_John_Smibert.jpg/400px-George_Berkeley_by_John_Smibert.jpg",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/George_Berkeley_by_John_Smibert.jpg/500px-George_Berkeley_by_John_Smibert.jpg",
       "ideas": [
         "Empirismo: Corriente que sostiene que todo conocimiento deriva de la experiencia sensible y rechaza las ideas innatas",
         "Idealismo subjetivo: Postura ontológica que afirma que los objetos físicos solo existen como ideas en las mentes",
@@ -218,7 +218,7 @@
       "event": "Montesquieu",
       "year": 1689,
       "context": "Filósofo y jurista ilustrado francés. Su principal aporte fue la teoría de la división de poderes, pilar fundamental de las democracias constitucionales modernas para evitar el despotismo.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Charles_Montesquieu.jpg/400px-Charles_Montesquieu.jpg",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Charles_Montesquieu.jpg/500px-Charles_Montesquieu.jpg",
       "ideas": [
         "Ilustración: Movimiento del siglo XVIII que promovía la razón, la ciencia, la libertad y el progreso contra el dogmatismo",
         "División de poderes: Teoría constitucional que separa las funciones del Estado en legislativo, ejecutivo y judicial",
@@ -229,7 +229,7 @@
       "event": "Voltaire",
       "year": 1694,
       "context": "Escritor e intelectual ilustrado francés. Fue un feroz crítico del fanatismo religioso, la Iglesia católica y la intolerancia, abogando por la libertad de expresión, la razón y el deísmo.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Nicolas_de_Largilli%C3%A8re_-_Portrait_de_Voltaire_%281694-1778%29_en_1718_-_P208_-_mus%C3%A9e_Carnavalet_-_5_%28cropped%29.jpg/400px-Nicolas_de_Largilli%C3%A8re_-_Portrait_de_Voltaire_%281694-1778%29_en_1718_-_P208_-_mus%C3%A9e_Carnavalet_-_5_%28cropped%29.jpg",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Nicolas_de_Largilli%C3%A8re_-_Portrait_de_Voltaire_%281694-1778%29_en_1718_-_P208_-_mus%C3%A9e_Carnavalet_-_5_%28cropped%29.jpg/500px-Nicolas_de_Largilli%C3%A8re_-_Portrait_de_Voltaire_%281694-1778%29_en_1718_-_P208_-_mus%C3%A9e_Carnavalet_-_5_%28cropped%29.jpg",
       "ideas": [
         "Ilustración: Movimiento del siglo XVIII que promovía la razón, la ciencia, la libertad y el progreso contra el dogmatismo",
         "Tolerancia civil: Defensa de la convivencia pacífica de diversas creencias bajo un estado racional",
@@ -240,7 +240,7 @@
       "event": "David Hume",
       "year": 1711,
       "context": "Filósofo, historiador y economista escocés, cumbre del empirismo inglés. Llevó el empirismo al escepticismo al cuestionar el principio de causalidad y la existencia del yo permanente.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/David_Hume_Ramsay.jpg/400px-David_Hume_Ramsay.jpg",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/David_Hume_Ramsay.jpg/500px-David_Hume_Ramsay.jpg",
       "ideas": [
         "Empirismo: Corriente que sostiene que todo conocimiento deriva de la experiencia sensible y rechaza las ideas innatas",
         "Escepticismo radical: Postura crítica que sostiene la imposibilidad de alcanzar verdades metafísicas absolutas",
@@ -252,7 +252,7 @@
       "event": "Jean-Jacques Rousseau",
       "year": 1712,
       "context": "Filósofo ilustrado de Ginebra cuyas ideas influyeron en la Revolución Francesa. Planteó que la civilización corrompe al ser humano, que es naturalmente bueno, y propuso el contrato social democrático.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Maurice_Quentin_de_La_Tour_-_Portrait_of_Jean-Jacques_Rousseau_-_adjusted.jpg/400px-Maurice_Quentin_de_La_Tour_-_Portrait_of_Jean-Jacques_Rousseau_-_adjusted.jpg",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Maurice_Quentin_de_La_Tour_-_Portrait_of_Jean-Jacques_Rousseau_-_adjusted.jpg/500px-Maurice_Quentin_de_La_Tour_-_Portrait_of_Jean-Jacques_Rousseau_-_adjusted.jpg",
       "ideas": [
         "Ilustración: Movimiento del siglo XVIII que promovía la razón, la ciencia, la libertad y el progreso contra el dogmatismo",
         "Contrato social: Teoría que explica el origen del Estado y la sociedad mediante un pacto de sometimiento o convivencia pacífica",
@@ -264,7 +264,7 @@
       "event": "Immanuel Kant",
       "year": 1724,
       "context": "Filósofo alemán, figura cumbre de la Ilustración y de la filosofía moderna. Desarrolló el idealismo trascendental, sintetizando el racionalismo y el empirismo al analizar los límites del entendimiento humano y formular la ética del deber.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Immanuel_Kant_-_Gemaelde_1.jpg/400px-Immanuel_Kant_-_Gemaelde_1.jpg",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Immanuel_Kant_-_Gemaelde_1.jpg/500px-Immanuel_Kant_-_Gemaelde_1.jpg",
       "ideas": [
         "Ilustración: Movimiento del siglo XVIII que promovía la razón, la ciencia, la libertad y el progreso contra el dogmatismo",
         "Idealismo: Corriente que afirma la primacía de las ideas o de la mente del sujeto en la constitución del conocimiento",
@@ -276,7 +276,7 @@
       "event": "Johann Gottlieb Fichte",
       "year": 1762,
       "context": "Filósofo alemán pionero del idealismo alemán post-kantiano. Propuso una filosofía donde el Yo absoluto se pone a sí mismo y a su opuesto (el No-Yo) para desarrollar la autoconciencia activa.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Johann_Gottlieb_Fichte.jpg/400px-Johann_Gottlieb_Fichte.jpg",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Johann_Gottlieb_Fichte.jpg/500px-Johann_Gottlieb_Fichte.jpg",
       "ideas": [
         "Idealismo: Corriente que afirma la primacía de las ideas o de la mente del sujeto en la constitución del conocimiento",
         "Yo absoluto: Principio espiritual primordial auto-creador que unifica toda la conciencia y la realidad",
@@ -287,7 +287,7 @@
       "event": "Georg Wilhelm Friedrich Hegel",
       "year": 1770,
       "context": "Filósofo alemán, máximo exponente del idealismo absoluto. Desarrolló un sistema dialéctico que describe la evolución de la realidad y de la historia como el despliegue del Espíritu racional.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Jakob_Schlesinger_-_Hegel_1831.jpg/400px-Jakob_Schlesinger_-_Hegel_1831.jpg",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Jakob_Schlesinger_-_Hegel_1831.jpg/500px-Jakob_Schlesinger_-_Hegel_1831.jpg",
       "ideas": [
         "Idealismo: Corriente que afirma la primacía de las ideas o de la mente del sujeto en la constitución del conocimiento",
         "Idealismo absoluto: Postura ontológica que afirma que lo real es racional y lo racional es real",
@@ -299,7 +299,7 @@
       "event": "Arthur Schopenhauer",
       "year": 1788,
       "context": "Filósofo alemán cuyo sistema pesimista combinó el idealismo kantiano con ideas de las tradiciones de la India. Planteó que el mundo real es una Voluntad ciega y sin sentido que genera sufrimiento.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Arthur_Schopenhauer_by_J_Sch%C3%A4fer%2C_1859b.jpg/400px-Arthur_Schopenhauer_by_J_Sch%C3%A4fer%2C_1859b.jpg",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Arthur_Schopenhauer_by_J_Sch%C3%A4fer%2C_1859b.jpg/500px-Arthur_Schopenhauer_by_J_Sch%C3%A4fer%2C_1859b.jpg",
       "ideas": [
         "Voluntad de vivir: Fuerza metafísica primordial ciega e irracional que rige toda la naturaleza y los impulsos",
         "Pesimismo metafísico: Filosofía que sitúa el dolor como la esencia de la vida, mitigable solo por la ascesis y el arte",
@@ -310,7 +310,7 @@
       "event": "Auguste Comte",
       "year": 1798,
       "context": "Filósofo francés considerado el creador del positivismo y de la sociología. Propuso la ley de los tres estados para explicar la evolución intelectual de la humanidad hacia el conocimiento puramente científico.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Auguste_Comte.jpg/400px-Auguste_Comte.jpg",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Auguste_Comte.jpg/500px-Auguste_Comte.jpg",
       "ideas": [
         "Positivismo: Filosofía que admite solo el conocimiento científico derivado de hechos observables mediante el método positivo",
         "Ley de los tres estados: Teoría del desarrollo humano que transita desde la etapa teológica y metafísica hasta la positiva/científica"
@@ -320,7 +320,7 @@
       "event": "John Stuart Mill",
       "year": 1806,
       "context": "Filósofo y economista inglés, defensor del utilitarismo y de los derechos civiles. Propuso el principio del daño en la libertad individual y defendió la igualdad de las mujeres y el sufragio universal.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/John_Stuart_Mill_by_London_Stereoscopic_Company%2C_c1870.jpg/400px-John_Stuart_Mill_by_London_Stereoscopic_Company%2C_c1870.jpg",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/John_Stuart_Mill_by_London_Stereoscopic_Company%2C_c1870.jpg/500px-John_Stuart_Mill_by_London_Stereoscopic_Company%2C_c1870.jpg",
       "ideas": [
         "Utilitarismo cualitativo: Teoría ética que jerarquiza los placeres intelectuales y estéticos por encima de los corporales",
         "Principio del daño: Postulado liberal que restringe el poder coercitivo de la sociedad solo para evitar perjuicios a terceros"
@@ -330,7 +330,7 @@
       "event": "Søren Kierkegaard",
       "year": 1813,
       "context": "Filósofo y teólogo danés, considerado el padre del existencialismo. Criticó fuertemente el sistema hegeliano y la iglesia oficial, enfocándose en la subjetividad, la angustia individual y el salto de fe.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/S%C3%B8ren_Kierkegaard_%281813-1855%29_-_%28cropped%29.jpg/400px-S%C3%B8ren_Kierkegaard_%281813-1855%29_-_%28cropped%29.jpg",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/S%C3%B8ren_Kierkegaard_%281813-1855%29_-_%28cropped%29.jpg/500px-S%C3%B8ren_Kierkegaard_%281813-1855%29_-_%28cropped%29.jpg",
       "ideas": [
         "Existencialismo: Filosofía centrada en la existencia individual, la libertad, la elección personal y la angustia",
         "Salto de fe: Decisión radical y apasionada del individuo para abrazar la fe religiosa sin garantías racionales",
@@ -341,7 +341,7 @@
       "event": "Karl Marx",
       "year": 1818,
       "context": "Filósofo, economista e intelectual revolucionario alemán. Desarrolló el materialismo histórico y el socialismo científico, analizando las contradicciones del capitalismo y llamando a la emancipación de la clase obrera.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Karl_Marx_by_John_Jabez_Edwin_Mayall_1875_-_Restored_%26_Adjusted_%283x4_cropped_b%29.png/400px-Karl_Marx_by_John_Jabez_Edwin_Mayall_1875_-_Restored_%26_Adjusted_%283x4_cropped_b%29.png",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Karl_Marx_by_John_Jabez_Edwin_Mayall_1875_-_Restored_%26_Adjusted_%283x4_cropped_b%29.png/500px-Karl_Marx_by_John_Jabez_Edwin_Mayall_1875_-_Restored_%26_Adjusted_%283x4_cropped_b%29.png",
       "ideas": [
         "Materialismo histórico: Explicación de la historia basada en el desarrollo de las fuerzas productivas y las relaciones de producción",
         "Plusvalía y alienación: Concepto sobre la retención no retribuida de valor laboral y el extrañamiento del trabajador con su obra",
@@ -353,7 +353,7 @@
       "event": "Friedrich Nietzsche",
       "year": 1844,
       "context": "Filósofo alemán, crítico de la metafísica occidental, de la religión cristiana y de la moral burguesa. Proclamó la muerte de Dios y propuso la transvaloración de todos los valores desde una perspectiva vitalista.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Nietzsche187a.jpg/400px-Nietzsche187a.jpg",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Nietzsche187a.jpg/500px-Nietzsche187a.jpg",
       "ideas": [
         "Existencialismo: Filosofía centrada en la existencia individual, la libertad, la elección personal y la angustia",
         "Muerte de Dios: Proclamación del fin de las verdades teológicas trascendentes y de la metafísica tradicional",
@@ -365,7 +365,7 @@
       "event": "Gottlob Frege",
       "year": 1848,
       "context": "Matemático y filósofo alemán, uno de los fundadores de la lógica matemática moderna y de la filosofía analítica. Desarrolló la distinción entre sentido y referencia en el lenguaje.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Young_frege.jpg/400px-Young_frege.jpg",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Young_frege.jpg/500px-Young_frege.jpg",
       "ideas": [
         "Filosofía analítica: Enfoque centrado en el análisis lógico del lenguaje para esclarecer o disolver problemas filosóficos",
         "Sentido y referencia: Distinción entre el significado cognitivo (sentido) y el objeto real designado (referencia)",
@@ -376,7 +376,7 @@
       "event": "Edmund Husserl",
       "year": 1859,
       "context": "Filósofo austríaco, fundador de la fenomenología. Propuso suspender el juicio sobre la existencia del mundo exterior (epojé) para estudiar los fenómenos puros de la conciencia.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Edmund_Husserl_1910s.jpg/400px-Edmund_Husserl_1910s.jpg",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Edmund_Husserl_1910s.jpg/500px-Edmund_Husserl_1910s.jpg",
       "ideas": [
         "Epojé (reducción): Método de suspensión de la tesis natural del mundo exterior para describir la conciencia pura",
         "Intencionalidad de la conciencia: Doctrina que afirma que toda conciencia es siempre conciencia dirigida a un objeto"
@@ -386,7 +386,7 @@
       "event": "Bertrand Russell",
       "year": 1872,
       "context": "Filósofo, matemático y pacifista británico. Fue una figura clave de la filosofía analítica y del logicismo, conocido por su paradoja sobre la teoría de conjuntos y su defensa de la libertad y el laicismo.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Bertrand_Russell_smoking_in_1936.jpg/400px-Bertrand_Russell_smoking_in_1936.jpg",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Bertrand_Russell_smoking_in_1936.jpg/500px-Bertrand_Russell_smoking_in_1936.jpg",
       "ideas": [
         "Filosofía analítica: Enfoque centrado en el análisis lógico del lenguaje para esclarecer o disolver problemas filosóficos",
         "Logicismo matemático: Proyecto de fundamentación que deduce los conceptos matemáticos a partir de principios lógicos puros",
@@ -397,7 +397,7 @@
       "event": "Ludwig Wittgenstein",
       "year": 1889,
       "context": "Filósofo austro-británico cuyos dos períodos intelectuales redefinieron la filosofía del lenguaje. En el primero analizó los límites de la lógica; en el segundo se centró en el significado del lenguaje en la práctica diaria.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Ludwig_Wittgenstein_1929.jpg/400px-Ludwig_Wittgenstein_1929.jpg",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Ludwig_Wittgenstein_1929.jpg/500px-Ludwig_Wittgenstein_1929.jpg",
       "ideas": [
         "Filosofía analítica: Enfoque centrado en el análisis lógico del lenguaje para esclarecer o disolver problemas filosóficos",
         "Juegos del lenguaje: Concepto del segundo Wittgenstein que define al lenguaje como una actividad social regida por reglas dinámicas",
@@ -409,7 +409,7 @@
       "event": "Martin Heidegger",
       "year": 1889,
       "context": "Filósofo alemán, figura central de la fenomenología y la ontología del siglo XX. Intentó replantear la pregunta por el Ser, analizando la existencia humana como un 'ser-en-el-mundo' arrojado a la temporalidad.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Freiburg%2C_Z%C3%A4hringen-_Jahnhalle%2C_Prof._Martin_Heidegger_w%C3%A4hrend_eines_Vortrags_-_LABW_-_Staatsarchiv_Freiburg_W_134_Nr._023740f_%28cropped%29.jpeg/400px-Freiburg%2C_Z%C3%A4hringen-_Jahnhalle%2C_Prof._Martin_Heidegger_w%C3%A4hrend_eines_Vortrags_-_LABW_-_Staatsarchiv_Freiburg_W_134_Nr._023740f_%28cropped%29.jpeg",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Freiburg%2C_Z%C3%A4hringen-_Jahnhalle%2C_Prof._Martin_Heidegger_w%C3%A4hrend_eines_Vortrags_-_LABW_-_Staatsarchiv_Freiburg_W_134_Nr._023740f_%28cropped%29.jpeg/500px-Freiburg%2C_Z%C3%A4hringen-_Jahnhalle%2C_Prof._Martin_Heidegger_w%C3%A4hrend_eines_Vortrags_-_LABW_-_Staatsarchiv_Freiburg_W_134_Nr._023740f_%28cropped%29.jpeg",
       "ideas": [
         "Existencialismo: Filosofía centrada en la existencia individual, la libertad, la elección personal y la angustia",
         "Ser-en-el-mundo (Dasein): Caracterización existencial del ser humano arrojado e inmerso en las tramas de la realidad práctica",
@@ -420,7 +420,7 @@
       "event": "Jean-Paul Sartre",
       "year": 1905,
       "context": "Filósofo y escritor existencialista francés. Rechazó el Nobel de Literatura en 1964. Defendió que el ser humano está condenado a la libertad absoluta, siendo responsable de crear su propio sentido en un universo absurdo.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Jean_Paul_Sartre_1965.jpg/400px-Jean_Paul_Sartre_1965.jpg",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Jean_Paul_Sartre_1965.jpg/500px-Jean_Paul_Sartre_1965.jpg",
       "ideas": [
         "Existencialismo: Filosofía centrada en la existencia individual, la libertad, la elección personal y la angustia",
         "Existencialismo ateo: Postura que afirma la ausencia de un creador, recayendo en el hombre la responsabilidad de construir su sentido",
@@ -432,7 +432,7 @@
       "event": "John Rawls",
       "year": 1921,
       "context": "Filósofo político estadounidense del siglo XX. Su obra revitalizó la tradición del contrato social desde una perspectiva liberal social, proponiendo principios de justicia distributiva basados en la equidad.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/John_Rawls_%281971_photo_portrait%29.jpg/400px-John_Rawls_%281971_photo_portrait%29.jpg",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/John_Rawls_%281971_photo_portrait%29.jpg/500px-John_Rawls_%281971_photo_portrait%29.jpg",
       "ideas": [
         "Velo de la ignorancia: Experimento mental que despoja a los legisladores de su identidad para asegurar principios de justicia imparciales",
         "Posición original: Situación hipotética de equidad inicial en la que representantes eligen principios políticos de justicia",
@@ -443,7 +443,7 @@
       "event": "Michel Foucault",
       "year": 1926,
       "context": "Filósofo e historiador de las ideas francés. Analizó críticamente cómo las instituciones modernas (hospitales, prisiones, escuelas) ejercen poder a través del saber y la creación de normas sociales.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Photo_of_Michel_Foucault_on_1970_dustjacket_of_The_Order_of_Things.jpg/400px-Photo_of_Michel_Foucault_on_1970_dustjacket_of_The_Order_of_Things.jpg",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Photo_of_Michel_Foucault_on_1970_dustjacket_of_The_Order_of_Things.jpg/500px-Photo_of_Michel_Foucault_on_1970_dustjacket_of_The_Order_of_Things.jpg",
       "ideas": [
         "Poder-Saber: Teoría que afirma que el saber y el poder están directamente entrelazados; no hay saber neutro sin relación de fuerza",
         "Biopolítica: Ejercicio del poder moderno centrado en la administración, control y regulación biológica de los cuerpos y poblaciones",
@@ -454,7 +454,7 @@
       "event": "Jacques Derrida",
       "year": 1930,
       "context": "Filósofo francés nacido en Argelia, creador del método de la deconstrucción. Cuestionó los supuestos estables del lenguaje y la metafísica de la presencia en los textos occidentales.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Derrida_EHESS_%28cropped%29.png/400px-Derrida_EHESS_%28cropped%29.png",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Derrida_EHESS_%28cropped%29.png/500px-Derrida_EHESS_%28cropped%29.png",
       "ideas": [
         "Deconstrucción: Método de análisis de textos que desmonta oposiciones binarias tradicionales revelando inestabilidades conceptuales",
         "Logocentrismo: Crítica a la metafísica occidental que privilegia la voz, la presencia directa y el sentido unívoco sobre la escritura escrita"
