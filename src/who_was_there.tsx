@@ -493,18 +493,16 @@ export function WhoWasThere({
                       submittedA ? "cursor-default" : "cursor-pointer"
                     } ${cardClass}`}
                   >
-                    {choice.image ? (
-                      <img
-                        src={choice.image}
-                        alt={choice.event}
-                        className="w-full h-32 object-cover object-top"
-                        loading="lazy"
-                      />
-                    ) : (
-                      <div className="w-full h-32 bg-bg-secondary flex items-center justify-center">
-                        <span className="text-3xl opacity-20">👤</span>
-                      </div>
-                    )}
+                    <img
+                      src={choice.image || "/placeholder.png"}
+                      alt={choice.event}
+                      className="w-full h-32 object-cover object-top"
+                      loading="lazy"
+                      onError={(e) => {
+                        e.currentTarget.onerror = null;
+                        e.currentTarget.src = "/placeholder.png";
+                      }}
+                    />
                     <div className="p-3 flex flex-col gap-1 flex-1">
                       <div className="flex items-center justify-between gap-1.5">
                         <p className="text-xs font-bold text-text-primary m-0 line-clamp-2">
@@ -571,13 +569,15 @@ export function WhoWasThere({
 
             {/* Event/Philosopher Display */}
             <div className="bg-bg-card rounded-2xl border border-border p-5 mb-5 shadow-sm">
-              {round.event.image && (
-                <img
-                  src={round.event.image}
-                  alt={round.event.event}
-                  className="w-full h-44 object-cover rounded-xl mb-4 block"
-                />
-              )}
+              <img
+                src={round.event.image || "/placeholder.png"}
+                alt={round.event.event}
+                className="w-full h-44 object-cover rounded-xl mb-4 block"
+                onError={(e) => {
+                  e.currentTarget.onerror = null;
+                  e.currentTarget.src = "/placeholder.png";
+                }}
+              />
               <h3 className="text-base font-bold text-text-primary m-0 mb-2">
                 {round.event.event}
               </h3>

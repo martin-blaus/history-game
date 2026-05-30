@@ -30,9 +30,57 @@ export function selectPuzzle(deck: Deck, stats: AppStats): HistoryEvent[] {
   const n = deck.puzzleSize ?? 6;
   const sorted = [...deck.events].sort((a, b) => a.year - b.year);
 
-  if (sorted.length <= n) return sorted;
-
   const shownOf = (ev: HistoryEvent) => stats.events[ev.event]?.shown ?? 0;
+
+  // Generate candidates with unique years
+  type Candidate = { events: HistoryEvent[]; totalShown: number; maxGap: number; r: number };
+  const candidates: Candidate[] = [];
+
+  for (let i = 0; i < sorted.length; i++) {
+    const candidateEvents: HistoryEvent[] = [];
+    const yearsInCandidate = new Set<number>();
+    let totalShown = 0;
+    let maxGap = 0;
+
+    for (let j = i; j < sorted.length; j++) {
+      const ev = sorted[j];
+      if (!yearsInCandidate.has(ev.year)) {
+        yearsInCandidate.add(ev.year);
+        candidateEvents.push(ev);
+        totalShown += shownOf(ev);
+        if (candidateEvents.length > 1) {
+          const gap = ev.year - candidateEvents[candidateEvents.length - 2].year;
+          maxGap = Math.max(maxGap, gap);
+        }
+        if (candidateEvents.length === n) {
+          break;
+        }
+      }
+    }
+
+    if (candidateEvents.length === n) {
+      candidates.push({
+        events: candidateEvents,
+        totalShown,
+        maxGap,
+        r: Math.random(),
+      });
+    }
+  }
+
+  if (candidates.length > 0) {
+    const valid = candidates.filter(c => c.maxGap <= 50);
+    let pool = valid;
+    if (pool.length === 0) {
+      const minGap = Math.min(...candidates.map(c => c.maxGap));
+      pool = candidates.filter(c => c.maxGap === minGap);
+    }
+    pool.sort((a, b) => a.totalShown - b.totalShown || a.r - b.r);
+    return pool[0].events;
+  }
+
+  // Fallback: original selection algorithm if no candidate with unique years could be formed
+  if (sorted.length <= n) return sorted;
 
   type Window = { start: number; totalShown: number; maxGap: number; r: number };
   const windows: Window[] = [];

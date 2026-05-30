@@ -81,9 +81,14 @@ export function ContextDetective({ deck, onBack }: {
           <div className="flex flex-col gap-2 mb-8">
             {rounds.map((r, i) => (
               <div key={i} className="flex items-center gap-3 px-4 py-3 bg-bg-card rounded-xl border border-border text-left">
-                {r.event.image && (
-                  <img src={r.event.image} className="w-10 h-10 rounded-lg object-cover shrink-0" />
-                )}
+                <img
+                  src={r.event.image || "/placeholder.png"}
+                  className="w-10 h-10 rounded-lg object-cover shrink-0"
+                  onError={(e) => {
+                    e.currentTarget.onerror = null;
+                    e.currentTarget.src = "/placeholder.png";
+                  }}
+                />
                 <span className="text-text-secondary text-xs leading-snug flex-1 line-clamp-2">{r.event.event}</span>
                 <span className="shrink-0 text-sm">{/* result tracked per round ideally */}</span>
               </div>
@@ -154,11 +159,15 @@ export function ContextDetective({ deck, onBack }: {
           </p>
 
           {/* Reveal image after answering */}
-          {picked && round.event.image && (
+          {picked && (
             <img
-              src={round.event.image}
+              src={round.event.image || "/placeholder.png"}
               alt={round.event.event}
               className="w-full h-40 object-cover rounded-xl mb-4 block"
+              onError={(e) => {
+                e.currentTarget.onerror = null;
+                e.currentTarget.src = "/placeholder.png";
+              }}
             />
           )}
 

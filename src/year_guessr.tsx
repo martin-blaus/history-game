@@ -137,14 +137,16 @@ export function YearGuessr({ deck, onBack }: {
 
         {/* Event card */}
         <div className="bg-bg-card rounded-2xl overflow-hidden mb-5 border border-border">
-          {event.image && (
-            <img
-              src={event.image}
-              alt={event.event}
-              className="w-full h-52 object-cover"
-              loading="lazy"
-            />
-          )}
+          <img
+            src={event.image || "/placeholder.png"}
+            alt={event.event}
+            className="w-full h-52 object-cover"
+            loading="lazy"
+            onError={(e) => {
+              e.currentTarget.onerror = null;
+              e.currentTarget.src = "/placeholder.png";
+            }}
+          />
           <div className="p-5">
             <h2 className="text-base font-bold text-text-primary mb-2 leading-snug">{event.event}</h2>
             {event.context && (
