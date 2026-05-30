@@ -12,6 +12,24 @@ npm run preview   # Preview the production build
 
 No test suite exists. Type-check with `npx tsc --noEmit`.
 
+## Image Finder Utility
+
+A Node.js utility `scripts/find_wikipedia_images.js` is available to automatically scan decks, identify missing/broken images, query Spanish Wikipedia, and fetch high-quality 500px thumbnails.
+
+```bash
+# Dry run: preview proposed image updates for all decks
+node scripts/find_wikipedia_images.js
+
+# Fix: write verified Wikipedia image URLs to all deck files
+node scripts/find_wikipedia_images.js --fix
+
+# Target a specific deck (options: argentina, filosofia, mundo)
+node scripts/find_wikipedia_images.js --deck argentina --fix
+
+# Force checking all images, even existing valid URLs
+node scripts/find_wikipedia_images.js --verify-all --fix
+```
+
 ## Architecture
 
 This is a single-page React app — a Wordle-style history quiz where players drag-sort 6 historical events chronologically.

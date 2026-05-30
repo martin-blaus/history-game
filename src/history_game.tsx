@@ -27,7 +27,7 @@ export default function App() {
 
   const titleCls = useMemo(
     () => "text-[48px] font-extrabold tracking-[-2px] m-0 leading-none",
-    []
+    [],
   );
 
   function selectDeck(deck: Deck) {
@@ -60,16 +60,33 @@ export default function App() {
     );
 
   if (screen === "year_guessr" && selectedDeck)
-    return <YearGuessr deck={selectedDeck} onBack={() => setScreen("mode_select")} />;
+    return (
+      <YearGuessr deck={selectedDeck} onBack={() => setScreen("mode_select")} />
+    );
 
   if (screen === "endless" && selectedDeck)
-    return <EndlessGame deck={selectedDeck} onBack={() => setScreen("mode_select")} />;
+    return (
+      <EndlessGame
+        deck={selectedDeck}
+        onBack={() => setScreen("mode_select")}
+      />
+    );
 
   if (screen === "context_detective" && selectedDeck)
-    return <ContextDetective deck={selectedDeck} onBack={() => setScreen("mode_select")} />;
+    return (
+      <ContextDetective
+        deck={selectedDeck}
+        onBack={() => setScreen("mode_select")}
+      />
+    );
 
   if (screen === "who_was_there" && selectedDeck)
-    return <WhoWasThere deck={selectedDeck} onBack={() => setScreen("mode_select")} />;
+    return (
+      <WhoWasThere
+        deck={selectedDeck}
+        onBack={() => setScreen("mode_select")}
+      />
+    );
 
   if (screen === "game" && selectedDeck)
     return (
@@ -81,7 +98,46 @@ export default function App() {
       />
     );
 
-  if (screen === "mode_select" && selectedDeck)
+  if (screen === "mode_select" && selectedDeck) {
+    const modes = [
+      {
+        id: "game",
+        emoji: "📅",
+        title: "Ordenar eventos",
+        desc: "Arrastrá para ordenar cronológicamente",
+      },
+      {
+        id: "endless",
+        emoji: "♾️",
+        title: "Endless",
+        desc: "Ubicá eventos en la línea de tiempo — sin límite",
+      },
+      {
+        id: "year_guessr",
+        emoji: "🎯",
+        title: "Year Guesser",
+        desc: "Adiviná en qué año ocurrió cada evento",
+      },
+      {
+        id: "context_detective",
+        emoji: "🔍",
+        title: "Context Detective",
+        desc: "Leé la descripción y adiviná el evento",
+      },
+      {
+        id: "who_was_there",
+        emoji: selectedDeck.id === "filosofia" ? "💡" : "👥",
+        title:
+          selectedDeck.id === "filosofia"
+            ? "¿Quién lo pensó?"
+            : "¿Quién estuvo ahí?",
+        desc:
+          selectedDeck.id === "filosofia"
+            ? "Asociá filósofos con sus ideas correspondientes"
+            : "Asociá figuras históricas con sus eventos correspondientes",
+      },
+    ] as const;
+
     return (
       <div className="min-h-screen bg-bg flex items-center justify-center">
         <div className="w-full max-w-sm px-6 py-12">
@@ -94,72 +150,34 @@ export default function App() {
 
           <div className="text-center mb-8">
             <span className="text-6xl block mb-3">{selectedDeck.emoji}</span>
-            <h2 className="text-2xl font-extrabold text-text-primary m-0">{selectedDeck.name}</h2>
+            <h2 className="text-2xl font-extrabold text-text-primary m-0">
+              {selectedDeck.name}
+            </h2>
           </div>
 
           <div className="flex flex-col gap-3">
-            <button
-              onClick={() => setScreen("game")}
-              className="flex items-center gap-4 px-5 py-4 rounded-2xl border border-border bg-bg-card hover:border-ar-blue hover:bg-bg-secondary transition-all duration-150 cursor-pointer text-left group"
-            >
-              <span className="text-3xl shrink-0">📅</span>
-              <div>
-                <div className="font-semibold text-text-primary group-hover:text-ar-blue transition-colors">Ordenar eventos</div>
-                <div className="text-xs text-text-tertiary mt-0.5">Arrastrá para ordenar cronológicamente</div>
-              </div>
-            </button>
-
-            <button
-              onClick={() => setScreen("year_guessr")}
-              className="flex items-center gap-4 px-5 py-4 rounded-2xl border border-border bg-bg-card hover:border-ar-blue hover:bg-bg-secondary transition-all duration-150 cursor-pointer text-left group"
-            >
-              <span className="text-3xl shrink-0">🎯</span>
-              <div>
-                <div className="font-semibold text-text-primary group-hover:text-ar-blue transition-colors">Year Guessr</div>
-                <div className="text-xs text-text-tertiary mt-0.5">Adiviná en qué año ocurrió cada evento</div>
-              </div>
-            </button>
-
-            <button
-              onClick={() => setScreen("endless")}
-              className="flex items-center gap-4 px-5 py-4 rounded-2xl border border-border bg-bg-card hover:border-ar-blue hover:bg-bg-secondary transition-all duration-150 cursor-pointer text-left group"
-            >
-              <span className="text-3xl shrink-0">♾️</span>
-              <div>
-                <div className="font-semibold text-text-primary group-hover:text-ar-blue transition-colors">Endless</div>
-                <div className="text-xs text-text-tertiary mt-0.5">Ubicá eventos en la línea de tiempo — sin límite</div>
-              </div>
-            </button>
-
-            <button
-              onClick={() => setScreen("context_detective")}
-              className="flex items-center gap-4 px-5 py-4 rounded-2xl border border-border bg-bg-card hover:border-ar-blue hover:bg-bg-secondary transition-all duration-150 cursor-pointer text-left group"
-            >
-              <span className="text-3xl shrink-0">🔍</span>
-              <div>
-                <div className="font-semibold text-text-primary group-hover:text-ar-blue transition-colors">Context Detective</div>
-                <div className="text-xs text-text-tertiary mt-0.5">Leé la descripción y adiviná el evento</div>
-              </div>
-            </button>
-
-            <button
-              onClick={() => setScreen("who_was_there")}
-              className="flex items-center gap-4 px-5 py-4 rounded-2xl border border-border bg-bg-card hover:border-ar-blue hover:bg-bg-secondary transition-all duration-150 cursor-pointer text-left group"
-            >
-              <span className="text-3xl shrink-0">{selectedDeck.id === "filosofia" ? "💡" : "👥"}</span>
-              <div>
-                <div className="font-semibold text-text-primary group-hover:text-ar-blue transition-colors">
-                  {selectedDeck.id === "filosofia" ? "¿Quién lo pensó?" : "¿Quién estuvo ahí?"}
+            {modes.map((mode) => (
+              <button
+                key={mode.id}
+                onClick={() => setScreen(mode.id)}
+                className="flex items-center gap-4 px-5 py-4 rounded-2xl border border-border bg-bg-card hover:border-ar-blue hover:bg-bg-secondary transition-all duration-150 cursor-pointer text-left group"
+              >
+                <span className="text-3xl shrink-0">{mode.emoji}</span>
+                <div>
+                  <div className="font-semibold text-text-primary group-hover:text-ar-blue transition-colors">
+                    {mode.title}
+                  </div>
+                  <div className="text-xs text-text-tertiary mt-0.5">
+                    {mode.desc}
+                  </div>
                 </div>
-                <div className="text-xs text-text-tertiary mt-0.5">
-                  {selectedDeck.id === "filosofia" ? "Asociá filósofos con sus ideas correspondientes" : "Asociá figuras históricas con sus eventos correspondientes"}
-                </div>
-              </div>
-            </button>
+              </button>
+            ))}
           </div>
         </div>
       </div>
     );
+  }
 
   return (
     <div className="min-h-screen bg-bg flex items-center justify-center">
