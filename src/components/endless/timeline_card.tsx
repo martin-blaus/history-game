@@ -1,5 +1,5 @@
 import type { HistoryEvent } from "../../../data/index";
-import { formatYear } from "../../utils";
+import { formatYear, onImgError } from "../../utils";
 
 export function EndlessTimelineCard({
   event,
@@ -40,10 +40,7 @@ export function EndlessTimelineCard({
             alt={event.event}
             className="w-full h-24 object-cover block shrink-0"
             draggable={false}
-            onError={(e) => {
-              e.currentTarget.onerror = null;
-              e.currentTarget.src = "/placeholder.png";
-            }}
+            onError={onImgError}
           />
         ) : (
           <div className="w-full h-[67px] bg-bg-secondary flex items-center justify-center shrink-0">

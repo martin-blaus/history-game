@@ -5,6 +5,7 @@ export interface HistoryEvent {
   image?: string;
   people?: string[];
   ideas?: string[];
+  wikipediaUrl?: string;
 }
 
 export interface Deck {

@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import type { Deck, HistoryEvent } from "../data/index";
-import { formatYear } from "./utils";
+import { formatYear, onImgError } from "./utils";
 
 const ROUNDS = 6;
 
@@ -19,9 +19,12 @@ export function YearGuessr({
   deck: Deck;
   onBack: () => void;
 }) {
-  const minYear = Math.min(...deck.events.map((e) => e.year));
-  const maxYear = Math.max(...deck.events.map((e) => e.year));
-  const midYear = Math.round((minYear + maxYear) / 2);
+  const { minYear, maxYear, midYear } = useMemo(() => {
+    const years = deck.events.map((e) => e.year);
+    const min = Math.min(...years);
+    const max = Math.max(...years);
+    return { minYear: min, maxYear: max, midYear: Math.round((min + max) / 2) };
+  }, [deck]);
 
   const [events, setEvents] = useState<HistoryEvent[]>(() => pickEvents(deck));
   const [round, setRound] = useState(0);
@@ -170,10 +173,7 @@ export function YearGuessr({
             alt={event.event}
             className="w-full h-52 object-cover"
             loading="lazy"
-            onError={(e) => {
-              e.currentTarget.onerror = null;
-              e.currentTarget.src = "/placeholder.png";
-            }}
+            onError={onImgError}
           />
           <div className="p-5">
             <h2 className="text-base font-bold text-text-primary mb-2 leading-snug">

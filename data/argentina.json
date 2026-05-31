@@ -11,7 +11,8 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Holbein%2C_Hans_after-Rawle%2C_Samuel_-_Sebastian_Cabot_-_National_Maritime_Museum%2C_London.jpg/500px-Holbein%2C_Hans_after-Rawle%2C_Samuel_-_Sebastian_Cabot_-_National_Maritime_Museum%2C_London.jpg",
       "people": [
         "Sebastián Caboto"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Fuerte_Sancti_Spiritus"
     },
     {
       "event": "Fundación de Córdoba por Jerónimo Luis de Cabrera",
@@ -20,7 +21,8 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Estatua_de_Cabrera%2C_detalle.JPG/500px-Estatua_de_Cabrera%2C_detalle.JPG",
       "people": [
         "Jerónimo Luis de Cabrera"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Jer%C3%B3nimo_Luis_de_Cabrera"
     },
     {
       "event": "Juan de Garay funda Buenos Aires (segunda fundación)",
@@ -29,7 +31,8 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/1/11/Garay.jpg",
       "people": [
         "Juan de Garay"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Juan_de_Garay"
     },
     {
       "event": "Fundación de Salta por Hernando de Lerma",
@@ -38,7 +41,8 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/e/e5/HernandodeLermaFundadordeSaltaArgentina.jpg",
       "people": [
         "Hernando de Lerma"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Hernando_de_Lerma"
     },
     {
       "event": "Creación de la Universidad Nacional de Córdoba",
@@ -47,13 +51,15 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Patiocolonialcordoba.jpg/500px-Patiocolonialcordoba.jpg",
       "people": [
         "Obispo Trejo y Sanabria"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Universidad_Nacional_de_C%C3%B3rdoba"
     },
     {
       "event": "Creación del Virreinato del Río de la Plata",
       "year": 1776,
       "context": "España creó este virreinato para contener el avance portugués desde Brasil y administrar mejor la región. Buenos Aires se convirtió en capital, desplazando a Lima, y el territorio incluía hoy Argentina, Bolivia, Uruguay y Paraguay.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Flag_of_Spain_%281785%E2%80%931873%2C_1875%E2%80%931931%29.svg/500px-Flag_of_Spain_%281785%E2%80%931873%2C_1875%E2%80%931931%29.svg.png"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Flag_of_Spain_%281785%E2%80%931873%2C_1875%E2%80%931931%29.svg/500px-Flag_of_Spain_%281785%E2%80%931873%2C_1875%E2%80%931931%29.svg.png",
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Virreinato_del_R%C3%ADo_de_la_Plata"
     },
     {
       "event": "Aparición de El Telégrafo Mercantil",
@@ -65,7 +71,8 @@
         "Manuel Belgrano",
         "Mariano Moreno",
         "Baltasar Hidalgo de Cisneros"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Prensa_de_Argentina"
     },
     {
       "event": "Invasiones Inglesas al Río de la Plata",
@@ -74,7 +81,8 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Rio_de_la_Plata_1806.svg/500px-Rio_de_la_Plata_1806.svg.png",
       "people": [
         "Santiago de Liniers"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Invasiones_inglesas"
     },
     {
       "event": "Segunda Invasión Inglesa - Defensa de Buenos Aires",
@@ -83,7 +91,8 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Museo_del_Bicentenario_-_%22Ataque_por_los_ingleses_a_Buenos_Aires%22.jpg/500px-Museo_del_Bicentenario_-_%22Ataque_por_los_ingleses_a_Buenos_Aires%22.jpg",
       "people": [
         "Santiago de Liniers"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Invasiones_inglesas"
     },
     {
       "event": "Revolución de Mayo",
@@ -95,7 +104,8 @@
         "Manuel Belgrano",
         "Mariano Moreno",
         "Baltasar Hidalgo de Cisneros"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Revoluci%C3%B3n_de_Mayo"
     },
     {
       "event": "Batalla de Suipacha",
@@ -107,7 +117,8 @@
         "Manuel Belgrano",
         "Mariano Moreno",
         "Baltasar Hidalgo de Cisneros"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Batalla_de_Suipacha"
     },
     {
       "event": "Fusilamiento de Santiago de Liniers",
@@ -116,13 +127,15 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Santiago_de_Liniers.jpg/500px-Santiago_de_Liniers.jpg",
       "people": [
         "Santiago de Liniers"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Santiago_de_Liniers"
     },
     {
       "event": "Creación del Primer Triunvirato",
       "year": 1811,
       "context": "Órgano ejecutivo compuesto por Feliciano Chiclana, Manuel de Sarratea y Juan José Paso, que reemplazó a la Junta Grande para centralizar el poder en medio de las guerras de independencia.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Les_massacres_du_Triumvirat_-_Antoine_Caron_-_Mus%C3%A9e_du_Louvre_Peintures_RF_1939_28_-_photo_2.jpg/500px-Les_massacres_du_Triumvirat_-_Antoine_Caron_-_Mus%C3%A9e_du_Louvre_Peintures_RF_1939_28_-_photo_2.jpg"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Les_massacres_du_Triumvirat_-_Antoine_Caron_-_Mus%C3%A9e_du_Louvre_Peintures_RF_1939_28_-_photo_2.jpg/500px-Les_massacres_du_Triumvirat_-_Antoine_Caron_-_Mus%C3%A9e_du_Louvre_Peintures_RF_1939_28_-_photo_2.jpg",
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Triunvirato"
     },
     {
       "event": "Creación de la Bandera Nacional",
@@ -131,7 +144,8 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Flag_of_Argentina.svg/500px-Flag_of_Argentina.svg.png",
       "people": [
         "Manuel Belgrano"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Bandera_de_M%C3%A9xico"
     },
     {
       "event": "El Éxodo Jujeño",
@@ -140,7 +154,8 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/1/18/%C3%89xodo_Juje%C3%B1o.jpg",
       "people": [
         "Manuel Belgrano"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/%C3%89xodo_Juje%C3%B1o"
     },
     {
       "event": "Batalla de Tucumán",
@@ -152,13 +167,15 @@
         "Manuel Belgrano",
         "Mariano Moreno",
         "Baltasar Hidalgo de Cisneros"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Batalla_de_Tucum%C3%A1n"
     },
     {
       "event": "Asamblea del Año XIII — abolición de la esclavitud",
       "year": 1813,
       "context": "La Asamblea estableció la 'libertad de vientres', por la que los hijos de esclavos nacerían libres. También suprimió la Inquisición, los títulos de nobleza y el uso de instrumentos de tortura.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Asamblea_del_a%C3%B1o_XIII.jpg/500px-Asamblea_del_a%C3%B1o_XIII.jpg"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Asamblea_del_a%C3%B1o_XIII.jpg/500px-Asamblea_del_a%C3%B1o_XIII.jpg",
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Asamblea_del_A%C3%B1o_XIII"
     },
     {
       "event": "Batalla de Salta",
@@ -167,7 +184,8 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Battle_of_Salta.jpg/500px-Battle_of_Salta.jpg",
       "people": [
         "Manuel Belgrano"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Batalla_de_Salta"
     },
     {
       "event": "Combate de San Lorenzo",
@@ -176,37 +194,43 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/San_Lorenzo.jpg/500px-San_Lorenzo.jpg",
       "people": [
         "José de San Martín"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Combate_de_San_Lorenzo"
     },
     {
       "event": "Victoria Naval de Montevideo",
       "year": 1814,
       "context": "La escuadra patriota al mando del almirante Guillermo Brown derrotó a la flota realista, provocando la rendición de Montevideo y terminando con el dominio marítimo español en el Río de la Plata.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Expedici%C3%B3n_BO_1811-14_en.png/500px-Expedici%C3%B3n_BO_1811-14_en.png"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Expedici%C3%B3n_BO_1811-14_en.png/500px-Expedici%C3%B3n_BO_1811-14_en.png",
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Combate_naval_del_Buceo"
     },
     {
       "event": "Creación del Directorio Supremo",
       "year": 1814,
       "context": "Se estableció un poder ejecutivo unipersonal a cargo de un Director Supremo para concentrar el mando político y militar. Gervasio Antonio de Posadas fue el primero en ocupar el cargo.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/a/ac/Posadas.jpg"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/a/ac/Posadas.jpg",
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Director_supremo_de_las_Provincias_Unidas_del_R%C3%ADo_de_la_Plata"
     },
     {
       "event": "Congreso de Oriente y Liga de los Pueblos Libres",
       "year": 1815,
       "context": "Convocado por José Gervasio Artigas, reunió a las provincias del litoral y la Banda Oriental, declarando tempranamente la independencia de España y proclamando un sistema federal.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Mapa_ARGENTINA_1816.svg/500px-Mapa_ARGENTINA_1816.svg.png"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Mapa_ARGENTINA_1816.svg/500px-Mapa_ARGENTINA_1816.svg.png",
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Congreso_de_Oriente"
     },
     {
       "event": "Declaración de Independencia Argentina",
       "year": 1816,
       "context": "El Congreso reunido en Tucumán declaró la independencia de las Provincias Unidas del Río de la Plata el 9 de julio. La declaración llegó en plena guerra de independencia contra España en toda América del Sur.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/e/e3/Independencia_Argentina.JPG"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/e/e3/Independencia_Argentina.JPG",
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Declaraci%C3%B3n_de_independencia_de_la_Argentina"
     },
     {
       "event": "San Martín cruza los Andes — campaña libertadora",
       "year": 1817,
       "context": "El cruce de los Andes fue una hazaña militar sin precedentes: 5.000 soldados cruzaron por varios pasos a más de 4.000 metros. Permitió la liberación de Chile y fue el punto de partida de la campaña al Perú.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/1/15/El_cruce_de_los_Andes_por_el_Gral._San_Mart%C3%ADn.JPG"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/1/15/El_cruce_de_los_Andes_por_el_Gral._San_Mart%C3%ADn.JPG",
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Jos%C3%A9_de_San_Mart%C3%ADn"
     },
     {
       "event": "Batalla de Maipú",
@@ -215,7 +239,8 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/BatallaDeMaipu.jpg/500px-BatallaDeMaipu.jpg",
       "people": [
         "José de San Martín"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Batalla_de_Maip%C3%BA"
     },
     {
       "event": "Muerte de Manuel Belgrano, creador de la bandera",
@@ -224,7 +249,8 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Manuel_Belgrano.JPG/500px-Manuel_Belgrano.JPG",
       "people": [
         "Manuel Belgrano"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Manuel_Belgrano"
     },
     {
       "event": "Batalla de Cepeda",
@@ -233,7 +259,8 @@
       "people": [
         "Estanislao López",
         "Francisco Ramírez"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Batalla_de_Cepeda"
     },
     {
       "event": "Firma del Tratado del Pilar",
@@ -243,19 +270,22 @@
       "people": [
         "Estanislao López",
         "Francisco Ramírez"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Tratado_del_Pilar"
     },
     {
       "event": "Fundación de la Universidad de Buenos Aires",
       "year": 1821,
       "context": "Inaugurada bajo el gobierno de Martín Rodríguez y su ministro Bernardino Rivadavia, se convirtió con el tiempo en una de las instituciones de educación superior más importantes de América Latina.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/UBA.svg/500px-UBA.svg.png"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/UBA.svg/500px-UBA.svg.png",
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Universidad_de_Buenos_Aires"
     },
     {
       "event": "Muerte de Martín Miguel de Güemes",
       "year": 1821,
       "context": "El líder de la 'Guerra Gaucha' falleció tras ser herido por tropas realistas en Salta. Su resistencia en el norte fue crucial para contener el avance español y proteger la independencia.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Mart%C3%ADn_Miguel_de_G%C3%BCemes_1.jpg/500px-Mart%C3%ADn_Miguel_de_G%C3%BCemes_1.jpg"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Mart%C3%ADn_Miguel_de_G%C3%BCemes_1.jpg/500px-Mart%C3%ADn_Miguel_de_G%C3%BCemes_1.jpg",
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Mart%C3%ADn_Miguel_de_G%C3%BCemes"
     },
     {
       "event": "Entrevista de Guayaquil",
@@ -265,19 +295,22 @@
       "people": [
         "José de San Martín",
         "Simón Bolívar"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Entrevista_de_Guayaquil"
     },
     {
       "event": "Congreso General Constituyente",
       "year": 1824,
       "context": "Reunión de representantes de las provincias convocada en Buenos Aires para intentar reunificar el país, dictar una constitución nacional y hacer frente a los desafíos externos.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Constitucion_federal_de_los_Estados_Unidos_Mexicanos_1824.jpg/500px-Constitucion_federal_de_los_Estados_Unidos_Mexicanos_1824.jpg"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Constitucion_federal_de_los_Estados_Unidos_Mexicanos_1824.jpg/500px-Constitucion_federal_de_los_Estados_Unidos_Mexicanos_1824.jpg",
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Congreso_General_de_1824"
     },
     {
       "event": "Inicio de la Guerra del Brasil",
       "year": 1825,
       "context": "Estalló el conflicto armado entre las Provincias Unidas del Río de la Plata y el Imperio del Brasil por el control de la Provincia Oriental, luego de la Cruzada Libertadora de los Treinta y Tres Orientales.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Cisplatine-War-collage.png/500px-Cisplatine-War-collage.png"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Cisplatine-War-collage.png/500px-Cisplatine-War-collage.png",
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Guerra_del_Brasil"
     },
     {
       "event": "Bernardino Rivadavia asume como primer Presidente",
@@ -286,19 +319,22 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Bernardino_Rivadavia_%28cropped%29.jpg/500px-Bernardino_Rivadavia_%28cropped%29.jpg",
       "people": [
         "Bernardino Rivadavia"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Presidente_de_la_Naci%C3%B3n_Argentina"
     },
     {
       "event": "Sanción de la Constitución Unitaria",
       "year": 1826,
       "context": "El Congreso dictó una constitución de fuerte carácter centralista que fue rápidamente rechazada por la mayoría de las provincias, lo que precipitó la renuncia de Rivadavia.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/e/ec/Portada_de_la_Constitucion_de_1826.jpg"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/e/ec/Portada_de_la_Constitucion_de_1826.jpg",
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Constituci%C3%B3n_argentina_de_1819"
     },
     {
       "event": "Batalla de Ituzaingó",
       "year": 1827,
       "context": "Importante victoria táctica de las tropas republicanas (argentinas y orientales) sobre el ejército imperial brasileño, aunque no logró forzar una conclusión inmediata a la Guerra del Brasil.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Brandsen_en_Ituzaingo.JPG/500px-Brandsen_en_Ituzaingo.JPG"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Brandsen_en_Ituzaingo.JPG/500px-Brandsen_en_Ituzaingo.JPG",
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Batalla_de_Ituzaing%C3%B3"
     },
     {
       "event": "Fusilamiento de Manuel Dorrego",
@@ -308,7 +344,8 @@
       "people": [
         "Manuel Dorrego",
         "Juan Lavalle"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Museo_Hist%C3%B3rico_Biogr%C3%A1fico_Coronel_Manuel_Dorrego"
     },
     {
       "event": "Primer gobierno de Juan Manuel de Rosas",
@@ -317,19 +354,22 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Juan_Manuel_de_Rosas.jpg/500px-Juan_Manuel_de_Rosas.jpg",
       "people": [
         "Juan Manuel de Rosas"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Juan_Manuel_de_Rosas"
     },
     {
       "event": "Firma del Pacto Federal",
       "year": 1831,
       "context": "Alianza política y militar establecida entre Buenos Aires, Santa Fe y Entre Ríos para enfrentar a la Liga Unitaria, convirtiéndose en el principal pilar y marco normativo de la Confederación Argentina.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Flag_of_the_Argentine_Confederation.svg/500px-Flag_of_the_Argentine_Confederation.svg.png"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Flag_of_the_Argentine_Confederation.svg/500px-Flag_of_the_Argentine_Confederation.svg.png",
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Pacto_Federal_Castellano"
     },
     {
       "event": "Ocupación británica de las Islas Malvinas",
       "year": 1833,
       "context": "Fuerzas militares del Reino Unido expulsaron a las autoridades argentinas y a la guarnición militar apostada en las islas, iniciando una usurpación territorial que desencadenó el histórico reclamo de soberanía.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/f/fe/HMS_Clio_c1812.jpg"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/f/fe/HMS_Clio_c1812.jpg",
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Ocupaci%C3%B3n_brit%C3%A1nica_de_las_islas_Malvinas_(1833)"
     },
     {
       "event": "Campaña al Desierto de Juan Manuel de Rosas",
@@ -338,7 +378,8 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Primer_Conquista_del_Desierto.jpg/500px-Primer_Conquista_del_Desierto.jpg",
       "people": [
         "Juan Manuel de Rosas"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Campa%C3%B1a_de_Rosas_al_Desierto"
     },
     {
       "event": "Bloqueo francés al Río de la Plata",
@@ -347,7 +388,8 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Plata_buenos_aires_montevideo_map.svg/500px-Plata_buenos_aires_montevideo_map.svg.png",
       "people": [
         "Juan Manuel de Rosas"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Bloqueo_franc%C3%A9s_al_R%C3%ADo_de_la_Plata"
     },
     {
       "event": "Revolución de los Libres del Sur",
@@ -356,7 +398,8 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Iniciadores_de_la_revoluci%C3%B3n_del_39_en_el_sur_de_Buenos-Aires.jpg/500px-Iniciadores_de_la_revoluci%C3%B3n_del_39_en_el_sur_de_Buenos-Aires.jpg",
       "people": [
         "Juan Manuel de Rosas"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Libres_del_Sur"
     },
     {
       "event": "Formación de la Coalición del Norte",
@@ -365,7 +408,8 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/e/e0/Liberal_Party_of_Australia_Logo_2015.png",
       "people": [
         "Juan Manuel de Rosas"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Coalici%C3%B3n_(Australia)"
     },
     {
       "event": "Batalla de la Vuelta de Obligado",
@@ -374,7 +418,8 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Batalla_de_la_Vuelta_de_Obligado.jpg/500px-Batalla_de_la_Vuelta_de_Obligado.jpg",
       "people": [
         "Juan Manuel de Rosas"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Batalla_de_la_Vuelta_de_Obligado"
     },
     {
       "event": "Muerte de José de San Martín en Boulogne-sur-Mer",
@@ -383,7 +428,8 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Jos%C3%A9_de_San_Mart%C3%ADn_%28retrato%2C_c.1828%29.jpg/500px-Jos%C3%A9_de_San_Mart%C3%ADn_%28retrato%2C_c.1828%29.jpg",
       "people": [
         "José de San Martín"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Boulogne-sur-Mer"
     },
     {
       "event": "Batalla de Caseros — caída de Rosas",
@@ -393,13 +439,15 @@
       "people": [
         "Juan Manuel de Rosas",
         "Justo José de Urquiza"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Batalla_de_Caseros"
     },
     {
       "event": "Sanción de la Constitución Nacional Argentina",
       "year": 1853,
       "context": "Inspirada en la Constitución de EE.UU. y en el pensamiento de Alberdi, estableció el sistema federal y republicano. Buenos Aires la rechazó y no se incorporó a la Confederación hasta 1859.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Museo_del_Bicentenario_-_Constituci%C3%B3n_de_la_Confederaci%C3%B3n_Argentina.jpg/500px-Museo_del_Bicentenario_-_Constituci%C3%B3n_de_la_Confederaci%C3%B3n_Argentina.jpg"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Museo_del_Bicentenario_-_Constituci%C3%B3n_de_la_Confederaci%C3%B3n_Argentina.jpg/500px-Museo_del_Bicentenario_-_Constituci%C3%B3n_de_la_Confederaci%C3%B3n_Argentina.jpg",
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Constituci%C3%B3n_de_la_Naci%C3%B3n_Argentina"
     },
     {
       "event": "Presidencia de Justo José de Urquiza",
@@ -408,7 +456,8 @@
       "people": [
         "Justo José de Urquiza"
       ],
-      "image": "https://upload.wikimedia.org/wikipedia/commons/2/2e/Daguerrotipo_de_Justo_Jos%C3%A9_de_Urquiza_%28recorte%29.jpg"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/2/2e/Daguerrotipo_de_Justo_Jos%C3%A9_de_Urquiza_%28recorte%29.jpg",
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Justo_Jos%C3%A9_de_Urquiza"
     },
     {
       "event": "Batalla de Pavón",
@@ -418,7 +467,8 @@
         "Bartolomé Mitre",
         "Justo José de Urquiza"
       ],
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Batalla_de_Pavon.jpg/500px-Batalla_de_Pavon.jpg"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Batalla_de_Pavon.jpg/500px-Batalla_de_Pavon.jpg",
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Batalla_de_Pav%C3%B3n"
     },
     {
       "event": "Presidencia de Bartolomé Mitre",
@@ -427,13 +477,15 @@
       "people": [
         "Bartolomé Mitre"
       ],
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Bartolom%C3%A9_Mitre_01.jpg/500px-Bartolom%C3%A9_Mitre_01.jpg"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Bartolom%C3%A9_Mitre_01.jpg/500px-Bartolom%C3%A9_Mitre_01.jpg",
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Bartolom%C3%A9_Mitre"
     },
     {
       "event": "Guerra de la Triple Alianza — Argentina, Brasil y Uruguay vs. Paraguay",
       "year": 1864,
       "context": "Fue la guerra más devastadora de América del Sur: Paraguay perdió entre el 60% y el 70% de su población total. Argentina recuperó el territorio de Misiones y parte del Chaco al término del conflicto en 1870.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Escenas_de_la_Guerra_de_la_Triple_Alianza.png/500px-Escenas_de_la_Guerra_de_la_Triple_Alianza.png"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Escenas_de_la_Guerra_de_la_Triple_Alianza.png/500px-Escenas_de_la_Guerra_de_la_Triple_Alianza.png",
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Batalla_de_Potrero_Obella"
     },
     {
       "event": "Presidencia de Domingo Faustino Sarmiento",
@@ -442,7 +494,8 @@
       "people": [
         "Domingo Faustino Sarmiento"
       ],
-      "image": "https://upload.wikimedia.org/wikipedia/commons/9/9d/Sarmiento.jpg"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/9/9d/Sarmiento.jpg",
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Domingo_Faustino_Sarmiento"
     },
     {
       "event": "Publicación de \"El Gaucho Martín Fierro\"",
@@ -451,7 +504,8 @@
       "people": [
         "José Hernández"
       ],
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Martin_fierro_1894.jpg/500px-Martin_fierro_1894.jpg"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Martin_fierro_1894.jpg/500px-Martin_fierro_1894.jpg",
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/El_Gaucho_Mart%C3%ADn_Fierro"
     },
     {
       "event": "Conquista del Desierto — campaña militar de Roca",
@@ -460,7 +514,8 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Mapa_de_la_Patagonia_y_las_Pampas_en_1878_%28recorte%29.png/500px-Mapa_de_la_Patagonia_y_las_Pampas_en_1878_%28recorte%29.png",
       "people": [
         "Julio Argentino Roca"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Conquista_del_Desierto"
     },
     {
       "event": "Buenos Aires se convierte en capital federal del país",
@@ -469,7 +524,8 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Buenos_Aires_-_Obelisco_%28fachada_oeste%29_-_20061212a.jpg/500px-Buenos_Aires_-_Obelisco_%28fachada_oeste%29_-_20061212a.jpg",
       "people": [
         "Julio Argentino Roca"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Buenos_Aires"
     },
     {
       "event": "Sanción de la Ley 1420 de Educación Común",
@@ -478,7 +534,8 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Coat_of_arms_of_Argentina.svg/500px-Coat_of_arms_of_Argentina.svg.png",
       "people": [
         "Julio Argentino Roca"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Ley_N.%C2%BA_1420_(Argentina)"
     },
     {
       "event": "La Revolución del Parque",
@@ -488,7 +545,8 @@
       "people": [
         "Leandro N. Alem",
         "Miguel Juárez Celman"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Revoluci%C3%B3n_del_Parque"
     },
     {
       "event": "Fundación del Partido Socialista",
@@ -497,7 +555,8 @@
       "people": [
         "Juan B. Justo"
       ],
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/PSUruguayLogo.png/500px-PSUruguayLogo.png"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/PSUruguayLogo.png/500px-PSUruguayLogo.png",
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Partido_Socialista_del_Uruguay"
     },
     {
       "event": "Ley Sáenz Peña — voto secreto y obligatorio",
@@ -506,7 +565,8 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/8/88/Sa%C3%A9nzPe%C3%B1a1910_%28cropped%29.png",
       "people": [
         "Roque Sáenz Peña"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Ley_S%C3%A1enz_Pe%C3%B1a"
     },
     {
       "event": "Presidencia de Hipólito Yrigoyen — primer gobierno radical",
@@ -515,13 +575,15 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Hipolito_Yrigoyen_-_NAC.jpg/500px-Hipolito_Yrigoyen_-_NAC.jpg",
       "people": [
         "Hipólito Yrigoyen"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Hip%C3%B3lito_Yrigoyen"
     },
     {
       "event": "Sanción de la Reforma Universitaria",
       "year": 1918,
       "context": "Estudiantes de la Universidad de Córdoba impulsaron una histórica huelga que logró democratizar la enseñanza bajo banderas de autonomía, gratuidad y cogobierno estudiantil.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Reforma_Universitaria.jpg/500px-Reforma_Universitaria.jpg"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Reforma_Universitaria.jpg/500px-Reforma_Universitaria.jpg",
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Reforma_Universitaria_de_1918"
     },
     {
       "event": "Semana Trágica — huelga obrera y represión en Buenos Aires",
@@ -530,13 +592,15 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Talleres_Vasena_restos%2C_Plaza_Mart%C3%ADn_Fierro_01.JPG/500px-Talleres_Vasena_restos%2C_Plaza_Mart%C3%ADn_Fierro_01.JPG",
       "people": [
         "Hipólito Yrigoyen"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Semana_Tr%C3%A1gica_(Argentina)"
     },
     {
       "event": "Primera transmisión de radio en el mundo — Argentina",
       "year": 1920,
       "context": "El 27 de agosto, el grupo Sociedad Radio Argentina transmitió ópera desde el Teatro Coliseo, siendo considerada la primera transmisión radial pública del mundo. Fue pionera en telecomunicaciones de masas.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Logo_de_Radio_y_Televisi%C3%B3n_Argentina_%282021%29.svg/500px-Logo_de_Radio_y_Televisi%C3%B3n_Argentina_%282021%29.svg.png"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Logo_de_Radio_y_Televisi%C3%B3n_Argentina_%282021%29.svg/500px-Logo_de_Radio_y_Televisi%C3%B3n_Argentina_%282021%29.svg.png",
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Primera_transmisi%C3%B3n_radiof%C3%B3nica"
     },
     {
       "event": "La Patagonia Rebelde",
@@ -545,7 +609,8 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/3/33/LaPatagoniaRebelde-1974.jpg",
       "people": [
         "Hipólito Yrigoyen"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/La_Patagonia_rebelde"
     },
     {
       "event": "Creación de YPF — Yacimientos Petrolíferos Fiscales",
@@ -554,7 +619,8 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Retrato_de_Enrique_Mosconi_%28cropped%29.jpg/500px-Retrato_de_Enrique_Mosconi_%28cropped%29.jpg",
       "people": [
         "Hipólito Yrigoyen"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Yacimientos_Petrol%C3%ADferos_Fiscales_(empresa_hist%C3%B3rica)"
     },
     {
       "event": "Segunda presidencia de Hipólito Yrigoyen",
@@ -563,7 +629,8 @@
       "people": [
         "Hipólito Yrigoyen"
       ],
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Hipolito_Yrigoyen_-_NAC.jpg/500px-Hipolito_Yrigoyen_-_NAC.jpg"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Hipolito_Yrigoyen_-_NAC.jpg/500px-Hipolito_Yrigoyen_-_NAC.jpg",
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Hip%C3%B3lito_Yrigoyen"
     },
     {
       "event": "Golpe de Estado de Uriburu — primera dictadura militar",
@@ -573,7 +640,8 @@
       "people": [
         "José Félix Uriburu",
         "Hipólito Yrigoyen"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Golpes_de_Estado_en_Argentina"
     },
     {
       "event": "Premio Nobel de la Paz para Carlos Saavedra Lamas",
@@ -582,7 +650,8 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Carlos_Saavedra_Lamas.jpg/500px-Carlos_Saavedra_Lamas.jpg",
       "people": [
         "Carlos Saavedra Lamas"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Carlos_Saavedra_Lamas"
     },
     {
       "event": "Revolución del 43 — golpe militar y fin de la Década Infame",
@@ -592,7 +661,8 @@
         "Ramón S. Castillo",
         "Arturo Rawson"
       ],
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/PresidentesDeLaRevoluci%C3%B3nDel43Argentina.png/500px-PresidentesDeLaRevoluci%C3%B3nDel43Argentina.png"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/PresidentesDeLaRevoluci%C3%B3nDel43Argentina.png/500px-PresidentesDeLaRevoluci%C3%B3nDel43Argentina.png",
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Revoluci%C3%B3n_del_43"
     },
     {
       "event": "Masiva movilización del 17 de octubre",
@@ -601,7 +671,8 @@
       "people": [
         "Juan Domingo Perón"
       ],
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Manifestaci%C3%B3n_15-O_-_Madrid_-_01.jpg/500px-Manifestaci%C3%B3n_15-O_-_Madrid_-_01.jpg"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Manifestaci%C3%B3n_15-O_-_Madrid_-_01.jpg/500px-Manifestaci%C3%B3n_15-O_-_Madrid_-_01.jpg",
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Movilizaci%C3%B3n_mundial_del_15_de_octubre_de_2011"
     },
     {
       "event": "Primera presidencia de Juan Domingo Perón",
@@ -611,7 +682,8 @@
       "people": [
         "Juan Domingo Perón",
         "Eva Perón"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Primer_gobierno_de_Juan_Domingo_Per%C3%B3n"
     },
     {
       "event": "Declaración de la Independencia Económica",
@@ -620,7 +692,8 @@
       "people": [
         "Juan Domingo Perón"
       ],
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Flickr_-_Government_Press_Office_%28GPO%29_-_David_Ben_Gurion_reading_the_Declaration_of_Independence.jpg/500px-Flickr_-_Government_Press_Office_%28GPO%29_-_David_Ben_Gurion_reading_the_Declaration_of_Independence.jpg"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Flickr_-_Government_Press_Office_%28GPO%29_-_David_Ben_Gurion_reading_the_Declaration_of_Independence.jpg/500px-Flickr_-_Government_Press_Office_%28GPO%29_-_David_Ben_Gurion_reading_the_Declaration_of_Independence.jpg",
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Declaraci%C3%B3n_de_independencia_de_Israel"
     },
     {
       "event": "Sanción de la Ley de Voto Femenino",
@@ -630,7 +703,8 @@
       "people": [
         "Juan Domingo Perón",
         "Eva Perón"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Sufragio_femenino_en_Argentina"
     },
     {
       "event": "Sanción de la Constitución de 1949",
@@ -639,7 +713,8 @@
       "people": [
         "Juan Domingo Perón"
       ],
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Coat_of_arms_of_Argentina.svg/500px-Coat_of_arms_of_Argentina.svg.png"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Coat_of_arms_of_Argentina.svg/500px-Coat_of_arms_of_Argentina.svg.png",
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Reforma_constitucional_argentina_de_1949"
     },
     {
       "event": "Muerte de Eva Perón — Evita",
@@ -649,7 +724,8 @@
       "people": [
         "Juan Domingo Perón",
         "Eva Perón"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Eva_Per%C3%B3n"
     },
     {
       "event": "Bombardeo de la Plaza de Mayo",
@@ -658,7 +734,8 @@
       "people": [
         "Juan Domingo Perón"
       ],
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Bombardeo_a_la_Plaza_de_Mayo_1955_%28Recopilaci%C3%B3n%29.png/500px-Bombardeo_a_la_Plaza_de_Mayo_1955_%28Recopilaci%C3%B3n%29.png"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Bombardeo_a_la_Plaza_de_Mayo_1955_%28Recopilaci%C3%B3n%29.png/500px-Bombardeo_a_la_Plaza_de_Mayo_1955_%28Recopilaci%C3%B3n%29.png",
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Bombardeo_de_la_plaza_de_Mayo"
     },
     {
       "event": "Golpe de 1955 — Revolución Libertadora derroca a Perón",
@@ -667,7 +744,8 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Eduardo_Lonardi_y_Pedro_Eugenio_Aramburu_Revoluci%C3%B3n_Libertadora.png/500px-Eduardo_Lonardi_y_Pedro_Eugenio_Aramburu_Revoluci%C3%B3n_Libertadora.png",
       "people": [
         "Juan Domingo Perón"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Golpe_de_Estado_en_Argentina_de_1955"
     },
     {
       "event": "Fusilamientos de José León Suárez",
@@ -676,7 +754,8 @@
       "people": [
         "Pedro Eugenio Aramburu"
       ],
-      "image": "https://upload.wikimedia.org/wikipedia/commons/c/ce/Juan_Carlos_Livraga_y_el_Presidente_N%C3%A9stor_Kirchner_-_Casa_Rosada_-_23MAR07_-_presidencia-govar.jpg"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/c/ce/Juan_Carlos_Livraga_y_el_Presidente_N%C3%A9stor_Kirchner_-_Casa_Rosada_-_23MAR07_-_presidencia-govar.jpg",
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Fusilamientos_de_Jos%C3%A9_Le%C3%B3n_Su%C3%A1rez"
     },
     {
       "event": "Presidencia de Arturo Frondizi",
@@ -685,7 +764,8 @@
       "people": [
         "Arturo Frondizi"
       ],
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Arturo_Frondizi_1958.jpg/500px-Arturo_Frondizi_1958.jpg"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Arturo_Frondizi_1958.jpg/500px-Arturo_Frondizi_1958.jpg",
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Arturo_Frondizi"
     },
     {
       "event": "Derrocamiento militar de Arturo Frondizi",
@@ -694,7 +774,8 @@
       "people": [
         "Arturo Frondizi"
       ],
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Arturo_Frondizi_1958.jpg/500px-Arturo_Frondizi_1958.jpg"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Arturo_Frondizi_1958.jpg/500px-Arturo_Frondizi_1958.jpg",
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Arturo_Frondizi"
     },
     {
       "event": "Presidencia de Arturo Illia",
@@ -703,25 +784,29 @@
       "people": [
         "Arturo Umberto Illia"
       ],
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Arturo_Umberto_Illia_1965.jpg/500px-Arturo_Umberto_Illia_1965.jpg"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Arturo_Umberto_Illia_1965.jpg/500px-Arturo_Umberto_Illia_1965.jpg",
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Arturo_Umberto_Illia"
     },
     {
       "event": "La Noche de los Bastones Largos",
       "year": 1966,
       "context": "La policía de la dictadura de Onganía irrumpió violentamente en la Universidad de Buenos Aires golpeando a profesores y alumnos. Provocó la renuncia masiva de docentes y el exilio de cientos de científicos.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Blargos1.jpg/500px-Blargos1.jpg"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Blargos1.jpg/500px-Blargos1.jpg",
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Noche_de_los_Bastones_Largos"
     },
     {
       "event": "El Cordobazo",
       "year": 1969,
       "context": "Una masiva huelga y rebelión estudiantil y obrera paralizó Córdoba en protesta contra la dictadura militar de Onganía. La protesta debilitó decisivamente al régimen dictatorial.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/4/4a/Cordobazo3.jpg"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/4/4a/Cordobazo3.jpg",
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Cordobazo"
     },
     {
       "event": "El Rosariazo",
       "year": 1969,
       "context": "Serie de protestas estudiantiles y obreras en la ciudad de Rosario contra la dictadura militar de Onganía. Precedió y encendió la mecha que detonaría pocos días después en el histórico Cordobazo.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/2/25/Rosariazo_1.jpg"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/2/25/Rosariazo_1.jpg",
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Rosariazo"
     },
     {
       "event": "Secuestro y ejecución de Aramburu",
@@ -730,19 +815,22 @@
       "people": [
         "Pedro Eugenio Aramburu"
       ],
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Funeral_of_Pedro_Eugenio_Aramburu.jpg/500px-Funeral_of_Pedro_Eugenio_Aramburu.jpg"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Funeral_of_Pedro_Eugenio_Aramburu.jpg/500px-Funeral_of_Pedro_Eugenio_Aramburu.jpg",
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Asesinato_de_Pedro_Eugenio_Aramburu"
     },
     {
       "event": "El Mendozazo",
       "year": 1972,
       "context": "Una masiva movilización popular y huelga general en Mendoza contra el aumento de las tarifas eléctricas y la dictadura de Lanusse. Fue reprimida violentamente, sumándose a las revueltas provinciales de la época.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/c/cf/El_Mendozazo.jpg"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/c/cf/El_Mendozazo.jpg",
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Mendozazo"
     },
     {
       "event": "La Masacre de Trelew",
       "year": 1972,
       "context": "Fusilamiento de 16 militantes de organizaciones políticas armadas que se encontraban detenidos en la base naval Almirante Zar de Chubut tras un frustrado intento de fuga de la cárcel de Rawson.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Homenaje_a_las_victimas_de_la_Masacre_de_Trelew.jpg/500px-Homenaje_a_las_victimas_de_la_Masacre_de_Trelew.jpg"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Homenaje_a_las_victimas_de_la_Masacre_de_Trelew.jpg/500px-Homenaje_a_las_victimas_de_la_Masacre_de_Trelew.jpg",
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Masacre_de_Trelew"
     },
     {
       "event": "Presidencia de Héctor J. Cámpora",
@@ -751,7 +839,8 @@
       "people": [
         "Héctor José Cámpora"
       ],
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/H%C3%A9ctor_Jos%C3%A9_C%C3%A1mpora.png/500px-H%C3%A9ctor_Jos%C3%A9_C%C3%A1mpora.png"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/H%C3%A9ctor_Jos%C3%A9_C%C3%A1mpora.png/500px-H%C3%A9ctor_Jos%C3%A9_C%C3%A1mpora.png",
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/H%C3%A9ctor_Jos%C3%A9_C%C3%A1mpora"
     },
     {
       "event": "Regreso de Perón al país tras 18 años de exilio",
@@ -760,7 +849,8 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Masacre_de_Ezeiza_-_persona_subiendo_al_palco.jpg/500px-Masacre_de_Ezeiza_-_persona_subiendo_al_palco.jpg",
       "people": [
         "Juan Domingo Perón"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Exilio_de_Per%C3%B3n"
     },
     {
       "event": "Muerte de Perón e inicio del mandato de Isabel",
@@ -769,44 +859,51 @@
       "people": [
         "Juan Domingo Perón"
       ],
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Isabel_peron_banda_presidencial_y_bast%C3%B3n.png/500px-Isabel_peron_banda_presidencial_y_bast%C3%B3n.png"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Isabel_peron_banda_presidencial_y_bast%C3%B3n.png/500px-Isabel_peron_banda_presidencial_y_bast%C3%B3n.png",
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Mar%C3%ADa_Estela_Mart%C3%ADnez_de_Per%C3%B3n"
     },
     {
       "event": "El \"Rodrigazo\" y huelga general de la CGT",
       "year": 1975,
       "context": "El ministro Celestino Rodrigo aplica una devaluación del 100% y un severo ajuste que desata masivas protestas gremiales y la primera huelga de la CGT contra un gobierno peronista.",
       "people": [],
-      "image": "https://upload.wikimedia.org/wikipedia/commons/b/bb/Celestino_Rodrigo.jpg"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/b/bb/Celestino_Rodrigo.jpg",
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Rodrigazo"
     },
     {
       "event": "Dictadura militar — inicio del Proceso de Reorganización Nacional",
       "year": 1976,
       "context": "El golpe del 24 de marzo instauró la dictadura más sangrienta de la historia argentina: entre 10.000 y 30.000 personas fueron desaparecidas. Los militares gobernaron hasta 1983 con represión sistemática y plan económico neoliberal.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Junta_Militar_argentina_1976.png/500px-Junta_Militar_argentina_1976.png"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Junta_Militar_argentina_1976.png/500px-Junta_Militar_argentina_1976.png",
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Proceso_de_Reorganizaci%C3%B3n_Nacional"
     },
     {
       "event": "La Noche de los Lápices",
       "year": 1976,
       "context": "Fuerzas de seguridad secuestraron a un grupo de estudiantes secundarios en La Plata que reclamaban por el boleto estudiantil gratuito. Seis de ellos continúan desaparecidos.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Pasillo_de_la_memoria_UTN_FRA_%282015%29_09.JPG/500px-Pasillo_de_la_memoria_UTN_FRA_%282015%29_09.JPG"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Pasillo_de_la_memoria_UTN_FRA_%282015%29_09.JPG/500px-Pasillo_de_la_memoria_UTN_FRA_%282015%29_09.JPG",
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Noche_de_los_L%C3%A1pices"
     },
     {
       "event": "Primera ronda de las Madres de Plaza de Mayo",
       "year": 1977,
       "context": "Un grupo de madres comenzó a caminar alrededor de la Pirámide de Mayo para reclamar por el paradero de sus hijos desaparecidos, dando origen a una emblemática lucha por los derechos humanos.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/2/20/2%C2%AA_Marcha_de_la_Resistencia_9_y_10_diciembre_1982.jpg"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/2/20/2%C2%AA_Marcha_de_la_Resistencia_9_y_10_diciembre_1982.jpg",
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Madres_de_Plaza_de_Mayo"
     },
     {
       "event": "Argentina campeona del mundo — Argentina 1978",
       "year": 1978,
       "context": "El torneo se disputó bajo la dictadura militar en medio de denuncias internacionales por violaciones a los derechos humanos. Argentina venció a Holanda 3-1 en la final en el Estadio Monumental de Buenos Aires.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Logo_Mundial_78.svg/500px-Logo_Mundial_78.svg.png"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Logo_Mundial_78.svg/500px-Logo_Mundial_78.svg.png",
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Copa_Mundial_de_F%C3%BAtbol_de_1978"
     },
     {
       "event": "Guerra de las Malvinas",
       "year": 1982,
       "context": "La junta militar invadió las Islas Malvinas para desviar la atención de la crisis interna. Gran Bretaña respondió con una fuerza de tareas; Argentina fue derrotada en 74 días con 649 militares muertos y aceleró la caída del régimen.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/3/36/Action_stations_Falklands_1982.JPG"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/3/36/Action_stations_Falklands_1982.JPG",
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Guerra_de_las_Malvinas"
     },
     {
       "event": "Retorno de la democracia — asume Raúl Alfonsín",
@@ -815,7 +912,8 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Raul_Alfonsin_1983.jpg/500px-Raul_Alfonsin_1983.jpg",
       "people": [
         "Raúl Alfonsín"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Carlos_Becerra_(pol%C3%ADtico)"
     },
     {
       "event": "Juicio a las Juntas Militares",
@@ -824,13 +922,15 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Juicio_a_las_Juntas.jpg/500px-Juicio_a_las_Juntas.jpg",
       "people": [
         "Raúl Alfonsín"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Juicio_a_las_Juntas"
     },
     {
       "event": "Argentina campeona del mundo — México 1986",
       "year": 1986,
       "context": "Dirigida por Diego Maradona, quien marcó el célebre 'Gol del Siglo' y el polémico 'Gol de la Mano de Dios' ante Inglaterra en cuartos de final. Argentina venció a Alemania Occidental 3-2 en la final.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/2/2c/Maradona-Mundial_86_con_la_copa.JPG"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/2/2c/Maradona-Mundial_86_con_la_copa.JPG",
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Copa_Mundial_de_F%C3%BAtbol_de_1986"
     },
     {
       "event": "Sanción de la Ley de Divorcio Vincular",
@@ -839,7 +939,8 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Raul_Alfonsin_1985.jpg/500px-Raul_Alfonsin_1985.jpg",
       "people": [
         "Raúl Alfonsín"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Ley_de_divorcio_vincular"
     },
     {
       "event": "Hiperinflación — caída anticipada del gobierno de Alfonsín",
@@ -848,7 +949,8 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Inflaci%C3%B3n_e_hiperinflaci%C3%B3n_en_Argentina_1989_1990.png/500px-Inflaci%C3%B3n_e_hiperinflaci%C3%B3n_en_Argentina_1989_1990.png",
       "people": [
         "Raúl Alfonsín"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Hiperinflaci%C3%B3n_argentina_de_1989_y_1990"
     },
     {
       "event": "Firma de los Indultos Presidenciales de Menem",
@@ -857,13 +959,15 @@
       "people": [
         "Carlos Menem"
       ],
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Menem_con_banda_presidencial.jpg/500px-Menem_con_banda_presidencial.jpg"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Menem_con_banda_presidencial.jpg/500px-Menem_con_banda_presidencial.jpg",
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Carlos_Menem"
     },
     {
       "event": "Firma del Tratado de Asunción — creación del MERCOSUR",
       "year": 1991,
       "context": "Argentina, Brasil, Paraguay y Uruguay crearon el Mercado Común del Sur, el mayor bloque regional de América Latina. Fue la apuesta por la integración económica sudamericana en la era de la globalización.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Treaty_of_Asunci%C3%B3n_textlogo_%282%29.jpg/500px-Treaty_of_Asunci%C3%B3n_textlogo_%282%29.jpg"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Treaty_of_Asunci%C3%B3n_textlogo_%282%29.jpg/500px-Treaty_of_Asunci%C3%B3n_textlogo_%282%29.jpg",
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Tratado_de_Asunci%C3%B3n"
     },
     {
       "event": "Atentado a la Embajada de Israel en Buenos Aires",
@@ -872,13 +976,15 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Arroyo_910_-_Embajada_de_Israel_en_Argentina.jpg/500px-Arroyo_910_-_Embajada_de_Israel_en_Argentina.jpg",
       "people": [
         "Carlos Menem"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Atentado_a_la_embajada_de_Israel_en_Argentina"
     },
     {
       "event": "Atentado terrorista a la AMIA en Buenos Aires",
       "year": 1994,
       "context": "Un coche bomba destruyó la sede de la Asociación Mutual Israelita Argentina matando a 85 personas. Es el mayor atentado terrorista en la historia argentina y permanece impune más de 30 años después.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/c/c7/IDF_Aid_Mission_to_Argentina%2C_July_1994.jpg"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/c/c7/IDF_Aid_Mission_to_Argentina%2C_July_1994.jpg",
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Atentado_a_la_AMIA"
     },
     {
       "event": "Sanción de la Reforma Constitucional de 1994",
@@ -888,13 +994,15 @@
       "people": [
         "Carlos Menem",
         "Raúl Alfonsín"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Reforma_constitucional_argentina_de_1994"
     },
     {
       "event": "Crisis económica, corralito y default",
       "year": 2001,
       "context": "En diciembre, el gobierno congeló los depósitos bancarios (el 'corralito') detonando una crisis social: cinco presidentes en dos semanas y la mayor cesación de pagos de la historia hasta ese momento.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/2/26/Obelisco_20Dic01.jpg"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/2/26/Obelisco_20Dic01.jpg",
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Crisis_financiera"
     },
     {
       "event": "Néstor Kirchner asume la presidencia",
@@ -903,7 +1011,8 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Kirchner_-_Galer%C3%ADa_de_Presidentes_de_casarosada.gob.ar.jpg/500px-Kirchner_-_Galer%C3%ADa_de_Presidentes_de_casarosada.gob.ar.jpg",
       "people": [
         "Néstor Kirchner"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/N%C3%A9stor_Kirchner"
     },
     {
       "event": "Sanción de la Ley de Matrimonio Igualitario",
@@ -912,7 +1021,8 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Casamiento_del_cantante_argentino_Carlos_Morell.jpg/500px-Casamiento_del_cantante_argentino_Carlos_Morell.jpg",
       "people": [
         "Cristina Fernández de Kirchner"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Matrimonio_igualitario_en_Argentina"
     },
     {
       "event": "Sanción de la Ley de Identidad de Género",
@@ -921,7 +1031,8 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Amor_propio_%28amor_a_la_diversidad%29.jpg/500px-Amor_propio_%28amor_a_la_diversidad%29.jpg",
       "people": [
         "Cristina Fernández de Kirchner"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Ley_de_identidad_de_g%C3%A9nero_(Argentina)"
     },
     {
       "event": "Sanción de la Ley de Interrupción Voluntaria del Embarazo",
@@ -930,7 +1041,8 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Green_tide_Buenos_Aires_2020.jpg/500px-Green_tide_Buenos_Aires_2020.jpg",
       "people": [
         "Alberto Fernández"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Ley_de_Interrupci%C3%B3n_Voluntaria_del_Embarazo_de_Argentina"
     },
     {
       "event": "Argentina campeona de la Copa América — Brasil 2021",
@@ -940,13 +1052,15 @@
       "people": [
         "Lionel Messi",
         "Lionel Scaloni"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Copa_Am%C3%A9rica_2021"
     },
     {
       "event": "Argentina campeona del mundo — Qatar 2022",
       "year": 2022,
       "context": "Liderada por Lionel Messi, Argentina derrotó a Francia en la final más emocionante de la historia del fútbol, definiéndose por penales. Fue el tercer título mundial del país y el primero de Messi, sellando su legado.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/b/b4/Lionel-Messi-Argentina-2022-FIFA-World-Cup_%28cropped%29.jpg"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/b/b4/Lionel-Messi-Argentina-2022-FIFA-World-Cup_%28cropped%29.jpg",
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Copa_Mundial_de_F%C3%BAtbol_de_2022"
     },
     {
       "event": "Javier Milei asume la presidencia de Argentina",
@@ -955,7 +1069,8 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Retrato_oficial_Presidente_Milei.png/500px-Retrato_oficial_Presidente_Milei.png",
       "people": [
         "Javier Milei"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Presidencia_de_Javier_Milei"
     }
   ]
 }

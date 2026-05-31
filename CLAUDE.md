@@ -12,7 +12,9 @@ npm run preview   # Preview the production build
 
 No test suite exists. Type-check with `npx tsc --noEmit`.
 
-## Image Finder Utility
+## Wikipedia Utilities
+
+### Image Finder and Fixer
 
 A Node.js utility `scripts/find_wikipedia_images.js` is available to automatically scan decks, identify missing/broken images, query Spanish Wikipedia, and fetch high-quality 500px thumbnails.
 
@@ -28,6 +30,21 @@ node scripts/find_wikipedia_images.js --deck argentina --fix
 
 # Force checking all images, even existing valid URLs
 node scripts/find_wikipedia_images.js --verify-all --fix
+```
+
+### Link Finder and Fixer
+
+A Node.js utility `scripts/find_wikipedia_links.js` is available to automatically scan decks, search for matching Wikipedia articles, validate the URL resolution, and populate the `wikipediaUrl` field on each event.
+
+```bash
+# Dry run: preview proposed Wikipedia links for all decks
+node scripts/find_wikipedia_links.js
+
+# Fix: write verified Wikipedia links to all deck files
+node scripts/find_wikipedia_links.js --fix
+
+# Force checking/overwriting existing Wikipedia links
+node scripts/find_wikipedia_links.js --force --fix
 ```
 
 ## Architecture

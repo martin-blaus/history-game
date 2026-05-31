@@ -13,7 +13,8 @@
         "Mayéutica: Método de diálogo para ayudar a dar a luz ideas y conocimientos innatos",
         "Método socrático: Proceso inquisitivo de preguntas y respuestas para examinar creencias",
         "Intelectualismo moral: Doctrina que identifica la virtud con el conocimiento y el vicio con la ignorancia"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/S%C3%B3crates"
     },
     {
       "event": "Platón",
@@ -25,7 +26,8 @@
         "Dualismo ontológico: División del universo en el mundo sensible (material) y el mundo inteligible (de las formas)",
         "Mito de la caverna: Alegoría sobre la educación, el conocimiento y la ascensión al saber real",
         "Rey-filósofo: Idea política de que los gobernantes de la ciudad ideal deben ser filósofos"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Plat%C3%B3n"
     },
     {
       "event": "Aristóteles",
@@ -37,7 +39,8 @@
         "Teoría del acto y la potencia: Explicación del cambio físico como el paso del ser en potencia al ser en acto",
         "Ética de la virtud: Ética centrada en el desarrollo del carácter virtuoso y el justo medio (Eudaimonía)",
         "Silogismo: Estructura lógica formal de razonamiento deductivo basada en premisas y conclusión"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Arist%C3%B3teles"
     },
     {
       "event": "Epicuro",
@@ -48,7 +51,8 @@
         "Hedonismo racional: Búsqueda del placer y evitación del dolor mediante el cálculo prudente y moderado",
         "Ataraxia: Estado de tranquilidad espiritual y paz mental libre de miedos",
         "Tetrafármaco: Remedio filosófico de cuatro verdades para vencer el miedo a los dioses, la muerte, el dolor y el fracaso"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Epicuro"
     },
     {
       "event": "Cicerón",
@@ -58,7 +62,8 @@
       "ideas": [
         "Humanismo republicano: Filosofía política que valora la participación cívica y la virtud moral en la res publica",
         "Ley natural: Concepto de que existe una ley moral racional universal previa a las leyes humanas"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Cicer%C3%B3n"
     },
     {
       "event": "Marco Aurelio",
@@ -68,7 +73,8 @@
       "ideas": [
         "Estoicismo tardío: Filosofía de la resiliencia, centrada en la autodisciplina moral y la hermandad humana",
         "Aceptación del destino: Actitud estoica de abrazar los sucesos externos que no podemos controlar (Amor Fati)"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Marco_Aurelio"
     },
     {
       "event": "Plotino",
@@ -78,7 +84,8 @@
       "ideas": [
         "El Uno: Principio supremo inefable, absoluto y transcendente origen de toda la realidad",
         "Emanación: Proceso por el cual la realidad fluye por sobreabundancia desde el Uno hasta la materia"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Plotino"
     },
     {
       "event": "Agustín de Hipona",
@@ -89,7 +96,8 @@
         "Iluminación divina: Teoría de que la verdad racional solo es alcanzable mediante la luz que Dios otorga al alma",
         "Las dos ciudades: Visión de la historia como el conflicto místico entre la ciudad terrenal (del egoísmo) y la ciudad de Dios",
         "Libre albedrío: Doctrina sobre la libertad de elección del ser humano y su responsabilidad en el origen del pecado"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Agust%C3%ADn_de_Hipona"
     },
     {
       "event": "Tomás de Aquino",
@@ -100,7 +108,8 @@
         "Las cinco vías: Argumentos racionales a posteriori para demostrar la existencia de Dios como causa primera",
         "Síntesis fe-razón: Postura de que la filosofía racional y la teología revelada son distintas pero armónicas",
         "Realismo moderado: Postulación de que los universales existen en las cosas como esencias inteligibles abstractas"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Tom%C3%A1s_de_Aquino"
     },
     {
       "event": "Guillermo de Ockham",
@@ -110,7 +119,8 @@
       "ideas": [
         "Nominalismo: Afirmación de que los conceptos universales no existen en la realidad, sino que son solo nombres colectivos",
         "Navaja de Ockham: Principio metodológico de parsimonia que aconseja no multiplicar los entes sin necesidad"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Guillermo_de_Ockham"
     },
     {
       "event": "Nicolás Maquiavelo",
@@ -121,7 +131,8 @@
         "Realismo político: Estudio de la política basándose en los hechos prácticos de la conducta humana en lugar de la moral ideal",
         "Razón de Estado: Justificación de medidas excepcionales o inmorales por parte del soberano para conservar el orden y la seguridad",
         "Virtud y fortuna: Interacción entre la destreza/voluntad del gobernante (virtud) y el azar de las circunstancias (fortuna)"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Nicol%C3%A1s_Maquiavelo"
     },
     {
       "event": "Michel de Montaigne",
@@ -131,7 +142,8 @@
       "ideas": [
         "Escepticismo humanista: Actitud de duda tolerante resumida en su famosa divisa '¿Qué sé yo?' (Que sais-je?)",
         "El ensayo subjetivo: Método de exploración filosófica libre que toma el propio yo como materia prima de estudio"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Michel_de_Montaigne"
     },
     {
       "event": "Francis Bacon",
@@ -142,7 +154,8 @@
         "Empirismo: Corriente que sostiene que todo conocimiento deriva de la experiencia sensible y rechaza las ideas innatas",
         "Método inductivo: Enfoque científico de recopilación de observaciones sistemáticas para generalizar principios",
         "Teoría de los ídolos: Clasificación de los prejuicios intelectuales que distorsionan el conocimiento de la naturaleza"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Francis_Bacon"
     },
     {
       "event": "Thomas Hobbes",
@@ -153,7 +166,8 @@
         "Contrato social: Teoría que explica el origen del Estado y la sociedad mediante un pacto de sometimiento o convivencia pacífica",
         "Estado de naturaleza bélico: Condición hipotética original donde domina el miedo y la hostilidad colectiva",
         "Materialismo mecanicista: Filosofía que reduce toda la existencia a cuerpos en movimiento gobernados por leyes físicas"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Thomas_Hobbes"
     },
     {
       "event": "René Descartes",
@@ -165,7 +179,8 @@
         "Duda metódica: Procedimiento para encontrar certezas absolutas descartando sistemáticamente creencias dudosas",
         "Cogito ergo sum: Principio indudable que establece que dudar implica pensar, y pensar implica existir",
         "Dualismo cartesiano: División de la realidad en res cogitans (mente/pensamiento) y res extensa (cuerpo/materia)"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Ren%C3%A9_Descartes"
     },
     {
       "event": "Baruch Spinoza",
@@ -177,7 +192,8 @@
         "Panteísmo: Identificación absoluta de Dios con la totalidad del universo natural (Deus sive Natura)",
         "Monismo de la sustancia: Doctrina de que solo existe una única sustancia fundamental infinita en el universo",
         "Conato (Conatus): Impulso intrínseco de cada ser por perseverar en su propia existencia y aumentar su potencia"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Baruch_Spinoza"
     },
     {
       "event": "Gottfried Wilhelm Leibniz",
@@ -189,7 +205,8 @@
         "Mónadas: Átomos metafísicos espirituales, indivisibles y autónomos que componen la realidad",
         "Armonía preestablecida: Teoría de que la aparente interacción mente-cuerpo fue programada por Dios desde la creación",
         "El mejor de los mundos posibles: Teodicea que sostiene que Dios diseñó el universo con el máximo de bien posible"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Gottfried_Leibniz"
     },
     {
       "event": "John Locke",
@@ -201,7 +218,8 @@
         "Contrato social: Teoría que explica el origen del Estado y la sociedad mediante un pacto de sometimiento o convivencia pacífica",
         "Tabula rasa: Teoría epistemológica que compara la mente humana al nacer con un lienzo en blanco carente de ideas innatas",
         "Derechos naturales (vida, libertad, propiedad): Fundamentos inalienables de los individuos previos a todo gobierno"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/John_Locke"
     },
     {
       "event": "George Berkeley",
@@ -212,7 +230,8 @@
         "Empirismo: Corriente que sostiene que todo conocimiento deriva de la experiencia sensible y rechaza las ideas innatas",
         "Idealismo subjetivo: Postura ontológica que afirma que los objetos físicos solo existen como ideas en las mentes",
         "Esse est percipi: Axioma que sostiene que la existencia de las cosas sensibles radica enteramente en ser percibidas"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/George_Berkeley"
     },
     {
       "event": "Montesquieu",
@@ -223,7 +242,8 @@
         "Ilustración: Movimiento del siglo XVIII que promovía la razón, la ciencia, la libertad y el progreso contra el dogmatismo",
         "División de poderes: Teoría constitucional que separa las funciones del Estado en legislativo, ejecutivo y judicial",
         "Espíritu de las leyes: Concepto de que las leyes humanas deben adaptarse al contexto geográfico, climático y social de cada pueblo"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Montesquieu"
     },
     {
       "event": "Voltaire",
@@ -234,7 +254,8 @@
         "Ilustración: Movimiento del siglo XVIII que promovía la razón, la ciencia, la libertad y el progreso contra el dogmatismo",
         "Tolerancia civil: Defensa de la convivencia pacífica de diversas creencias bajo un estado racional",
         "Deísmo ilustrado: Creencia racional en un Dios creador regulador que no interviene activamente en el mundo"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Voltaire"
     },
     {
       "event": "David Hume",
@@ -246,7 +267,8 @@
         "Escepticismo radical: Postura crítica que sostiene la imposibilidad de alcanzar verdades metafísicas absolutas",
         "Crítica a la causalidad: Argumento de que la noción de causa y efecto es solo una asociación psicológica basada en el hábito",
         "Emotivismo moral: Postulado de que los juicios éticos se fundamentan en los sentimientos de aprobación o rechazo"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/David_Hume"
     },
     {
       "event": "Jean-Jacques Rousseau",
@@ -258,7 +280,8 @@
         "Contrato social: Teoría que explica el origen del Estado y la sociedad mediante un pacto de sometimiento o convivencia pacífica",
         "El buen salvaje: Teoría de que el ser humano en su estado de naturaleza inicial es libre, pacífico e incorrupto",
         "Voluntad general: Concepto de que el poder del cuerpo político reside en el bien común colectivo directo de la ciudadanía"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Jean-Jacques_Rousseau"
     },
     {
       "event": "Immanuel Kant",
@@ -270,7 +293,8 @@
         "Idealismo: Corriente que afirma la primacía de las ideas o de la mente del sujeto en la constitución del conocimiento",
         "Idealismo trascendental: Postulado de que espacio, tiempo y categorías lógicas son estructuras cognoscitivas del sujeto",
         "Imperativo categórico: Mandato moral incondicional y racional de obrar según máximas universales y desinteresadas"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Immanuel_Kant"
     },
     {
       "event": "Johann Gottlieb Fichte",
@@ -281,7 +305,8 @@
         "Idealismo: Corriente que afirma la primacía de las ideas o de la mente del sujeto en la constitución del conocimiento",
         "Yo absoluto: Principio espiritual primordial auto-creador que unifica toda la conciencia y la realidad",
         "Dialéctica del Yo y No-Yo: Dinámica de autoafirmación subjetiva frente a las resistencias objetivas del mundo exterior"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Johann_Gottlieb_Fichte"
     },
     {
       "event": "Georg Wilhelm Friedrich Hegel",
@@ -293,7 +318,8 @@
         "Idealismo absoluto: Postura ontológica que afirma que lo real es racional y lo racional es real",
         "Dialéctica hegeliana: Movimiento de la realidad y del pensamiento a través de tesis, antítesis y síntesis",
         "El Espíritu (Geist): Sujeto metafísico universal que se desarrolla a través de la historia y el arte"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Georg_Wilhelm_Friedrich_Hegel"
     },
     {
       "event": "Arthur Schopenhauer",
@@ -304,7 +330,8 @@
         "Voluntad de vivir: Fuerza metafísica primordial ciega e irracional que rige toda la naturaleza y los impulsos",
         "Pesimismo metafísico: Filosofía que sitúa el dolor como la esencia de la vida, mitigable solo por la ascesis y el arte",
         "El mundo como representación: Concepto de que el universo sensible es un fenómeno ordenado por el intelecto humano"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Arthur_Schopenhauer"
     },
     {
       "event": "Auguste Comte",
@@ -314,7 +341,8 @@
       "ideas": [
         "Positivismo: Filosofía que admite solo el conocimiento científico derivado de hechos observables mediante el método positivo",
         "Ley de los tres estados: Teoría del desarrollo humano que transita desde la etapa teológica y metafísica hasta la positiva/científica"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Auguste_Comte"
     },
     {
       "event": "John Stuart Mill",
@@ -324,7 +352,8 @@
       "ideas": [
         "Utilitarismo cualitativo: Teoría ética que jerarquiza los placeres intelectuales y estéticos por encima de los corporales",
         "Principio del daño: Postulado liberal que restringe el poder coercitivo de la sociedad solo para evitar perjuicios a terceros"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/John_Stuart_Mill"
     },
     {
       "event": "Søren Kierkegaard",
@@ -335,7 +364,8 @@
         "Existencialismo: Filosofía centrada en la existencia individual, la libertad, la elección personal y la angustia",
         "Salto de fe: Decisión radical y apasionada del individuo para abrazar la fe religiosa sin garantías racionales",
         "Estadios de la existencia: Fases del desarrollo del individuo que transitan por el plano estético, ético y religioso"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/S%C3%B8ren_Kierkegaard"
     },
     {
       "event": "Karl Marx",
@@ -347,7 +377,8 @@
         "Plusvalía y alienación: Concepto sobre la retención no retribuida de valor laboral y el extrañamiento del trabajador con su obra",
         "Lucha de clases: Motor histórico derivado de la confrontación antagónica entre explotadores y explotados",
         "Socialismo científico: Doctrina revolucionaria orientada al derrocamiento del capitalismo y el establecimiento de una sociedad sin clases"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Karl_Marx"
     },
     {
       "event": "Friedrich Nietzsche",
@@ -359,7 +390,8 @@
         "Muerte de Dios: Proclamación del fin de las verdades teológicas trascendentes y de la metafísica tradicional",
         "Superhombre (Übermensch): Concepto de un individuo libre que crea sus propios valores corporales y terrenales",
         "Voluntad de poder: Fuerza cósmica vitalista e impulso creador que impulsa la superación constante del ser"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Friedrich_Nietzsche"
     },
     {
       "event": "Gottlob Frege",
@@ -370,7 +402,8 @@
         "Filosofía analítica: Enfoque centrado en el análisis lógico del lenguaje para esclarecer o disolver problemas filosóficos",
         "Sentido y referencia: Distinción entre el significado cognitivo (sentido) y el objeto real designado (referencia)",
         "Logicismo: Intento epistemológico de fundamentar las matemáticas reduciéndolas a axiomas puramente lógicos"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Gottlob_Frege"
     },
     {
       "event": "Edmund Husserl",
@@ -380,7 +413,8 @@
       "ideas": [
         "Epojé (reducción): Método de suspensión de la tesis natural del mundo exterior para describir la conciencia pura",
         "Intencionalidad de la conciencia: Doctrina que afirma que toda conciencia es siempre conciencia dirigida a un objeto"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Edmund_Husserl"
     },
     {
       "event": "Bertrand Russell",
@@ -391,7 +425,8 @@
         "Filosofía analítica: Enfoque centrado en el análisis lógico del lenguaje para esclarecer o disolver problemas filosóficos",
         "Logicismo matemático: Proyecto de fundamentación que deduce los conceptos matemáticos a partir de principios lógicos puros",
         "Paradoja de Russell: Contradicción lógica hallada en la teoría intuitiva de conjuntos sobre el conjunto de conjuntos que no se contienen a sí mismos"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Bertrand_Russell"
     },
     {
       "event": "Ludwig Wittgenstein",
@@ -403,7 +438,8 @@
         "Juegos del lenguaje: Concepto del segundo Wittgenstein que define al lenguaje como una actividad social regida por reglas dinámicas",
         "Teoría pictórica del lenguaje: Enfoque del primer Wittgenstein que concibe a las proposiciones lógicas como retratos figurativos del mundo real",
         "Significado como uso: Definición pragmática de que el sentido de una palabra reside enteramente en el uso que se le da en la práctica"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Ludwig_Wittgenstein"
     },
     {
       "event": "Martin Heidegger",
@@ -414,7 +450,8 @@
         "Existencialismo: Filosofía centrada en la existencia individual, la libertad, la elección personal y la angustia",
         "Ser-en-el-mundo (Dasein): Caracterización existencial del ser humano arrojado e inmerso en las tramas de la realidad práctica",
         "Olvido del ser: Crítica a la tradición metafísica occidental por centrarse en los entes olvidando la ontología del propio Ser"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Martin_Heidegger"
     },
     {
       "event": "Jean-Paul Sartre",
@@ -426,7 +463,8 @@
         "Existencialismo ateo: Postura que afirma la ausencia de un creador, recayendo en el hombre la responsabilidad de construir su sentido",
         "La existencia precede a la esencia: Axioma existencial según el cual el ser humano primero existe y solo después se define mediante elecciones libres",
         "Mala fe: Actitud inauténtica de autoengaño por la cual el individuo finge no ser libre para rehuir de su propia responsabilidad"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Jean-Paul_Sartre"
     },
     {
       "event": "John Rawls",
@@ -437,7 +475,8 @@
         "Velo de la ignorancia: Experimento mental que despoja a los legisladores de su identidad para asegurar principios de justicia imparciales",
         "Posición original: Situación hipotética de equidad inicial en la que representantes eligen principios políticos de justicia",
         "Justicia como equidad: Doctrina que prioriza el acceso igualitario a libertades fundamentales mitigando las desigualdades sociales fortuitas"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/John_Rawls"
     },
     {
       "event": "Michel Foucault",
@@ -448,7 +487,8 @@
         "Poder-Saber: Teoría que afirma que el saber y el poder están directamente entrelazados; no hay saber neutro sin relación de fuerza",
         "Biopolítica: Ejercicio del poder moderno centrado en la administración, control y regulación biológica de los cuerpos y poblaciones",
         "Sociedad disciplinaria: Formación histórica que modela las conductas de los individuos mediante técnicas de vigilancia jerárquica en instituciones"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Michel_Foucault"
     },
     {
       "event": "Jacques Derrida",
@@ -458,7 +498,8 @@
       "ideas": [
         "Deconstrucción: Método de análisis de textos que desmonta oposiciones binarias tradicionales revelando inestabilidades conceptuales",
         "Logocentrismo: Crítica a la metafísica occidental que privilegia la voz, la presencia directa y el sentido unívoco sobre la escritura escrita"
-      ]
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Jacques_Derrida"
     }
   ]
 }

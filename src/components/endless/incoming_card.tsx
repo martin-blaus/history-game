@@ -1,5 +1,5 @@
 import type { HistoryEvent } from "../../../data/index";
-import { formatYear } from "../../utils";
+import { formatYear, onImgError } from "../../utils";
 import type { Phase } from "./types";
 
 export function EndlessIncomingCard({
@@ -44,10 +44,7 @@ export function EndlessIncomingCard({
           alt={incoming.event}
           className="w-full h-32 object-cover block shrink-0"
           draggable={false}
-          onError={(e) => {
-            e.currentTarget.onerror = null;
-            e.currentTarget.src = "/placeholder.png";
-          }}
+          onError={onImgError}
         />
       ) : (
         <div className="w-full h-24 bg-bg-secondary flex items-center justify-center shrink-0">

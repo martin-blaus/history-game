@@ -6,177 +6,207 @@
     {
       "event": "Invención de la rueda",
       "year": -3500,
-      "context": "Surgida en Mesopotamia, la rueda revolucionó el transporte y la cerámica. Es considerada uno de los inventos más transformadores de la historia humana."
+      "context": "Surgida en Mesopotamia, la rueda revolucionó el transporte y la cerámica. Es considerada uno de los inventos más transformadores de la historia humana.",
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Rueda"
     },
     {
       "event": "Construcción de la Gran Pirámide de Giza",
       "year": -2560,
-      "context": "Encargada por el faraón Keops, fue la estructura más alta del mundo durante 3.800 años. Se estima que participaron más de 20.000 trabajadores en su construcción."
+      "context": "Encargada por el faraón Keops, fue la estructura más alta del mundo durante 3.800 años. Se estima que participaron más de 20.000 trabajadores en su construcción.",
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Gran_Pir%C3%A1mide_de_Guiza"
     },
     {
       "event": "Primeros Juegos Olímpicos en la Antigua Grecia",
       "year": -776,
       "context": "Celebrados en Olimpia en honor a Zeus, los atletas griegos competían en estadio y carreras de carros. Los juegos se realizaron ininterrumpidamente por más de 1.000 años.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/The_Discobolus_Lancellotti%2C_Roman_copy_of_a_5th_century_BC_Greek_original_by_Myron%2C_Hadrianic_period%2C_Palazzo_Massimo_alle_Terme_%2811398129933%29.jpg/500px-The_Discobolus_Lancellotti%2C_Roman_copy_of_a_5th_century_BC_Greek_original_by_Myron%2C_Hadrianic_period%2C_Palazzo_Massimo_alle_Terme_%2811398129933%29.jpg"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/The_Discobolus_Lancellotti%2C_Roman_copy_of_a_5th_century_BC_Greek_original_by_Myron%2C_Hadrianic_period%2C_Palazzo_Massimo_alle_Terme_%2811398129933%29.jpg/500px-The_Discobolus_Lancellotti%2C_Roman_copy_of_a_5th_century_BC_Greek_original_by_Myron%2C_Hadrianic_period%2C_Palazzo_Massimo_alle_Terme_%2811398129933%29.jpg",
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Juegos_Ol%C3%ADmpicos_en_la_Antig%C3%BCedad"
     },
     {
       "event": "Julio César es asesinado en Roma",
       "year": -44,
       "context": "César fue apuñalado 23 veces por un grupo de senadores liderados por Bruto y Casio en los Idus de Marzo. Su muerte desencadenó las guerras civiles que acabaron con la República romana.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Retrato_de_Julio_C%C3%A9sar_%2826724093101%29_%28cropped%29.jpg/500px-Retrato_de_Julio_C%C3%A9sar_%2826724093101%29_%28cropped%29.jpg"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Retrato_de_Julio_C%C3%A9sar_%2826724093101%29_%28cropped%29.jpg/500px-Retrato_de_Julio_C%C3%A9sar_%2826724093101%29_%28cropped%29.jpg",
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Julio_C%C3%A9sar"
     },
     {
       "event": "Nacimiento de Jesucristo",
       "year": 1,
       "context": "La fecha exacta es debatida por los historiadores; el calendario gregoriano establece el año 1 d.C. como punto de referencia. El cristianismo que surgió de su enseñanza se convirtió en la religión más extendida del mundo.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Adoration_of_the_sheperds_-_Matthias_Stomer.jpg/500px-Adoration_of_the_sheperds_-_Matthias_Stomer.jpg"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Adoration_of_the_sheperds_-_Matthias_Stomer.jpg/500px-Adoration_of_the_sheperds_-_Matthias_Stomer.jpg",
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Natividad_de_Jes%C3%BAs"
     },
     {
       "event": "Caída del Imperio Romano de Occidente",
       "year": 476,
       "context": "El último emperador, Rómulo Augústulo, fue depuesto por el caudillo germano Odoacro. Se considera una de las fechas convencionales del fin de la Antigüedad y el inicio de la Edad Media.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Roman_Republic_Empire_map.gif/500px-Roman_Republic_Empire_map.gif"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Roman_Republic_Empire_map.gif/500px-Roman_Republic_Empire_map.gif",
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Ca%C3%ADda_del_Imperio_romano_de_Occidente"
     },
     {
       "event": "Hégira de Mahoma — inicio del Islam",
       "year": 622,
-      "context": "La huida de Mahoma de La Meca a Medina marca el inicio del calendario islámico. Este evento unificó a las tribus árabes y lanzó la expansión del Islam por Asia, África y Europa."
+      "context": "La huida de Mahoma de La Meca a Medina marca el inicio del calendario islámico. Este evento unificó a las tribus árabes y lanzó la expansión del Islam por Asia, África y Europa.",
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/H%C3%A9gira"
     },
     {
       "event": "Primera Cruzada lanzada",
       "year": 1096,
       "context": "El papa Urbano II convocó a los caballeros europeos a reconquistar Jerusalén del control musulmán. Las Cruzadas transformaron el comercio, la cultura y las relaciones entre Oriente y Occidente durante dos siglos.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/SiegeofAntioch.jpeg/500px-SiegeofAntioch.jpeg"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/SiegeofAntioch.jpeg/500px-SiegeofAntioch.jpeg",
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Cruzadas"
     },
     {
       "event": "Genghis Khan unifica a los mongoles",
       "year": 1206,
       "context": "Tras décadas de guerras tribales, Temujin fue proclamado Gran Khan y fundó el Imperio Mongol. En pocas décadas, sus sucesores crearían el mayor imperio continuo de la historia.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/YuanEmperorAlbumGenghisPortrait.jpg/500px-YuanEmperorAlbumGenghisPortrait.jpg"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/YuanEmperorAlbumGenghisPortrait.jpg/500px-YuanEmperorAlbumGenghisPortrait.jpg",
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Gengis_Kan"
     },
     {
       "event": "La Peste Negra llega a Europa",
       "year": 1347,
       "context": "La pandemia de peste bubónica mató a entre un tercio y la mitad de la población europea en solo cuatro años. Transformó radicalmente la economía, la religión y la estructura social del continente.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Doutielt3.jpg/500px-Doutielt3.jpg"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Doutielt3.jpg/500px-Doutielt3.jpg",
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Peste_negra"
     },
     {
       "event": "Gutenberg imprime la Biblia",
       "year": 1455,
-      "context": "La imprenta de tipos móviles de Gutenberg hizo posible la reproducción masiva de libros por primera vez. Democratizó el conocimiento y fue un factor clave de la Reforma Protestante y el Renacimiento."
+      "context": "La imprenta de tipos móviles de Gutenberg hizo posible la reproducción masiva de libros por primera vez. Democratizó el conocimiento y fue un factor clave de la Reforma Protestante y el Renacimiento.",
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Biblia_olivetana"
     },
     {
       "event": "Colón llega a las Américas",
       "year": 1492,
       "context": "El 12 de octubre, las carabelas de Colón llegaron a una isla del Caribe que los nativos llamaban Guanahaní. El encuentro entre el Viejo y el Nuevo Mundo transformó irreversiblemente la historia de la humanidad.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Desembarco_de_Col%C3%B3n_de_Di%C3%B3scoro_Puebla.jpg/500px-Desembarco_de_Col%C3%B3n_de_Di%C3%B3scoro_Puebla.jpg"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Desembarco_de_Col%C3%B3n_de_Di%C3%B3scoro_Puebla.jpg/500px-Desembarco_de_Col%C3%B3n_de_Di%C3%B3scoro_Puebla.jpg",
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Descubrimiento_de_Am%C3%A9rica"
     },
     {
       "event": "Construcción del Partenón en Atenas",
       "year": -447,
       "context": "El templo dedicado a la diosa Atenea fue construido bajo el gobierno de Pericles en la Acrópolis. Es el monumento más representativo de la civilización griega clásica y del orden dórico.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/The_Parthenon_in_Athens.jpg/500px-The_Parthenon_in_Athens.jpg"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/The_Parthenon_in_Athens.jpg/500px-The_Parthenon_in_Athens.jpg",
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Parten%C3%B3n"
     },
     {
       "event": "Alejandro Magno conquista Persia",
       "year": -330,
-      "context": "A los 26 años, Alejandro derrotó al Gran Rey Darío III en Gaugamela y tomó Persépolis. Su campaña extendió la cultura helenística desde el Mediterráneo hasta la India."
+      "context": "A los 26 años, Alejandro derrotó al Gran Rey Darío III en Gaugamela y tomó Persépolis. Su campaña extendió la cultura helenística desde el Mediterráneo hasta la India.",
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/An%C3%A1basis_de_Alejandro_Magno"
     },
     {
       "event": "Marco Polo viaja a China",
       "year": 1271,
       "context": "El mercader veneciano pasó 17 años en la corte del Kublai Khan. Su libro de viajes abrió el interés europeo por Asia y fue una de las inspiraciones de Cristóbal Colón.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Marco_Polo%2C_Il_Milione%2C_Chapter_CXXIII_and_CXXIV_Cropped.jpg/500px-Marco_Polo%2C_Il_Milione%2C_Chapter_CXXIII_and_CXXIV_Cropped.jpg"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Marco_Polo%2C_Il_Milione%2C_Chapter_CXXIII_and_CXXIV_Cropped.jpg/500px-Marco_Polo%2C_Il_Milione%2C_Chapter_CXXIII_and_CXXIV_Cropped.jpg",
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Los_viajes_de_Marco_Polo"
     },
     {
       "event": "Leonardo da Vinci pinta la Mona Lisa",
       "year": 1503,
       "context": "La misteriosa sonrisa de Lisa Gherardini es hoy la pintura más famosa del mundo. Leonardo tardó varios años en completarla y nunca la entregó a quien la encargó.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Leonardo_da_Vinci_-_Mona_Lisa_%28Louvre%2C_Paris%29.jpg/500px-Leonardo_da_Vinci_-_Mona_Lisa_%28Louvre%2C_Paris%29.jpg"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Leonardo_da_Vinci_-_Mona_Lisa_%28Louvre%2C_Paris%29.jpg/500px-Leonardo_da_Vinci_-_Mona_Lisa_%28Louvre%2C_Paris%29.jpg",
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/La_Gioconda"
     },
     {
       "event": "Darwin publica El origen de las especies",
       "year": 1859,
       "context": "La teoría de la evolución por selección natural revolucionó la biología y desafió la visión religiosa del origen de la vida. Es el libro científico más influyente de la historia.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Origin_of_Species_title_page.jpg/500px-Origin_of_Species_title_page.jpg"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Origin_of_Species_title_page.jpg/500px-Origin_of_Species_title_page.jpg",
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/El_origen_de_las_especies"
     },
     {
       "event": "Alunizaje — Apolo 11",
       "year": 1969,
       "context": "Neil Armstrong y Buzz Aldrin fueron los primeros humanos en pisar la Luna el 20 de julio. La misión culminó la carrera espacial entre EE.UU. y la URSS, iniciada con el Sputnik en 1957.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Apollo_11_Crew_During_Training_Exercise_-_GPN-2002-000032.jpg/500px-Apollo_11_Crew_During_Training_Exercise_-_GPN-2002-000032.jpg"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Apollo_11_Crew_During_Training_Exercise_-_GPN-2002-000032.jpg/500px-Apollo_11_Crew_During_Training_Exercise_-_GPN-2002-000032.jpg",
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Teor%C3%ADas_de_la_conspiraci%C3%B3n_de_los_alunizajes_del_Programa_Apolo"
     },
     {
       "event": "Primer uso de la pólvora en la guerra",
       "year": 904,
       "context": "Los chinos usaron mezclas incendiarias y proyectiles de pólvora durante las guerras del período de las Cinco Dinastías. La pólvora llegaría a Europa en el siglo XIII y transformó la guerra medieval.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Gunpowder1.png/500px-Gunpowder1.png"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Gunpowder1.png/500px-Gunpowder1.png",
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/P%C3%B3lvora"
     },
     {
       "event": "Imperio Azteca fundado",
       "year": 1428,
       "context": "La Triple Alianza entre Tenochtitlán, Texcoco y Tlacopan dominó el centro de México. En su apogeo, el Imperio Azteca controlaba unos cinco millones de habitantes.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Aztec_Triple_Alliance.png/500px-Aztec_Triple_Alliance.png"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Aztec_Triple_Alliance.png/500px-Aztec_Triple_Alliance.png",
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Imperio_azteca"
     },
     {
       "event": "Galileo inventa el telescopio astronómico",
       "year": 1609,
       "context": "Galileo mejoró el telescopio y lo dirigió al cielo, descubriendo los satélites de Júpiter y confirmando el heliocentrismo. Fue juzgado por la Inquisición y obligado a retractarse de sus hallazgos.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Telescope.jpg/500px-Telescope.jpg"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Telescope.jpg/500px-Telescope.jpg",
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Telescopio"
     },
     {
       "event": "Napoleón es derrotado en Waterloo",
       "year": 1815,
       "context": "La coalición de Wellington y Blücher aplastó al ejército francés en Bélgica. Napoleón fue exiliado a Santa Elena, donde murió en 1821, cerrando una era de guerras que había redibujado Europa.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Battle_of_Waterloo_1815.PNG/500px-Battle_of_Waterloo_1815.PNG"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Battle_of_Waterloo_1815.PNG/500px-Battle_of_Waterloo_1815.PNG",
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Batalla_de_Waterloo"
     },
     {
       "event": "Termina la Primera Guerra Mundial",
       "year": 1918,
       "context": "El armisticio del 11 de noviembre puso fin a cuatro años de guerra que causaron 20 millones de muertes. El Tratado de Versalles impuso condiciones humillantes a Alemania que sembraron las semillas de la Segunda Guerra.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/PrimeraGuerraMundial-collague.jpg/500px-PrimeraGuerraMundial-collague.jpg"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/PrimeraGuerraMundial-collague.jpg/500px-PrimeraGuerraMundial-collague.jpg",
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Primera_Guerra_Mundial"
     },
     {
       "event": "Termina la Segunda Guerra Mundial",
       "year": 1945,
       "context": "La rendición de Japón en septiembre puso fin al conflicto más mortífero de la historia, con más de 70 millones de muertos. Llevó a la creación de la ONU y redefinió el orden mundial con EE.UU. y la URSS como superpotencias.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Map_of_participants_in_World_War_II.svg/500px-Map_of_participants_in_World_War_II.svg.png"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Map_of_participants_in_World_War_II.svg/500px-Map_of_participants_in_World_War_II.svg.png",
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Aliados_(Segunda_Guerra_Mundial)"
     },
     {
       "event": "Construcción de Stonehenge",
       "year": -3000,
       "context": "El conjunto megalítico en Inglaterra fue construido por fases durante 1.500 años. Su función exacta sigue siendo debatida, aunque está alineado con los solsticios y se cree tuvo uso ceremonial o astronómico.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/United_Kingdom_England_adm_location_map.svg/500px-United_Kingdom_England_adm_location_map.svg.png"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/United_Kingdom_England_adm_location_map.svg/500px-United_Kingdom_England_adm_location_map.svg.png",
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Stonehenge"
     },
     {
       "event": "Sócrates es ejecutado en Atenas",
       "year": -399,
       "context": "El filósofo fue condenado a muerte por impiedad y corrupción de la juventud, y bebió cicuta. Sus ideas, recogidas por Platón, fundaron la filosofía occidental y el método del diálogo como herramienta del pensamiento.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Socrate_du_Louvre.jpg/500px-Socrate_du_Louvre.jpg"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Socrate_du_Louvre.jpg/500px-Socrate_du_Louvre.jpg",
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/S%C3%B3crates"
     },
     {
       "event": "El Imperio Bizantino cae ante los otomanos",
       "year": 1453,
       "context": "Mehmed II tomó Constantinopla con artillería moderna, poniendo fin a mil años del Imperio Romano de Oriente. Los eruditos griegos que huyeron a Europa contribuyeron al renacimiento del pensamiento clásico.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Benjamin-Constant-The_Entry_of_Mahomet_II_into_Constantinople-1876.jpg/500px-Benjamin-Constant-The_Entry_of_Mahomet_II_into_Constantinople-1876.jpg"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Benjamin-Constant-The_Entry_of_Mahomet_II_into_Constantinople-1876.jpg/500px-Benjamin-Constant-The_Entry_of_Mahomet_II_into_Constantinople-1876.jpg",
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Guerras_turco-bizantinas"
     },
     {
       "event": "Isaac Newton formula las leyes del movimiento",
       "year": 1687,
       "context": "En sus Principia Mathematica, Newton unificó la mecánica celeste y terrestre con tres leyes y la ley de gravitación universal. Es la obra científica más influyente hasta la relatividad de Einstein.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/5/5d/Newtons_laws_in_latin.jpg"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/5/5d/Newtons_laws_in_latin.jpg",
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Leyes_de_Newton"
     },
     {
       "event": "Primer vuelo a motor por los hermanos Wright",
       "year": 1903,
       "context": "En Kitty Hawk, Carolina del Norte, Orville voló 36 metros en 12 segundos. En menos de 70 años, el ser humano llegaría a la Luna gracias a la aviación que nació ese día.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Wilbur_Wright.jpg/500px-Wilbur_Wright.jpg"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Wilbur_Wright.jpg/500px-Wilbur_Wright.jpg",
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Hermanos_Wright"
     },
     {
       "event": "Cae el Muro de Berlín",
       "year": 1989,
       "context": "El 9 de noviembre los alemanes comenzaron a derribar el muro que dividía la ciudad desde 1961. Fue el símbolo del fin de la Guerra Fría y llevó a la reunificación de Alemania en 1990.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/West_and_East_Germans_at_the_Brandenburg_Gate_in_1989.jpg/500px-West_and_East_Germans_at_the_Brandenburg_Gate_in_1989.jpg"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/West_and_East_Germans_at_the_Brandenburg_Gate_in_1989.jpg/500px-West_and_East_Germans_at_the_Brandenburg_Gate_in_1989.jpg",
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Ca%C3%ADda_del_Muro_de_Berl%C3%ADn"
     }
   ]
 }
