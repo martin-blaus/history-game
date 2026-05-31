@@ -79,9 +79,9 @@ body {
 }
 .score-pop { animation: scorePop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); }
 
-/* Wikipedia bottom sheet — slides up from off-screen */
-@keyframes slideUp {
-  from { transform: translateY(100%); }
-  to   { transform: translateY(0); }
+/* Wikipedia side panel — slides in from the right */
+@keyframes slideInRight {
+  from { transform: translateX(100%); }
+  to   { transform: translateX(0); }
 }
-.wiki-sheet { animation: slideUp 0.28s cubic-bezier(0.32, 0.72, 0, 1) forwards; }
+.wiki-panel { animation: slideInRight 0.28s cubic-bezier(0.32, 0.72, 0, 1) forwards; }

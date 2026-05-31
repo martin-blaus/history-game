@@ -23,6 +23,7 @@ export function WikipediaSheet({
   const [revealed, setRevealed] = useState(false);
 
   useEffect(() => {
+    setRevealed(false);
     if (!event.wikipediaUrl) {
       setSummary(null);
       return;
@@ -56,51 +57,74 @@ export function WikipediaSheet({
       ? (summary.thumbnail?.source ?? event.image)
       : event.image;
 
+  const extract =
+    summary !== "loading" && summary !== null
+      ? summary.extract
+      : null;
+
+  // Fall back to event context (capped at 1000 chars) when Wikipedia has no extract
+  const bodyText =
+    extract ||
+    (event.context
+      ? event.context.length > 1000
+        ? event.context.slice(0, 1000) + "…"
+        : event.context
+      : null);
+
+  const isContextFallback = !extract && !!bodyText;
+
   return (
     <>
-      <div className="fixed inset-0 bg-black/60 z-40" onClick={onClose} />
+      <div className="fixed inset-0 bg-black/50 z-40" onClick={onClose} />
 
-      <div className="wiki-sheet fixed bottom-0 left-0 right-0 z-50 bg-bg-card rounded-t-2xl max-h-[65vh] flex flex-col border-t border-border shadow-2xl">
-        <div className="flex justify-center pt-3 pb-1 shrink-0">
-          <div className="w-10 h-1 rounded-full bg-border" />
-        </div>
-
-        <div className="flex items-start justify-between px-5 pt-2 pb-3 shrink-0">
-          <h3 className="text-base font-bold text-text-primary leading-snug flex-1 mr-3 m-0">
-            {event.event}
-          </h3>
+      <div className="wiki-panel fixed top-0 right-0 bottom-0 w-[360px] max-w-[92vw] z-50 bg-bg-card border-l border-border shadow-2xl flex flex-col">
+        {/* Header: small thumbnail + title + close */}
+        <div className="flex items-start gap-3 p-4 pb-3 shrink-0 border-b border-border">
+          {thumbnail && (
+            <img
+              src={thumbnail}
+              alt={event.event}
+              className="w-16 h-16 object-cover rounded-lg shrink-0"
+            />
+          )}
+          <div className="flex-1 min-w-0">
+            <p className="text-[10px] font-semibold text-ar-blue tracking-widest uppercase m-0 mb-1">
+              Wikipedia
+            </p>
+            <h3 className="text-sm font-bold text-text-primary leading-snug m-0 line-clamp-4">
+              {event.event}
+            </h3>
+          </div>
           <button
             onClick={onClose}
-            className="text-text-tertiary hover:text-text-primary text-xl leading-none bg-transparent border-none cursor-pointer shrink-0 p-0"
+            className="text-text-tertiary hover:text-text-primary text-lg leading-none bg-transparent border-none cursor-pointer shrink-0 p-0 ml-1"
           >
             ✕
           </button>
         </div>
 
-        <div className="overflow-y-auto flex-1 px-5 pb-6">
+        {/* Body */}
+        <div className="overflow-y-auto flex-1 p-4 flex flex-col gap-4">
           {summary === "loading" ? (
             <div className="flex justify-center py-10">
               <div className="w-6 h-6 border-2 border-ar-blue border-t-transparent rounded-full animate-spin" />
             </div>
           ) : (
             <>
-              {thumbnail && (
-                <img
-                  src={thumbnail}
-                  alt={event.event}
-                  className="w-full h-40 object-cover rounded-xl mb-4"
-                />
-              )}
-
-              {summary?.extract ? (
-                <div className="relative mb-4">
+              {bodyText ? (
+                <div className="relative">
+                  {isContextFallback && (
+                    <p className="text-[10px] text-text-tertiary uppercase tracking-widest mb-2 m-0">
+                      Descripción del evento
+                    </p>
+                  )}
                   <div
                     className={`text-sm text-text-secondary leading-relaxed transition-[filter] duration-300 ${
                       revealed ? "" : "blur-[5px] select-none cursor-pointer"
                     }`}
                     onClick={() => !revealed && setRevealed(true)}
                   >
-                    {summary.extract}
+                    {bodyText}
                   </div>
                   {!revealed && (
                     <div
@@ -114,8 +138,8 @@ export function WikipediaSheet({
                   )}
                 </div>
               ) : (
-                <p className="text-sm text-text-tertiary mb-4">
-                  No se encontró un resumen disponible.
+                <p className="text-sm text-text-tertiary">
+                  No se encontró información disponible.
                 </p>
               )}
 
@@ -124,7 +148,7 @@ export function WikipediaSheet({
                   href={event.wikipediaUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-ar-blue/10 border border-ar-blue/30 text-ar-blue text-sm font-semibold hover:bg-ar-blue/20 transition-colors no-underline"
+                  className="mt-auto flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-ar-blue/10 border border-ar-blue/30 text-ar-blue text-sm font-semibold hover:bg-ar-blue/20 transition-colors no-underline"
                 >
                   Abrir en Wikipedia ↗
                 </a>

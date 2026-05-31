@@ -1,7 +1,7 @@
 import { Fragment, useState, useRef, useEffect, useLayoutEffect } from "react";
 import confetti from "canvas-confetti";
 import type { Deck, HistoryEvent } from "../../data/index";
-import { selectPuzzle, recordResult, type AppStats } from "../storage";
+import { selectPuzzle, recordResult, recordDeckResult, type AppStats } from "../storage";
 import { Card, InsertionIndicator, statusEmoji } from "./sort_card";
 import { WikipediaSheet } from "./WikipediaSheet";
 
@@ -14,11 +14,10 @@ function shuffle<T>(arr: T[]): T[] {
   return a;
 }
 
-function buildShareText(statuses: string[], deckName: string): string {
-  const emojis = statuses.map(statusEmoji).join("");
-  return `${deckName}\n${emojis}\n${
-    statuses.filter((s) => s === "correct").length
-  }/6 correctos\nhistoria-ar.app`;
+function buildShareText(history: ("correct" | "wrong")[][], deckName: string, won: boolean): string {
+  const grid = history.map(row => row.map(statusEmoji).join("")).join("\n");
+  const tries = won ? `${history.length}/5` : "X/5";
+  return `${deckName} (${tries})\n\n${grid}\n\nhttps://history-game-7a8e2.web.app`;
 }
 
 export function SortGame({
@@ -44,6 +43,7 @@ export function SortGame({
   const [revealedCount, setRevealedCount] = useState(0);
   const [hintCardId, setHintCardId] = useState<string | null>(null);
   const [attemptsLeft, setAttemptsLeft] = useState(5);
+  const [attemptsHistory, setAttemptsHistory] = useState<("correct" | "wrong")[][]>([]);
   const [puzzleNum, setPuzzleNum] = useState(1);
   const [copied, setCopied] = useState(false);
   const [wikiEvent, setWikiEvent] = useState<HistoryEvent | null>(null);
@@ -74,6 +74,7 @@ export function SortGame({
     setRevealedCount(0);
     setHintCardId(null);
     setAttemptsLeft(5);
+    setAttemptsHistory([]);
   }
 
   function nextPuzzle() {
@@ -222,9 +223,11 @@ export function SortGame({
 
     const allCorrect = s.every((x) => x === "correct");
     const newAttemptsLeft = attemptsLeft - 1;
+    const attemptsUsed = 5 - newAttemptsLeft;
 
     setStatuses(s);
     setAttemptsLeft(newAttemptsLeft);
+    setAttemptsHistory((prev) => [...prev, s]);
 
     if (allCorrect || newAttemptsLeft === 0) {
       setSubmitted(true);
@@ -247,9 +250,15 @@ export function SortGame({
               100
             );
           }
-          const newStats = recordResult(
+          let newStats = recordResult(
             stats,
             cards.map((c, i) => ({ event: c, status: s[i] }))
+          );
+          newStats = recordDeckResult(
+            newStats,
+            deck.id,
+            allCorrect,
+            attemptsUsed
           );
           onUpdateStats(newStats);
         }
@@ -267,7 +276,8 @@ export function SortGame({
   );
 
   function share() {
-    const text = buildShareText(finalStatuses, deck.name);
+    const allCorrect = finalStatuses.every((x) => x === "correct");
+    const text = buildShareText(attemptsHistory, deck.name, allCorrect);
     navigator.clipboard.writeText(text).then(() => {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
@@ -391,29 +401,97 @@ export function SortGame({
             </div>
           </div>
         ) : (
-          <div className="text-center bg-bg-card border border-border rounded-2xl p-6 max-w-sm mx-auto">
-            <div className="text-[36px] font-extrabold text-ar-gold mb-1">
-              {finalStatuses.filter((s) => s === "correct").length}/6
-            </div>
-            <div className="text-sm text-text-secondary mb-1">correctos</div>
-            {hintCardId && (
-              <div className="text-xs text-ar-gold mb-3">★ con pista</div>
+          <div className="w-full max-w-lg mx-auto">
+            {/* Solve / Failure Banner */}
+            {finalStatuses.every((s) => s === "correct") ? (
+              <div className="bg-[#0f2a1a]/80 border border-success/30 text-success px-6 py-4 rounded-xl text-center font-bold text-base mb-6 shadow-lg shadow-success/5">
+                🏆 ¡Felicitaciones! Resuelto en {5 - attemptsLeft} {5 - attemptsLeft === 1 ? "intento" : "intentos"}
+              </div>
+            ) : (
+              <div className="bg-[#2a0f0f]/80 border border-danger/30 text-danger px-6 py-4 rounded-xl text-center font-bold text-base mb-6 shadow-lg shadow-danger/5">
+                💀 ¡Fin de la partida! No te quedan intentos
+              </div>
             )}
-            <div className="text-[26px] tracking-[6px] mb-6">
-              {finalStatuses.map(statusEmoji)}
+
+            {/* Statistics Dashboard Card */}
+            {(() => {
+              const deckStats = stats.decks?.[deck.id] ?? {
+                played: 0,
+                won: 0,
+                streak: 0,
+                maxStreak: 0,
+                attemptsDistribution: [0, 0, 0, 0, 0],
+              };
+              const winRate = deckStats.played > 0 ? Math.round((deckStats.won / deckStats.played) * 100) : 0;
+              let totalAttempts = 0;
+              for (let i = 0; i < deckStats.attemptsDistribution.length; i++) {
+                totalAttempts += deckStats.attemptsDistribution[i] * (i + 1);
+              }
+              const avgTries = deckStats.won > 0 ? totalAttempts / deckStats.won : 0;
+
+              return (
+                <div className="grid grid-cols-4 bg-bg-card border border-border rounded-xl divide-x divide-border overflow-hidden py-4 text-center my-6 shadow-sm">
+                  <div>
+                    <div className="text-xl font-black text-text-primary">{deckStats.played}</div>
+                    <div className="text-[9px] text-text-secondary uppercase tracking-wider font-bold mt-1">Partidas</div>
+                  </div>
+                  <div>
+                    <div className="text-xl font-black text-text-primary">{winRate}%</div>
+                    <div className="text-[9px] text-text-secondary uppercase tracking-wider font-bold mt-1">Victorias</div>
+                  </div>
+                  <div>
+                    <div className="text-xl font-black text-text-primary">{deckStats.streak}</div>
+                    <div className="text-[9px] text-text-secondary uppercase tracking-wider font-bold mt-1">Racha</div>
+                  </div>
+                  <div>
+                    <div className="text-xl font-black text-text-primary">{avgTries > 0 ? avgTries.toFixed(1) : "-"}</div>
+                    <div className="text-[9px] text-text-secondary uppercase tracking-wider font-bold mt-1">Prom. Intentos</div>
+                  </div>
+                </div>
+              );
+            })()}
+
+            {/* Attempts History Grid */}
+            <div className="text-center my-6">
+              <h3 className="text-xs text-text-secondary uppercase tracking-widest font-semibold mb-3">Tus Resultados</h3>
+              <div className="flex flex-col gap-1.5 justify-center items-center">
+                {attemptsHistory.map((attempt, attemptIdx) => (
+                  <div key={attemptIdx} className="flex gap-1.5">
+                    {attempt.map((stat, cardIdx) => (
+                      <div
+                        key={cardIdx}
+                        className={`w-6 h-6 rounded-md shadow-sm transition-all duration-300 ${
+                          stat === "correct"
+                            ? "bg-success border border-success/30"
+                            : "bg-danger border border-danger/30"
+                        }`}
+                      />
+                    ))}
+                  </div>
+                ))}
+              </div>
             </div>
-            <div className="flex gap-2 justify-center flex-wrap">
+
+            {/* Hint Badge (if used) */}
+            {hintCardId && (
+              <div className="text-xs text-ar-gold text-center mb-4">★ Resuelto con ayuda de pista</div>
+            )}
+
+            {/* Action Buttons */}
+            <div className="flex gap-3 justify-center mt-6 w-full max-w-sm mx-auto">
               <button
                 onClick={share}
-                className={`py-2.5 px-5 rounded-[10px] border border-border bg-bg-secondary text-sm font-medium cursor-pointer transition-colors ${
-                  copied ? "text-success" : "text-text-primary"
+                className={`flex-1 py-3 px-4 rounded-xl border text-sm font-semibold cursor-pointer transition-colors ${
+                  copied
+                    ? "border-success text-success bg-success/5"
+                    : "border-border bg-bg-secondary text-text-primary hover:bg-bg-card hover:border-text-secondary"
                 }`}
               >
                 {copied ? "¡Copiado!" : "Compartir resultado"}
               </button>
               <button
                 onClick={nextPuzzle}
-                className="py-2.5 px-5 rounded-[10px] border-none bg-ar-blue hover:bg-ar-blue-dark text-white text-sm font-semibold cursor-pointer transition-colors"
+                className="flex-1 py-3 px-4 rounded-xl border-none bg-ar-blue hover:bg-ar-blue-dark text-white text-sm font-semibold cursor-pointer transition-colors shadow-lg shadow-ar-blue/20"
               >
                 Siguiente →
               </button>

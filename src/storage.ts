@@ -8,16 +8,29 @@ export interface EventStat {
   wrong: number;
 }
 
+export interface DeckStats {
+  played: number;
+  won: number;
+  streak: number;
+  maxStreak: number;
+  attemptsDistribution: number[];
+}
+
 export interface AppStats {
   events: Record<string, EventStat>;
+  decks?: Record<string, DeckStats>;
 }
 
 export function loadStats(): AppStats {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
-    if (raw) return JSON.parse(raw) as AppStats;
+    if (raw) {
+      const parsed = JSON.parse(raw) as AppStats;
+      if (!parsed.decks) parsed.decks = {};
+      return parsed;
+    }
   } catch {}
-  return { events: {} };
+  return { events: {}, decks: {} };
 }
 
 export function saveStats(stats: AppStats): void {
@@ -108,7 +121,10 @@ export function recordResult(
   stats: AppStats,
   results: { event: HistoryEvent; status: "correct" | "wrong" }[]
 ): AppStats {
-  const next = { events: { ...stats.events } };
+  const next = { 
+    events: { ...stats.events },
+    decks: { ...stats.decks }
+  };
   for (const { event, status } of results) {
     const prev = next.events[event.event] ?? { shown: 0, correct: 0, wrong: 0 };
     next.events[event.event] = {
@@ -118,4 +134,42 @@ export function recordResult(
     };
   }
   return next;
+}
+
+export function recordDeckResult(
+  stats: AppStats,
+  deckId: string,
+  won: boolean,
+  attemptsUsed: number
+): AppStats {
+  const nextEvents = { ...stats.events };
+  const nextDecks = stats.decks ? { ...stats.decks } : {};
+  
+  const prev = nextDecks[deckId] ?? {
+    played: 0,
+    won: 0,
+    streak: 0,
+    maxStreak: 0,
+    attemptsDistribution: [0, 0, 0, 0, 0],
+  };
+
+  const nextStreak = won ? prev.streak + 1 : 0;
+  const nextMaxStreak = Math.max(prev.maxStreak, nextStreak);
+  const nextDistribution = [...prev.attemptsDistribution];
+  if (won && attemptsUsed >= 1 && attemptsUsed <= 5) {
+    nextDistribution[attemptsUsed - 1] += 1;
+  }
+
+  nextDecks[deckId] = {
+    played: prev.played + 1,
+    won: prev.won + (won ? 1 : 0),
+    streak: nextStreak,
+    maxStreak: nextMaxStreak,
+    attemptsDistribution: nextDistribution,
+  };
+
+  return {
+    events: nextEvents,
+    decks: nextDecks,
+  };
 }
