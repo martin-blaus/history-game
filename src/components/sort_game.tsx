@@ -3,6 +3,7 @@ import confetti from "canvas-confetti";
 import type { Deck, HistoryEvent } from "../../data/index";
 import { selectPuzzle, recordResult, type AppStats } from "../storage";
 import { Card, InsertionIndicator, statusEmoji } from "./sort_card";
+import { WikipediaSheet } from "./WikipediaSheet";
 
 function shuffle<T>(arr: T[]): T[] {
   const a = [...arr];
@@ -45,6 +46,7 @@ export function SortGame({
   const [attemptsLeft, setAttemptsLeft] = useState(5);
   const [puzzleNum, setPuzzleNum] = useState(1);
   const [copied, setCopied] = useState(false);
+  const [wikiEvent, setWikiEvent] = useState<HistoryEvent | null>(null);
 
   const touchRef = useRef<{
     startIdx: number | null;
@@ -348,6 +350,7 @@ export function SortGame({
                   onTouchEnd={handleTouchEnd}
                   status={submitted ? null : statuses[i] ?? null}
                   revealed={submitted && revealedCount > i}
+                  onWikiClick={card.wikipediaUrl ? () => setWikiEvent(card) : undefined}
                 />
               </Fragment>
             );
@@ -418,6 +421,10 @@ export function SortGame({
           </div>
         )}
       </div>
+
+      {wikiEvent && (
+        <WikipediaSheet event={wikiEvent} onClose={() => setWikiEvent(null)} />
+      )}
     </div>
   );
 }

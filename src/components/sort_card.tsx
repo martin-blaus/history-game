@@ -21,6 +21,7 @@ export function Card({
   onTouchEnd,
   status,
   revealed,
+  onWikiClick,
 }: {
   item: HistoryEvent;
   index: number;
@@ -35,6 +36,7 @@ export function Card({
   onTouchEnd: () => void;
   status: CardStatus;
   revealed: boolean;
+  onWikiClick?: () => void;
 }) {
   const canDrag = !revealed && !isHinted;
 
@@ -106,6 +108,19 @@ export function Card({
           <p className="text-xs text-text-secondary leading-relaxed m-0 line-clamp-3 group-hover:line-clamp-none transition-all duration-200">
             {item.context}
           </p>
+        )}
+        {item.wikipediaUrl && onWikiClick && (
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              onWikiClick();
+            }}
+            onMouseDown={(e) => e.stopPropagation()}
+            onTouchStart={(e) => e.stopPropagation()}
+            className="mt-1 self-start text-[10px] font-semibold text-ar-blue bg-ar-blue/10 border border-ar-blue/20 px-2 py-0.5 rounded-full hover:bg-ar-blue/20 transition-colors cursor-pointer"
+          >
+            W Wikipedia
+          </button>
         )}
       </div>
     </div>

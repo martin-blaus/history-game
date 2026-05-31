@@ -10,6 +10,7 @@ export function EndlessIncomingCard({
   onTouchStart,
   onTouchMove,
   onTouchEnd,
+  onWikiClick,
 }: {
   incoming: HistoryEvent;
   phase: Phase;
@@ -18,6 +19,7 @@ export function EndlessIncomingCard({
   onTouchStart: (e: React.TouchEvent<HTMLDivElement>) => void;
   onTouchMove: (e: React.TouchEvent<HTMLDivElement>) => void;
   onTouchEnd: () => void;
+  onWikiClick?: () => void;
 }) {
   return (
     <div
@@ -60,7 +62,22 @@ export function EndlessIncomingCard({
             {incoming.context}
           </p>
         )}
-        <div className="pt-2 flex justify-end">
+        <div className="pt-2 flex items-center justify-between">
+          {incoming.wikipediaUrl && onWikiClick ? (
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                onWikiClick();
+              }}
+              onMouseDown={(e) => e.stopPropagation()}
+              onTouchStart={(e) => e.stopPropagation()}
+              className="text-[10px] font-semibold text-ar-blue bg-ar-blue/10 border border-ar-blue/20 px-2 py-0.5 rounded-full hover:bg-ar-blue/20 transition-colors cursor-pointer"
+            >
+              W Wikipedia
+            </button>
+          ) : (
+            <span />
+          )}
           <span
             className={`text-xs font-bold px-2 py-0.5 rounded-md border ${
               phase === "wrong"

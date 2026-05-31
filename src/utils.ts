@@ -1,3 +1,7 @@
+export function extractWikiTitle(url: string): string {
+  return url.split("/wiki/")[1] ?? "";
+}
+
 export function onImgError(e: { currentTarget: HTMLImageElement }): void {
   e.currentTarget.onerror = null;
   e.currentTarget.src = "/placeholder.png";

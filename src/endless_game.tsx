@@ -11,6 +11,7 @@ import { EndlessTimelineCard } from "./components/endless/timeline_card";
 import { EndlessGap } from "./components/endless/gap";
 import { GAP_STYLES } from "./components/endless/types";
 import type { Phase, GapStyle } from "./components/endless/types";
+import { WikipediaSheet } from "./components/WikipediaSheet";
 
 // ── Constants ────────────────────────────────────────────────────────────────
 const MAX_LIVES = 3;
@@ -55,6 +56,7 @@ export function EndlessGame({
   const [goodGap, setGoodGap] = useState<number | null>(null);
   const [isDragging, setIsDragging] = useState(false);
   const [dragOverGap, setDragOverGap] = useState<number | null>(null);
+  const [wikiEvent, setWikiEvent] = useState<HistoryEvent | null>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
 
   // ── Game logic ───────────────────────────────────────────────────────────────
@@ -312,6 +314,7 @@ export function EndlessGame({
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
+          onWikiClick={incoming.wikipediaUrl ? () => setWikiEvent(incoming) : undefined}
         />
 
         {/* Prompt / wrong feedback */}
@@ -361,6 +364,7 @@ export function EndlessGame({
                       cardW={cardW}
                       rot={rot}
                       isNew={isNew}
+                      onWikiClick={event.wikipediaUrl ? () => setWikiEvent(event) : undefined}
                     />,
                     renderGap(i + 1),
                   ];
@@ -374,6 +378,10 @@ export function EndlessGame({
           </span>
         </div>
       </div>
+
+      {wikiEvent && (
+        <WikipediaSheet event={wikiEvent} onClose={() => setWikiEvent(null)} />
+      )}
     </div>
   );
 }

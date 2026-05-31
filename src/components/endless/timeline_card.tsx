@@ -7,12 +7,14 @@ export function EndlessTimelineCard({
   cardW,
   rot,
   isNew,
+  onWikiClick,
 }: {
   event: HistoryEvent;
   index: number;
   cardW: number;
   rot: number;
   isNew: boolean;
+  onWikiClick?: () => void;
 }) {
   return (
     <div
@@ -58,9 +60,24 @@ export function EndlessTimelineCard({
               </p>
             )}
           </div>
-          <span className="shrink-0 self-start text-[10px] font-bold text-ar-blue bg-ar-blue/10 px-1.5 py-0.5 rounded mt-1 whitespace-nowrap">
-            {formatYear(event.year)}
-          </span>
+          <div className="flex items-center gap-1 mt-1">
+            <span className="shrink-0 text-[10px] font-bold text-ar-blue bg-ar-blue/10 px-1.5 py-0.5 rounded whitespace-nowrap">
+              {formatYear(event.year)}
+            </span>
+            {event.wikipediaUrl && onWikiClick && (
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onWikiClick();
+                }}
+                onMouseDown={(e) => e.stopPropagation()}
+                onTouchStart={(e) => e.stopPropagation()}
+                className="shrink-0 text-[9px] font-semibold text-ar-blue/70 bg-ar-blue/10 border border-ar-blue/20 px-1 py-0.5 rounded hover:bg-ar-blue/20 transition-colors cursor-pointer leading-none"
+              >
+                W
+              </button>
+            )}
+          </div>
         </div>
       </div>
     </div>
