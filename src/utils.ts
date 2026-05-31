@@ -1,3 +1,8 @@
+export function onImgError(e: { currentTarget: HTMLImageElement }): void {
+  e.currentTarget.onerror = null;
+  e.currentTarget.src = "/placeholder.png";
+}
+
 export function shuffle<T>(arr: T[]): T[] {
   const a = [...arr];
   for (let i = a.length - 1; i > 0; i--) {

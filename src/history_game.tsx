@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState } from "react";
 import { DECKS } from "../data/index";
 import type { Deck } from "../data/index";
 import { loadStats, saveStats, type AppStats } from "./storage";
@@ -9,6 +9,8 @@ import { ContextDetective } from "./context_detective";
 import { WhoWasThere } from "./who_was_there";
 import { SortGame } from "./components/sort_game";
 import { StatsScreen } from "./components/stats_screen";
+
+const TITLE_CLS = "text-[48px] font-extrabold tracking-[-2px] m-0 leading-none";
 
 export default function App() {
   const [screen, setScreen] = useState<
@@ -24,11 +26,6 @@ export default function App() {
   >("home");
   const [selectedDeck, setSelectedDeck] = useState<Deck | null>(null);
   const [stats, setStats] = useState<AppStats>(() => loadStats());
-
-  const titleCls = useMemo(
-    () => "text-[48px] font-extrabold tracking-[-2px] m-0 leading-none",
-    [],
-  );
 
   function selectDeck(deck: Deck) {
     setSelectedDeck(deck);
@@ -189,8 +186,8 @@ export default function App() {
         </div>
 
         <div className="mb-2">
-          <h1 className={`${titleCls} text-text-primary`}>History</h1>
-          <h1 className={`${titleCls} text-ar-blue`}>Game</h1>
+          <h1 className={`${TITLE_CLS} text-text-primary`}>History</h1>
+          <h1 className={`${TITLE_CLS} text-ar-blue`}>Game</h1>
         </div>
 
         <div className="w-12 h-[3px] bg-ar-gold rounded-sm mx-auto my-3" />
