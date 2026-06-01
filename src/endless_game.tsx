@@ -380,7 +380,7 @@ export function EndlessGame({
       </div>
 
       {wikiEvent && (
-        <WikipediaSheet event={wikiEvent} onClose={() => setWikiEvent(null)} />
+        <WikipediaSheet event={wikiEvent} deck={deck} onClose={() => setWikiEvent(null)} />
       )}
     </div>
   );
