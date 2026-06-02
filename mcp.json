@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "excalidraw": {
+      "command": "node",
+      "args": [
+        "/Users/martinblaustein/Projects/martin/excalidraw-mcp/excalidraw-mcp-app/dist/index.js",
+        "--stdio"
+      ]
+    }
+  }
+}
