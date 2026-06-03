@@ -3,7 +3,7 @@
     "excalidraw": {
       "command": "node",
       "args": [
-        "/Users/martinblaustein/Projects/martin/excalidraw-mcp/excalidraw-mcp-app/dist/index.js",
+        "/Users/martinblaustein/Projects/martin/excalidraw-mcp/dist/index.js",
         "--stdio"
       ]
     }
