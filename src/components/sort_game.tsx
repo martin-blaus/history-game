@@ -25,6 +25,37 @@ function gradeCards(puzzle: HistoryEvent[], cards: HistoryEvent[]): Status[] {
   return cards.map((c, i) => (c.event === sorted[i].event ? "correct" : "wrong"));
 }
 
+// Maps a pointer coordinate to an insertion index by scanning the rendered
+// cards. Works on either axis: the row layout (desktop/tablet) uses X, the
+// stacked layout (phones) uses Y.
+function resolveDropTarget(coord: number, vertical: boolean): number | null {
+  const els = document.querySelectorAll<HTMLElement>(".sort-card");
+  let target: number | null = null;
+  els.forEach((el, i) => {
+    const rect = el.getBoundingClientRect();
+    const start = vertical ? rect.top : rect.left;
+    const end = vertical ? rect.bottom : rect.right;
+    const mid = vertical ? rect.top + rect.height / 2 : rect.left + rect.width / 2;
+    if (coord >= start && coord <= end) target = coord < mid ? i : i + 1;
+  });
+  return target;
+}
+
+// True on narrow viewports, where the sort board switches to a vertical list.
+// Kept in sync with the `sm:` (640px) breakpoint used in the markup.
+function useIsVertical(): boolean {
+  const [vertical, setVertical] = useState(
+    () => typeof window !== "undefined" && window.matchMedia("(max-width: 639px)").matches
+  );
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 639px)");
+    const onChange = (e: MediaQueryListEvent) => setVertical(e.matches);
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
+  }, []);
+  return vertical;
+}
+
 // ── Round state ───────────────────────────────────────────────────────────────
 
 interface RoundState {
@@ -125,6 +156,7 @@ export function SortGame({
   const [puzzleNum, setPuzzleNum] = useState(1);
   const [copied, setCopied] = useState(false);
   const [wikiEvent, setWikiEvent] = useState<HistoryEvent | null>(null);
+  const isVertical = useIsVertical();
 
   const revealIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const pendingFlipRef = useRef<Map<string, { left: number; top: number }> | null>(null);
@@ -189,26 +221,17 @@ export function SortGame({
 
   // ── Drag (mouse + touch share one state machine) ──────────────────────────────
   const drag = useTouchDrag<number, number>({
-    resolveTarget: (x) => {
-      const els = document.querySelectorAll<HTMLElement>(".sort-card");
-      let target: number | null = null;
-      els.forEach((el, i) => {
-        const rect = el.getBoundingClientRect();
-        if (x >= rect.left && x <= rect.right) {
-          target = x < rect.left + rect.width / 2 ? i : i + 1;
-        }
-      });
-      return target;
-    },
+    resolveTarget: (x, y) => resolveDropTarget(isVertical ? y : x, isVertical),
     canTarget: (t) => !(t < cards.length && cards[t]?.event === hintCardId),
     onDrop: commitDrop,
     retainTargetOnMiss: true,
   });
 
-  function handleCardDragOver(i: number, clientX: number, _clientY: number, rect: DOMRect) {
+  function handleCardDragOver(i: number, clientX: number, clientY: number, rect: DOMRect) {
     if (!drag.isDragging) return;
-    const insertBefore = clientX < rect.left + rect.width / 2;
-    drag.updateTarget(insertBefore ? i : i + 1);
+    const coord = isVertical ? clientY : clientX;
+    const mid = isVertical ? rect.top + rect.height / 2 : rect.left + rect.width / 2;
+    drag.updateTarget(coord < mid ? i : i + 1);
   }
 
   function submit() {
@@ -276,9 +299,9 @@ export function SortGame({
 
   return (
     <div className="min-h-screen bg-bg">
-      <div className="max-w-[1400px] mx-auto px-6 py-8">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 py-6 sm:py-8">
         {/* Header */}
-        <div className="relative mb-8">
+        <div className="relative mb-4 sm:mb-8">
           {/* Back button en la esquina superior izquierda */}
           <div className="absolute left-0 top-0">
             <button
@@ -289,16 +312,16 @@ export function SortGame({
             </button>
           </div>
           <div className="text-center">
-            <h1 className="text-4xl font-extrabold text-text-primary mb-1">
+            <h1 className="text-2xl sm:text-4xl font-extrabold text-text-primary mb-1 mt-7 sm:mt-0">
               ¿Cuánto sabés de historia?
             </h1>
-            <p className="text-xl font-semibold text-text-secondary mb-1">
+            <p className="text-base sm:text-xl font-semibold text-text-secondary mb-1">
               Poné los eventos en orden.
             </p>
-            <p className="text-sm text-text-tertiary mb-3">
+            <p className="hidden sm:block text-sm text-text-tertiary mb-3">
               Arrastrá para ordenar los eventos cronológicamente
             </p>
-            <span className="inline-block text-xs bg-bg-secondary border border-border px-3 py-1.5 rounded-full text-text-tertiary">
+            <span className="inline-block text-xs bg-bg-secondary border border-border px-3 py-1.5 rounded-full text-text-tertiary mt-2 sm:mt-0">
               {deck.name} — Puzzle #{puzzleNum}
             </span>
           </div>
@@ -319,9 +342,9 @@ export function SortGame({
           </span>
         </div>
 
-        {/* Cards — horizontal row with insertion indicators */}
+        {/* Cards — row on desktop/tablet, vertical list on phones */}
         <div
-          className="flex items-start gap-3 mb-6 overflow-x-auto overflow-y-hidden py-2 px-1 h-[430px]"
+          className="flex flex-col items-stretch gap-2 mb-4 sm:flex-row sm:items-start sm:justify-center sm:gap-3 sm:mb-6 sm:overflow-x-auto sm:overflow-y-hidden sm:h-[430px] py-2 px-1"
           onDragOver={(e) => {
             e.preventDefault();
             drag.updateTarget(cards.length);
@@ -333,7 +356,7 @@ export function SortGame({
 
             return (
               <Fragment key={card.event}>
-                <InsertionIndicator visible={showBefore} />
+                <InsertionIndicator visible={showBefore} vertical={isVertical} />
                 <Card
                   item={card}
                   index={i}
@@ -354,6 +377,7 @@ export function SortGame({
             );
           })}
           <InsertionIndicator
+            vertical={isVertical}
             visible={
               isDragging &&
               drag.dragTarget === cards.length &&

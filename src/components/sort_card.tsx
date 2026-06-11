@@ -54,8 +54,8 @@ export function Card({
 
   return (
     <div
-      className={`sort-card group flex-1 min-w-[170px] max-w-[210px] h-[380px] flex flex-col rounded-xl overflow-hidden select-none bg-bg-card transition-all duration-200 hover:scale-[1.03] hover:-translate-y-1 hover:shadow-2xl hover:shadow-ar-blue/10 ${borderClass} ${shakeClass} ${sourceClass} ${
-        canDrag ? "cursor-grab active:cursor-grabbing" : ""
+      className={`sort-card group flex w-full flex-row min-h-[68px] sm:w-auto sm:flex-1 sm:flex-col sm:min-w-[150px] md:min-w-[170px] sm:max-w-[210px] sm:min-h-0 sm:h-[380px] rounded-xl overflow-hidden select-none bg-bg-card transition-all duration-200 sm:hover:scale-[1.03] sm:hover:-translate-y-1 hover:shadow-2xl hover:shadow-ar-blue/10 ${borderClass} ${shakeClass} ${sourceClass} ${
+        canDrag ? "cursor-grab active:cursor-grabbing touch-none" : ""
       }`}
       draggable={canDrag}
       onDragStart={() => canDrag && onDragStart(index)}
@@ -70,11 +70,11 @@ export function Card({
       onTouchMove={canDrag ? onTouchMove : undefined}
       onTouchEnd={canDrag ? onTouchEnd : undefined}
     >
-      <div className="relative shrink-0">
+      <div className="relative shrink-0 w-20 sm:w-full">
         <img
           src={item.image || "/placeholder.png"}
           alt={item.event}
-          className="w-full h-36 object-cover block"
+          className="w-full h-full sm:h-36 object-cover block"
           loading="lazy"
           draggable={false}
           onError={onImgError}
@@ -86,13 +86,13 @@ export function Card({
         )}
       </div>
 
-      <div className="px-3 py-3 flex-1 flex flex-col justify-between min-h-0">
+      <div className="px-3 py-2 sm:py-3 flex-1 flex flex-col justify-between min-h-0 min-w-0">
         <div className="flex flex-col gap-1.5 overflow-hidden">
           <p className="text-sm font-bold text-text-primary leading-snug m-0 line-clamp-2">
             {item.event}
           </p>
           {item.context && (
-            <p className="text-xs text-text-secondary leading-relaxed m-0 line-clamp-4 group-hover:line-clamp-none transition-all duration-200 overflow-y-auto">
+            <p className="max-sm:hidden text-xs text-text-secondary leading-relaxed m-0 line-clamp-4 group-hover:line-clamp-none transition-all duration-200 overflow-y-auto">
               {item.context}
             </p>
           )}
@@ -123,11 +123,22 @@ export function Card({
   );
 }
 
-export function InsertionIndicator({ visible }: { visible: boolean }) {
+export function InsertionIndicator({
+  visible,
+  vertical,
+}: {
+  visible: boolean;
+  vertical?: boolean;
+}) {
+  const size = visible ? 3 : 0;
   return (
     <div
       className="shrink-0 self-stretch rounded-full bg-white transition-all duration-100"
-      style={{ width: visible ? 3 : 0, opacity: visible ? 1 : 0 }}
+      style={
+        vertical
+          ? { height: size, opacity: visible ? 1 : 0 }
+          : { width: size, opacity: visible ? 1 : 0 }
+      }
     />
   );
 }
