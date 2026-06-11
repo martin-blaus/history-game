@@ -10,7 +10,7 @@ import { WhoWasThere } from "./who_was_there";
 import { SortGame } from "./components/sort_game";
 import { StatsScreen } from "./components/stats_screen";
 
-const TITLE_CLS = "text-[48px] font-extrabold tracking-[-2px] m-0 leading-none";
+const TITLE_CLS = "text-4xl sm:text-5xl font-extrabold tracking-tighter m-0 leading-none";
 
 export default function App() {
   const [screen, setScreen] = useState<
@@ -193,7 +193,7 @@ export default function App() {
 
         <div className="w-12 h-[3px] bg-ar-gold rounded-sm mx-auto my-3" />
 
-        <p className="text-[15px] text-text-secondary mb-8 leading-relaxed">
+        <p className="text-base text-text-secondary mb-8 leading-relaxed">
           Ordená eventos históricos de más antiguo a más reciente.
         </p>
 

@@ -71,7 +71,7 @@ export function EndlessIncomingCard({
               }}
               onMouseDown={(e) => e.stopPropagation()}
               onTouchStart={(e) => e.stopPropagation()}
-              className="text-[10px] font-semibold text-ar-blue bg-ar-blue/10 border border-ar-blue/20 px-2 py-0.5 rounded-full hover:bg-ar-blue/20 transition-colors cursor-pointer"
+              className="inline-flex items-center min-h-7 text-2xs font-semibold text-ar-blue bg-ar-blue/10 border border-ar-blue/20 px-2 py-0.5 rounded-full hover:bg-ar-blue/20 transition-colors cursor-pointer"
             >
               W Wikipedia
             </button>

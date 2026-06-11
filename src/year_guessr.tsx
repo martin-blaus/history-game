@@ -1,6 +1,6 @@
 import { useState, useMemo } from "react";
 import type { Deck, HistoryEvent } from "../data/index";
-import { formatYear, onImgError, shuffle } from "./utils";
+import { formatYear, onImgError, shuffle, PLACEHOLDER } from "./utils";
 
 const ROUNDS = 6;
 
@@ -101,16 +101,10 @@ export function YearGuessr({
           </div>
 
           <div className="flex gap-2">
-            <button
-              onClick={onBack}
-              className="flex-1 py-3 rounded-xl border border-border bg-transparent text-text-secondary text-sm font-medium cursor-pointer hover:text-text-primary transition-colors"
-            >
+            <button onClick={onBack} className="btn-secondary flex-1">
               ← Volver
             </button>
-            <button
-              onClick={restart}
-              className="flex-1 py-3 rounded-xl bg-ar-blue hover:bg-ar-blue-dark text-white text-sm font-semibold cursor-pointer transition-colors"
-            >
+            <button onClick={restart} className="btn-primary flex-1">
               Jugar de nuevo
             </button>
           </div>
@@ -169,7 +163,7 @@ export function YearGuessr({
         {/* Event card */}
         <div className="bg-bg-card rounded-2xl overflow-hidden mb-5 border border-border">
           <img
-            src={event.image || "/placeholder.png"}
+            src={event.image || PLACEHOLDER}
             alt={event.event}
             className="w-full h-52 object-cover"
             loading="lazy"
@@ -194,7 +188,7 @@ export function YearGuessr({
               ¿En qué año ocurrió?
             </p>
             <div className="text-center mb-5">
-              <span className="text-5xl font-extrabold text-text-primary tabular-nums">
+              <span className="text-4xl sm:text-5xl font-extrabold text-text-primary tabular-nums">
                 {formatYear(guess)}
               </span>
             </div>
@@ -210,10 +204,7 @@ export function YearGuessr({
               <span>{formatYear(minYear)}</span>
               <span>{formatYear(maxYear)}</span>
             </div>
-            <button
-              onClick={confirm}
-              className="w-full py-3.5 rounded-xl bg-white hover:bg-gray-100 text-black text-base font-semibold cursor-pointer transition-colors border-none"
-            >
+            <button onClick={confirm} className="btn-primary w-full text-base">
               Confirmar
             </button>
           </div>
@@ -272,10 +263,7 @@ export function YearGuessr({
               Total: {scores.reduce((a, b) => a + b, 0)} pts
             </div>
 
-            <button
-              onClick={next}
-              className="w-full py-3.5 rounded-xl bg-ar-blue hover:bg-ar-blue-dark text-white text-base font-semibold cursor-pointer transition-colors border-none"
-            >
+            <button onClick={next} className="btn-primary w-full text-base">
               {round + 1 >= ROUNDS ? "Ver resultados" : "Siguiente →"}
             </button>
           </div>

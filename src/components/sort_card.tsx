@@ -1,5 +1,5 @@
 import type { HistoryEvent } from "../../data/index";
-import { formatYear, onImgError } from "../utils";
+import { formatYear, onImgError, PLACEHOLDER } from "../utils";
 
 export type CardStatus = "correct" | "wrong" | null;
 
@@ -72,9 +72,9 @@ export function Card({
     >
       <div className="relative shrink-0 w-20 sm:w-full">
         <img
-          src={item.image || "/placeholder.png"}
+          src={item.image || PLACEHOLDER}
           alt={item.event}
-          className="w-full h-full sm:h-36 object-cover block"
+          className="w-full h-full sm:h-36 object-cover block bg-bg-secondary"
           loading="lazy"
           draggable={false}
           onError={onImgError}
@@ -104,7 +104,7 @@ export function Card({
               }}
               onMouseDown={(e) => e.stopPropagation()}
               onTouchStart={(e) => e.stopPropagation()}
-              className="mt-1 self-start text-[10px] font-semibold text-ar-blue bg-ar-blue/10 border border-ar-blue/20 px-2 py-0.5 rounded-full hover:bg-ar-blue/20 transition-colors cursor-pointer"
+              className="mt-1 self-start inline-flex items-center min-h-7 text-2xs font-semibold text-ar-blue bg-ar-blue/10 border border-ar-blue/20 px-2 py-0.5 rounded-full hover:bg-ar-blue/20 transition-colors cursor-pointer"
             >
               W Wikipedia
             </button>

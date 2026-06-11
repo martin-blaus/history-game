@@ -344,7 +344,8 @@ export function SortGame({
 
         {/* Cards — row on desktop/tablet, vertical list on phones */}
         <div
-          className="flex flex-col items-stretch gap-2 mb-4 sm:flex-row sm:items-start sm:justify-center sm:gap-3 sm:mb-6 sm:overflow-x-auto sm:overflow-y-hidden sm:h-[430px] py-2 px-1"
+          key={puzzleNum}
+          className="fade-in flex flex-col items-stretch gap-2 mb-4 sm:flex-row sm:items-start sm:justify-center sm:gap-3 sm:mb-6 sm:overflow-x-auto sm:overflow-y-hidden sm:h-[430px] py-2 px-1"
           onDragOver={(e) => {
             e.preventDefault();
             drag.updateTarget(cards.length);
@@ -404,10 +405,7 @@ export function SortGame({
               >
                 💡 Pista
               </button>
-              <button
-                onClick={submit}
-                className="flex-1 py-3 rounded-xl bg-white hover:bg-gray-100 text-black text-base font-semibold cursor-pointer transition-colors border-none"
-              >
+              <button onClick={submit} className="btn-primary flex-1 text-base">
                 Verificar
               </button>
             </div>
@@ -445,19 +443,19 @@ export function SortGame({
                 <div className="grid grid-cols-4 bg-bg-card border border-border rounded-xl divide-x divide-border overflow-hidden py-4 text-center my-6 shadow-sm">
                   <div>
                     <div className="text-xl font-black text-text-primary">{deckStats.played}</div>
-                    <div className="text-[9px] text-text-secondary uppercase tracking-wider font-bold mt-1">Partidas</div>
+                    <div className="text-2xs text-text-secondary uppercase tracking-wider font-bold mt-1">Partidas</div>
                   </div>
                   <div>
                     <div className="text-xl font-black text-text-primary">{winRate}%</div>
-                    <div className="text-[9px] text-text-secondary uppercase tracking-wider font-bold mt-1">Victorias</div>
+                    <div className="text-2xs text-text-secondary uppercase tracking-wider font-bold mt-1">Victorias</div>
                   </div>
                   <div>
                     <div className="text-xl font-black text-text-primary">{deckStats.streak}</div>
-                    <div className="text-[9px] text-text-secondary uppercase tracking-wider font-bold mt-1">Racha</div>
+                    <div className="text-2xs text-text-secondary uppercase tracking-wider font-bold mt-1">Racha</div>
                   </div>
                   <div>
                     <div className="text-xl font-black text-text-primary">{avgTries > 0 ? avgTries.toFixed(1) : "-"}</div>
-                    <div className="text-[9px] text-text-secondary uppercase tracking-wider font-bold mt-1">Prom. Intentos</div>
+                    <div className="text-2xs text-text-secondary uppercase tracking-wider font-bold mt-1">Prom. Intentos</div>
                   </div>
                 </div>
               );

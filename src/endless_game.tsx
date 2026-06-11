@@ -213,6 +213,7 @@ export function EndlessGame({
     else if (phase === "wrong" && g === goodGap) gs = "good";
     else if (isDragging && g === dragOverGap) gs = "dragover";
 
+    // Touch devices (pointer-coarse) get wider hit areas; mouse keeps the dense look.
     const width =
       gs === "dragover"
         ? isStacking
@@ -220,11 +221,11 @@ export function EndlessGame({
           : "w-[58px]"
         : gs !== "idle"
           ? isStacking
-            ? "w-[14px]"
-            : "w-[34px]"
+            ? "w-[14px] pointer-coarse:w-9"
+            : "w-[34px] pointer-coarse:w-11"
           : isStacking
-            ? "w-[14px] hover:w-[34px]"
-            : "w-[34px] hover:w-[53px]";
+            ? "w-[14px] hover:w-[34px] pointer-coarse:w-9"
+            : "w-[34px] hover:w-[53px] pointer-coarse:w-11";
 
     return { ...GAP_STYLES[gs], gs, width };
   }
@@ -334,7 +335,7 @@ export function EndlessGame({
 
         {/* Timeline row */}
         <div className="flex items-center gap-2 px-4">
-          <span className="text-[10px] font-semibold text-text-tertiary tracking-widest uppercase shrink-0">
+          <span className="text-2xs font-semibold text-text-tertiary tracking-widest uppercase shrink-0">
             Antes
           </span>
 
@@ -368,7 +369,7 @@ export function EndlessGame({
             </div>
           </div>
 
-          <span className="text-[10px] font-semibold text-text-tertiary tracking-widest uppercase shrink-0">
+          <span className="text-2xs font-semibold text-text-tertiary tracking-widest uppercase shrink-0">
             Después
           </span>
         </div>

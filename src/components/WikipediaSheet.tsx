@@ -112,7 +112,7 @@ function ArticleCard({
       )}
       <div className="flex-1 min-w-0">
         {yearBadge !== undefined && (
-          <span className="inline-block text-[10px] font-bold text-ar-blue bg-ar-blue/10 px-1.5 py-0.5 rounded mb-1">
+          <span className="inline-block text-2xs font-bold text-ar-blue bg-ar-blue/10 px-1.5 py-0.5 rounded mb-1">
             {formatYear(yearBadge)}
           </span>
         )}
@@ -120,7 +120,7 @@ function ArticleCard({
           {title}
         </p>
         {extract && (
-          <p className="text-[11px] text-text-tertiary m-0 mt-0.5 leading-relaxed line-clamp-3">
+          <p className="text-xs text-text-tertiary m-0 mt-0.5 leading-relaxed line-clamp-3">
             {extract}
           </p>
         )}
@@ -222,7 +222,7 @@ export function WikipediaSheet({
     <>
       <div className="fixed inset-0 bg-black/50 z-40" onClick={onClose} />
 
-      <div className="wiki-panel fixed top-0 right-0 bottom-0 w-[380px] max-w-[92vw] z-50 bg-bg-card border-l border-border shadow-2xl flex flex-col">
+      <div className="wiki-panel fixed top-0 right-0 bottom-0 w-full sm:w-[380px] sm:max-w-[92vw] z-50 bg-bg-card border-l border-border shadow-2xl flex flex-col">
 
         {/* Header */}
         <div className="flex items-start gap-3 p-4 pb-3 shrink-0 border-b border-border">
@@ -242,7 +242,7 @@ export function WikipediaSheet({
             />
           )}
           <div className="flex-1 min-w-0">
-            <p className="text-[10px] font-semibold text-ar-blue tracking-widest uppercase m-0 mb-0.5">
+            <p className="text-2xs font-semibold text-ar-blue tracking-widest uppercase m-0 mb-0.5">
               Wikipedia
             </p>
             <h3 className="text-sm font-bold text-text-primary leading-snug m-0 line-clamp-3">
@@ -251,7 +251,7 @@ export function WikipediaSheet({
           </div>
           <button
             onClick={onClose}
-            className="text-text-tertiary hover:text-text-primary text-lg leading-none bg-transparent border-none cursor-pointer shrink-0 p-0 ml-1 mt-0.5"
+            className="text-text-tertiary hover:text-text-primary text-lg leading-none bg-transparent border-none cursor-pointer shrink-0 p-2 -m-2 ml-1"
           >
             ✕
           </button>
@@ -275,7 +275,7 @@ export function WikipediaSheet({
         </div>
 
         {/* Tab bodies */}
-        <div className="overflow-y-auto flex-1 p-4 flex flex-col gap-4">
+        <div className="overflow-y-auto flex-1 p-4 pb-[max(1rem,env(safe-area-inset-bottom))] flex flex-col gap-4">
 
           {/* ── Resumen ── */}
           {activeTab === "summary" && (
@@ -300,7 +300,7 @@ export function WikipediaSheet({
                   {bodyText ? (
                     <div className="relative">
                       {isContextFallback && (
-                        <p className="text-[10px] text-text-tertiary uppercase tracking-widest mb-2 m-0">
+                        <p className="text-2xs text-text-tertiary uppercase tracking-widest mb-2 m-0">
                           Descripción del evento
                         </p>
                       )}
@@ -387,7 +387,7 @@ export function WikipediaSheet({
           {/* ── En esa época ── */}
           {activeTab === "nearby" && (
             <>
-              <p className="text-[11px] text-text-tertiary m-0 -mb-2">
+              <p className="text-xs text-text-tertiary m-0 -mb-2">
                 Otros eventos del {deck.name} cerca del año{" "}
                 {formatYear(event.year)}
               </p>

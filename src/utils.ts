@@ -2,9 +2,11 @@ export function extractWikiTitle(url: string): string {
   return url.split("/wiki/")[1] ?? "";
 }
 
+export const PLACEHOLDER = "/placeholder.svg";
+
 export function onImgError(e: { currentTarget: HTMLImageElement }): void {
   e.currentTarget.onerror = null;
-  e.currentTarget.src = "/placeholder.png";
+  e.currentTarget.src = PLACEHOLDER;
 }
 
 export function shuffle<T>(arr: T[]): T[] {

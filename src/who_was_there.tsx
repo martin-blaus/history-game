@@ -1,6 +1,6 @@
 import { useState } from "react";
 import type { Deck, HistoryEvent } from "../data/index";
-import { formatYear, onImgError, shuffle } from "./utils";
+import { formatYear, onImgError, shuffle, PLACEHOLDER } from "./utils";
 import confetti from "canvas-confetti";
 
 const ROUNDS = 6;
@@ -253,7 +253,7 @@ export function WhoWasThere({
                   <p className="text-text-primary text-xs font-bold m-0 truncate">
                     {r.type === "A" ? r.person : r.event.event}
                   </p>
-                  <p className="text-text-tertiary text-[10px] m-0 truncate">
+                  <p className="text-text-tertiary text-2xs m-0 truncate">
                     {isIdeasMode
                       ? r.type === "A"
                         ? `Defendida por: ${r.correctEvents.join(", ")}`
@@ -269,16 +269,10 @@ export function WhoWasThere({
           </div>
 
           <div className="flex gap-2">
-            <button
-              onClick={onBack}
-              className="flex-1 py-3 rounded-xl border border-border bg-transparent text-text-secondary text-sm font-medium cursor-pointer hover:text-text-primary transition-colors"
-            >
+            <button onClick={onBack} className="btn-secondary flex-1">
               ← Volver
             </button>
-            <button
-              onClick={restart}
-              className="flex-1 py-3 rounded-xl bg-ar-blue hover:bg-ar-blue-dark text-white text-sm font-semibold cursor-pointer transition-colors border-none"
-            >
+            <button onClick={restart} className="btn-primary flex-1">
               Jugar de nuevo
             </button>
           </div>
@@ -353,7 +347,7 @@ export function WhoWasThere({
             </div>
 
             {/* Choices grid */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-2 sm:gap-4 mb-6">
               {round.choices.map((choice) => {
                 const isSelected = selectedEvents.includes(choice.event);
                 const isCorrect = round.correctEvents.includes(choice.event);
@@ -383,9 +377,9 @@ export function WhoWasThere({
                     } ${cardClass}`}
                   >
                     <img
-                      src={choice.image || "/placeholder.png"}
+                      src={choice.image || PLACEHOLDER}
                       alt={choice.event}
-                      className="w-full h-32 object-cover object-top"
+                      className="w-full h-24 sm:h-32 object-cover object-top"
                       loading="lazy"
                       onError={onImgError}
                     />
@@ -400,11 +394,11 @@ export function WhoWasThere({
                           </span>
                         )}
                       </div>
-                      <p className="text-[10px] text-text-secondary m-0 line-clamp-3">
+                      <p className="text-2xs text-text-secondary m-0 line-clamp-3">
                         {choice.context}
                       </p>
                       {submittedA && (
-                        <p className="text-[9px] text-text-tertiary mt-auto pt-1 font-semibold">
+                        <p className="text-2xs text-text-tertiary mt-auto pt-1 font-semibold">
                           {isIdeasMode ? "Año de nacimiento/activo:" : "Año:"} {formatYear(choice.year)}
                         </p>
                       )}
@@ -420,18 +414,14 @@ export function WhoWasThere({
                 <button
                   onClick={verifyA}
                   disabled={selectedEvents.length !== 3}
-                  className={`w-full max-w-xs py-3.5 rounded-xl text-base font-semibold transition-colors border-none ${
-                    selectedEvents.length === 3
-                      ? "bg-ar-blue hover:bg-ar-blue-dark text-white cursor-pointer"
-                      : "bg-border text-text-tertiary cursor-not-allowed"
-                  }`}
+                  className="btn-primary w-full max-w-xs text-base"
                 >
                   Verificar ({selectedEvents.length}/3)
                 </button>
               ) : (
                 <button
                   onClick={handleNext}
-                  className="w-full max-w-xs py-3.5 rounded-xl bg-ar-blue hover:bg-ar-blue-dark text-white text-base font-semibold cursor-pointer transition-colors border-none animate-pulse"
+                  className="btn-primary w-full max-w-xs text-base animate-pulse"
                 >
                   {roundIdx + 1 >= ROUNDS ? "Ver resultados" : "Siguiente →"}
                 </button>
@@ -456,7 +446,7 @@ export function WhoWasThere({
             {/* Event/Philosopher Display */}
             <div className="bg-bg-card rounded-2xl border border-border p-5 mb-5 shadow-sm">
               <img
-                src={round.event.image || "/placeholder.png"}
+                src={round.event.image || PLACEHOLDER}
                 alt={round.event.event}
                 className="w-full h-44 object-cover rounded-xl mb-4 block"
                 onError={onImgError}
@@ -515,10 +505,7 @@ export function WhoWasThere({
 
             {/* Next button */}
             {selectedPerson && (
-              <button
-                onClick={handleNext}
-                className="w-full py-3.5 rounded-xl bg-ar-blue hover:bg-ar-blue-dark text-white text-base font-semibold cursor-pointer transition-colors border-none"
-              >
+              <button onClick={handleNext} className="btn-primary w-full text-base">
                 {roundIdx + 1 >= ROUNDS ? "Ver resultados" : "Siguiente →"}
               </button>
             )}

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import type { Deck, HistoryEvent } from "../data/index";
-import { formatYear, onImgError, shuffle } from "./utils";
+import { formatYear, onImgError, shuffle, PLACEHOLDER } from "./utils";
 
 const ROUNDS = 6;
 
@@ -81,7 +81,7 @@ export function ContextDetective({ deck, onBack }: {
             {rounds.map((r, i) => (
               <div key={i} className="flex items-center gap-3 px-4 py-3 bg-bg-card rounded-xl border border-border text-left">
                 <img
-                  src={r.event.image || "/placeholder.png"}
+                  src={r.event.image || PLACEHOLDER}
                   className="w-10 h-10 rounded-lg object-cover shrink-0"
                   onError={onImgError}
                 />
@@ -92,10 +92,7 @@ export function ContextDetective({ deck, onBack }: {
           </div>
 
           <div className="flex gap-2">
-            <button
-              onClick={onBack}
-              className="flex-1 py-3 rounded-xl border border-border bg-transparent text-text-secondary text-sm font-medium cursor-pointer hover:text-text-primary transition-colors"
-            >
+            <button onClick={onBack} className="btn-secondary flex-1">
               ← Volver
             </button>
             <button
@@ -105,7 +102,7 @@ export function ContextDetective({ deck, onBack }: {
                 setScore(0);
                 setGameOver(false);
               }}
-              className="flex-1 py-3 rounded-xl bg-ar-blue hover:bg-ar-blue-dark text-white text-sm font-semibold cursor-pointer transition-colors"
+              className="btn-primary flex-1"
             >
               Jugar de nuevo
             </button>
@@ -157,7 +154,7 @@ export function ContextDetective({ deck, onBack }: {
           {/* Reveal image after answering */}
           {picked && (
             <img
-              src={round.event.image || "/placeholder.png"}
+              src={round.event.image || PLACEHOLDER}
               alt={round.event.event}
               className="w-full h-40 object-cover rounded-xl mb-4 block"
               onError={onImgError}
@@ -205,10 +202,7 @@ export function ContextDetective({ deck, onBack }: {
         </div>
 
         {picked && (
-          <button
-            onClick={next}
-            className="w-full py-3.5 rounded-xl bg-ar-blue hover:bg-ar-blue-dark text-white text-base font-semibold cursor-pointer transition-colors border-none"
-          >
+          <button onClick={next} className="btn-primary w-full text-base">
             {roundIdx + 1 >= ROUNDS ? "Ver resultados" : "Siguiente →"}
           </button>
         )}

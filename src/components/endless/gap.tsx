@@ -39,7 +39,7 @@ export function EndlessGap({
         className={`absolute inset-y-4 left-1/2 -translate-x-1/2 border-l border-dashed transition-colors duration-150 ${line}`}
       />
       <span
-        className={`relative text-[10px] bg-bg px-0.5 leading-none ${text}`}
+        className={`relative text-2xs bg-bg px-0.5 leading-none ${text}`}
       >
         {label}
       </span>

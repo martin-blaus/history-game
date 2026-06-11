@@ -81,7 +81,7 @@ export function StatsScreen({
         {rows.length > 0 && (
           <button
             onClick={onReset}
-            className="mt-8 w-full py-3 rounded-xl border border-border bg-transparent text-text-tertiary text-sm hover:text-danger hover:border-danger transition-colors cursor-pointer"
+            className="btn-secondary w-full mt-8 hover:text-danger hover:border-danger"
           >
             Reiniciar estadísticas
           </button>

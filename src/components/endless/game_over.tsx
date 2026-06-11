@@ -55,7 +55,7 @@ export function EndlessGameOver({
         {/* Mini timeline review */}
         {reviewEvents.length > 1 && (
           <div className="mb-6 text-left">
-            <p className="text-[10px] font-semibold text-text-tertiary tracking-widest uppercase mb-2 px-1">
+            <p className="text-2xs font-semibold text-text-tertiary tracking-widest uppercase mb-2 px-1">
               Últimos eventos
             </p>
             <div className="overflow-x-auto">
@@ -89,16 +89,10 @@ export function EndlessGameOver({
         )}
 
         <div className="flex flex-col gap-3">
-          <button
-            onClick={onRestart}
-            className="w-full py-3 rounded-xl bg-ar-blue text-white font-semibold cursor-pointer border-none hover:opacity-90 transition-opacity"
-          >
+          <button onClick={onRestart} className="btn-primary w-full">
             Jugar de nuevo
           </button>
-          <button
-            onClick={onBack}
-            className="w-full py-3 rounded-xl border border-border bg-transparent text-text-tertiary text-sm hover:text-text-primary transition-colors cursor-pointer"
-          >
+          <button onClick={onBack} className="btn-secondary w-full">
             ← Volver
           </button>
         </div>
