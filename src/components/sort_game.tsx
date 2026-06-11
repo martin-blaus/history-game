@@ -7,6 +7,7 @@ import { WikipediaSheet } from "./WikipediaSheet";
 import { shuffle } from "../utils";
 import { MAX_ATTEMPTS } from "../constants";
 import { useTouchDrag } from "../hooks/use_touch_drag";
+import { selectDailyPuzzle, type DailyResult } from "../daily";
 
 const REVEAL_INTERVAL_MS = 80;
 const WRONG_FLASH_MS = 1200;
@@ -136,19 +137,32 @@ function roundReducer(state: RoundState, action: RoundAction): RoundState {
 
 // ── Component ─────────────────────────────────────────────────────────────────
 
+export interface DailyMode {
+  date: string;
+  num: number;
+  streak: number;
+  onComplete: (r: DailyResult) => void;
+}
+
 export function SortGame({
   deck,
   stats,
   onUpdateStats,
   onBack,
+  daily,
 }: {
   deck: Deck;
   stats: AppStats;
   onUpdateStats: (newStats: AppStats) => void;
   onBack: () => void;
+  daily?: DailyMode;
 }) {
-  const [state, dispatch] = useReducer(roundReducer, deck, (d) => {
-    const p = selectPuzzle(d, stats);
+  const [state, dispatch] = useReducer(roundReducer, undefined, () => {
+    if (daily) {
+      const { puzzle, shuffled } = selectDailyPuzzle(deck, daily.date);
+      return makeRound(puzzle, shuffled);
+    }
+    const p = selectPuzzle(deck, stats);
     return makeRound(p, shuffle(p));
   });
   const { puzzle, cards, statuses, finalStatuses, submitted, revealedCount, hintCardId, attemptsLeft, attemptsHistory } = state;
@@ -261,17 +275,26 @@ export function SortGame({
               100
             );
           }
+          // Event seen-counts update in both modes; the per-deck free-play
+          // streak/distribution only updates outside daily mode so the daily
+          // doesn't pollute it.
           let newStats = recordResult(
             stats,
             cards.map((c, i) => ({ event: c, status: s[i] }))
           );
-          newStats = recordDeckResult(
-            newStats,
-            deck.id,
-            allCorrect,
-            attemptsUsed
-          );
+          if (!daily) {
+            newStats = recordDeckResult(newStats, deck.id, allCorrect, attemptsUsed);
+          }
           onUpdateStats(newStats);
+          if (daily) {
+            daily.onComplete({
+              date: daily.date,
+              won: allCorrect,
+              attemptsUsed,
+              grid: [...attemptsHistory, s],
+              usedHint: !!hintCardId,
+            });
+          }
         }
       }, REVEAL_INTERVAL_MS);
     } else {
@@ -322,7 +345,7 @@ export function SortGame({
               Arrastrá para ordenar los eventos cronológicamente
             </p>
             <span className="inline-block text-xs bg-bg-secondary border border-border px-3 py-1.5 rounded-full text-text-tertiary mt-2 sm:mt-0">
-              {deck.name} — Puzzle #{puzzleNum}
+              {deck.name} — {daily ? `Diario #${daily.num}` : `Puzzle #${puzzleNum}`}
             </span>
           </div>
         </div>
@@ -387,7 +410,8 @@ export function SortGame({
           />
         </div>
 
-        {/* Controls */}
+        {/* Controls — daily mode shows only the revealing board, then the
+            parent swaps to the daily result screen on completion */}
         {!submitted ? (
           <div className="flex flex-col items-center gap-3 mt-6">
             <p className="text-sm text-text-secondary">
@@ -410,7 +434,7 @@ export function SortGame({
               </button>
             </div>
           </div>
-        ) : (
+        ) : daily ? null : (
           <div className="w-full max-w-lg mx-auto">
             {/* Solve / Failure Banner */}
             {finalStatuses.every((s) => s === "correct") ? (

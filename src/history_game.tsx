@@ -9,6 +9,16 @@ import { ContextDetective } from "./context_detective";
 import { WhoWasThere } from "./who_was_there";
 import { SortGame } from "./components/sort_game";
 import { StatsScreen } from "./components/stats_screen";
+import { DailyResultScreen } from "./components/daily_result";
+import {
+  loadDaily,
+  todayStr,
+  dayNumber,
+  getDailyResult,
+  getDailyStreak,
+  recordDailyResult,
+  type DailyState,
+} from "./daily";
 
 const TITLE_CLS = "text-4xl sm:text-5xl font-extrabold tracking-tighter m-0 leading-none";
 
@@ -17,6 +27,7 @@ export default function App() {
     | "home"
     | "mode_select"
     | "game"
+    | "daily"
     | "year_guessr"
     | "endless"
     | "context_detective"
@@ -26,6 +37,7 @@ export default function App() {
   >("home");
   const [selectedDeck, setSelectedDeck] = useState<Deck | null>(null);
   const [stats, setStats] = useState<AppStats>(() => loadStats());
+  const [daily, setDaily] = useState<DailyState>(() => loadDaily());
 
   function selectDeck(deck: Deck) {
     setSelectedDeck(deck);
@@ -96,6 +108,38 @@ export default function App() {
       />
     );
 
+  if (screen === "daily" && selectedDeck) {
+    const date = todayStr();
+    const num = dayNumber(date);
+    const streak = getDailyStreak(daily, selectedDeck.id);
+    const result = getDailyResult(daily, selectedDeck.id, date);
+    if (result)
+      return (
+        <DailyResultScreen
+          deck={selectedDeck}
+          result={result}
+          dayNum={num}
+          streak={streak}
+          onBack={() => setScreen("mode_select")}
+        />
+      );
+    return (
+      <SortGame
+        key={`daily-${selectedDeck.id}-${date}`}
+        deck={selectedDeck}
+        stats={stats}
+        onUpdateStats={handleUpdateStats}
+        onBack={() => setScreen("mode_select")}
+        daily={{
+          date,
+          num,
+          streak,
+          onComplete: (r) => setDaily(recordDailyResult(selectedDeck.id, r)),
+        }}
+      />
+    );
+  }
+
   if (screen === "mode_select" && selectedDeck) {
     const modes = [
       {
@@ -152,6 +196,37 @@ export default function App() {
               {selectedDeck.name}
             </h2>
           </div>
+
+          {/* Featured daily puzzle — same puzzle for everyone, per deck */}
+          {(() => {
+            const date = todayStr();
+            const num = dayNumber(date);
+            const streak = getDailyStreak(daily, selectedDeck.id);
+            const played = !!getDailyResult(daily, selectedDeck.id, date);
+            return (
+              <button
+                onClick={() => setScreen("daily")}
+                className="flex items-center gap-4 px-5 py-4 mb-3 rounded-2xl border border-ar-gold/40 bg-ar-gold/5 hover:border-ar-gold hover:bg-ar-gold/10 transition-all duration-150 cursor-pointer text-left w-full"
+              >
+                <span className="text-3xl shrink-0">📆</span>
+                <div className="flex-1 min-w-0">
+                  <div className="font-semibold text-text-primary">
+                    Puzzle Diario #{num}
+                  </div>
+                  <div className="text-xs text-text-tertiary mt-0.5">
+                    {played
+                      ? "✅ Completado — volvé mañana"
+                      : "El mismo puzzle para todos"}
+                  </div>
+                </div>
+                {streak > 0 && (
+                  <span className="text-sm font-bold text-ar-gold shrink-0">
+                    🔥 {streak}
+                  </span>
+                )}
+              </button>
+            );
+          })()}
 
           <div className="flex flex-col gap-3">
             {modes.map((mode) => (
