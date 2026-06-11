@@ -8,7 +8,7 @@ function generateDeckFile(deck: Deck): string {
 }
 
 const inputCls =
-  "w-full px-3 py-2 rounded-lg bg-bg border border-border text-text-primary text-sm outline-none focus:border-ar-blue";
+  "w-full px-3 py-2 rounded-lg bg-bg border border-border text-text-primary text-sm focus:border-ar-blue";
 const btnPrimary =
   "px-4 py-2 rounded-lg bg-ar-blue hover:bg-ar-blue-dark text-white text-sm font-medium cursor-pointer border-none transition-colors";
 const btnSecondary =
@@ -266,7 +266,7 @@ function AdminDeckEditor({ deck, onBack }: { deck: Deck; onBack: () => void }) {
               max={events.length}
               value={puzzleSize}
               onChange={e => setPuzzleSize(Math.max(2, Number(e.target.value)))}
-              className="w-14 px-2 py-1 rounded-lg bg-bg border border-border text-text-primary text-sm text-center outline-none focus:border-ar-blue"
+              className="w-14 px-2 py-1 rounded-lg bg-bg border border-border text-text-primary text-sm text-center focus:border-ar-blue"
             />
           </div>
           <button

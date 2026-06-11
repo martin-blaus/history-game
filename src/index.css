@@ -15,11 +15,46 @@
   --color-text-primary: #f1f5f9;
   --color-text-secondary: #94a3b8;
   --color-text-tertiary: #475569;
+  --text-2xs: 0.625rem;
+  --text-2xs--line-height: 0.875rem;
 }
 
 body {
   background-color: #0f1923;
   margin: 0;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-ar-blue);
+  outline-offset: 2px;
+}
+
+@layer components {
+  .btn,
+  .btn-primary,
+  .btn-secondary,
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl font-semibold text-sm transition-colors cursor-pointer select-none min-h-11 px-4 py-3 disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-primary {
+    @apply bg-ar-blue text-white hover:bg-ar-blue-dark;
+  }
+  .btn-secondary {
+    @apply border border-border bg-transparent text-text-secondary hover:text-text-primary hover:border-text-tertiary;
+  }
+  .btn-ghost {
+    @apply bg-transparent px-2 text-text-tertiary hover:text-text-secondary;
+  }
+}
+
+/* Larger slider thumb for touch (Year Guesser) */
+input[type="range"]::-webkit-slider-thumb {
+  width: 24px;
+  height: 24px;
+}
+input[type="range"]::-moz-range-thumb {
+  width: 24px;
+  height: 24px;
 }
 
 @keyframes shake {
@@ -85,3 +120,9 @@ body {
   to   { transform: translateX(0); }
 }
 .wiki-panel { animation: slideInRight 0.28s cubic-bezier(0.32, 0.72, 0, 1) forwards; }
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+.fade-in { animation: fadeIn 0.25s ease; }
