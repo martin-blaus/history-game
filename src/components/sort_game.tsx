@@ -8,6 +8,8 @@ import { shuffle } from "../utils";
 import { MAX_ATTEMPTS } from "../constants";
 import { useTouchDrag } from "../hooks/use_touch_drag";
 import { selectDailyPuzzle, type DailyResult } from "../daily";
+import { sounds } from "../sounds";
+import { MuteButton } from "./mute_button";
 
 const REVEAL_INTERVAL_MS = 80;
 const WRONG_FLASH_MS = 1200;
@@ -199,6 +201,7 @@ export function SortGame({
     });
     pendingFlipRef.current = oldPositions;
     dispatch({ type: "move_card", src, dst });
+    sounds.drop();
   }
 
   // FLIP steps 2-4: after DOM updates, invert and play
@@ -262,9 +265,11 @@ export function SortGame({
       revealIntervalRef.current = setInterval(() => {
         count++;
         dispatch({ type: "reveal_tick" });
+        sounds.tick(count);
         if (count >= cards.length) {
           clearInterval(revealIntervalRef.current!);
           if (allCorrect) {
+            sounds.win();
             setTimeout(
               () =>
                 confetti({
@@ -274,6 +279,8 @@ export function SortGame({
                 }),
               100
             );
+          } else {
+            sounds.lose();
           }
           // Event seen-counts update in both modes; the per-deck free-play
           // streak/distribution only updates outside daily mode so the daily
@@ -298,6 +305,7 @@ export function SortGame({
         }
       }, REVEAL_INTERVAL_MS);
     } else {
+      sounds.error();
       setTimeout(() => dispatch({ type: "clear_flash" }), WRONG_FLASH_MS);
     }
   }
@@ -333,6 +341,9 @@ export function SortGame({
             >
               ← Volver
             </button>
+          </div>
+          <div className="absolute right-0 top-0">
+            <MuteButton />
           </div>
           <div className="text-center">
             <h1 className="text-2xl sm:text-4xl font-extrabold text-text-primary mb-1 mt-7 sm:mt-0">

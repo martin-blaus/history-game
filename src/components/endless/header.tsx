@@ -1,4 +1,5 @@
 import type { Phase } from "./types";
+import { MuteButton } from "../mute_button";
 
 export function EndlessHeader({
   onBack,
@@ -19,12 +20,15 @@ export function EndlessHeader({
 }) {
   return (
     <div className="flex items-center px-4 pt-5 pb-4 shrink-0">
-      <button
-        onClick={onBack}
-        className="bg-transparent border-none cursor-pointer text-text-tertiary text-sm hover:text-text-secondary transition-colors"
-      >
-        ← Volver
-      </button>
+      <div className="flex items-center gap-2 shrink-0">
+        <button
+          onClick={onBack}
+          className="bg-transparent border-none cursor-pointer text-text-tertiary text-sm hover:text-text-secondary transition-colors"
+        >
+          ← Volver
+        </button>
+        <MuteButton />
+      </div>
       <div className="flex-1 flex items-center justify-center gap-2">
         <span className="text-xs font-bold text-ar-blue tracking-widest uppercase">
           Endless

@@ -13,6 +13,7 @@ import { GAP_STYLES } from "./components/endless/types";
 import type { Phase, GapStyle } from "./components/endless/types";
 import { WikipediaSheet } from "./components/WikipediaSheet";
 import { useTouchDrag } from "./hooks/use_touch_drag";
+import { sounds } from "./sounds";
 
 // ── Constants ────────────────────────────────────────────────────────────────
 const MAX_LIVES = 3;
@@ -87,11 +88,13 @@ export function EndlessGame({
       setScore((s) => s + calcMultiplier(streak));
       setStreak((s) => s + 1);
       setPhase("correct");
+      sounds.correct();
     } else {
       setGoodGap(findCorrectGap(incoming));
       setLives((l) => l - 1);
       setStreak(0);
       setPhase("wrong");
+      sounds.wrong();
     }
   }
 
@@ -143,6 +146,7 @@ export function EndlessGame({
       setBestScore(score);
       localStorage.setItem(BEST_KEY, String(score));
       setIsNewRecord(true);
+      sounds.record();
       confetti({ particleCount: 150, spread: 90, origin: { y: 0.4 } });
     }
   }, [phase]); // score is final when phase changes to gameover/complete
