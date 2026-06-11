@@ -22,206 +22,95 @@ type RoundTypeB = {
 
 type Round = RoundTypeA | RoundTypeB;
 
+// Both modes are the same game over different "labels": historical figures
+// (people mode) or idea names with a definition (ideas mode, "Name: definition").
+type Label = { name: string; definition?: string };
+
+function extractLabels(e: HistoryEvent, isIdeasMode: boolean): Label[] {
+  if (isIdeasMode) {
+    return (e.ideas ?? []).map((ideaStr) => {
+      const [name, ...rest] = ideaStr.split(": ");
+      return { name, definition: rest.join(": ") };
+    });
+  }
+  return (e.people ?? []).map((name) => ({ name }));
+}
+
 function buildRounds(deck: Deck): Round[] {
   const isIdeasMode = deck.id === "filosofia";
 
-  if (isIdeasMode) {
-    // -------------------------------------------------------------
-    // IDEAS MODE (Philosophy)
-    // -------------------------------------------------------------
-    const ideaToPhilosophers: Record<string, HistoryEvent[]> = {};
-    const ideaToDefinition: Record<string, string> = {};
-    const allIdeasSet = new Set<string>();
+  const labelToEvents: Record<string, HistoryEvent[]> = {};
+  const definitions: Record<string, string> = {};
+  const taggedEvents: HistoryEvent[] = [];
 
-    deck.events.forEach((e) => {
-      if (e.ideas && e.ideas.length > 0) {
-        e.ideas.forEach((ideaStr) => {
-          const parts = ideaStr.split(": ");
-          const name = parts[0];
-          const definition = parts[1] || "";
-
-          allIdeasSet.add(name);
-          ideaToDefinition[name] = definition;
-
-          if (!ideaToPhilosophers[name]) ideaToPhilosophers[name] = [];
-          ideaToPhilosophers[name].push(e);
-        });
-      }
+  deck.events.forEach((e) => {
+    const labels = extractLabels(e, isIdeasMode);
+    if (labels.length === 0) return;
+    taggedEvents.push(e);
+    labels.forEach(({ name, definition }) => {
+      if (definition) definitions[name] = definition;
+      (labelToEvents[name] ??= []).push(e);
     });
+  });
 
-    const allIdeas = Array.from(allIdeasSet);
-    const typeACandidates = Object.keys(ideaToPhilosophers).filter(
-      (idea) => ideaToPhilosophers[idea].length >= 3
-    );
+  const allLabels = Object.keys(labelToEvents);
+  // Type A rounds need 3 correct choices for a single label.
+  const typeACandidates = allLabels.filter(
+    (name) => labelToEvents[name].length >= 3
+  );
 
-    if (typeACandidates.length < 1 || allIdeas.length < 4 || deck.events.length < 6) {
-      return [];
-    }
-
-    const rounds: Round[] = [];
-    const shuffledIdeas = [...typeACandidates].sort(() => Math.random() - 0.5);
-    const shuffledPhilosophers = [...deck.events].sort(() => Math.random() - 0.5);
-
-    let ideaIdx = 0;
-    let philIdx = 0;
-
-    for (let i = 0; i < ROUNDS; i++) {
-      const type = i % 2 === 0 ? "A" : "B";
-
-      if (type === "A" && ideaIdx < shuffledIdeas.length) {
-        const idea = shuffledIdeas[ideaIdx++];
-        const myPhilosophers = ideaToPhilosophers[idea];
-
-        // 3 correct philosophers
-        const correctChoices = [...myPhilosophers].sort(() => Math.random() - 0.5).slice(0, 3);
-        const correctNames = correctChoices.map((c) => c.event);
-
-        // 3 distractor philosophers (who do NOT have this idea)
-        const distractors = deck.events
-          .filter((e) => !e.ideas || !e.ideas.some((idStr) => idStr.split(": ")[0] === idea))
-          .sort(() => Math.random() - 0.5)
-          .slice(0, 3);
-
-        const choices = [...correctChoices, ...distractors].sort(() => Math.random() - 0.5);
-
-        rounds.push({
-          type: "A",
-          person: idea,
-          definition: ideaToDefinition[idea],
-          choices,
-          correctEvents: correctNames,
-        });
-      } else {
-        // Find a philosopher who has at least one idea
-        let philosopher: HistoryEvent | null = null;
-        while (philIdx < shuffledPhilosophers.length) {
-          const candidate = shuffledPhilosophers[philIdx++];
-          if (candidate.ideas && candidate.ideas.length > 0) {
-            philosopher = candidate;
-            break;
-          }
-        }
-
-        if (!philosopher) {
-          philosopher = shuffledPhilosophers[Math.floor(Math.random() * shuffledPhilosophers.length)];
-        }
-
-        const correctIdeaStr =
-          philosopher.ideas![Math.floor(Math.random() * philosopher.ideas!.length)];
-        const correctIdeaName = correctIdeaStr.split(": ")[0];
-
-        // 3 distractor ideas (not proposed by this philosopher)
-        const proposedNames = philosopher.ideas!.map((idStr) => idStr.split(": ")[0]);
-        const distractors = allIdeas
-          .filter((name) => !proposedNames.includes(name))
-          .sort(() => Math.random() - 0.5)
-          .slice(0, 3);
-
-        const choices = [correctIdeaName, ...distractors].sort(() => Math.random() - 0.5);
-
-        rounds.push({
-          type: "B",
-          event: philosopher,
-          choices,
-          correctPerson: correctIdeaName,
-        });
-      }
-    }
-
-    return rounds;
-  } else {
-    // -------------------------------------------------------------
-    // PEOPLE MODE (Original, e.g. Argentina deck)
-    // -------------------------------------------------------------
-    const personToEvents: Record<string, HistoryEvent[]> = {};
-    const eventsWithPeople: HistoryEvent[] = [];
-    const allPeopleSet = new Set<string>();
-
-    deck.events.forEach((e) => {
-      if (e.people && e.people.length > 0) {
-        eventsWithPeople.push(e);
-        e.people.forEach((p) => {
-          allPeopleSet.add(p);
-          if (!personToEvents[p]) personToEvents[p] = [];
-          personToEvents[p].push(e);
-        });
-      }
-    });
-
-    const allPeople = Array.from(allPeopleSet);
-    const typeACandidates = Object.keys(personToEvents).filter(
-      (p) => personToEvents[p].length >= 3
-    );
-
-    if (typeACandidates.length < 1 || allPeople.length < 4 || eventsWithPeople.length < 6) {
-      return [];
-    }
-
-    const rounds: Round[] = [];
-    const shuffledCandidates = [...typeACandidates].sort(() => Math.random() - 0.5);
-    const shuffledEvents = [...eventsWithPeople].sort(() => Math.random() - 0.5);
-
-    let candidateIdx = 0;
-    let eventIdx = 0;
-
-    for (let i = 0; i < ROUNDS; i++) {
-      const type = i % 2 === 0 ? "A" : "B";
-
-      if (type === "A" && candidateIdx < shuffledCandidates.length) {
-        const person = shuffledCandidates[candidateIdx++];
-        const myEvents = personToEvents[person];
-
-        const correctChoices = [...myEvents].sort(() => Math.random() - 0.5).slice(0, 3);
-        const correctNames = correctChoices.map((c) => c.event);
-
-        const distractors = deck.events
-          .filter((e) => !e.people || !e.people.includes(person))
-          .sort(() => Math.random() - 0.5)
-          .slice(0, 3);
-
-        const choices = [...correctChoices, ...distractors].sort(() => Math.random() - 0.5);
-
-        rounds.push({
-          type: "A",
-          person,
-          choices,
-          correctEvents: correctNames,
-        });
-      } else {
-        let event: HistoryEvent | null = null;
-        while (eventIdx < shuffledEvents.length) {
-          const candidateEvent = shuffledEvents[eventIdx++];
-          if (candidateEvent.people && candidateEvent.people.length > 0) {
-            event = candidateEvent;
-            break;
-          }
-        }
-
-        if (!event) {
-          event = shuffledEvents[Math.floor(Math.random() * shuffledEvents.length)];
-        }
-
-        const correctPerson =
-          event.people![Math.floor(Math.random() * event.people!.length)];
-
-        const distractors = allPeople
-          .filter((p) => !event!.people!.includes(p))
-          .sort(() => Math.random() - 0.5)
-          .slice(0, 3);
-
-        const choices = [correctPerson, ...distractors].sort(() => Math.random() - 0.5);
-
-        rounds.push({
-          type: "B",
-          event,
-          choices,
-          correctPerson,
-        });
-      }
-    }
-
-    return rounds;
+  if (typeACandidates.length < 1 || allLabels.length < 4 || taggedEvents.length < ROUNDS) {
+    return [];
   }
+
+  const rounds: Round[] = [];
+  const shuffledLabels = shuffle(typeACandidates);
+  const shuffledEvents = shuffle(taggedEvents);
+
+  let labelIdx = 0;
+  let eventIdx = 0;
+
+  for (let i = 0; i < ROUNDS; i++) {
+    const wantTypeA = i % 2 === 0;
+
+    if (wantTypeA && labelIdx < shuffledLabels.length) {
+      const label = shuffledLabels[labelIdx++];
+      const correctChoices = shuffle(labelToEvents[label]).slice(0, 3);
+      const distractors = shuffle(
+        deck.events.filter(
+          (e) => !extractLabels(e, isIdeasMode).some((l) => l.name === label)
+        )
+      ).slice(0, 3);
+
+      rounds.push({
+        type: "A",
+        person: label,
+        definition: definitions[label],
+        choices: shuffle([...correctChoices, ...distractors]),
+        correctEvents: correctChoices.map((c) => c.event),
+      });
+    } else {
+      const event =
+        eventIdx < shuffledEvents.length
+          ? shuffledEvents[eventIdx++]
+          : shuffledEvents[Math.floor(Math.random() * shuffledEvents.length)];
+
+      const myLabels = extractLabels(event, isIdeasMode).map((l) => l.name);
+      const correctLabel = myLabels[Math.floor(Math.random() * myLabels.length)];
+      const distractors = shuffle(
+        allLabels.filter((name) => !myLabels.includes(name))
+      ).slice(0, 3);
+
+      rounds.push({
+        type: "B",
+        event,
+        choices: shuffle([correctLabel, ...distractors]),
+        correctPerson: correctLabel,
+      });
+    }
+  }
+
+  return rounds;
 }
 
 export function WhoWasThere({

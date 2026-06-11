@@ -7,6 +7,22 @@ function generateDeckFile(deck: Deck): string {
   return JSON.stringify(deck, null, 2) + "\n";
 }
 
+// Event names are React keys and the per-event stats key in storage.ts, so
+// blanks and duplicates silently corrupt rendering and stats.
+function validateDeck(events: HistoryEvent[], puzzleSize: number): string | null {
+  if (events.length === 0) return "El mazo no tiene eventos.";
+  const names = new Set<string>();
+  for (const ev of events) {
+    if (!ev.event.trim()) return "Hay un evento sin nombre.";
+    if (!Number.isFinite(ev.year)) return `"${ev.event}" tiene un año inválido.`;
+    if (names.has(ev.event)) return `Evento duplicado: "${ev.event}".`;
+    names.add(ev.event);
+  }
+  if (puzzleSize < 2 || puzzleSize > events.length)
+    return `"Por partida" debe estar entre 2 y ${events.length}.`;
+  return null;
+}
+
 const inputCls =
   "w-full px-3 py-2 rounded-lg bg-bg border border-border text-text-primary text-sm focus:border-ar-blue";
 const btnPrimary =
@@ -14,10 +30,11 @@ const btnPrimary =
 const btnSecondary =
   "px-4 py-2 rounded-lg border border-border bg-transparent text-text-secondary text-sm cursor-pointer hover:text-text-primary transition-colors";
 
-const SAVE_BTN_CLS: Record<"idle" | "saved" | "error", string> = {
+const SAVE_BTN_CLS: Record<"idle" | "saved" | "error" | "invalid", string> = {
   idle: "bg-ar-blue hover:bg-ar-blue-dark",
   saved: "bg-success",
   error: "bg-danger",
+  invalid: "bg-danger",
 };
 
 function EventDraftFields({
@@ -197,7 +214,8 @@ function AdminDeckEditor({ deck, onBack }: { deck: Deck; onBack: () => void }) {
   const [puzzleSize, setPuzzleSize] = useState<number>(deck.puzzleSize ?? 6);
   const [showAddRow, setShowAddRow] = useState(false);
   const [saving, setSaving] = useState(false);
-  const [saveStatus, setSaveStatus] = useState<"idle" | "saved" | "error">("idle");
+  const [saveStatus, setSaveStatus] = useState<"idle" | "saved" | "error" | "invalid">("idle");
+  const [validationMsg, setValidationMsg] = useState<string | null>(null);
 
   function updateEvent(idx: number, updated: HistoryEvent) {
     setEvents(prev => prev.map((e, i) => (i === idx ? updated : e)));
@@ -223,6 +241,16 @@ function AdminDeckEditor({ deck, onBack }: { deck: Deck; onBack: () => void }) {
   }
 
   async function saveToFile() {
+    const invalid = validateDeck(events, puzzleSize);
+    if (invalid) {
+      setValidationMsg(invalid);
+      setSaveStatus("invalid");
+      setTimeout(() => {
+        setSaveStatus("idle");
+        setValidationMsg(null);
+      }, 4000);
+      return;
+    }
     setSaving(true);
     try {
       const content = generateDeckFile({ ...deck, events, puzzleSize });
@@ -274,9 +302,13 @@ function AdminDeckEditor({ deck, onBack }: { deck: Deck; onBack: () => void }) {
             disabled={saving}
             className={`shrink-0 px-4 py-2 rounded-xl border-none text-sm font-semibold cursor-pointer transition-colors text-white ${SAVE_BTN_CLS[saveStatus]} ${saving ? "opacity-60 cursor-not-allowed" : ""}`}
           >
-            {saving ? "Guardando…" : saveStatus === "saved" ? "¡Guardado!" : saveStatus === "error" ? "Error" : "Guardar en archivo"}
+            {saving ? "Guardando…" : saveStatus === "saved" ? "¡Guardado!" : saveStatus === "error" ? "Error" : saveStatus === "invalid" ? "Inválido" : "Guardar en archivo"}
           </button>
         </div>
+
+        {validationMsg && (
+          <p className="text-xs text-danger text-right -mt-3 mb-3 m-0">{validationMsg}</p>
+        )}
 
         <div className="flex items-center gap-2 px-3 py-1.5 mb-1.5">
           <span className="text-xs font-bold text-text-tertiary uppercase tracking-wider w-8 shrink-0 text-center">#</span>

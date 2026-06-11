@@ -88,6 +88,7 @@ export default function App() {
   if (screen === "game" && selectedDeck)
     return (
       <SortGame
+        key={selectedDeck.id}
         deck={selectedDeck}
         stats={stats}
         onUpdateStats={handleUpdateStats}

@@ -28,7 +28,7 @@ export function Card({
   isDragSource: boolean;
   isHinted: boolean;
   onDragStart: (i: number) => void;
-  onDragOver: (i: number, clientX: number, rect: DOMRect) => void;
+  onDragOver: (i: number, clientX: number, clientY: number, rect: DOMRect) => void;
   onDragEnd: () => void;
   onDrop: () => void;
   onTouchStart: (e: React.TouchEvent, i: number) => void;
@@ -62,7 +62,7 @@ export function Card({
       onDragOver={(e) => {
         e.preventDefault();
         e.stopPropagation();
-        onDragOver(index, e.clientX, e.currentTarget.getBoundingClientRect());
+        onDragOver(index, e.clientX, e.clientY, e.currentTarget.getBoundingClientRect());
       }}
       onDragEnd={onDragEnd}
       onDrop={onDrop}

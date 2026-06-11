@@ -31,39 +31,33 @@ const relatedCache = new Map<string, RelatedPage[]>();
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
+// Throws on network/HTTP failure — failures are never cached, so a transient
+// outage doesn't permanently poison an article until reload.
 async function fetchSummary(url: string): Promise<WikiSummary | null> {
   const title = extractWikiTitle(url);
   if (!title) return null;
   if (summaryCache.has(title)) return summaryCache.get(title)!;
-  try {
-    const r = await fetch(
-      `https://es.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(title)}`,
-    );
-    const data: WikiSummary = await r.json();
-    summaryCache.set(title, data);
-    return data;
-  } catch {
-    summaryCache.set(title, null);
-    return null;
-  }
+  const r = await fetch(
+    `https://es.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(title)}`,
+  );
+  if (!r.ok) throw new Error(`HTTP ${r.status}`);
+  const data: WikiSummary = await r.json();
+  summaryCache.set(title, data);
+  return data;
 }
 
 async function fetchRelated(url: string): Promise<RelatedPage[]> {
   const title = extractWikiTitle(url);
   if (!title) return [];
   if (relatedCache.has(title)) return relatedCache.get(title)!;
-  try {
-    const r = await fetch(
-      `https://es.wikipedia.org/api/rest_v1/page/related/${encodeURIComponent(title)}`,
-    );
-    const data: { pages: RelatedPage[] } = await r.json();
-    const pages = (data.pages ?? []).slice(0, 5);
-    relatedCache.set(title, pages);
-    return pages;
-  } catch {
-    relatedCache.set(title, []);
-    return [];
-  }
+  const r = await fetch(
+    `https://es.wikipedia.org/api/rest_v1/page/related/${encodeURIComponent(title)}`,
+  );
+  if (!r.ok) throw new Error(`HTTP ${r.status}`);
+  const data: { pages: RelatedPage[] } = await r.json();
+  const pages = (data.pages ?? []).slice(0, 5);
+  relatedCache.set(title, pages);
+  return pages;
 }
 
 // Returns up to 3 deck events chronologically before and 3 after the root event.
@@ -154,31 +148,44 @@ export function WikipediaSheet({
   const [stack, setStack] = useState<PanelView[]>([initial]);
   const [activeTab, setActiveTab] = useState<Tab>("summary");
 
-  const [summary, setSummary] = useState<WikiSummary | null | "loading">("loading");
-  const [related, setRelated] = useState<RelatedPage[] | "loading" | null>(null);
+  const [summary, setSummary] = useState<WikiSummary | null | "loading" | "error">("loading");
+  const [related, setRelated] = useState<RelatedPage[] | "loading" | "error" | null>(null);
   const [revealed, setRevealed] = useState(false);
+  const [retryNonce, setRetryNonce] = useState(0);
 
   const current = stack[stack.length - 1];
 
   // Nearby events are computed from the deck — no fetch needed
   const nearby = nearbyEvents(deck, event);
 
-  // Fetch summary whenever current URL changes
+  // Reset the panel when navigating to another article
   useEffect(() => {
     setRevealed(false);
-    setSummary("loading");
     setRelated(null);
     setActiveTab("summary");
-    if (!current.url) { setSummary(null); return; }
-    fetchSummary(current.url).then(setSummary);
   }, [current.url]);
 
-  // Lazy fetch related when tab is opened
+  // Fetch summary whenever current URL changes (or a retry is requested)
+  useEffect(() => {
+    setSummary("loading");
+    if (!current.url) { setSummary(null); return; }
+    let cancelled = false;
+    fetchSummary(current.url)
+      .then((s) => { if (!cancelled) setSummary(s); })
+      .catch(() => { if (!cancelled) setSummary("error"); });
+    return () => { cancelled = true; };
+  }, [current.url, retryNonce]);
+
+  // Lazy fetch related when tab is opened (retry resets `related` to null)
   useEffect(() => {
     if (activeTab !== "related" || related !== null || !current.url) return;
     setRelated("loading");
-    fetchRelated(current.url).then(setRelated);
-  }, [activeTab, current.url]);
+    let cancelled = false;
+    fetchRelated(current.url)
+      .then((p) => { if (!cancelled) setRelated(p); })
+      .catch(() => { if (!cancelled) setRelated("error"); });
+    return () => { cancelled = true; };
+  }, [activeTab, related, current.url]);
 
   function navigate(url: string, title: string) {
     setStack((s) => [...s, { url, title }]);
@@ -189,13 +196,10 @@ export function WikipediaSheet({
     setStack((s) => s.slice(0, -1));
   }
 
-  const thumbnail =
-    summary !== "loading" && summary !== null
-      ? (summary.thumbnail?.source ?? event.image)
-      : event.image;
-
-  const extract =
-    summary !== "loading" && summary !== null ? summary.extract : null;
+  const summaryData =
+    typeof summary === "object" && summary !== null ? summary : null;
+  const thumbnail = summaryData?.thumbnail?.source ?? event.image;
+  const extract = summaryData?.extract ?? null;
 
   const bodyText =
     extract ||
@@ -280,6 +284,19 @@ export function WikipediaSheet({
                 <Spinner />
               ) : (
                 <>
+                  {summary === "error" && (
+                    <div className="flex items-center justify-between gap-2 px-3 py-2 rounded-xl border border-danger/30 bg-danger/10">
+                      <span className="text-xs text-danger">
+                        No se pudo cargar Wikipedia.
+                      </span>
+                      <button
+                        onClick={() => setRetryNonce((n) => n + 1)}
+                        className="text-xs font-semibold text-ar-blue bg-transparent border-none cursor-pointer p-0 hover:underline shrink-0"
+                      >
+                        Reintentar
+                      </button>
+                    </div>
+                  )}
                   {bodyText ? (
                     <div className="relative">
                       {isContextFallback && (
@@ -332,6 +349,18 @@ export function WikipediaSheet({
             <>
               {related === "loading" || related === null ? (
                 <Spinner />
+              ) : related === "error" ? (
+                <div className="flex items-center justify-between gap-2 px-3 py-2 rounded-xl border border-danger/30 bg-danger/10">
+                  <span className="text-xs text-danger">
+                    No se pudieron cargar los relacionados.
+                  </span>
+                  <button
+                    onClick={() => setRelated(null)}
+                    className="text-xs font-semibold text-ar-blue bg-transparent border-none cursor-pointer p-0 hover:underline shrink-0"
+                  >
+                    Reintentar
+                  </button>
+                </div>
               ) : related.length === 0 ? (
                 <p className="text-sm text-text-tertiary">
                   No se encontraron artículos relacionados.

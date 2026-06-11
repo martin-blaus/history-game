@@ -12,12 +12,15 @@ import { EndlessGap } from "./components/endless/gap";
 import { GAP_STYLES } from "./components/endless/types";
 import type { Phase, GapStyle } from "./components/endless/types";
 import { WikipediaSheet } from "./components/WikipediaSheet";
+import { useTouchDrag } from "./hooks/use_touch_drag";
 
 // ── Constants ────────────────────────────────────────────────────────────────
 const MAX_LIVES = 3;
 const STACK_AT = 6;
 const CORRECT_DELAY_MS = 650;
 const WRONG_DELAY_MS = 1400;
+// Touches this far above/below the timeline strip still count as aiming at it.
+const TOUCH_Y_TOLERANCE_PX = 24;
 const BEST_KEY = "endless-best-score";
 const ROTS = [-2, 1.5, -2.5, 2, -1.5, 3, -1, 2.5, -3, 1.5, -2, 2];
 
@@ -54,8 +57,6 @@ export function EndlessGame({
   const [phase, setPhase] = useState<Phase>("placing");
   const [chosenGap, setChosenGap] = useState<number | null>(null);
   const [goodGap, setGoodGap] = useState<number | null>(null);
-  const [isDragging, setIsDragging] = useState(false);
-  const [dragOverGap, setDragOverGap] = useState<number | null>(null);
   const [wikiEvent, setWikiEvent] = useState<HistoryEvent | null>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -160,12 +161,38 @@ export function EndlessGame({
     setGoodGap(null);
   }
 
-  // ── Helpers ───────────────────────────────────────────────────────────────────
-  function clearDrag() {
-    setIsDragging(false);
-    setDragOverGap(null);
-  }
+  // ── Drag (mouse + touch share one state machine) ──────────────────────────────
+  const drag = useTouchDrag<"incoming", number>({
+    resolveTarget: (x, y) => {
+      const strip = scrollRef.current;
+      if (!strip) return null;
+      const stripRect = strip.getBoundingClientRect();
+      if (
+        y < stripRect.top - TOUCH_Y_TOLERANCE_PX ||
+        y > stripRect.bottom + TOUCH_Y_TOLERANCE_PX
+      ) {
+        return null;
+      }
+      const gapEls = strip.querySelectorAll<HTMLElement>("[data-gap-idx]");
+      let bestGap: number | null = null;
+      let bestDist = Infinity;
+      gapEls.forEach((el) => {
+        const rect = el.getBoundingClientRect();
+        const centerX = (rect.left + rect.right) / 2;
+        const dist = Math.abs(x - centerX);
+        if (dist < bestDist) {
+          bestDist = dist;
+          bestGap = parseInt(el.dataset.gapIdx ?? "");
+        }
+      });
+      return bestGap !== null && Number.isFinite(bestGap) ? bestGap : null;
+    },
+    onDrop: (_source, gap) => handleGapClick(gap),
+  });
+  const isDragging = drag.isDragging;
+  const dragOverGap = drag.dragTarget;
 
+  // ── Helpers ───────────────────────────────────────────────────────────────────
   function howClose(): string {
     if (goodGap === null) return "";
     const before = timeline[goodGap - 1];
@@ -173,42 +200,6 @@ export function EndlessGame({
     if (!before) return `Debe ir antes de ${formatYear(after!.year)}`;
     if (!after) return `Debe ir después de ${formatYear(before.year)}`;
     return `Debe ir entre ${formatYear(before.year)} y ${formatYear(after.year)}`;
-  }
-
-  // ── Touch drag ───────────────────────────────────────────────────────────────
-  function handleTouchStart(e: React.TouchEvent) {
-    if (phase !== "placing") return;
-    e.stopPropagation();
-    setIsDragging(true);
-  }
-
-  function handleTouchMove(e: React.TouchEvent) {
-    if (!isDragging) return;
-    const touch = e.touches[0];
-    const gapEls =
-      scrollRef.current?.querySelectorAll<HTMLElement>("[data-gap-idx]");
-    if (!gapEls) return;
-    let bestGap: number | null = null;
-    let bestDist = Infinity;
-    gapEls.forEach((el) => {
-      const rect = el.getBoundingClientRect();
-      if (touch.clientY < rect.top - 50 || touch.clientY > rect.bottom + 50)
-        return;
-      const centerX = (rect.left + rect.right) / 2;
-      const dist = Math.abs(touch.clientX - centerX);
-      if (dist < bestDist) {
-        bestDist = dist;
-        bestGap = parseInt(el.dataset.gapIdx ?? "");
-      }
-    });
-    setDragOverGap(Number.isFinite(bestGap) ? bestGap : null);
-  }
-
-  function handleTouchEnd() {
-    if (!isDragging) return;
-    const target = dragOverGap;
-    clearDrag();
-    if (target !== null) handleGapClick(target);
   }
 
   // ── Gap rendering ─────────────────────────────────────────────────────────────
@@ -254,15 +245,15 @@ export function EndlessGame({
         onClick={() => handleGapClick(g)}
         onDragOver={(e) => {
           e.preventDefault();
-          setDragOverGap(g);
+          drag.updateTarget(g);
         }}
         onDragLeave={(e) => {
           if (!e.currentTarget.contains(e.relatedTarget as Node))
-            setDragOverGap(null);
+            drag.updateTarget(null);
         }}
         onDrop={(e) => {
           e.preventDefault();
-          clearDrag();
+          drag.endDrag();
           handleGapClick(g);
         }}
       />
@@ -308,12 +299,16 @@ export function EndlessGame({
           phase={phase}
           onDragStart={(e) => {
             e.dataTransfer.setData("text/plain", "incoming");
-            setIsDragging(true);
+            drag.startDrag("incoming");
           }}
-          onDragEnd={clearDrag}
-          onTouchStart={handleTouchStart}
-          onTouchMove={handleTouchMove}
-          onTouchEnd={handleTouchEnd}
+          onDragEnd={drag.endDrag}
+          onTouchStart={(e) => {
+            if (phase !== "placing") return;
+            e.stopPropagation();
+            drag.onTouchStart(e, "incoming");
+          }}
+          onTouchMove={drag.onTouchMove}
+          onTouchEnd={drag.onTouchEnd}
           onWikiClick={incoming.wikipediaUrl ? () => setWikiEvent(incoming) : undefined}
         />
 

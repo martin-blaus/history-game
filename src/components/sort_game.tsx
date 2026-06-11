@@ -1,4 +1,4 @@
-import { Fragment, useState, useRef, useEffect, useLayoutEffect } from "react";
+import { Fragment, useReducer, useState, useRef, useEffect, useLayoutEffect } from "react";
 import confetti from "canvas-confetti";
 import type { Deck, HistoryEvent } from "../../data/index";
 import { selectPuzzle, recordResult, recordDeckResult, type AppStats } from "../storage";
@@ -6,16 +6,104 @@ import { Card, InsertionIndicator, statusEmoji } from "./sort_card";
 import { WikipediaSheet } from "./WikipediaSheet";
 import { shuffle } from "../utils";
 import { MAX_ATTEMPTS } from "../constants";
+import { useTouchDrag } from "../hooks/use_touch_drag";
 
 const REVEAL_INTERVAL_MS = 80;
 const WRONG_FLASH_MS = 1200;
 const COPIED_FEEDBACK_MS = 2000;
 
-function buildShareText(history: ("correct" | "wrong")[][], deckName: string, won: boolean): string {
+type Status = "correct" | "wrong";
+
+function buildShareText(history: Status[][], deckName: string, won: boolean): string {
   const grid = history.map(row => row.map(statusEmoji).join("")).join("\n");
   const tries = won ? `${history.length}/${MAX_ATTEMPTS}` : `X/${MAX_ATTEMPTS}`;
   return `${deckName} (${tries})\n\n${grid}\n\nhttps://history-game-7a8e2.web.app`;
 }
+
+function gradeCards(puzzle: HistoryEvent[], cards: HistoryEvent[]): Status[] {
+  const sorted = [...puzzle].sort((a, b) => a.year - b.year);
+  return cards.map((c, i) => (c.event === sorted[i].event ? "correct" : "wrong"));
+}
+
+// ── Round state ───────────────────────────────────────────────────────────────
+
+interface RoundState {
+  puzzle: HistoryEvent[];
+  cards: HistoryEvent[];
+  statuses: Status[]; // transient per-card flash after a wrong attempt
+  finalStatuses: Status[];
+  submitted: boolean;
+  revealedCount: number;
+  hintCardId: string | null;
+  attemptsLeft: number;
+  attemptsHistory: Status[][];
+}
+
+type RoundAction =
+  | { type: "load"; puzzle: HistoryEvent[]; shuffled: HistoryEvent[] }
+  | { type: "move_card"; src: number; dst: number }
+  | { type: "use_hint" }
+  | { type: "submit"; graded: Status[]; final: boolean }
+  | { type: "clear_flash" }
+  | { type: "reveal_tick" };
+
+function makeRound(puzzle: HistoryEvent[], shuffled: HistoryEvent[]): RoundState {
+  return {
+    puzzle,
+    cards: shuffled,
+    statuses: [],
+    finalStatuses: [],
+    submitted: false,
+    revealedCount: 0,
+    hintCardId: null,
+    attemptsLeft: MAX_ATTEMPTS,
+    attemptsHistory: [],
+  };
+}
+
+function roundReducer(state: RoundState, action: RoundAction): RoundState {
+  switch (action.type) {
+    case "load":
+      return makeRound(action.puzzle, action.shuffled);
+    case "move_card": {
+      const { src, dst } = action;
+      if (src === dst || src + 1 === dst) return state;
+      const next = [...state.cards];
+      const [moved] = next.splice(src, 1);
+      next.splice(dst > src ? dst - 1 : dst, 0, moved);
+      return { ...state, cards: next };
+    }
+    case "use_hint": {
+      if (state.hintCardId || state.submitted) return state;
+      const sorted = [...state.puzzle].sort((a, b) => a.year - b.year);
+      const middle = sorted[Math.floor(sorted.length / 2)];
+      const correctIdx = sorted.indexOf(middle);
+      const currentIdx = state.cards.findIndex(c => c.event === middle.event);
+      let cards = state.cards;
+      if (currentIdx !== correctIdx) {
+        cards = [...state.cards];
+        cards.splice(currentIdx, 1);
+        cards.splice(correctIdx, 0, middle);
+      }
+      return { ...state, cards, hintCardId: middle.event };
+    }
+    case "submit":
+      return {
+        ...state,
+        statuses: action.graded,
+        attemptsLeft: state.attemptsLeft - 1,
+        attemptsHistory: [...state.attemptsHistory, action.graded],
+        submitted: action.final,
+        finalStatuses: action.final ? action.graded : state.finalStatuses,
+      };
+    case "clear_flash":
+      return state.submitted ? state : { ...state, statuses: [] };
+    case "reveal_tick":
+      return { ...state, revealedCount: state.revealedCount + 1 };
+  }
+}
+
+// ── Component ─────────────────────────────────────────────────────────────────
 
 export function SortGame({
   deck,
@@ -28,91 +116,43 @@ export function SortGame({
   onUpdateStats: (newStats: AppStats) => void;
   onBack: () => void;
 }) {
-  const [puzzle, setPuzzle] = useState<HistoryEvent[]>([]);
-  const [cards, setCards] = useState<HistoryEvent[]>([]);
-  const [dragSource, setDragSource] = useState<number | null>(null);
-  const [dropTarget, setDropTarget] = useState<number | null>(null);
-  const [statuses, setStatuses] = useState<("correct" | "wrong")[]>([]);
-  const [finalStatuses, setFinalStatuses] = useState<("correct" | "wrong")[]>(
-    []
-  );
-  const [submitted, setSubmitted] = useState(false);
-  const [revealedCount, setRevealedCount] = useState(0);
-  const [hintCardId, setHintCardId] = useState<string | null>(null);
-  const [attemptsLeft, setAttemptsLeft] = useState(MAX_ATTEMPTS);
-  const [attemptsHistory, setAttemptsHistory] = useState<("correct" | "wrong")[][]>([]);
+  const [state, dispatch] = useReducer(roundReducer, deck, (d) => {
+    const p = selectPuzzle(d, stats);
+    return makeRound(p, shuffle(p));
+  });
+  const { puzzle, cards, statuses, finalStatuses, submitted, revealedCount, hintCardId, attemptsLeft, attemptsHistory } = state;
+
   const [puzzleNum, setPuzzleNum] = useState(1);
   const [copied, setCopied] = useState(false);
   const [wikiEvent, setWikiEvent] = useState<HistoryEvent | null>(null);
 
-  const touchRef = useRef<{
-    startIdx: number | null;
-    dropTarget: number | null;
-    startX: number;
-  }>({
-    startIdx: null,
-    dropTarget: null,
-    startX: 0,
-  });
   const revealIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
-  const pendingFlipRef = useRef<Map<string, number> | null>(null);
-
-  // Initialize first puzzle on mount
-  useEffect(() => {
-    loadPuzzle(selectPuzzle(deck, stats));
-  }, [deck]);
-
-  function loadPuzzle(p: HistoryEvent[]) {
-    setPuzzle(p);
-    setCards(shuffle(p));
-    setStatuses([]);
-    setFinalStatuses([]);
-    setSubmitted(false);
-    setRevealedCount(0);
-    setHintCardId(null);
-    setAttemptsLeft(MAX_ATTEMPTS);
-    setAttemptsHistory([]);
-  }
+  const pendingFlipRef = useRef<Map<string, { left: number; top: number }> | null>(null);
 
   function nextPuzzle() {
-    loadPuzzle(selectPuzzle(deck, stats));
+    const p = selectPuzzle(deck, stats);
+    dispatch({ type: "load", puzzle: p, shuffled: shuffle(p) });
     setPuzzleNum((n) => n + 1);
   }
 
   function useHint() {
-    if (hintCardId || submitted) return;
-    const sorted = [...puzzle].sort((a, b) => a.year - b.year);
-    const middle = sorted[Math.floor(sorted.length / 2)];
-    const correctIdx = sorted.indexOf(middle);
-    setCards((prev) => {
-      const next = [...prev];
-      const currentIdx = next.findIndex((c) => c.event === middle.event);
-      if (currentIdx === correctIdx) return prev;
-      next.splice(currentIdx, 1);
-      next.splice(correctIdx, 0, middle);
-      return next;
-    });
-    setHintCardId(middle.event);
+    dispatch({ type: "use_hint" });
   }
 
   function commitDrop(src: number, dst: number) {
     if (src === dst || src + 1 === dst) return;
-    // FLIP step 1: record each card's current left position by id
+    // FLIP step 1: record each card's current position by id
     const els = document.querySelectorAll<HTMLElement>(".sort-card");
-    const oldPositions = new Map<string, number>();
+    const oldPositions = new Map<string, { left: number; top: number }>();
     els.forEach((el, i) => {
       const id = cards[i]?.event;
-      if (id) oldPositions.set(id, el.getBoundingClientRect().left);
+      if (id) {
+        const r = el.getBoundingClientRect();
+        oldPositions.set(id, { left: r.left, top: r.top });
+      }
     });
     pendingFlipRef.current = oldPositions;
-
-    setCards((prev) => {
-      const next = [...prev];
-      const [moved] = next.splice(src, 1);
-      const adj = dst > src ? dst - 1 : dst;
-      next.splice(adj, 0, moved);
-      return next;
-    });
+    dispatch({ type: "move_card", src, dst });
   }
 
   // FLIP steps 2-4: after DOM updates, invert and play
@@ -125,13 +165,15 @@ export function SortGame({
     els.forEach((el, i) => {
       const id = cards[i]?.event;
       if (!id) return;
-      const oldLeft = oldPositions.get(id);
-      if (oldLeft === undefined) return;
-      const dx = oldLeft - el.getBoundingClientRect().left;
-      if (Math.abs(dx) < 1) return;
+      const old = oldPositions.get(id);
+      if (old === undefined) return;
+      const rect = el.getBoundingClientRect();
+      const dx = old.left - rect.left;
+      const dy = old.top - rect.top;
+      if (Math.abs(dx) < 1 && Math.abs(dy) < 1) return;
 
       el.style.transition = "none";
-      el.style.transform = `translateX(${dx}px)`;
+      el.style.transform = `translate(${dx}px, ${dy}px)`;
       void el.offsetWidth; // force reflow so the browser registers the start position
       el.style.transition = "transform 300ms ease-out";
       el.style.transform = "";
@@ -145,95 +187,44 @@ export function SortGame({
     });
   }, [cards]);
 
-  function handleDragStart(i: number) {
-    setDragSource(i);
-    setDropTarget(i);
-  }
+  // ── Drag (mouse + touch share one state machine) ──────────────────────────────
+  const drag = useTouchDrag<number, number>({
+    resolveTarget: (x) => {
+      const els = document.querySelectorAll<HTMLElement>(".sort-card");
+      let target: number | null = null;
+      els.forEach((el, i) => {
+        const rect = el.getBoundingClientRect();
+        if (x >= rect.left && x <= rect.right) {
+          target = x < rect.left + rect.width / 2 ? i : i + 1;
+        }
+      });
+      return target;
+    },
+    canTarget: (t) => !(t < cards.length && cards[t]?.event === hintCardId),
+    onDrop: commitDrop,
+    retainTargetOnMiss: true,
+  });
 
-  function handleDragOver(i: number, clientX: number, rect: DOMRect) {
-    if (dragSource === null) return;
-    if (cards[i]?.event === hintCardId) return;
+  function handleCardDragOver(i: number, clientX: number, _clientY: number, rect: DOMRect) {
+    if (!drag.isDragging) return;
     const insertBefore = clientX < rect.left + rect.width / 2;
-    setDropTarget(insertBefore ? i : i + 1);
-  }
-
-  function handleDragEnd() {
-    setDragSource(null);
-    setDropTarget(null);
-  }
-
-  function handleDrop() {
-    if (dragSource !== null && dropTarget !== null) {
-      commitDrop(dragSource, dropTarget);
-    }
-    setDragSource(null);
-    setDropTarget(null);
-  }
-
-  function handleTouchStart(e: React.TouchEvent, i: number) {
-    touchRef.current = {
-      startIdx: i,
-      dropTarget: i,
-      startX: e.touches[0].clientX,
-    };
-    setDragSource(i);
-    setDropTarget(i);
-  }
-
-  function handleTouchMove(e: React.TouchEvent) {
-    if (touchRef.current.startIdx === null) return;
-    e.preventDefault();
-    const x = e.touches[0].clientX;
-    const els = document.querySelectorAll<HTMLElement>(".sort-card");
-    let newTarget: number | null = null;
-
-    els.forEach((el, i) => {
-      const rect = el.getBoundingClientRect();
-      if (x >= rect.left && x <= rect.right) {
-        newTarget = x < rect.left + rect.width / 2 ? i : i + 1;
-      }
-    });
-
-    if (newTarget === null) return;
-    if (newTarget < cards.length && cards[newTarget]?.event === hintCardId)
-      return;
-    touchRef.current.dropTarget = newTarget;
-    setDropTarget(newTarget);
-  }
-
-  function handleTouchEnd() {
-    const src = touchRef.current.startIdx;
-    const dst = touchRef.current.dropTarget;
-    if (src !== null && dst !== null) {
-      commitDrop(src, dst);
-    }
-    touchRef.current = { startIdx: null, dropTarget: null, startX: 0 };
-    setDragSource(null);
-    setDropTarget(null);
+    drag.updateTarget(insertBefore ? i : i + 1);
   }
 
   function submit() {
-    const sorted = [...puzzle].sort((a, b) => a.year - b.year);
-    const s: ("correct" | "wrong")[] = cards.map((c, i) =>
-      c.event === sorted[i].event ? "correct" : "wrong"
-    );
-
+    const s = gradeCards(puzzle, cards);
     const allCorrect = s.every((x) => x === "correct");
     const newAttemptsLeft = attemptsLeft - 1;
     const attemptsUsed = MAX_ATTEMPTS - newAttemptsLeft;
+    const final = allCorrect || newAttemptsLeft === 0;
 
-    setStatuses(s);
-    setAttemptsLeft(newAttemptsLeft);
-    setAttemptsHistory((prev) => [...prev, s]);
+    dispatch({ type: "submit", graded: s, final });
 
-    if (allCorrect || newAttemptsLeft === 0) {
-      setSubmitted(true);
-      setFinalStatuses(s);
-
+    if (final) {
       let count = 0;
       revealIntervalRef.current = setInterval(() => {
         count++;
-        setRevealedCount(count);
+        dispatch({ type: "reveal_tick" });
         if (count >= cards.length) {
           clearInterval(revealIntervalRef.current!);
           if (allCorrect) {
@@ -261,7 +252,7 @@ export function SortGame({
         }
       }, REVEAL_INTERVAL_MS);
     } else {
-      setTimeout(() => setStatuses([]), WRONG_FLASH_MS);
+      setTimeout(() => dispatch({ type: "clear_flash" }), WRONG_FLASH_MS);
     }
   }
 
@@ -281,7 +272,7 @@ export function SortGame({
     });
   }
 
-  const isDragging = dragSource !== null;
+  const isDragging = drag.isDragging;
 
   return (
     <div className="min-h-screen bg-bg">
@@ -333,12 +324,12 @@ export function SortGame({
           className="flex items-start gap-3 mb-6 overflow-x-auto overflow-y-hidden py-2 px-1 h-[430px]"
           onDragOver={(e) => {
             e.preventDefault();
-            if (dragSource !== null) setDropTarget(cards.length);
+            drag.updateTarget(cards.length);
           }}
         >
           {cards.map((card, i) => {
-            const isNoOp = dragSource === i || dragSource === i - 1;
-            const showBefore = isDragging && dropTarget === i && !isNoOp;
+            const isNoOp = drag.dragSource === i || drag.dragSource === i - 1;
+            const showBefore = isDragging && drag.dragTarget === i && !isNoOp;
 
             return (
               <Fragment key={card.event}>
@@ -346,15 +337,15 @@ export function SortGame({
                 <Card
                   item={card}
                   index={i}
-                  isDragSource={dragSource === i}
+                  isDragSource={drag.dragSource === i}
                   isHinted={card.event === hintCardId}
-                  onDragStart={handleDragStart}
-                  onDragOver={handleDragOver}
-                  onDragEnd={handleDragEnd}
-                  onDrop={handleDrop}
-                  onTouchStart={handleTouchStart}
-                  onTouchMove={handleTouchMove}
-                  onTouchEnd={handleTouchEnd}
+                  onDragStart={(idx) => drag.startDrag(idx, idx)}
+                  onDragOver={handleCardDragOver}
+                  onDragEnd={drag.endDrag}
+                  onDrop={drag.drop}
+                  onTouchStart={(e, idx) => drag.onTouchStart(e, idx, idx)}
+                  onTouchMove={drag.onTouchMove}
+                  onTouchEnd={drag.onTouchEnd}
                   status={submitted ? null : statuses[i] ?? null}
                   revealed={submitted && revealedCount > i}
                   onWikiClick={card.wikipediaUrl ? () => setWikiEvent(card) : undefined}
@@ -365,8 +356,8 @@ export function SortGame({
           <InsertionIndicator
             visible={
               isDragging &&
-              dropTarget === cards.length &&
-              dragSource !== cards.length - 1
+              drag.dragTarget === cards.length &&
+              drag.dragSource !== cards.length - 1
             }
           />
         </div>

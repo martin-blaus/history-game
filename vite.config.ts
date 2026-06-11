@@ -34,6 +34,18 @@ export default defineConfig({
                 res.end(JSON.stringify({ ok: false, error: "invalid path" }));
                 return;
               }
+              // Validate the payload so a buggy client can't write a deck file
+              // that breaks the next dev-server boot.
+              const parsed = JSON.parse(content);
+              if (
+                parsed.id !== deckId ||
+                !Array.isArray(parsed.events) ||
+                parsed.events.length === 0
+              ) {
+                res.statusCode = 400;
+                res.end(JSON.stringify({ ok: false, error: "invalid deck content" }));
+                return;
+              }
               fs.writeFileSync(filePath, content, "utf-8");
               res.setHeader("Content-Type", "application/json");
               res.end(JSON.stringify({ ok: true }));
