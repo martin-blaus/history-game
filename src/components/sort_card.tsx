@@ -1,5 +1,5 @@
 import type { HistoryEvent } from "../../data/index";
-import { formatYear } from "../utils";
+import { formatYear, onImgError } from "../utils";
 
 export type CardStatus = "correct" | "wrong" | null;
 
@@ -77,10 +77,7 @@ export function Card({
           className="w-full h-36 object-cover block"
           loading="lazy"
           draggable={false}
-          onError={(e) => {
-            e.currentTarget.onerror = null;
-            e.currentTarget.src = "/placeholder.png";
-          }}
+          onError={onImgError}
         />
         {isHinted && !revealed && (
           <div className="absolute top-2 right-2 bg-ar-gold text-black text-xs font-bold px-2 py-1 rounded-md">

@@ -17,3 +17,23 @@ export interface Deck {
   events: HistoryEvent[];
   puzzleSize?: number;
 }
+
+export interface Character {
+  id: string;
+  name: string;
+  shortName?: string;
+  emoji: string;
+  image?: string;
+  birthYear: number;
+  deathYear: number;
+  description: string;
+  events: HistoryEvent[];
+}
+
+export interface BiographyDeck {
+  id: string;
+  name: string;
+  emoji: string;
+  characters: Character[];
+  puzzleSize?: number;
+}

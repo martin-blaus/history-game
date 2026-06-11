@@ -1,6 +1,6 @@
 import { useState, useMemo } from "react";
 import type { Deck, HistoryEvent } from "../data/index";
-import { formatYear, onImgError } from "./utils";
+import { formatYear, onImgError, shuffle } from "./utils";
 
 const ROUNDS = 6;
 
@@ -9,7 +9,7 @@ function calcScore(guess: number, actual: number): number {
 }
 
 function pickEvents(deck: Deck): HistoryEvent[] {
-  return [...deck.events].sort(() => Math.random() - 0.5).slice(0, ROUNDS);
+  return shuffle(deck.events).slice(0, ROUNDS);
 }
 
 export function YearGuessr({

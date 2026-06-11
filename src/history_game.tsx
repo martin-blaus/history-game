@@ -213,7 +213,7 @@ export default function App() {
 
         <button
           onClick={() => setScreen("stats")}
-          className="w-full py-3 rounded-xl border border-border bg-transparent text-text-tertiary text-sm hover:text-text-primary hover:border-borderLight transition-colors cursor-pointer"
+          className="w-full py-3 rounded-xl border border-border bg-transparent text-text-tertiary text-sm hover:text-text-primary hover:border-text-tertiary transition-colors cursor-pointer"
         >
           📊 Estadísticas
         </button>

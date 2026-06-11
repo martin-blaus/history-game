@@ -1,6 +1,9 @@
 import type { Deck, HistoryEvent } from "../data/types";
+import { MAX_ATTEMPTS } from "./constants";
 
 const STORAGE_KEY = "historia-ar-stats";
+// Prefer puzzles whose consecutive events are at most this many years apart.
+const MAX_YEAR_GAP = 50;
 
 export interface EventStat {
   shown: number;
@@ -82,7 +85,7 @@ export function selectPuzzle(deck: Deck, stats: AppStats): HistoryEvent[] {
   }
 
   if (candidates.length > 0) {
-    const valid = candidates.filter(c => c.maxGap <= 50);
+    const valid = candidates.filter(c => c.maxGap <= MAX_YEAR_GAP);
     let pool = valid;
     if (pool.length === 0) {
       const minGap = Math.min(...candidates.map(c => c.maxGap));
@@ -107,7 +110,7 @@ export function selectPuzzle(deck: Deck, stats: AppStats): HistoryEvent[] {
     windows.push({ start: i, totalShown, maxGap, r: Math.random() });
   }
 
-  const valid = windows.filter(w => w.maxGap <= 50);
+  const valid = windows.filter(w => w.maxGap <= MAX_YEAR_GAP);
   let pool = valid;
   if (pool.length === 0) {
     const minGap = Math.min(...windows.map(w => w.maxGap));
@@ -150,13 +153,13 @@ export function recordDeckResult(
     won: 0,
     streak: 0,
     maxStreak: 0,
-    attemptsDistribution: [0, 0, 0, 0, 0],
+    attemptsDistribution: new Array(MAX_ATTEMPTS).fill(0),
   };
 
   const nextStreak = won ? prev.streak + 1 : 0;
   const nextMaxStreak = Math.max(prev.maxStreak, nextStreak);
   const nextDistribution = [...prev.attemptsDistribution];
-  if (won && attemptsUsed >= 1 && attemptsUsed <= 5) {
+  if (won && attemptsUsed >= 1 && attemptsUsed <= MAX_ATTEMPTS) {
     nextDistribution[attemptsUsed - 1] += 1;
   }
 

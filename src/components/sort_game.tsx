@@ -4,19 +4,16 @@ import type { Deck, HistoryEvent } from "../../data/index";
 import { selectPuzzle, recordResult, recordDeckResult, type AppStats } from "../storage";
 import { Card, InsertionIndicator, statusEmoji } from "./sort_card";
 import { WikipediaSheet } from "./WikipediaSheet";
+import { shuffle } from "../utils";
+import { MAX_ATTEMPTS } from "../constants";
 
-function shuffle<T>(arr: T[]): T[] {
-  const a = [...arr];
-  for (let i = a.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [a[i], a[j]] = [a[j], a[i]];
-  }
-  return a;
-}
+const REVEAL_INTERVAL_MS = 80;
+const WRONG_FLASH_MS = 1200;
+const COPIED_FEEDBACK_MS = 2000;
 
 function buildShareText(history: ("correct" | "wrong")[][], deckName: string, won: boolean): string {
   const grid = history.map(row => row.map(statusEmoji).join("")).join("\n");
-  const tries = won ? `${history.length}/5` : "X/5";
+  const tries = won ? `${history.length}/${MAX_ATTEMPTS}` : `X/${MAX_ATTEMPTS}`;
   return `${deckName} (${tries})\n\n${grid}\n\nhttps://history-game-7a8e2.web.app`;
 }
 
@@ -42,7 +39,7 @@ export function SortGame({
   const [submitted, setSubmitted] = useState(false);
   const [revealedCount, setRevealedCount] = useState(0);
   const [hintCardId, setHintCardId] = useState<string | null>(null);
-  const [attemptsLeft, setAttemptsLeft] = useState(5);
+  const [attemptsLeft, setAttemptsLeft] = useState(MAX_ATTEMPTS);
   const [attemptsHistory, setAttemptsHistory] = useState<("correct" | "wrong")[][]>([]);
   const [puzzleNum, setPuzzleNum] = useState(1);
   const [copied, setCopied] = useState(false);
@@ -73,7 +70,7 @@ export function SortGame({
     setSubmitted(false);
     setRevealedCount(0);
     setHintCardId(null);
-    setAttemptsLeft(5);
+    setAttemptsLeft(MAX_ATTEMPTS);
     setAttemptsHistory([]);
   }
 
@@ -223,7 +220,7 @@ export function SortGame({
 
     const allCorrect = s.every((x) => x === "correct");
     const newAttemptsLeft = attemptsLeft - 1;
-    const attemptsUsed = 5 - newAttemptsLeft;
+    const attemptsUsed = MAX_ATTEMPTS - newAttemptsLeft;
 
     setStatuses(s);
     setAttemptsLeft(newAttemptsLeft);
@@ -262,9 +259,9 @@ export function SortGame({
           );
           onUpdateStats(newStats);
         }
-      }, 80);
+      }, REVEAL_INTERVAL_MS);
     } else {
-      setTimeout(() => setStatuses([]), 1200);
+      setTimeout(() => setStatuses([]), WRONG_FLASH_MS);
     }
   }
 
@@ -280,7 +277,7 @@ export function SortGame({
     const text = buildShareText(attemptsHistory, deck.name, allCorrect);
     navigator.clipboard.writeText(text).then(() => {
       setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
+      setTimeout(() => setCopied(false), COPIED_FEEDBACK_MS);
     });
   }
 
@@ -405,7 +402,7 @@ export function SortGame({
             {/* Solve / Failure Banner */}
             {finalStatuses.every((s) => s === "correct") ? (
               <div className="bg-[#0f2a1a]/80 border border-success/30 text-success px-6 py-4 rounded-xl text-center font-bold text-base mb-6 shadow-lg shadow-success/5">
-                🏆 ¡Felicitaciones! Resuelto en {5 - attemptsLeft} {5 - attemptsLeft === 1 ? "intento" : "intentos"}
+                🏆 ¡Felicitaciones! Resuelto en {MAX_ATTEMPTS - attemptsLeft} {MAX_ATTEMPTS - attemptsLeft === 1 ? "intento" : "intentos"}
               </div>
             ) : (
               <div className="bg-[#2a0f0f]/80 border border-danger/30 text-danger px-6 py-4 rounded-xl text-center font-bold text-base mb-6 shadow-lg shadow-danger/5">
@@ -420,7 +417,7 @@ export function SortGame({
                 won: 0,
                 streak: 0,
                 maxStreak: 0,
-                attemptsDistribution: [0, 0, 0, 0, 0],
+                attemptsDistribution: new Array(MAX_ATTEMPTS).fill(0),
               };
               const winRate = deckStats.played > 0 ? Math.round((deckStats.won / deckStats.played) * 100) : 0;
               let totalAttempts = 0;

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import type { Deck, HistoryEvent } from "../data/index";
-import { formatYear } from "./utils";
+import { formatYear, onImgError, shuffle } from "./utils";
 
 const ROUNDS = 6;
 
@@ -11,14 +11,13 @@ type Round = {
 
 function buildRounds(deck: Deck): Round[] {
   const eligible = deck.events.filter(e => e.context.trim().length > 20);
-  const questions = [...eligible].sort(() => Math.random() - 0.5).slice(0, ROUNDS);
+  const questions = shuffle(eligible).slice(0, ROUNDS);
 
   return questions.map(event => {
-    const distractors = eligible
-      .filter(e => e.event !== event.event)
-      .sort(() => Math.random() - 0.5)
-      .slice(0, 3);
-    const choices = [...distractors, event].sort(() => Math.random() - 0.5);
+    const distractors = shuffle(
+      eligible.filter(e => e.event !== event.event)
+    ).slice(0, 3);
+    const choices = shuffle([...distractors, event]);
     return { event, choices };
   });
 }
@@ -84,10 +83,7 @@ export function ContextDetective({ deck, onBack }: {
                 <img
                   src={r.event.image || "/placeholder.png"}
                   className="w-10 h-10 rounded-lg object-cover shrink-0"
-                  onError={(e) => {
-                    e.currentTarget.onerror = null;
-                    e.currentTarget.src = "/placeholder.png";
-                  }}
+                  onError={onImgError}
                 />
                 <span className="text-text-secondary text-xs leading-snug flex-1 line-clamp-2">{r.event.event}</span>
                 <span className="shrink-0 text-sm">{/* result tracked per round ideally */}</span>
@@ -164,10 +160,7 @@ export function ContextDetective({ deck, onBack }: {
               src={round.event.image || "/placeholder.png"}
               alt={round.event.event}
               className="w-full h-40 object-cover rounded-xl mb-4 block"
-              onError={(e) => {
-                e.currentTarget.onerror = null;
-                e.currentTarget.src = "/placeholder.png";
-              }}
+              onError={onImgError}
             />
           )}
 

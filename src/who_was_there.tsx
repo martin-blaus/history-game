@@ -1,6 +1,6 @@
 import { useState } from "react";
 import type { Deck, HistoryEvent } from "../data/index";
-import { formatYear } from "./utils";
+import { formatYear, onImgError, shuffle } from "./utils";
 import confetti from "canvas-confetti";
 
 const ROUNDS = 6;
@@ -498,10 +498,7 @@ export function WhoWasThere({
                       alt={choice.event}
                       className="w-full h-32 object-cover object-top"
                       loading="lazy"
-                      onError={(e) => {
-                        e.currentTarget.onerror = null;
-                        e.currentTarget.src = "/placeholder.png";
-                      }}
+                      onError={onImgError}
                     />
                     <div className="p-3 flex flex-col gap-1 flex-1">
                       <div className="flex items-center justify-between gap-1.5">
@@ -573,10 +570,7 @@ export function WhoWasThere({
                 src={round.event.image || "/placeholder.png"}
                 alt={round.event.event}
                 className="w-full h-44 object-cover rounded-xl mb-4 block"
-                onError={(e) => {
-                  e.currentTarget.onerror = null;
-                  e.currentTarget.src = "/placeholder.png";
-                }}
+                onError={onImgError}
               />
               <h3 className="text-base font-bold text-text-primary m-0 mb-2">
                 {round.event.event}
