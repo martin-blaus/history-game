@@ -74,7 +74,7 @@ export function Card({
         <img
           src={item.image || PLACEHOLDER}
           alt={item.event}
-          className="w-full h-full sm:h-36 object-cover block bg-bg-secondary"
+          className="w-full h-full sm:h-36 group-hover:sm:h-14 object-cover block bg-bg-secondary transition-all duration-300"
           loading="lazy"
           draggable={false}
           onError={onImgError}
@@ -87,12 +87,12 @@ export function Card({
       </div>
 
       <div className="px-3 py-2 sm:py-3 flex-1 flex flex-col justify-between min-h-0 min-w-0">
-        <div className="flex flex-col gap-1.5 overflow-hidden">
-          <p className="text-sm font-bold text-text-primary leading-snug m-0 line-clamp-2">
+        <div className="flex-1 flex flex-col gap-1.5 overflow-hidden min-h-0">
+          <p className="text-sm font-bold text-text-primary leading-snug m-0 line-clamp-2 shrink-0">
             {item.event}
           </p>
           {item.context && (
-            <p className="max-sm:hidden text-xs text-text-secondary leading-relaxed m-0 line-clamp-4 group-hover:line-clamp-none transition-all duration-200 overflow-y-auto">
+            <p className="max-sm:hidden text-xs text-text-secondary leading-relaxed m-0 line-clamp-4 group-hover:line-clamp-none transition-all duration-200 overflow-hidden group-hover:overflow-y-auto flex-1 min-h-0">
               {item.context}
             </p>
           )}
@@ -104,7 +104,7 @@ export function Card({
               }}
               onMouseDown={(e) => e.stopPropagation()}
               onTouchStart={(e) => e.stopPropagation()}
-              className="mt-1 self-start inline-flex items-center min-h-7 text-2xs font-semibold text-ar-blue bg-ar-blue/10 border border-ar-blue/20 px-2 py-0.5 rounded-full hover:bg-ar-blue/20 transition-colors cursor-pointer"
+              className="mt-1 self-start inline-flex items-center min-h-7 text-2xs font-semibold text-ar-blue bg-ar-blue/10 border border-ar-blue/20 px-2 py-0.5 rounded-full hover:bg-ar-blue/20 transition-colors cursor-pointer shrink-0"
             >
               W Wikipedia
             </button>
@@ -112,7 +112,7 @@ export function Card({
         </div>
 
         {revealed && (
-          <div className={`pt-2 mt-auto border-t border-border/30 text-xs font-bold tracking-wide uppercase ${
+          <div className={`pt-2 mt-auto border-t border-border/30 text-xs font-bold tracking-wide uppercase shrink-0 ${
             status === "correct" ? "text-success" : "text-danger"
           }`}>
             {formatYear(item.year)}

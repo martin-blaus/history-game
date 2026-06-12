@@ -2,5 +2,387 @@
   "id": "biografias",
   "name": "Biografías",
   "emoji": "👤",
-  "characters": []
+  "puzzleSize": 6,
+  "characters": [
+    {
+      "id": "san-martin",
+      "name": "José de San Martín",
+      "shortName": "San Martín",
+      "emoji": "🐎",
+      "birthYear": 1778,
+      "deathYear": 1850,
+      "description": "El Libertador de América",
+      "events": [
+        {
+          "event": "Nace José de San Martín en Yapeyú, Corrientes",
+          "year": 1778,
+          "month": 2,
+          "day": 25,
+          "context": "José Francisco de San Martín nació el 25 de febrero de 1778 en el pueblo de Yapeyú, a orillas del río Uruguay, en lo que entonces era el Virreinato del Río de la Plata. Era el menor de cuatro hermanos y su padre, Juan de San Martín, era un oficial del ejército colonial español.",
+          "wikipediaUrl": "https://es.wikipedia.org/wiki/Jos%C3%A9_de_San_Mart%C3%ADn"
+        },
+        {
+          "event": "La familia San Martín se traslada a España",
+          "year": 1784,
+          "context": "Cuando José tenía seis años, su familia regresó a España, instalándose primero en Málaga y luego en Madrid. Allí cursó sus estudios primarios y fue admitido como cadete en el regimiento de Murcia, iniciando una carrera militar que duraría más de dos décadas.",
+          "wikipediaUrl": "https://es.wikipedia.org/wiki/Jos%C3%A9_de_San_Mart%C3%ADn"
+        },
+        {
+          "event": "San Martín combate en el norte de África al servicio de la corona española",
+          "year": 1791,
+          "context": "Con apenas trece años, San Martín participó en la campaña española contra los moros en Orán, norte de África. Fue su bautismo de fuego: el inicio de una carrera militar que lo llevaría a combatir en tres continentes antes de consagrarse como el gran libertador de América del Sur.",
+          "wikipediaUrl": "https://es.wikipedia.org/wiki/Jos%C3%A9_de_San_Mart%C3%ADn"
+        },
+        {
+          "event": "San Martín lucha contra las tropas napoleónicas en la batalla de Bailén",
+          "year": 1808,
+          "month": 7,
+          "day": 19,
+          "context": "En julio de 1808, San Martín participó como teniente coronel en la batalla de Bailén, la primera gran derrota de un ejército napoleónico en campo abierto. La victoria española sobre las fuerzas del general Dupont sacudió a Europa y le dio a San Martín notoriedad como oficial probado.",
+          "wikipediaUrl": "https://es.wikipedia.org/wiki/Batalla_de_Bail%C3%A9n"
+        },
+        {
+          "event": "San Martín parte hacia Londres y se une a la Logia Lautaro",
+          "year": 1811,
+          "context": "Convencido de que su destino estaba en América, San Martín renunció al ejército español y viajó a Londres. Allí tomó contacto con la Logia Lautaro, una sociedad secreta de patriotas americanos que planeaba la independencia del continente, y conoció a figuras como Carlos de Alvear.",
+          "wikipediaUrl": "https://es.wikipedia.org/wiki/Logia_Lautaro"
+        },
+        {
+          "event": "San Martín regresa a Buenos Aires tras veinticinco años en España",
+          "year": 1812,
+          "month": 3,
+          "day": 9,
+          "context": "El 9 de marzo de 1812, San Martín desembarcó en Buenos Aires con treinta y cuatro años y se presentó ante el Primer Triunvirato ofreciendo sus servicios. Después de toda una vida en el ejército español, empezaba una nueva etapa al servicio de la causa independentista americana.",
+          "wikipediaUrl": "https://es.wikipedia.org/wiki/Jos%C3%A9_de_San_Mart%C3%ADn"
+        },
+        {
+          "event": "San Martín funda el Regimiento de Granaderos a Caballo",
+          "year": 1812,
+          "month": 3,
+          "day": 16,
+          "context": "Una semana después de llegar a Buenos Aires, San Martín recibió el encargo de organizar un regimiento de caballería de élite. Los Granaderos a Caballo serían entrenados con una disciplina sin precedentes en el Río de la Plata y formarían el núcleo de su futuro Ejército de los Andes.",
+          "wikipediaUrl": "https://es.wikipedia.org/wiki/Regimiento_de_Granaderos_a_Caballo_General_San_Mart%C3%ADn"
+        },
+        {
+          "event": "San Martín derrota a los realistas en el combate de San Lorenzo",
+          "year": 1813,
+          "month": 2,
+          "day": 3,
+          "context": "El 3 de febrero de 1813, San Martín lideró a sus Granaderos en el convento de San Lorenzo, sobre el río Paraná, emboscando a una columna realista que intentaba saquear la costa. Fue la única batalla que San Martín libró en suelo argentino y la primera victoria terrestre del regimiento.",
+          "wikipediaUrl": "https://es.wikipedia.org/wiki/Combate_de_San_Lorenzo"
+        },
+        {
+          "event": "San Martín asume como gobernador intendente de Cuyo y planifica el cruce de los Andes",
+          "year": 1814,
+          "context": "En agosto de 1814, San Martín fue nombrado gobernador intendente de Cuyo y se instaló en Mendoza. Convencido de que la independencia de Argentina no estaría segura sin liberar Chile y el Perú, comenzó a organizar con paciencia y secreto el ejército con el que cruzaría los Andes.",
+          "wikipediaUrl": "https://es.wikipedia.org/wiki/Intendencia_de_Cuyo"
+        },
+        {
+          "event": "Nace Mercedes Tomasa, única hija del Libertador",
+          "year": 1816,
+          "month": 8,
+          "day": 24,
+          "context": "El 24 de agosto de 1816, mientras San Martín preparaba el Ejército de los Andes en Mendoza, nació su única hija, Mercedes Tomasa. San Martín la adoró toda su vida: en su célebre testamento le dejó el sable corvo con el que cruzó los Andes para que fuera entregado a la Argentina.",
+          "wikipediaUrl": "https://es.wikipedia.org/wiki/Mercedes_de_San_Mart%C3%ADn"
+        },
+        {
+          "event": "San Martín cruza los Andes con el Ejército Libertador",
+          "year": 1817,
+          "month": 1,
+          "day": 12,
+          "context": "En enero de 1817, San Martín condujo a más de cinco mil hombres a través de los pasos andinos en una de las operaciones militares más audaces de la historia. El cruce duró veintiún días bajo frío extremo y alta montaña, y sorprendió completamente a las fuerzas realistas acantonadas en Chile.",
+          "wikipediaUrl": "https://es.wikipedia.org/wiki/Cruce_de_los_Andes"
+        },
+        {
+          "event": "San Martín consolida la independencia de Chile en la batalla de Maipú",
+          "year": 1818,
+          "month": 4,
+          "day": 5,
+          "context": "El 5 de abril de 1818, San Martín venció decisivamente a las fuerzas realistas en la llanura de Maipú, a las afueras de Santiago. La victoria aseguró la independencia de Chile y le permitió concentrarse en el siguiente objetivo de su plan continental: libertar el Perú.",
+          "wikipediaUrl": "https://es.wikipedia.org/wiki/Batalla_de_Maip%C3%BA"
+        },
+        {
+          "event": "San Martín zarpa desde Valparaíso con la Expedición Libertadora al Perú",
+          "year": 1820,
+          "month": 8,
+          "day": 20,
+          "context": "El 20 de agosto de 1820, San Martín partió desde Valparaíso al frente de más de cuatro mil hombres hacia las costas del Perú. Fue el mayor esfuerzo naval y militar del proceso independentista sudamericano, financiado en gran parte por Chile con dinero y barcos.",
+          "wikipediaUrl": "https://es.wikipedia.org/wiki/Expedici%C3%B3n_Libertadora_del_Per%C3%BA"
+        },
+        {
+          "event": "San Martín proclama la independencia del Perú y asume como Protector",
+          "year": 1821,
+          "month": 7,
+          "day": 28,
+          "context": "El 28 de julio de 1821, San Martín proclamó la independencia del Perú en Lima y asumió el gobierno con el título de Protector. Era la culminación del plan continental que había comenzado nueve años antes con su llegada a Buenos Aires: América del Sur quedaba casi completamente liberada.",
+          "wikipediaUrl": "https://es.wikipedia.org/wiki/Independencia_del_Per%C3%BA"
+        },
+        {
+          "event": "San Martín se reúne con Bolívar en Guayaquil y renuncia al mando",
+          "year": 1822,
+          "month": 7,
+          "day": 26,
+          "context": "En julio de 1822, San Martín se entrevistó en Guayaquil con Simón Bolívar para coordinar la liberación definitiva del Perú. Los detalles de la reunión nunca se conocieron del todo, pero al terminar San Martín renunció al Protectorado y partió al exilio, dejando el campo libre a Bolívar.",
+          "wikipediaUrl": "https://es.wikipedia.org/wiki/Entrevista_de_Guayaquil"
+        },
+        {
+          "event": "San Martín parte al exilio en Europa",
+          "year": 1824,
+          "context": "En 1824, San Martín dejó América para siempre y se instaló en Europa, primero en Bruselas y luego en Grand Bourg, cerca de París. Vivió con modestia, rechazando honores y cargos, alejado de la política, dedicado a la educación de su hija Mercedes y a la lectura.",
+          "wikipediaUrl": "https://es.wikipedia.org/wiki/Jos%C3%A9_de_San_Mart%C3%ADn"
+        },
+        {
+          "event": "San Martín regresa a América pero decide no desembarcar en Buenos Aires",
+          "year": 1829,
+          "context": "En 1829, San Martín viajó a Buenos Aires con la idea de ofrecer sus servicios en las guerras civiles. Al enterarse del caos político imperante, tomó la decisión de no desembarcar y regresó a Europa sin pisar tierra argentina, rehusando cualquier papel en los conflictos internos del país.",
+          "wikipediaUrl": "https://es.wikipedia.org/wiki/Jos%C3%A9_de_San_Mart%C3%ADn"
+        },
+        {
+          "event": "San Martín dicta su testamento y lega el sable corvo a Rosas",
+          "year": 1844,
+          "context": "En 1844, desde Grand Bourg, San Martín dictó su testamento. En él dejó su famoso sable corvo a Juan Manuel de Rosas, reconociéndolo por haber defendido la soberanía argentina frente a las intervenciones de Francia e Inglaterra, y pidió que el sable fuera entregado a la patria cuando las circunstancias lo permitieran.",
+          "wikipediaUrl": "https://es.wikipedia.org/wiki/Sable_corvo_de_San_Mart%C3%ADn"
+        },
+        {
+          "event": "San Martín fallece en Boulogne-sur-Mer a los 72 años",
+          "year": 1850,
+          "month": 8,
+          "day": 17,
+          "context": "El 17 de agosto de 1850, José de San Martín murió en Boulogne-sur-Mer, Francia, rodeado de su hija Mercedes y su yerno Mariano Balcarce. Sus restos fueron repatriados en 1880 y hoy descansan en un mausoleo en la Catedral Metropolitana de Buenos Aires.",
+          "wikipediaUrl": "https://es.wikipedia.org/wiki/Jos%C3%A9_de_San_Mart%C3%ADn"
+        }
+      ]
+    },
+    {
+      "id": "alberdi",
+      "name": "Juan Bautista Alberdi",
+      "shortName": "Alberdi",
+      "emoji": "📜",
+      "birthYear": 1810,
+      "deathYear": 1884,
+      "description": "Autor intelectual de la Constitución argentina",
+      "events": [
+        {
+          "event": "Nace Juan Bautista Alberdi en San Miguel de Tucumán",
+          "year": 1810,
+          "month": 8,
+          "day": 29,
+          "context": "Juan Bautista Alberdi nació el 29 de agosto de 1810 en Tucumán, pocas semanas después de la Revolución de Mayo. Su padre, Salvador Alberdi, era un comerciante de origen vasco-navarro; su madre falleció a los pocos días del parto, lo que marcaría su infancia.",
+          "wikipediaUrl": "https://es.wikipedia.org/wiki/Juan_Bautista_Alberdi"
+        },
+        {
+          "event": "Alberdi queda huérfano de padre y es enviado a Buenos Aires",
+          "year": 1820,
+          "context": "Con diez años, Alberdi perdió a su padre y quedó a cargo de familiares tucumanos. Poco después fue enviado a Buenos Aires, ciudad donde cursaría sus estudios y que sería el escenario de su formación intelectual y de sus primeros debates políticos.",
+          "wikipediaUrl": "https://es.wikipedia.org/wiki/Juan_Bautista_Alberdi"
+        },
+        {
+          "event": "Alberdi ingresa al Colegio de Ciencias Morales de Buenos Aires",
+          "year": 1824,
+          "context": "Alberdi ingresó al Colegio de Ciencias Morales, la principal institución secundaria de Buenos Aires, donde se formaron muchos líderes de la Generación del 37. Allí desarrolló su pasión por la filosofía, el derecho y la música, siendo un pianista de notable talento.",
+          "wikipediaUrl": "https://es.wikipedia.org/wiki/Juan_Bautista_Alberdi"
+        },
+        {
+          "event": "Alberdi publica el Fragmento preliminar al estudio del Derecho",
+          "year": 1837,
+          "context": "El Fragmento preliminar al estudio del Derecho fue la primera obra jurídica argentina que intentó construir una filosofía del derecho propia, alejada del escolasticismo colonial. Alberdi introdujo el pensamiento de Savigny y el historicismo europeo en el debate intelectual rioplatense por primera vez.",
+          "wikipediaUrl": "https://es.wikipedia.org/wiki/Fragmento_preliminar_al_estudio_del_derecho"
+        },
+        {
+          "event": "Alberdi participa en el Salón Literario y la Generación del 37",
+          "year": 1837,
+          "context": "En junio de 1837, Alberdi fue uno de los animadores del Salón Literario de Buenos Aires, espacio que reunió a Echeverría, Mitre, López y otros jóvenes conocidos como la Generación del 37. El grupo buscaba modernizar el pensamiento argentino a través de las ideas liberales europeas.",
+          "wikipediaUrl": "https://es.wikipedia.org/wiki/Sal%C3%B3n_Literario_de_1837"
+        },
+        {
+          "event": "Alberdi se exilia en Montevideo huyendo del régimen de Rosas",
+          "year": 1838,
+          "context": "La creciente persecución del gobierno de Juan Manuel de Rosas obligó a Alberdi a cruzar el Río de la Plata y refugiarse en Montevideo. Allí continuó su militancia intelectual y su formación jurídica, colaborando con otros exiliados argentinos en periódicos y publicaciones políticas.",
+          "wikipediaUrl": "https://es.wikipedia.org/wiki/Juan_Bautista_Alberdi"
+        },
+        {
+          "event": "Alberdi se instala en Valparaíso y ejerce como abogado",
+          "year": 1843,
+          "context": "En 1843, Alberdi se estableció en Valparaíso, Chile, donde ejerció la abogacía y publicó en periódicos locales. Al año siguiente obtuvo su título de abogado en la Universidad de Chile, consolidándose como uno de los juristas más respetados del Cono Sur.",
+          "wikipediaUrl": "https://es.wikipedia.org/wiki/Juan_Bautista_Alberdi"
+        },
+        {
+          "event": "Alberdi publica Bases y puntos de partida para la organización política de la República Argentina",
+          "year": 1852,
+          "month": 5,
+          "context": "Pocas semanas después de la caída de Rosas en Caseros, Alberdi publicó en Valparaíso las Bases, el texto más influyente de la historia constitucional argentina. En él propuso un modelo liberal con principios como 'gobernar es poblar', la promoción de la inmigración europea y la separación de poderes.",
+          "wikipediaUrl": "https://es.wikipedia.org/wiki/Bases_y_puntos_de_partida_para_la_organizaci%C3%B3n_pol%C3%ADtica_de_la_Rep%C3%BAblica_Argentina"
+        },
+        {
+          "event": "La Convención Constituyente sanciona la Constitución inspirada en las Bases de Alberdi",
+          "year": 1853,
+          "month": 5,
+          "day": 1,
+          "context": "El 1 de mayo de 1853, la Convención Constituyente reunida en Santa Fe sancionó la Constitución Nacional Argentina. El texto recogía los principios centrales de las Bases de Alberdi: sistema federal, separación de poderes, derechos individuales y apertura a la inmigración.",
+          "wikipediaUrl": "https://es.wikipedia.org/wiki/Constituci%C3%B3n_de_la_Naci%C3%B3n_Argentina"
+        },
+        {
+          "event": "Alberdi y Sarmiento polemizan en las célebres Cartas Quillotanas",
+          "year": 1853,
+          "context": "En 1853, Alberdi y Sarmiento protagonizaron uno de los debates intelectuales más famosos de la historia argentina a través de cartas públicas. Alberdi criticó el libro Recuerdos de provincia de Sarmiento y sus posiciones políticas; Sarmiento respondió con virulencia, revelando la profunda rivalidad entre los dos pensadores.",
+          "wikipediaUrl": "https://es.wikipedia.org/wiki/Cartas_quillotanas"
+        },
+        {
+          "event": "Alberdi es nombrado representante diplomático de la Confederación Argentina en Europa",
+          "year": 1855,
+          "context": "El presidente Urquiza designó a Alberdi como encargado de negocios de la Confederación Argentina ante Francia, Inglaterra, España y el Vaticano. Desde París y otras capitales europeas, buscó reconocimiento internacional y tratados comerciales que favorecieran al Estado confederal frente a Buenos Aires.",
+          "wikipediaUrl": "https://es.wikipedia.org/wiki/Juan_Bautista_Alberdi"
+        },
+        {
+          "event": "Alberdi escribe El crimen de la guerra en oposición a la guerra del Paraguay",
+          "year": 1870,
+          "context": "Profundamente opuesto a la Guerra de la Triple Alianza, Alberdi redactó El crimen de la guerra, un alegato pacifista que denunciaba la destrucción de Paraguay y cuestionaba los fundamentos morales de la guerra entre naciones. La obra lo distanció aún más del liberalismo triunfante en Buenos Aires.",
+          "wikipediaUrl": "https://es.wikipedia.org/wiki/El_crimen_de_la_guerra"
+        },
+        {
+          "event": "Alberdi regresa a Argentina y es elegido diputado nacional por Tucumán",
+          "year": 1879,
+          "context": "Después de décadas de exilio voluntario, Alberdi regresó a la Argentina en 1879 y fue elegido diputado por su provincia natal. Su paso por el Congreso fue breve y decepcionante: la política real distaba mucho de los ideales constitucionales que había defendido toda su vida.",
+          "wikipediaUrl": "https://es.wikipedia.org/wiki/Juan_Bautista_Alberdi"
+        },
+        {
+          "event": "Alberdi vuelve a París y se instala definitivamente en Francia",
+          "year": 1881,
+          "context": "Desencantado con la política argentina, Alberdi regresó a París en 1881, donde pasaría sus últimos años revisando su obra y reflexionando sobre el destino de América Latina. Murió lejos del país cuya Constitución había inspirado, pero reconocido como uno de los grandes pensadores argentinos.",
+          "wikipediaUrl": "https://es.wikipedia.org/wiki/Juan_Bautista_Alberdi"
+        },
+        {
+          "event": "Alberdi fallece en Neuilly-sur-Seine, cerca de París",
+          "year": 1884,
+          "month": 6,
+          "day": 19,
+          "context": "Juan Bautista Alberdi murió el 19 de junio de 1884 en Neuilly-sur-Seine, a los 73 años. Sus restos fueron repatriados en 1889 y hoy descansan en el Cementerio de la Recoleta en Buenos Aires, a pocos metros de los presidentes que gobernaron el país que él ayudó a fundar constitucionalmente.",
+          "wikipediaUrl": "https://es.wikipedia.org/wiki/Juan_Bautista_Alberdi"
+        }
+      ]
+    },
+    {
+      "id": "sarmiento",
+      "name": "Domingo Faustino Sarmiento",
+      "shortName": "Sarmiento",
+      "emoji": "📚",
+      "birthYear": 1811,
+      "deathYear": 1888,
+      "description": "El gran educador de la Nación",
+      "events": [
+        {
+          "event": "Nace Domingo Faustino Sarmiento en San Juan",
+          "year": 1811,
+          "month": 2,
+          "day": 15,
+          "context": "Domingo Faustino Sarmiento nació el 15 de febrero de 1811 en San Juan, en una familia humilde. Su madre, Paula Albarracín, fue una figura central en su formación; aprendió a leer muy pequeño en el hogar familiar y demostró desde temprano una inteligencia y una curiosidad excepcionales.",
+          "wikipediaUrl": "https://es.wikipedia.org/wiki/Domingo_Faustino_Sarmiento"
+        },
+        {
+          "event": "Sarmiento se exilia en Chile por primera vez por sus ideas unitarias",
+          "year": 1831,
+          "context": "Con veinte años, Sarmiento fue exiliado a Chile por su militancia en el bando unitario durante las guerras civiles. Trabajó como maestro de escuela en el pequeño pueblo de Los Andes, lo que reforzó su convicción sobre el poder transformador de la educación popular.",
+          "wikipediaUrl": "https://es.wikipedia.org/wiki/Domingo_Faustino_Sarmiento"
+        },
+        {
+          "event": "Sarmiento regresa a San Juan y se dedica a la docencia",
+          "year": 1836,
+          "context": "En 1836, Sarmiento regresó a San Juan y se dedicó a enseñar y a participar en la vida política e intelectual sanjuanina. Fundó una escuela de señoritas y comenzó a escribir en periódicos locales, siempre con la educación pública como su principal bandera.",
+          "wikipediaUrl": "https://es.wikipedia.org/wiki/Domingo_Faustino_Sarmiento"
+        },
+        {
+          "event": "Sarmiento funda el periódico El Zonda en San Juan",
+          "year": 1839,
+          "month": 7,
+          "day": 20,
+          "context": "El 20 de julio de 1839, Sarmiento fundó El Zonda, el primer periódico moderno de San Juan. En sus páginas defendió la educación, atacó al federalismo rosista y promovió ideas liberales, lo que le acarreó la persecución de las autoridades locales y el cierre del diario pocas semanas después.",
+          "wikipediaUrl": "https://es.wikipedia.org/wiki/El_Zonda_(peri%C3%B3dico)"
+        },
+        {
+          "event": "Sarmiento se exilia en Chile huyendo de la persecución de Rosas",
+          "year": 1840,
+          "context": "Perseguido luego del cierre de El Zonda, Sarmiento cruzó los Andes y se instaló en Chile. Según la leyenda, antes de partir escribió sobre una roca la célebre frase: 'Las ideas no se matan'. En Santiago se consagró como periodista y educador, colaborando en varios diarios importantes.",
+          "wikipediaUrl": "https://es.wikipedia.org/wiki/Domingo_Faustino_Sarmiento"
+        },
+        {
+          "event": "Sarmiento publica Facundo: Civilización y Barbarie",
+          "year": 1845,
+          "context": "En 1845, Sarmiento publicó Facundo en el diario El Progreso de Santiago, una de las obras más importantes de la literatura latinoamericana. A través de la vida del caudillo Facundo Quiroga, analizaba el enfrentamiento entre la 'civilización' de las ciudades y la 'barbarie' del interior federal.",
+          "wikipediaUrl": "https://es.wikipedia.org/wiki/Facundo"
+        },
+        {
+          "event": "Sarmiento viaja por Europa y Estados Unidos para estudiar sistemas educativos",
+          "year": 1847,
+          "context": "Comisionado por el gobierno chileno, Sarmiento recorrió Europa y los Estados Unidos estudiando los sistemas educativos más avanzados de la época. En Massachusetts conoció a Horace Mann, cuyas ideas sobre la educación pública universal influirían profundamente en su obra de gobierno en Argentina.",
+          "wikipediaUrl": "https://es.wikipedia.org/wiki/Domingo_Faustino_Sarmiento"
+        },
+        {
+          "event": "Sarmiento participa en la batalla de Caseros como integrante del Ejército Grande",
+          "year": 1852,
+          "month": 2,
+          "day": 3,
+          "context": "El 3 de febrero de 1852, Sarmiento estuvo presente en la batalla de Caseros como civil adscrito al Ejército Grande de Urquiza. Fue el encargado de redactar los boletines de operaciones y los comunicados oficiales de la campaña que derrocó a Juan Manuel de Rosas.",
+          "wikipediaUrl": "https://es.wikipedia.org/wiki/Batalla_de_Caseros"
+        },
+        {
+          "event": "Sarmiento asume como director general de Escuelas de la provincia de Buenos Aires",
+          "year": 1856,
+          "context": "En 1856, Sarmiento fue designado director general de Escuelas de la provincia de Buenos Aires, cargo desde el que impulsó la creación de escuelas primarias, la formación de maestros y la adopción del modelo pedagógico norteamericano. Su gestión sentó las bases del sistema educativo bonaerense moderno.",
+          "wikipediaUrl": "https://es.wikipedia.org/wiki/Domingo_Faustino_Sarmiento"
+        },
+        {
+          "event": "Sarmiento es elegido gobernador de la provincia de San Juan",
+          "year": 1862,
+          "context": "En 1862, Sarmiento fue elegido gobernador de San Juan. Su gestión se destacó por las reformas educativas, la construcción de escuelas y la modernización administrativa, aunque estuvo marcada por conflictos con los caudillos locales y por la represión del montonero Chacho Peñaloza.",
+          "wikipediaUrl": "https://es.wikipedia.org/wiki/Domingo_Faustino_Sarmiento"
+        },
+        {
+          "event": "Sarmiento es nombrado ministro plenipotenciario de Argentina en los Estados Unidos",
+          "year": 1865,
+          "context": "En 1865, el presidente Mitre designó a Sarmiento como ministro plenipotenciario ante los Estados Unidos. Desde Washington, observó el desarrollo norteamericano e impulsó la contratación de maestras estadounidenses para las escuelas argentinas, iniciativa conocida como las 'maestras de Sarmiento'.",
+          "wikipediaUrl": "https://es.wikipedia.org/wiki/Domingo_Faustino_Sarmiento"
+        },
+        {
+          "event": "Sarmiento es elegido presidente de la Nación Argentina",
+          "year": 1868,
+          "context": "En 1868, Sarmiento fue elegido presidente de la Nación y gobernó hasta 1874. Su presidencia estuvo marcada por la expansión de la educación pública, la inmigración, el tendido del telégrafo, la profesionalización del ejército y la finalización de la guerra contra Paraguay.",
+          "wikipediaUrl": "https://es.wikipedia.org/wiki/Presidencia_de_Sarmiento"
+        },
+        {
+          "event": "El gobierno de Sarmiento realiza el primer Censo Nacional de Población",
+          "year": 1869,
+          "month": 9,
+          "day": 15,
+          "context": "El 15 de septiembre de 1869 se realizó el primer Censo Nacional de Población de Argentina, impulsado por Sarmiento para conocer la realidad del país. Los resultados revelaron cerca de 1.800.000 habitantes con alta tasa de analfabetismo, lo que justificaba su ambiciosa política educativa.",
+          "wikipediaUrl": "https://es.wikipedia.org/wiki/Censo_nacional_de_Argentina_de_1869"
+        },
+        {
+          "event": "Sarmiento funda el Colegio Militar de la Nación",
+          "year": 1870,
+          "context": "En 1870, Sarmiento fundó el Colegio Militar de la Nación en El Palomar, provincia de Buenos Aires. La institución fue diseñada para profesionalizar al ejército argentino con formación académica moderna, iniciando la educación militar sistemática y poniendo fin al ejército de caudillos y milicias.",
+          "wikipediaUrl": "https://es.wikipedia.org/wiki/Colegio_Militar_de_la_Naci%C3%B3n"
+        },
+        {
+          "event": "Sarmiento entrega la presidencia a Nicolás Avellaneda",
+          "year": 1874,
+          "context": "Al terminar su mandato, Sarmiento entregó la presidencia a Nicolás Avellaneda, su ex ministro de Instrucción Pública, asegurando la continuidad de la política educativa. Fue el primer traspaso pacífico entre presidentes civiles en la historia argentina.",
+          "wikipediaUrl": "https://es.wikipedia.org/wiki/Domingo_Faustino_Sarmiento"
+        },
+        {
+          "event": "Sarmiento publica Conflicto y armonías de las razas en América",
+          "year": 1883,
+          "context": "En 1883, ya retirado de la política activa, Sarmiento publicó Conflicto y armonías de las razas en América, obra en la que revisitaba sus ideas sobre civilización y barbarie aplicadas a la historia de América Latina. El libro refleja la madurez y también las contradicciones del pensamiento sarmientino.",
+          "wikipediaUrl": "https://es.wikipedia.org/wiki/Conflicto_y_armon%C3%ADas_de_las_razas_en_Am%C3%A9rica"
+        },
+        {
+          "event": "Sarmiento muere en Asunción del Paraguay",
+          "year": 1888,
+          "month": 9,
+          "day": 11,
+          "context": "El 11 de septiembre de 1888, Domingo Faustino Sarmiento murió en Asunción, Paraguay, a donde había viajado para mejorar su salud. Tenía 77 años. Sus restos fueron trasladados a Buenos Aires y el 11 de septiembre se conmemora en Argentina como el Día del Maestro en su honor.",
+          "wikipediaUrl": "https://es.wikipedia.org/wiki/Domingo_Faustino_Sarmiento"
+        }
+      ]
+    }
+  ]
 }

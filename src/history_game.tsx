@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { DECKS } from "../data/index";
+import { DECKS, BIOGRAFIAS, characterToDeck } from "../data/index";
 import type { Deck } from "../data/index";
+import { formatYear } from "./utils";
 import { loadStats, saveStats, type AppStats } from "./storage";
 import { AdminScreen } from "./admin";
 import { YearGuessr } from "./year_guessr";
@@ -32,6 +33,7 @@ export default function App() {
     | "endless"
     | "context_detective"
     | "who_was_there"
+    | "biografias_select"
     | "stats"
     | "admin"
   >("home");
@@ -104,7 +106,11 @@ export default function App() {
         deck={selectedDeck}
         stats={stats}
         onUpdateStats={handleUpdateStats}
-        onBack={() => setScreen("mode_select")}
+        onBack={() =>
+          setScreen(
+            selectedDeck.id.startsWith("bio-") ? "biografias_select" : "mode_select"
+          )
+        }
       />
     );
 
@@ -137,6 +143,54 @@ export default function App() {
           onComplete: (r) => setDaily(recordDailyResult(selectedDeck.id, r)),
         }}
       />
+    );
+  }
+
+  if (screen === "biografias_select") {
+    return (
+      <div className="min-h-screen bg-bg flex items-center justify-center">
+        <div className="w-full max-w-sm px-6 py-12">
+          <button
+            onClick={() => setScreen("home")}
+            className="bg-transparent border-none cursor-pointer text-text-tertiary text-sm hover:text-text-secondary transition-colors mb-8 block"
+          >
+            ← Volver
+          </button>
+
+          <div className="text-center mb-8">
+            <span className="text-6xl block mb-3">{BIOGRAFIAS.emoji}</span>
+            <h2 className="text-2xl font-extrabold text-text-primary m-0">
+              {BIOGRAFIAS.name}
+            </h2>
+            <p className="text-sm text-text-tertiary mt-2">
+              Elegí un personaje
+            </p>
+          </div>
+
+          <div className="flex flex-col gap-3">
+            {BIOGRAFIAS.characters.map((c) => (
+              <button
+                key={c.id}
+                onClick={() => {
+                  setSelectedDeck(characterToDeck(c));
+                  setScreen("game");
+                }}
+                className="flex items-center gap-4 px-5 py-4 rounded-2xl border border-border bg-bg-card hover:border-ar-blue hover:bg-bg-secondary transition-all duration-150 cursor-pointer text-left group"
+              >
+                <span className="text-3xl shrink-0">{c.emoji}</span>
+                <div>
+                  <div className="font-semibold text-text-primary group-hover:text-ar-blue transition-colors">
+                    {c.name}
+                  </div>
+                  <div className="text-xs text-text-tertiary mt-0.5">
+                    {formatYear(c.birthYear)} – {formatYear(c.deathYear)} · {c.description}
+                  </div>
+                </div>
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
     );
   }
 
@@ -272,7 +326,7 @@ export default function App() {
           Ordená eventos históricos de más antiguo a más reciente.
         </p>
 
-        <div className="grid grid-cols-3 gap-2 mb-6">
+        <div className="grid grid-cols-2 gap-2 mb-6">
           {DECKS.map((deck) => (
             <button
               key={deck.id}
@@ -285,6 +339,15 @@ export default function App() {
               </span>
             </button>
           ))}
+          <button
+            onClick={() => setScreen("biografias_select")}
+            className="flex flex-col items-center gap-2 py-4 px-2 rounded-2xl border border-border bg-bg-card hover:border-ar-blue hover:bg-bg-secondary transition-all duration-150 cursor-pointer group"
+          >
+            <span className="text-4xl">{BIOGRAFIAS.emoji}</span>
+            <span className="text-sm font-semibold text-text-primary group-hover:text-ar-blue transition-colors leading-tight">
+              {BIOGRAFIAS.name}
+            </span>
+          </button>
         </div>
 
         <button

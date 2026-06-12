@@ -1,4 +1,4 @@
-import { DECKS } from "../../data/index";
+import { DECKS, BIOGRAFIAS } from "../../data/index";
 import type { AppStats } from "../storage";
 
 export function StatsScreen({
@@ -14,7 +14,10 @@ export function StatsScreen({
     .map(([id, s]) => ({ id, ...s }))
     .sort((a, b) => b.shown - a.shown);
 
-  const allEvents = DECKS.flatMap((d) => d.events);
+  const allEvents = [
+    ...DECKS.flatMap((d) => d.events),
+    ...BIOGRAFIAS.characters.flatMap((c) => c.events),
+  ];
   const eventMap = Object.fromEntries(allEvents.map((e) => [e.event, e]));
 
   return (
