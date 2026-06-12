@@ -7,7 +7,12 @@ export default tseslint.config(
   js.configs.recommended,
   ...tseslint.configs.recommended,
   {
-    files: ["src/**/*.{ts,tsx}", "data/**/*.ts", "vite.config.ts", "vitest.config.ts"],
+    files: [
+      "src/**/*.{ts,tsx}",
+      "data/**/*.ts",
+      "vite.config.ts",
+      "vitest.config.ts",
+    ],
     plugins: { "react-hooks": reactHooks },
     rules: {
       // The classic hook rules only — v7's React-Compiler-derived rules
@@ -23,5 +28,5 @@ export default tseslint.config(
         { argsIgnorePattern: "^_", varsIgnorePattern: "^_" },
       ],
     },
-  }
+  },
 );

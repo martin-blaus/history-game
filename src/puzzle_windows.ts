@@ -16,7 +16,7 @@ export interface CandidateWindow {
 // (seen-count weighting + Math.random vs. the date-seeded RNG).
 export function buildCandidateWindows(
   sortedEvents: HistoryEvent[],
-  n: number
+  n: number,
 ): CandidateWindow[] {
   const candidates: CandidateWindow[] = [];
   for (let i = 0; i < sortedEvents.length; i++) {
@@ -40,7 +40,9 @@ export function buildCandidateWindows(
 
 // Windows within MAX_YEAR_GAP; if none qualify, the windows with the smallest
 // max gap.
-export function filterUsableWindows(candidates: CandidateWindow[]): CandidateWindow[] {
+export function filterUsableWindows(
+  candidates: CandidateWindow[],
+): CandidateWindow[] {
   const valid = candidates.filter((c) => c.maxGap <= MAX_YEAR_GAP);
   if (valid.length > 0) return valid;
   const minGap = Math.min(...candidates.map((c) => c.maxGap));

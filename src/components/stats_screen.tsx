@@ -56,8 +56,8 @@ export function StatsScreen({
                 pct > 0.7
                   ? "text-success"
                   : pct < 0.4 && row.shown > 0
-                  ? "text-danger"
-                  : "text-text-secondary";
+                    ? "text-danger"
+                    : "text-text-secondary";
               return (
                 <div
                   key={row.id}

@@ -21,7 +21,8 @@ import {
   type DailyState,
 } from "./daily";
 
-const TITLE_CLS = "text-4xl sm:text-5xl font-extrabold tracking-tighter m-0 leading-none";
+const TITLE_CLS =
+  "text-4xl sm:text-5xl font-extrabold tracking-tighter m-0 leading-none";
 
 // ── Hash routing ──────────────────────────────────────────────────────────────
 // The URL hash is the source of truth for navigation (#/mode_select/argentina),
@@ -90,7 +91,9 @@ function hashFor(screen: Screen, deck: Deck | null): string {
 }
 
 export default function App() {
-  const [route, setRoute] = useState<Route>(() => parseHash(window.location.hash));
+  const [route, setRoute] = useState<Route>(() =>
+    parseHash(window.location.hash),
+  );
   const { screen, deck: selectedDeck } = route;
   const [stats, setStats] = useState<AppStats>(() => loadStats());
   const [daily, setDaily] = useState<DailyState>(() => loadDaily());
@@ -149,10 +152,7 @@ export default function App() {
 
   if (screen === "endless" && selectedDeck)
     return (
-      <EndlessGame
-        deck={selectedDeck}
-        onBack={() => navigate("mode_select")}
-      />
+      <EndlessGame deck={selectedDeck} onBack={() => navigate("mode_select")} />
     );
 
   if (screen === "context_detective" && selectedDeck)
@@ -165,10 +165,7 @@ export default function App() {
 
   if (screen === "who_was_there" && selectedDeck)
     return (
-      <WhoWasThere
-        deck={selectedDeck}
-        onBack={() => navigate("mode_select")}
-      />
+      <WhoWasThere deck={selectedDeck} onBack={() => navigate("mode_select")} />
     );
 
   if (screen === "game" && selectedDeck)
@@ -180,7 +177,9 @@ export default function App() {
         onUpdateStats={handleUpdateStats}
         onBack={() =>
           navigate(
-            selectedDeck.id.startsWith("bio-") ? "biografias_select" : "mode_select"
+            selectedDeck.id.startsWith("bio-")
+              ? "biografias_select"
+              : "mode_select",
           )
         }
       />
@@ -254,7 +253,8 @@ export default function App() {
                     {c.name}
                   </div>
                   <div className="text-xs text-text-tertiary mt-0.5">
-                    {formatYear(c.birthYear)} – {formatYear(c.deathYear)} · {c.description}
+                    {formatYear(c.birthYear)} – {formatYear(c.deathYear)} ·{" "}
+                    {c.description}
                   </div>
                 </div>
               </button>

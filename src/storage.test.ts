@@ -18,7 +18,7 @@ describe("selectPuzzle", () => {
         ev("f", 1905),
         ev("g", 1905),
       ],
-      { puzzleSize: 6 }
+      { puzzleSize: 6 },
     );
     for (let i = 0; i < 20; i++) {
       const puzzle = selectPuzzle(deck, emptyStats);
@@ -35,7 +35,7 @@ describe("selectPuzzle", () => {
         ev("outlier", 1400),
         ...Array.from({ length: 8 }, (_, i) => ev(`e${i}`, 1900 + i)),
       ],
-      { puzzleSize: 6 }
+      { puzzleSize: 6 },
     );
     for (let i = 0; i < 20; i++) {
       const puzzle = selectPuzzle(deck, emptyStats);
@@ -54,12 +54,22 @@ describe("selectPuzzle", () => {
     }
     const deck = makeDeck(events, { puzzleSize: 6 });
     const puzzle = selectPuzzle(deck, stats);
-    expect(puzzle.map((e) => e.event)).toEqual(["e6", "e7", "e8", "e9", "e10", "e11"]);
+    expect(puzzle.map((e) => e.event)).toEqual([
+      "e6",
+      "e7",
+      "e8",
+      "e9",
+      "e10",
+      "e11",
+    ]);
   });
 
   it("falls back to the whole (sorted) deck when it is smaller than puzzleSize", () => {
     const deck = makeDeck([ev("b", 1950), ev("a", 1900)], { puzzleSize: 6 });
-    expect(selectPuzzle(deck, emptyStats).map((e) => e.event)).toEqual(["a", "b"]);
+    expect(selectPuzzle(deck, emptyStats).map((e) => e.event)).toEqual([
+      "a",
+      "b",
+    ]);
   });
 });
 
@@ -91,7 +101,8 @@ describe("recordDeckResult", () => {
 
   it("streaks accumulate across consecutive wins", () => {
     let stats = emptyStats;
-    for (let i = 0; i < 4; i++) stats = recordDeckResult(stats, "mundo", true, 1);
+    for (let i = 0; i < 4; i++)
+      stats = recordDeckResult(stats, "mundo", true, 1);
     expect(stats.decks!["mundo"].streak).toBe(4);
     expect(stats.decks!["mundo"].attemptsDistribution[0]).toBe(4);
   });

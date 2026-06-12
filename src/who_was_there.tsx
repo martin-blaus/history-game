@@ -56,10 +56,14 @@ export function buildRounds(deck: Deck): Round[] {
   const allLabels = Object.keys(labelToEvents);
   // Type A rounds need 3 correct choices for a single label.
   const typeACandidates = allLabels.filter(
-    (name) => labelToEvents[name].length >= 3
+    (name) => labelToEvents[name].length >= 3,
   );
 
-  if (typeACandidates.length < 1 || allLabels.length < 4 || taggedEvents.length < ROUNDS) {
+  if (
+    typeACandidates.length < 1 ||
+    allLabels.length < 4 ||
+    taggedEvents.length < ROUNDS
+  ) {
     return [];
   }
 
@@ -78,8 +82,8 @@ export function buildRounds(deck: Deck): Round[] {
       const correctChoices = shuffle(labelToEvents[label]).slice(0, 3);
       const distractors = shuffle(
         deck.events.filter(
-          (e) => !extractLabels(e, isIdeasMode).some((l) => l.name === label)
-        )
+          (e) => !extractLabels(e, isIdeasMode).some((l) => l.name === label),
+        ),
       ).slice(0, 3);
 
       rounds.push({
@@ -96,9 +100,10 @@ export function buildRounds(deck: Deck): Round[] {
           : shuffledEvents[Math.floor(Math.random() * shuffledEvents.length)];
 
       const myLabels = extractLabels(event, isIdeasMode).map((l) => l.name);
-      const correctLabel = myLabels[Math.floor(Math.random() * myLabels.length)];
+      const correctLabel =
+        myLabels[Math.floor(Math.random() * myLabels.length)];
       const distractors = shuffle(
-        allLabels.filter((name) => !myLabels.includes(name))
+        allLabels.filter((name) => !myLabels.includes(name)),
       ).slice(0, 3);
 
       rounds.push({
@@ -160,7 +165,7 @@ export function WhoWasThere({
     if (selectedEvents.length !== 3 || submittedA) return;
     setSubmittedA(true);
     const correctCount = selectedEvents.filter((name) =>
-      (round as RoundTypeA).correctEvents.includes(name)
+      (round as RoundTypeA).correctEvents.includes(name),
     ).length;
     setResults((r) => [...r, correctCount === 3]);
   }
@@ -210,7 +215,10 @@ export function WhoWasThere({
           <p className="text-text-secondary text-sm mb-4">
             Este mazo no tiene suficiente información para jugar a este modo.
           </p>
-          <button onClick={onBack} className="text-ar-blue text-sm border-none bg-transparent cursor-pointer font-semibold">
+          <button
+            onClick={onBack}
+            className="text-ar-blue text-sm border-none bg-transparent cursor-pointer font-semibold"
+          >
             ← Volver
           </button>
         </div>
@@ -221,11 +229,7 @@ export function WhoWasThere({
   if (gameOver) {
     const pct = Math.round((score / ROUNDS) * 100);
     const color =
-      pct >= 70
-        ? "text-success"
-        : pct >= 40
-        ? "text-ar-gold"
-        : "text-danger";
+      pct >= 70 ? "text-success" : pct >= 40 ? "text-ar-gold" : "text-danger";
 
     return (
       <div className="min-h-screen bg-bg flex items-center justify-center">
@@ -236,7 +240,9 @@ export function WhoWasThere({
           <div className={`text-6xl font-extrabold mb-1 ${color}`}>
             {score}/{ROUNDS}
           </div>
-          <div className="text-text-tertiary text-sm mb-8">{pct}% correctos</div>
+          <div className="text-text-tertiary text-sm mb-8">
+            {pct}% correctos
+          </div>
 
           <div className="flex flex-col gap-2.5 mb-8">
             {rounds.map((r, i) => (
@@ -246,9 +252,12 @@ export function WhoWasThere({
               >
                 <span className="text-sm">
                   {isIdeasMode
-                    ? r.type === "A" ? "💡" : "👤"
-                    : r.type === "A" ? "👥" : "📅"
-                  }
+                    ? r.type === "A"
+                      ? "💡"
+                      : "👤"
+                    : r.type === "A"
+                      ? "👥"
+                      : "📅"}
                 </span>
                 <div className="flex-1 min-w-0">
                   <p className="text-text-primary text-xs font-bold m-0 truncate">
@@ -261,8 +270,7 @@ export function WhoWasThere({
                         : `Idea: ${r.correctPerson}`
                       : r.type === "A"
                         ? `Involucrado en: ${r.correctEvents.join(", ")}`
-                        : `Involucrado: ${r.correctPerson}`
-                    }
+                        : `Involucrado: ${r.correctPerson}`}
                   </p>
                 </div>
               </div>
@@ -312,8 +320,8 @@ export function WhoWasThere({
                 i < roundIdx
                   ? "bg-ar-blue"
                   : i === roundIdx
-                  ? "bg-ar-blue opacity-60"
-                  : "bg-border"
+                    ? "bg-ar-blue opacity-60"
+                    : "bg-border"
               }`}
             />
           ))}
@@ -324,16 +332,20 @@ export function WhoWasThere({
           <div>
             <div className="text-center mb-6">
               <span className="text-xs font-bold text-text-tertiary uppercase tracking-widest">
-                {isIdeasMode ? "Pregunta de Doctrina / Idea" : "Pregunta de Personaje"}
+                {isIdeasMode
+                  ? "Pregunta de Doctrina / Idea"
+                  : "Pregunta de Personaje"}
               </span>
               <h2 className="text-xl md:text-2xl font-extrabold text-text-primary mt-1 mb-2">
                 {isIdeasMode ? (
                   <>
-                    ¿Cuáles de estos 3 filósofos sostuvieron la idea <span className="text-ar-gold">{round.person}</span>?
+                    ¿Cuáles de estos 3 filósofos sostuvieron la idea{" "}
+                    <span className="text-ar-gold">{round.person}</span>?
                   </>
                 ) : (
                   <>
-                    ¿Cuáles de estos 3 eventos involucraron a <span className="text-ar-gold">{round.person}</span>?
+                    ¿Cuáles de estos 3 eventos involucraron a{" "}
+                    <span className="text-ar-gold">{round.person}</span>?
                   </>
                 )}
               </h2>
@@ -356,7 +368,8 @@ export function WhoWasThere({
                 let cardClass =
                   "border-border bg-bg-card hover:border-ar-blue hover:scale-[1.01]";
                 if (isSelected && !submittedA) {
-                  cardClass = "border-ar-blue bg-bg-secondary ring-1 ring-ar-blue scale-[1.01]";
+                  cardClass =
+                    "border-ar-blue bg-bg-secondary ring-1 ring-ar-blue scale-[1.01]";
                 } else if (submittedA) {
                   if (isCorrect) {
                     cardClass =
@@ -400,7 +413,8 @@ export function WhoWasThere({
                       </p>
                       {submittedA && (
                         <p className="text-2xs text-text-tertiary mt-auto pt-1 font-semibold">
-                          {isIdeasMode ? "Año de nacimiento/activo:" : "Año:"} {formatYear(choice.year)}
+                          {isIdeasMode ? "Año de nacimiento/activo:" : "Año:"}{" "}
+                          {formatYear(choice.year)}
                         </p>
                       )}
                     </div>
@@ -437,7 +451,10 @@ export function WhoWasThere({
               </span>
               <h2 className="text-xl md:text-2xl font-extrabold text-text-primary mt-1 mb-2">
                 {isIdeasMode ? (
-                  <>¿Qué idea o concepto fue propuesto por <span className="text-ar-gold">{round.event.event}</span>?</>
+                  <>
+                    ¿Qué idea o concepto fue propuesto por{" "}
+                    <span className="text-ar-gold">{round.event.event}</span>?
+                  </>
                 ) : (
                   <>¿Qué figura histórica estuvo involucrada en este evento?</>
                 )}
@@ -460,7 +477,10 @@ export function WhoWasThere({
               </p>
               {selectedPerson && (
                 <div className="mt-3 text-xs text-text-tertiary font-semibold">
-                  {isIdeasMode ? "Año de nacimiento/activo:" : "Año del evento:"} {formatYear(round.event.year)}
+                  {isIdeasMode
+                    ? "Año de nacimiento/activo:"
+                    : "Año del evento:"}{" "}
+                  {formatYear(round.event.year)}
                 </div>
               )}
             </div>
@@ -481,7 +501,8 @@ export function WhoWasThere({
                     btnClass =
                       "border-danger bg-[rgba(239,68,68,0.08)] text-danger";
                   } else {
-                    btnClass = "border-border text-text-tertiary bg-bg-card opacity-50";
+                    btnClass =
+                      "border-border text-text-tertiary bg-bg-card opacity-50";
                   }
                 }
 
@@ -497,7 +518,9 @@ export function WhoWasThere({
                     <div className="flex justify-between items-center">
                       <span>{choice}</span>
                       {selectedPerson && isThis && <span>✓</span>}
-                      {selectedPerson && wasSelected && !isThis && <span>✗</span>}
+                      {selectedPerson && wasSelected && !isThis && (
+                        <span>✗</span>
+                      )}
                     </div>
                   </button>
                 );
@@ -506,7 +529,10 @@ export function WhoWasThere({
 
             {/* Next button */}
             {selectedPerson && (
-              <button onClick={handleNext} className="btn-primary w-full text-base">
+              <button
+                onClick={handleNext}
+                className="btn-primary w-full text-base"
+              >
                 {roundIdx + 1 >= ROUNDS ? "Ver resultados" : "Siguiente →"}
               </button>
             )}

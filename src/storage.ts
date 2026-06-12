@@ -1,6 +1,10 @@
 import type { Deck, HistoryEvent } from "../data/types";
 import { MAX_ATTEMPTS } from "./constants";
-import { buildCandidateWindows, filterUsableWindows, MAX_YEAR_GAP } from "./puzzle_windows";
+import {
+  buildCandidateWindows,
+  filterUsableWindows,
+  MAX_YEAR_GAP,
+} from "./puzzle_windows";
 
 const STORAGE_KEY = "historia-ar-stats";
 
@@ -51,7 +55,7 @@ export function selectPuzzle(deck: Deck, stats: AppStats): HistoryEvent[] {
   // free-play-specific weighting: least-seen first, random tiebreak.
   const candidates = buildCandidateWindows(sorted, n);
   if (candidates.length > 0) {
-    const pool = filterUsableWindows(candidates).map(c => ({
+    const pool = filterUsableWindows(candidates).map((c) => ({
       events: c.events,
       totalShown: c.events.reduce((sum, ev) => sum + shownOf(ev), 0),
       r: Math.random(),
@@ -63,7 +67,12 @@ export function selectPuzzle(deck: Deck, stats: AppStats): HistoryEvent[] {
   // Fallback: original selection algorithm if no candidate with unique years could be formed
   if (sorted.length <= n) return sorted;
 
-  type Window = { start: number; totalShown: number; maxGap: number; r: number };
+  type Window = {
+    start: number;
+    totalShown: number;
+    maxGap: number;
+    r: number;
+  };
   const windows: Window[] = [];
   for (let i = 0; i <= sorted.length - n; i++) {
     let maxGap = 0;
@@ -75,11 +84,11 @@ export function selectPuzzle(deck: Deck, stats: AppStats): HistoryEvent[] {
     windows.push({ start: i, totalShown, maxGap, r: Math.random() });
   }
 
-  const valid = windows.filter(w => w.maxGap <= MAX_YEAR_GAP);
+  const valid = windows.filter((w) => w.maxGap <= MAX_YEAR_GAP);
   let pool = valid;
   if (pool.length === 0) {
-    const minGap = Math.min(...windows.map(w => w.maxGap));
-    pool = windows.filter(w => w.maxGap === minGap);
+    const minGap = Math.min(...windows.map((w) => w.maxGap));
+    pool = windows.filter((w) => w.maxGap === minGap);
   }
   pool.sort((a, b) => a.totalShown - b.totalShown || a.r - b.r);
   return sorted.slice(pool[0].start, pool[0].start + n);
@@ -87,11 +96,11 @@ export function selectPuzzle(deck: Deck, stats: AppStats): HistoryEvent[] {
 
 export function recordResult(
   stats: AppStats,
-  results: { event: HistoryEvent; status: "correct" | "wrong" }[]
+  results: { event: HistoryEvent; status: "correct" | "wrong" }[],
 ): AppStats {
-  const next = { 
+  const next = {
     events: { ...stats.events },
-    decks: { ...stats.decks }
+    decks: { ...stats.decks },
   };
   for (const { event, status } of results) {
     const prev = next.events[event.event] ?? { shown: 0, correct: 0, wrong: 0 };
@@ -108,11 +117,11 @@ export function recordDeckResult(
   stats: AppStats,
   deckId: string,
   won: boolean,
-  attemptsUsed: number
+  attemptsUsed: number,
 ): AppStats {
   const nextEvents = { ...stats.events };
   const nextDecks = stats.decks ? { ...stats.decks } : {};
-  
+
   const prev = nextDecks[deckId] ?? {
     played: 0,
     won: 0,

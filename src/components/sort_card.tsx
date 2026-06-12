@@ -30,7 +30,12 @@ export function Card({
   isDragSource: boolean;
   isHinted: boolean;
   onDragStart: (i: number) => void;
-  onDragOver: (i: number, clientX: number, clientY: number, rect: DOMRect) => void;
+  onDragOver: (
+    i: number,
+    clientX: number,
+    clientY: number,
+    rect: DOMRect,
+  ) => void;
   onDragEnd: () => void;
   onDrop: () => void;
   onTouchStart: (e: React.TouchEvent, i: number) => void;
@@ -48,10 +53,10 @@ export function Card({
     status === "correct"
       ? "border-2 border-success bg-[#0f2a1a]/40"
       : status === "wrong"
-      ? "border-2 border-danger bg-[#2a0f0f]/40"
-      : isHinted && !revealed
-      ? "border-2 border-ar-gold"
-      : "border border-border";
+        ? "border-2 border-danger bg-[#2a0f0f]/40"
+        : isHinted && !revealed
+          ? "border-2 border-ar-gold"
+          : "border border-border";
 
   const shakeClass = status === "wrong" ? "card-shake" : "";
   const sourceClass = isDragSource ? "opacity-40 scale-95" : "";
@@ -70,7 +75,12 @@ export function Card({
       onDragOver={(e) => {
         e.preventDefault();
         e.stopPropagation();
-        onDragOver(index, e.clientX, e.clientY, e.currentTarget.getBoundingClientRect());
+        onDragOver(
+          index,
+          e.clientX,
+          e.clientY,
+          e.currentTarget.getBoundingClientRect(),
+        );
       }}
       onDragEnd={onDragEnd}
       onDrop={onDrop}
@@ -120,9 +130,11 @@ export function Card({
         </div>
 
         {revealed && (
-          <div className={`pt-2 mt-auto border-t border-border/30 text-xs font-bold tracking-wide uppercase shrink-0 ${
-            status === "correct" ? "text-success" : "text-danger"
-          }`}>
+          <div
+            className={`pt-2 mt-auto border-t border-border/30 text-xs font-bold tracking-wide uppercase shrink-0 ${
+              status === "correct" ? "text-success" : "text-danger"
+            }`}
+          >
             {formatYear(item.year)}
           </div>
         )}

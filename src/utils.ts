@@ -21,7 +21,9 @@ export function shuffle<T>(arr: T[]): T[] {
 // Share via the OS share sheet when available (mobile), falling back to the
 // clipboard. "shared" also covers the user canceling the sheet (AbortError) —
 // that's a choice, not a failure, and deserves no error feedback.
-export async function shareText(text: string): Promise<"shared" | "copied" | "failed"> {
+export async function shareText(
+  text: string,
+): Promise<"shared" | "copied" | "failed"> {
   if (typeof navigator.share === "function") {
     try {
       await navigator.share({ text });

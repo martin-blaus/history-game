@@ -9,12 +9,16 @@ function generateDeckFile(deck: Deck): string {
 
 // Event names are React keys and the per-event stats key in storage.ts, so
 // blanks and duplicates silently corrupt rendering and stats.
-function validateDeck(events: HistoryEvent[], puzzleSize: number): string | null {
+function validateDeck(
+  events: HistoryEvent[],
+  puzzleSize: number,
+): string | null {
   if (events.length === 0) return "El mazo no tiene eventos.";
   const names = new Set<string>();
   for (const ev of events) {
     if (!ev.event.trim()) return "Hay un evento sin nombre.";
-    if (!Number.isFinite(ev.year)) return `"${ev.event}" tiene un año inválido.`;
+    if (!Number.isFinite(ev.year))
+      return `"${ev.event}" tiene un año inválido.`;
     if (names.has(ev.event)) return `Evento duplicado: "${ev.event}".`;
     names.add(ev.event);
   }
@@ -50,16 +54,20 @@ function EventDraftFields({
         className={inputCls}
         placeholder="Nombre del evento"
         value={draft.event}
-        onChange={e => onChange({ ...draft, event: e.target.value })}
+        onChange={(e) => onChange({ ...draft, event: e.target.value })}
       />
       <div className="flex gap-2">
         <div className="flex flex-col gap-1">
-          <label className="text-xs text-text-tertiary">Año (negativo = a.C.)</label>
+          <label className="text-xs text-text-tertiary">
+            Año (negativo = a.C.)
+          </label>
           <input
             className={`${inputCls} w-36`}
             type="number"
             value={draft.year}
-            onChange={e => onChange({ ...draft, year: Number(e.target.value) })}
+            onChange={(e) =>
+              onChange({ ...draft, year: Number(e.target.value) })
+            }
           />
         </div>
       </div>
@@ -68,13 +76,15 @@ function EventDraftFields({
         rows={3}
         placeholder="Descripción (opcional)"
         value={draft.context}
-        onChange={e => onChange({ ...draft, context: e.target.value })}
+        onChange={(e) => onChange({ ...draft, context: e.target.value })}
       />
       <input
         className={inputCls}
         placeholder="URL de imagen (opcional)"
         value={draft.image ?? ""}
-        onChange={e => onChange({ ...draft, image: e.target.value || undefined })}
+        onChange={(e) =>
+          onChange({ ...draft, image: e.target.value || undefined })
+        }
       />
     </>
   );
@@ -99,7 +109,9 @@ function AddRowForm({
       <div className="flex gap-2">
         <button
           className={btnPrimary}
-          onClick={() => { if (draft.event.trim()) onAdd(draft); }}
+          onClick={() => {
+            if (draft.event.trim()) onAdd(draft);
+          }}
         >
           Agregar
         </button>
@@ -138,13 +150,19 @@ function EventRow({
         <div className="flex gap-2">
           <button
             className={btnPrimary}
-            onClick={() => { onSave(draft); setEditing(false); }}
+            onClick={() => {
+              onSave(draft);
+              setEditing(false);
+            }}
           >
             Guardar
           </button>
           <button
             className={btnSecondary}
-            onClick={() => { setDraft(event); setEditing(false); }}
+            onClick={() => {
+              setDraft(event);
+              setEditing(false);
+            }}
           >
             Cancelar
           </button>
@@ -158,7 +176,9 @@ function EventRow({
       <span className="text-xs text-text-tertiary w-8 shrink-0 text-center font-mono">
         {index + 1}
       </span>
-      <span className="flex-1 text-sm text-text-primary leading-snug min-w-0">{event.event}</span>
+      <span className="flex-1 text-sm text-text-primary leading-snug min-w-0">
+        {event.event}
+      </span>
       <span className="text-xs text-ar-blue font-semibold w-20 shrink-0 text-right whitespace-nowrap">
         {formatYear(event.year)}
       </span>
@@ -214,21 +234,23 @@ function AdminDeckEditor({ deck, onBack }: { deck: Deck; onBack: () => void }) {
   const [puzzleSize, setPuzzleSize] = useState<number>(deck.puzzleSize ?? 6);
   const [showAddRow, setShowAddRow] = useState(false);
   const [saving, setSaving] = useState(false);
-  const [saveStatus, setSaveStatus] = useState<"idle" | "saved" | "error" | "invalid">("idle");
+  const [saveStatus, setSaveStatus] = useState<
+    "idle" | "saved" | "error" | "invalid"
+  >("idle");
   const [validationMsg, setValidationMsg] = useState<string | null>(null);
 
   function updateEvent(idx: number, updated: HistoryEvent) {
-    setEvents(prev => prev.map((e, i) => (i === idx ? updated : e)));
+    setEvents((prev) => prev.map((e, i) => (i === idx ? updated : e)));
   }
 
   function deleteEvent(idx: number) {
-    setEvents(prev => prev.filter((_, i) => i !== idx));
+    setEvents((prev) => prev.filter((_, i) => i !== idx));
   }
 
   function moveEvent(idx: number, dir: -1 | 1) {
     const target = idx + dir;
     if (target < 0 || target >= events.length) return;
-    setEvents(prev => {
+    setEvents((prev) => {
       const next = [...prev];
       [next[idx], next[target]] = [next[target], next[idx]];
       return next;
@@ -236,7 +258,7 @@ function AdminDeckEditor({ deck, onBack }: { deck: Deck; onBack: () => void }) {
   }
 
   function addEvent(ev: HistoryEvent) {
-    setEvents(prev => [...prev, ev]);
+    setEvents((prev) => [...prev, ev]);
     setShowAddRow(false);
   }
 
@@ -283,17 +305,23 @@ function AdminDeckEditor({ deck, onBack }: { deck: Deck; onBack: () => void }) {
               <h2 className="text-base font-bold text-text-primary m-0 leading-tight truncate">
                 {deck.name}
               </h2>
-              <p className="text-xs text-text-tertiary m-0">{events.length} eventos</p>
+              <p className="text-xs text-text-tertiary m-0">
+                {events.length} eventos
+              </p>
             </div>
           </div>
           <div className="flex items-center gap-2 shrink-0">
-            <label className="text-xs text-text-tertiary whitespace-nowrap">Por partida:</label>
+            <label className="text-xs text-text-tertiary whitespace-nowrap">
+              Por partida:
+            </label>
             <input
               type="number"
               min={2}
               max={events.length}
               value={puzzleSize}
-              onChange={e => setPuzzleSize(Math.max(2, Number(e.target.value)))}
+              onChange={(e) =>
+                setPuzzleSize(Math.max(2, Number(e.target.value)))
+              }
               className="w-14 px-2 py-1 rounded-lg bg-bg border border-border text-text-primary text-sm text-center focus:border-ar-blue"
             />
           </div>
@@ -302,20 +330,40 @@ function AdminDeckEditor({ deck, onBack }: { deck: Deck; onBack: () => void }) {
             disabled={saving}
             className={`shrink-0 px-4 py-2 rounded-xl border-none text-sm font-semibold cursor-pointer transition-colors text-white ${SAVE_BTN_CLS[saveStatus]} ${saving ? "opacity-60 cursor-not-allowed" : ""}`}
           >
-            {saving ? "Guardando…" : saveStatus === "saved" ? "¡Guardado!" : saveStatus === "error" ? "Error" : saveStatus === "invalid" ? "Inválido" : "Guardar en archivo"}
+            {saving
+              ? "Guardando…"
+              : saveStatus === "saved"
+                ? "¡Guardado!"
+                : saveStatus === "error"
+                  ? "Error"
+                  : saveStatus === "invalid"
+                    ? "Inválido"
+                    : "Guardar en archivo"}
           </button>
         </div>
 
         {validationMsg && (
-          <p className="text-xs text-danger text-right -mt-3 mb-3 m-0">{validationMsg}</p>
+          <p className="text-xs text-danger text-right -mt-3 mb-3 m-0">
+            {validationMsg}
+          </p>
         )}
 
         <div className="flex items-center gap-2 px-3 py-1.5 mb-1.5">
-          <span className="text-xs font-bold text-text-tertiary uppercase tracking-wider w-8 shrink-0 text-center">#</span>
-          <span className="flex-1 text-xs font-bold text-text-tertiary uppercase tracking-wider">Evento</span>
-          <span className="text-xs font-bold text-text-tertiary uppercase tracking-wider w-20 shrink-0 text-right">Año</span>
-          <span className="text-xs font-bold text-text-tertiary uppercase tracking-wider w-48 shrink-0 hidden md:block">Descripción</span>
-          <span className="text-xs font-bold text-text-tertiary uppercase tracking-wider w-6 shrink-0 text-center">Img</span>
+          <span className="text-xs font-bold text-text-tertiary uppercase tracking-wider w-8 shrink-0 text-center">
+            #
+          </span>
+          <span className="flex-1 text-xs font-bold text-text-tertiary uppercase tracking-wider">
+            Evento
+          </span>
+          <span className="text-xs font-bold text-text-tertiary uppercase tracking-wider w-20 shrink-0 text-right">
+            Año
+          </span>
+          <span className="text-xs font-bold text-text-tertiary uppercase tracking-wider w-48 shrink-0 hidden md:block">
+            Descripción
+          </span>
+          <span className="text-xs font-bold text-text-tertiary uppercase tracking-wider w-6 shrink-0 text-center">
+            Img
+          </span>
           <span className="w-24 shrink-0" />
         </div>
 
@@ -326,7 +374,7 @@ function AdminDeckEditor({ deck, onBack }: { deck: Deck; onBack: () => void }) {
               index={i}
               event={ev}
               total={events.length}
-              onSave={updated => updateEvent(i, updated)}
+              onSave={(updated) => updateEvent(i, updated)}
               onDelete={() => deleteEvent(i)}
               onMoveUp={() => moveEvent(i, -1)}
               onMoveDown={() => moveEvent(i, 1)}
@@ -335,10 +383,7 @@ function AdminDeckEditor({ deck, onBack }: { deck: Deck; onBack: () => void }) {
         </div>
 
         {showAddRow ? (
-          <AddRowForm
-            onAdd={addEvent}
-            onCancel={() => setShowAddRow(false)}
-          />
+          <AddRowForm onAdd={addEvent} onCancel={() => setShowAddRow(false)} />
         ) : (
           <button
             onClick={() => setShowAddRow(true)}
@@ -352,7 +397,13 @@ function AdminDeckEditor({ deck, onBack }: { deck: Deck; onBack: () => void }) {
   );
 }
 
-function AdminDeckList({ onSelect, onBack }: { onSelect: (deck: Deck) => void; onBack: () => void }) {
+function AdminDeckList({
+  onSelect,
+  onBack,
+}: {
+  onSelect: (deck: Deck) => void;
+  onBack: () => void;
+}) {
   return (
     <div className="min-h-screen bg-bg">
       <div className="max-w-[600px] mx-auto px-4 py-6">
@@ -363,7 +414,9 @@ function AdminDeckList({ onSelect, onBack }: { onSelect: (deck: Deck) => void; o
           >
             ← Inicio
           </button>
-          <h2 className="flex-1 text-center text-base font-bold text-text-primary m-0">Admin</h2>
+          <h2 className="flex-1 text-center text-base font-bold text-text-primary m-0">
+            Admin
+          </h2>
           <span className="w-14" />
         </div>
 
@@ -372,7 +425,7 @@ function AdminDeckList({ onSelect, onBack }: { onSelect: (deck: Deck) => void; o
         </p>
 
         <div className="flex flex-col gap-3">
-          {DECKS.map(deck => (
+          {DECKS.map((deck) => (
             <button
               key={deck.id}
               onClick={() => onSelect(deck)}
@@ -380,9 +433,12 @@ function AdminDeckList({ onSelect, onBack }: { onSelect: (deck: Deck) => void; o
             >
               <span className="text-3xl">{deck.emoji}</span>
               <div className="flex-1">
-                <div className="text-sm font-semibold text-text-primary">{deck.name}</div>
+                <div className="text-sm font-semibold text-text-primary">
+                  {deck.name}
+                </div>
                 <div className="text-xs text-text-tertiary mt-0.5">
-                  {deck.events.length} eventos · {deck.puzzleSize ?? 6} por partida
+                  {deck.events.length} eventos · {deck.puzzleSize ?? 6} por
+                  partida
                 </div>
               </div>
               <span className="text-text-tertiary text-lg">→</span>
@@ -398,7 +454,12 @@ export function AdminScreen({ onBack }: { onBack: () => void }) {
   const [selectedDeck, setSelectedDeck] = useState<Deck | null>(null);
 
   if (selectedDeck) {
-    return <AdminDeckEditor deck={selectedDeck} onBack={() => setSelectedDeck(null)} />;
+    return (
+      <AdminDeckEditor
+        deck={selectedDeck}
+        onBack={() => setSelectedDeck(null)}
+      />
+    );
   }
 
   return <AdminDeckList onSelect={setSelectedDeck} onBack={onBack} />;

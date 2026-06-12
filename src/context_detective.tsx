@@ -10,19 +10,22 @@ type Round = {
 };
 
 function buildRounds(deck: Deck): Round[] {
-  const eligible = deck.events.filter(e => e.context.trim().length > 20);
+  const eligible = deck.events.filter((e) => e.context.trim().length > 20);
   const questions = shuffle(eligible).slice(0, ROUNDS);
 
-  return questions.map(event => {
+  return questions.map((event) => {
     const distractors = shuffle(
-      eligible.filter(e => e.event !== event.event)
+      eligible.filter((e) => e.event !== event.event),
     ).slice(0, 3);
     const choices = shuffle([...distractors, event]);
     return { event, choices };
   });
 }
 
-export function ContextDetective({ deck, onBack }: {
+export function ContextDetective({
+  deck,
+  onBack,
+}: {
   deck: Deck;
   onBack: () => void;
 }) {
@@ -40,14 +43,14 @@ export function ContextDetective({ deck, onBack }: {
   function pick(eventName: string) {
     if (picked) return;
     setPicked(eventName);
-    setResults(r => [...r, eventName === round.event.event]);
+    setResults((r) => [...r, eventName === round.event.event]);
   }
 
   function next() {
     if (roundIdx + 1 >= ROUNDS) {
       setGameOver(true);
     } else {
-      setRoundIdx(i => i + 1);
+      setRoundIdx((i) => i + 1);
       setPicked(null);
     }
   }
@@ -59,15 +62,18 @@ export function ContextDetective({ deck, onBack }: {
           <p className="text-text-secondary text-sm mb-4">
             Este mazo no tiene suficiente contexto para jugar.
           </p>
-          <button onClick={onBack} className="text-ar-blue text-sm">← Volver</button>
+          <button onClick={onBack} className="text-ar-blue text-sm">
+            ← Volver
+          </button>
         </div>
       </div>
     );
   }
 
   if (gameOver) {
-    const pct = Math.round(score / ROUNDS * 100);
-    const color = pct >= 70 ? "text-success" : pct >= 40 ? "text-ar-gold" : "text-danger";
+    const pct = Math.round((score / ROUNDS) * 100);
+    const color =
+      pct >= 70 ? "text-success" : pct >= 40 ? "text-ar-gold" : "text-danger";
     return (
       <div className="min-h-screen bg-bg flex items-center justify-center">
         <div className="max-w-sm w-full px-6 py-12 text-center">
@@ -77,18 +83,27 @@ export function ContextDetective({ deck, onBack }: {
           <div className={`text-6xl font-extrabold mb-1 ${color}`}>
             {score}/{ROUNDS}
           </div>
-          <div className="text-text-tertiary text-sm mb-8">{pct}% correctos</div>
+          <div className="text-text-tertiary text-sm mb-8">
+            {pct}% correctos
+          </div>
 
           <div className="flex flex-col gap-2 mb-8">
             {rounds.map((r, i) => (
-              <div key={i} className="flex items-center gap-3 px-4 py-3 bg-bg-card rounded-xl border border-border text-left">
+              <div
+                key={i}
+                className="flex items-center gap-3 px-4 py-3 bg-bg-card rounded-xl border border-border text-left"
+              >
                 <img
                   src={r.event.image || PLACEHOLDER}
                   className="w-10 h-10 rounded-lg object-cover shrink-0"
                   onError={onImgError}
                 />
-                <span className="text-text-secondary text-xs leading-snug flex-1 line-clamp-2">{r.event.event}</span>
-                <span className="shrink-0 text-sm">{results[i] ? "✓" : "✗"}</span>
+                <span className="text-text-secondary text-xs leading-snug flex-1 line-clamp-2">
+                  {r.event.event}
+                </span>
+                <span className="shrink-0 text-sm">
+                  {results[i] ? "✓" : "✗"}
+                </span>
               </div>
             ))}
           </div>
@@ -118,7 +133,6 @@ export function ContextDetective({ deck, onBack }: {
   return (
     <div className="min-h-screen bg-bg">
       <div className="max-w-xl mx-auto px-4 py-8">
-
         {/* Header */}
         <div className="flex items-center mb-5">
           <button
@@ -140,18 +154,25 @@ export function ContextDetective({ deck, onBack }: {
         {/* Progress */}
         <div className="flex gap-1.5 mb-6">
           {Array.from({ length: ROUNDS }).map((_, i) => (
-            <div key={i} className={`flex-1 h-1 rounded-full transition-colors duration-300 ${
-              i < roundIdx ? "bg-ar-blue" :
-              i === roundIdx ? "bg-ar-blue opacity-60" :
-              "bg-border"
-            }`} />
+            <div
+              key={i}
+              className={`flex-1 h-1 rounded-full transition-colors duration-300 ${
+                i < roundIdx
+                  ? "bg-ar-blue"
+                  : i === roundIdx
+                    ? "bg-ar-blue opacity-60"
+                    : "bg-border"
+              }`}
+            />
           ))}
         </div>
 
         {/* Context clue */}
         <div className="bg-bg-card rounded-2xl border border-border p-5 mb-5">
           <p className="text-xs font-bold text-text-tertiary uppercase tracking-widest mb-3">
-            {deck.id === "filosofia" ? "¿De quién es esta descripción?" : "¿De qué evento es este contexto?"}
+            {deck.id === "filosofia"
+              ? "¿De quién es esta descripción?"
+              : "¿De qué evento es este contexto?"}
           </p>
 
           {/* Reveal image after answering */}
@@ -170,25 +191,33 @@ export function ContextDetective({ deck, onBack }: {
 
           {/* Reveal title + year after answering */}
           {picked && (
-            <div className={`mt-3 flex items-center gap-2 text-xs font-semibold ${isCorrect ? "text-success" : "text-danger"}`}>
+            <div
+              className={`mt-3 flex items-center gap-2 text-xs font-semibold ${isCorrect ? "text-success" : "text-danger"}`}
+            >
               <span>{isCorrect ? "✓" : "✗"}</span>
               <span>{round.event.event}</span>
-              <span className="text-text-tertiary font-normal">— {formatYear(round.event.year)}</span>
+              <span className="text-text-tertiary font-normal">
+                — {formatYear(round.event.year)}
+              </span>
             </div>
           )}
         </div>
 
         {/* Choices */}
         <div className="flex flex-col gap-2 mb-5">
-          {round.choices.map(choice => {
+          {round.choices.map((choice) => {
             const isThis = choice.event === round.event.event;
             const wasSelected = picked === choice.event;
 
-            let cls = "border-border text-text-primary bg-bg-card hover:border-ar-blue hover:bg-bg-secondary";
+            let cls =
+              "border-border text-text-primary bg-bg-card hover:border-ar-blue hover:bg-bg-secondary";
             if (picked) {
-              if (isThis) cls = "border-success bg-[rgba(34,197,94,0.08)] text-success";
-              else if (wasSelected) cls = "border-danger bg-[rgba(239,68,68,0.08)] text-danger";
-              else cls = "border-border text-text-tertiary bg-bg-card opacity-50";
+              if (isThis)
+                cls = "border-success bg-[rgba(34,197,94,0.08)] text-success";
+              else if (wasSelected)
+                cls = "border-danger bg-[rgba(239,68,68,0.08)] text-danger";
+              else
+                cls = "border-border text-text-tertiary bg-bg-card opacity-50";
             }
 
             return (

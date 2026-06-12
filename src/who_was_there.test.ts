@@ -32,7 +32,7 @@ describe("buildRounds", () => {
         expect(round.choices).toHaveLength(6);
         expect(round.correctEvents).toHaveLength(3);
         const flagged = round.choices.filter((c) =>
-          round.correctEvents.includes(c.event)
+          round.correctEvents.includes(c.event),
         );
         expect(flagged).toHaveLength(3);
         // Every flagged event really involves the asked-about label.
@@ -49,7 +49,7 @@ describe("buildRounds", () => {
         if (round.type !== "B") continue;
         expect(round.choices).toHaveLength(4);
         const correct = round.choices.filter((c) =>
-          (round.event.people ?? []).includes(c)
+          (round.event.people ?? []).includes(c),
         );
         expect(correct).toEqual([round.correctPerson]);
       }
@@ -66,7 +66,7 @@ describe("buildRounds", () => {
         ev("f5", -200, { ideas: ["Idea3: otra"] }),
         ev("f6", -150, { ideas: ["Idea4: otra"] }),
       ],
-      { id: "filosofia" }
+      { id: "filosofia" },
     );
     const rounds = buildRounds(ideasDeck);
     expect(rounds.length).toBe(ROUNDS);
@@ -85,7 +85,9 @@ describe("perfect-game celebration (bug captured by the 2026-06-11 audit, fixed 
   });
 
   it("does not fire the celebration on 5/6 with a correct last round", () => {
-    expect(shouldCelebrate([false, ...Array(ROUNDS - 1).fill(true)])).toBe(false);
+    expect(shouldCelebrate([false, ...Array(ROUNDS - 1).fill(true)])).toBe(
+      false,
+    );
   });
 
   it("does not fire with an incomplete results array", () => {

@@ -1,21 +1,24 @@
-import fs from 'fs';
-import https from 'https';
+import fs from "fs";
+import https from "https";
 
-const data = JSON.parse(fs.readFileSync('data/filosofia.json', 'utf8'));
+const data = JSON.parse(fs.readFileSync("data/filosofia.json", "utf8"));
 const events = data.events;
 
 function checkUrl(url) {
   return new Promise((resolve) => {
     const options = {
       headers: {
-        'User-Agent': 'HistoryGameChecker/1.0 (martinblaustein@gmail.com) Node.js'
-      }
+        "User-Agent":
+          "HistoryGameChecker/1.0 (martinblaustein@gmail.com) Node.js",
+      },
     };
-    https.get(url, options, (res) => {
-      resolve(res.statusCode);
-    }).on('error', (e) => {
-      resolve(500);
-    });
+    https
+      .get(url, options, (res) => {
+        resolve(res.statusCode);
+      })
+      .on("error", (e) => {
+        resolve(500);
+      });
   });
 }
 
@@ -26,10 +29,12 @@ async function run() {
   for (const event of events) {
     if (event.image) {
       // Replace /400px- with /500px- in the URL
-      const newUrl = event.image.replace('/400px-', '/500px-');
+      const newUrl = event.image.replace("/400px-", "/500px-");
       const code = await checkUrl(newUrl);
       if (code !== 200) {
-        console.log(`BROKEN - ${event.id}: ${event.event} - Code: ${code} - URL: ${newUrl}`);
+        console.log(
+          `BROKEN - ${event.id}: ${event.event} - Code: ${code} - URL: ${newUrl}`,
+        );
         brokenCount++;
       } else {
         console.log(`OK - ${event.id}: ${event.event}`);

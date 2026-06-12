@@ -1,7 +1,19 @@
-import { Fragment, useReducer, useState, useRef, useEffect, useLayoutEffect } from "react";
+import {
+  Fragment,
+  useReducer,
+  useState,
+  useRef,
+  useEffect,
+  useLayoutEffect,
+} from "react";
 import confetti from "canvas-confetti";
 import type { Deck, HistoryEvent } from "../../data/index";
-import { selectPuzzle, recordResult, recordDeckResult, type AppStats } from "../storage";
+import {
+  selectPuzzle,
+  recordResult,
+  recordDeckResult,
+  type AppStats,
+} from "../storage";
 import { Card, InsertionIndicator, statusEmoji } from "./sort_card";
 import { WikipediaSheet } from "./WikipediaSheet";
 import { shuffle, shareText } from "../utils";
@@ -17,15 +29,24 @@ const COPIED_FEEDBACK_MS = 2000;
 
 type Status = "correct" | "wrong";
 
-function buildShareText(history: Status[][], deckName: string, won: boolean): string {
-  const grid = history.map(row => row.map(statusEmoji).join("")).join("\n");
+function buildShareText(
+  history: Status[][],
+  deckName: string,
+  won: boolean,
+): string {
+  const grid = history.map((row) => row.map(statusEmoji).join("")).join("\n");
   const tries = won ? `${history.length}/${MAX_ATTEMPTS}` : `X/${MAX_ATTEMPTS}`;
   return `${deckName} (${tries})\n\n${grid}\n\n${SHARE_URL}`;
 }
 
-export function gradeCards(puzzle: HistoryEvent[], cards: HistoryEvent[]): Status[] {
+export function gradeCards(
+  puzzle: HistoryEvent[],
+  cards: HistoryEvent[],
+): Status[] {
   const sorted = [...puzzle].sort((a, b) => a.year - b.year);
-  return cards.map((c, i) => (c.event === sorted[i].event ? "correct" : "wrong"));
+  return cards.map((c, i) =>
+    c.event === sorted[i].event ? "correct" : "wrong",
+  );
 }
 
 // Maps a pointer coordinate to an insertion index by scanning the rendered
@@ -38,7 +59,9 @@ function resolveDropTarget(coord: number, vertical: boolean): number | null {
     const rect = el.getBoundingClientRect();
     const start = vertical ? rect.top : rect.left;
     const end = vertical ? rect.bottom : rect.right;
-    const mid = vertical ? rect.top + rect.height / 2 : rect.left + rect.width / 2;
+    const mid = vertical
+      ? rect.top + rect.height / 2
+      : rect.left + rect.width / 2;
     if (coord >= start && coord <= end) target = coord < mid ? i : i + 1;
   });
   return target;
@@ -48,7 +71,9 @@ function resolveDropTarget(coord: number, vertical: boolean): number | null {
 // Kept in sync with the `sm:` (640px) breakpoint used in the markup.
 function useIsVertical(): boolean {
   const [vertical, setVertical] = useState(
-    () => typeof window !== "undefined" && window.matchMedia("(max-width: 639px)").matches
+    () =>
+      typeof window !== "undefined" &&
+      window.matchMedia("(max-width: 639px)").matches,
   );
   useEffect(() => {
     const mq = window.matchMedia("(max-width: 639px)");
@@ -81,7 +106,10 @@ export type RoundAction =
   | { type: "clear_flash" }
   | { type: "reveal_tick" };
 
-export function makeRound(puzzle: HistoryEvent[], shuffled: HistoryEvent[]): RoundState {
+export function makeRound(
+  puzzle: HistoryEvent[],
+  shuffled: HistoryEvent[],
+): RoundState {
   return {
     puzzle,
     cards: shuffled,
@@ -95,7 +123,10 @@ export function makeRound(puzzle: HistoryEvent[], shuffled: HistoryEvent[]): Rou
   };
 }
 
-export function roundReducer(state: RoundState, action: RoundAction): RoundState {
+export function roundReducer(
+  state: RoundState,
+  action: RoundAction,
+): RoundState {
   switch (action.type) {
     case "load":
       return makeRound(action.puzzle, action.shuffled);
@@ -112,7 +143,7 @@ export function roundReducer(state: RoundState, action: RoundAction): RoundState
       const sorted = [...state.puzzle].sort((a, b) => a.year - b.year);
       const middle = sorted[Math.floor(sorted.length / 2)];
       const correctIdx = sorted.indexOf(middle);
-      const currentIdx = state.cards.findIndex(c => c.event === middle.event);
+      const currentIdx = state.cards.findIndex((c) => c.event === middle.event);
       let cards = state.cards;
       if (currentIdx !== correctIdx) {
         cards = [...state.cards];
@@ -167,15 +198,30 @@ export function SortGame({
     const p = selectPuzzle(deck, stats);
     return makeRound(p, shuffle(p));
   });
-  const { puzzle, cards, statuses, finalStatuses, submitted, revealedCount, hintCardId, attemptsLeft, attemptsHistory } = state;
+  const {
+    puzzle,
+    cards,
+    statuses,
+    finalStatuses,
+    submitted,
+    revealedCount,
+    hintCardId,
+    attemptsLeft,
+    attemptsHistory,
+  } = state;
 
   const [puzzleNum, setPuzzleNum] = useState(1);
-  const [copyState, setCopyState] = useState<"idle" | "copied" | "failed">("idle");
+  const [copyState, setCopyState] = useState<"idle" | "copied" | "failed">(
+    "idle",
+  );
   const [wikiEvent, setWikiEvent] = useState<HistoryEvent | null>(null);
   const isVertical = useIsVertical();
 
   const revealIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
-  const pendingFlipRef = useRef<Map<string, { left: number; top: number }> | null>(null);
+  const pendingFlipRef = useRef<Map<
+    string,
+    { left: number; top: number }
+  > | null>(null);
 
   function nextPuzzle() {
     const p = selectPuzzle(deck, stats);
@@ -270,7 +316,7 @@ export function SortGame({
         () => {
           el.style.transition = "";
         },
-        { once: true }
+        { once: true },
       );
     });
   }, [cards]);
@@ -283,10 +329,17 @@ export function SortGame({
     retainTargetOnMiss: true,
   });
 
-  function handleCardDragOver(i: number, clientX: number, clientY: number, rect: DOMRect) {
+  function handleCardDragOver(
+    i: number,
+    clientX: number,
+    clientY: number,
+    rect: DOMRect,
+  ) {
     if (!drag.isDragging) return;
     const coord = isVertical ? clientY : clientX;
-    const mid = isVertical ? rect.top + rect.height / 2 : rect.left + rect.width / 2;
+    const mid = isVertical
+      ? rect.top + rect.height / 2
+      : rect.left + rect.width / 2;
     drag.updateTarget(coord < mid ? i : i + 1);
   }
 
@@ -316,7 +369,7 @@ export function SortGame({
                   spread: 80,
                   origin: { y: 0.5 },
                 }),
-              100
+              100,
             );
           } else {
             sounds.lose();
@@ -326,10 +379,15 @@ export function SortGame({
           // doesn't pollute it.
           let newStats = recordResult(
             stats,
-            cards.map((c, i) => ({ event: c, status: s[i] }))
+            cards.map((c, i) => ({ event: c, status: s[i] })),
           );
           if (!daily) {
-            newStats = recordDeckResult(newStats, deck.id, allCorrect, attemptsUsed);
+            newStats = recordDeckResult(
+              newStats,
+              deck.id,
+              allCorrect,
+              attemptsUsed,
+            );
           }
           onUpdateStats(newStats);
           if (daily) {
@@ -353,7 +411,7 @@ export function SortGame({
     () => () => {
       if (revealIntervalRef.current) clearInterval(revealIntervalRef.current);
     },
-    []
+    [],
   );
 
   function share() {
@@ -396,7 +454,8 @@ export function SortGame({
               Arrastrá para ordenar los eventos cronológicamente
             </p>
             <span className="inline-block text-xs bg-bg-secondary border border-border px-3 py-1.5 rounded-full text-text-tertiary mt-2 sm:mt-0">
-              {deck.name} — {daily ? `Diario #${daily.num}` : `Puzzle #${puzzleNum}`}
+              {deck.name} —{" "}
+              {daily ? `Diario #${daily.num}` : `Puzzle #${puzzleNum}`}
             </span>
           </div>
         </div>
@@ -437,7 +496,10 @@ export function SortGame({
 
             return (
               <Fragment key={card.event}>
-                <InsertionIndicator visible={showBefore} vertical={isVertical} />
+                <InsertionIndicator
+                  visible={showBefore}
+                  vertical={isVertical}
+                />
                 <Card
                   item={card}
                   index={i}
@@ -452,9 +514,11 @@ export function SortGame({
                   onTouchEnd={drag.onTouchEnd}
                   onKeyDown={(e) => handleCardKeyDown(e, i)}
                   ariaLabel={`${card.event}, posición ${i + 1} de ${cards.length}`}
-                  status={submitted ? null : statuses[i] ?? null}
+                  status={submitted ? null : (statuses[i] ?? null)}
                   revealed={submitted && revealedCount > i}
-                  onWikiClick={card.wikipediaUrl ? () => setWikiEvent(card) : undefined}
+                  onWikiClick={
+                    card.wikipediaUrl ? () => setWikiEvent(card) : undefined
+                  }
                 />
               </Fragment>
             );
@@ -498,7 +562,8 @@ export function SortGame({
             {/* Solve / Failure Banner */}
             {finalStatuses.every((s) => s === "correct") ? (
               <div className="bg-[#0f2a1a]/80 border border-success/30 text-success px-6 py-4 rounded-xl text-center font-bold text-base mb-6 shadow-lg shadow-success/5">
-                🏆 ¡Felicitaciones! Resuelto en {MAX_ATTEMPTS - attemptsLeft} {MAX_ATTEMPTS - attemptsLeft === 1 ? "intento" : "intentos"}
+                🏆 ¡Felicitaciones! Resuelto en {MAX_ATTEMPTS - attemptsLeft}{" "}
+                {MAX_ATTEMPTS - attemptsLeft === 1 ? "intento" : "intentos"}
               </div>
             ) : (
               <div className="bg-[#2a0f0f]/80 border border-danger/30 text-danger px-6 py-4 rounded-xl text-center font-bold text-base mb-6 shadow-lg shadow-danger/5">
@@ -515,30 +580,50 @@ export function SortGame({
                 maxStreak: 0,
                 attemptsDistribution: new Array(MAX_ATTEMPTS).fill(0),
               };
-              const winRate = deckStats.played > 0 ? Math.round((deckStats.won / deckStats.played) * 100) : 0;
+              const winRate =
+                deckStats.played > 0
+                  ? Math.round((deckStats.won / deckStats.played) * 100)
+                  : 0;
               let totalAttempts = 0;
               for (let i = 0; i < deckStats.attemptsDistribution.length; i++) {
                 totalAttempts += deckStats.attemptsDistribution[i] * (i + 1);
               }
-              const avgTries = deckStats.won > 0 ? totalAttempts / deckStats.won : 0;
+              const avgTries =
+                deckStats.won > 0 ? totalAttempts / deckStats.won : 0;
 
               return (
                 <div className="grid grid-cols-4 bg-bg-card border border-border rounded-xl divide-x divide-border overflow-hidden py-4 text-center my-6 shadow-sm">
                   <div>
-                    <div className="text-xl font-black text-text-primary">{deckStats.played}</div>
-                    <div className="text-2xs text-text-secondary uppercase tracking-wider font-bold mt-1">Partidas</div>
+                    <div className="text-xl font-black text-text-primary">
+                      {deckStats.played}
+                    </div>
+                    <div className="text-2xs text-text-secondary uppercase tracking-wider font-bold mt-1">
+                      Partidas
+                    </div>
                   </div>
                   <div>
-                    <div className="text-xl font-black text-text-primary">{winRate}%</div>
-                    <div className="text-2xs text-text-secondary uppercase tracking-wider font-bold mt-1">Victorias</div>
+                    <div className="text-xl font-black text-text-primary">
+                      {winRate}%
+                    </div>
+                    <div className="text-2xs text-text-secondary uppercase tracking-wider font-bold mt-1">
+                      Victorias
+                    </div>
                   </div>
                   <div>
-                    <div className="text-xl font-black text-text-primary">{deckStats.streak}</div>
-                    <div className="text-2xs text-text-secondary uppercase tracking-wider font-bold mt-1">Racha</div>
+                    <div className="text-xl font-black text-text-primary">
+                      {deckStats.streak}
+                    </div>
+                    <div className="text-2xs text-text-secondary uppercase tracking-wider font-bold mt-1">
+                      Racha
+                    </div>
                   </div>
                   <div>
-                    <div className="text-xl font-black text-text-primary">{avgTries > 0 ? avgTries.toFixed(1) : "-"}</div>
-                    <div className="text-2xs text-text-secondary uppercase tracking-wider font-bold mt-1">Prom. Intentos</div>
+                    <div className="text-xl font-black text-text-primary">
+                      {avgTries > 0 ? avgTries.toFixed(1) : "-"}
+                    </div>
+                    <div className="text-2xs text-text-secondary uppercase tracking-wider font-bold mt-1">
+                      Prom. Intentos
+                    </div>
                   </div>
                 </div>
               );
@@ -546,7 +631,9 @@ export function SortGame({
 
             {/* Attempts History Grid */}
             <div className="text-center my-6">
-              <h3 className="text-xs text-text-secondary uppercase tracking-widest font-semibold mb-3">Tus Resultados</h3>
+              <h3 className="text-xs text-text-secondary uppercase tracking-widest font-semibold mb-3">
+                Tus Resultados
+              </h3>
               <div className="flex flex-col gap-1.5 justify-center items-center">
                 {attemptsHistory.map((attempt, attemptIdx) => (
                   <div key={attemptIdx} className="flex gap-1.5">
@@ -567,7 +654,9 @@ export function SortGame({
 
             {/* Hint Badge (if used) */}
             {hintCardId && (
-              <div className="text-xs text-ar-gold text-center mb-4">★ Resuelto con ayuda de pista</div>
+              <div className="text-xs text-ar-gold text-center mb-4">
+                ★ Resuelto con ayuda de pista
+              </div>
             )}
 
             {/* Action Buttons */}
@@ -578,15 +667,15 @@ export function SortGame({
                   copyState === "copied"
                     ? "border-success text-success bg-success/5"
                     : copyState === "failed"
-                    ? "border-danger text-danger bg-danger/5"
-                    : "border-border bg-bg-secondary text-text-primary hover:bg-bg-card hover:border-text-secondary"
+                      ? "border-danger text-danger bg-danger/5"
+                      : "border-border bg-bg-secondary text-text-primary hover:bg-bg-card hover:border-text-secondary"
                 }`}
               >
                 {copyState === "copied"
                   ? "¡Copiado!"
                   : copyState === "failed"
-                  ? "No se pudo copiar"
-                  : "Compartir resultado"}
+                    ? "No se pudo copiar"
+                    : "Compartir resultado"}
               </button>
               <button
                 onClick={nextPuzzle}
@@ -600,7 +689,11 @@ export function SortGame({
       </div>
 
       {wikiEvent && (
-        <WikipediaSheet event={wikiEvent} deck={deck} onClose={() => setWikiEvent(null)} />
+        <WikipediaSheet
+          event={wikiEvent}
+          deck={deck}
+          onClose={() => setWikiEvent(null)}
+        />
       )}
     </div>
   );

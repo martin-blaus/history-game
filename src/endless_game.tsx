@@ -321,7 +321,9 @@ export function EndlessGame({
           }}
           onTouchMove={drag.onTouchMove}
           onTouchEnd={drag.onTouchEnd}
-          onWikiClick={incoming.wikipediaUrl ? () => setWikiEvent(incoming) : undefined}
+          onWikiClick={
+            incoming.wikipediaUrl ? () => setWikiEvent(incoming) : undefined
+          }
         />
 
         {/* Prompt / wrong feedback */}
@@ -371,7 +373,11 @@ export function EndlessGame({
                       cardW={cardW}
                       rot={rot}
                       isNew={isNew}
-                      onWikiClick={event.wikipediaUrl ? () => setWikiEvent(event) : undefined}
+                      onWikiClick={
+                        event.wikipediaUrl
+                          ? () => setWikiEvent(event)
+                          : undefined
+                      }
                     />,
                     renderGap(i + 1),
                   ];
@@ -387,7 +393,11 @@ export function EndlessGame({
       </div>
 
       {wikiEvent && (
-        <WikipediaSheet event={wikiEvent} deck={deck} onClose={() => setWikiEvent(null)} />
+        <WikipediaSheet
+          event={wikiEvent}
+          deck={deck}
+          onClose={() => setWikiEvent(null)}
+        />
       )}
     </div>
   );

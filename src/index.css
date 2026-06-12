@@ -59,11 +59,22 @@ input[type="range"]::-moz-range-thumb {
 }
 
 @keyframes shake {
-  0%, 100% { transform: translateX(0); }
-  20%       { transform: translateX(-6px); }
-  40%       { transform: translateX(6px); }
-  60%       { transform: translateX(-4px); }
-  80%       { transform: translateX(4px); }
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-6px);
+  }
+  40% {
+    transform: translateX(6px);
+  }
+  60% {
+    transform: translateX(-4px);
+  }
+  80% {
+    transform: translateX(4px);
+  }
 }
 
 .card-shake {
@@ -71,8 +82,14 @@ input[type="range"]::-moz-range-thumb {
 }
 
 @keyframes fadeSlideIn {
-  from { opacity: 0; transform: translateY(-4px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .context-reveal {
@@ -81,8 +98,14 @@ input[type="range"]::-moz-range-thumb {
 
 /* Endless game — card enters the timeline */
 @keyframes cardPopIn {
-  from { opacity: 0; transform: scale(0.55) translateY(-20px); }
-  to   { opacity: 1; transform: scale(1)    translateY(0); }
+  from {
+    opacity: 0;
+    transform: scale(0.55) translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
 }
 .card-pop-in {
   animation: cardPopIn 0.38s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
@@ -90,8 +113,14 @@ input[type="range"]::-moz-range-thumb {
 
 /* Endless game — incoming card exits after correct placement */
 @keyframes cardExit {
-  from { opacity: 1; transform: scale(1)    translateY(0); }
-  to   { opacity: 0; transform: scale(0.82) translateY(10px); }
+  from {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.82) translateY(10px);
+  }
 }
 .card-exit {
   animation: cardExit 0.28s ease-in forwards;
@@ -100,33 +129,63 @@ input[type="range"]::-moz-range-thumb {
 
 /* Endless game — heart shudders when a life is lost */
 @keyframes heartBreak {
-  0%   { transform: scale(1); }
-  30%  { transform: scale(1.5) rotate(-15deg); }
-  65%  { transform: scale(0.8); }
-  100% { transform: scale(1); }
+  0% {
+    transform: scale(1);
+  }
+  30% {
+    transform: scale(1.5) rotate(-15deg);
+  }
+  65% {
+    transform: scale(0.8);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
-.heart-break { animation: heartBreak 0.45s ease forwards; }
+.heart-break {
+  animation: heartBreak 0.45s ease forwards;
+}
 
 /* Endless game — score bounces on each correct placement */
 @keyframes scorePop {
-  0%   { transform: scale(1); }
-  45%  { transform: scale(1.55); }
-  100% { transform: scale(1); }
+  0% {
+    transform: scale(1);
+  }
+  45% {
+    transform: scale(1.55);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
-.score-pop { animation: scorePop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); }
+.score-pop {
+  animation: scorePop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
 
 /* Wikipedia side panel — slides in from the right */
 @keyframes slideInRight {
-  from { transform: translateX(100%); }
-  to   { transform: translateX(0); }
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
 }
-.wiki-panel { animation: slideInRight 0.28s cubic-bezier(0.32, 0.72, 0, 1) forwards; }
+.wiki-panel {
+  animation: slideInRight 0.28s cubic-bezier(0.32, 0.72, 0, 1) forwards;
+}
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to   { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
-.fade-in { animation: fadeIn 0.25s ease; }
+.fade-in {
+  animation: fadeIn 0.25s ease;
+}
 
 /* Custom thin scrollbars for card description on hover */
 .sort-card p::-webkit-scrollbar {
@@ -142,4 +201,3 @@ input[type="range"]::-moz-range-thumb {
 .sort-card p::-webkit-scrollbar-thumb:hover {
   background: var(--color-ar-blue);
 }
-

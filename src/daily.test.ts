@@ -113,15 +113,15 @@ describe("selectDailyPuzzle properties", () => {
         expect(new Set(puzzle.map((e) => e.year)).size).toBe(n);
         // Same multiset of events on the board.
         expect([...shuffled].sort((a, b) => a.year - b.year)).toEqual(
-          [...puzzle].sort((a, b) => a.year - b.year)
+          [...puzzle].sort((a, b) => a.year - b.year),
         );
         // The shuffled board must not already be the solution.
         const ascending = shuffled.every(
-          (e, i) => i === 0 || e.year >= shuffled[i - 1].year
+          (e, i) => i === 0 || e.year >= shuffled[i - 1].year,
         );
         expect(ascending).toBe(false);
       }
-    }
+    },
   );
 });
 

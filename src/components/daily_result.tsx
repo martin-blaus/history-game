@@ -44,7 +44,9 @@ export function DailyResultScreen({
   streak: number;
   onBack: () => void;
 }) {
-  const [copyState, setCopyState] = useState<"idle" | "copied" | "failed">("idle");
+  const [copyState, setCopyState] = useState<"idle" | "copied" | "failed">(
+    "idle",
+  );
 
   function share() {
     const text = buildDailyShareText(result, deck.name, dayNum);
@@ -79,7 +81,8 @@ export function DailyResultScreen({
         {/* Banner */}
         {result.won ? (
           <div className="bg-[#0f2a1a]/80 border border-success/30 text-success px-6 py-4 rounded-xl text-center font-bold text-base mb-6">
-            🏆 ¡Resuelto en {result.attemptsUsed} {result.attemptsUsed === 1 ? "intento" : "intentos"}!
+            🏆 ¡Resuelto en {result.attemptsUsed}{" "}
+            {result.attemptsUsed === 1 ? "intento" : "intentos"}!
           </div>
         ) : (
           <div className="bg-[#2a0f0f]/80 border border-danger/30 text-danger px-6 py-4 rounded-xl text-center font-bold text-base mb-6">
@@ -122,15 +125,15 @@ export function DailyResultScreen({
             copyState === "copied"
               ? "border-success text-success"
               : copyState === "failed"
-              ? "border-danger text-danger"
-              : ""
+                ? "border-danger text-danger"
+                : ""
           }`}
         >
           {copyState === "copied"
             ? "¡Copiado!"
             : copyState === "failed"
-            ? "No se pudo copiar"
-            : "Compartir resultado"}
+              ? "No se pudo copiar"
+              : "Compartir resultado"}
         </button>
       </div>
     </div>

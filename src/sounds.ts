@@ -30,7 +30,7 @@ function tone(
   durMs: number,
   type: OscillatorType = "sine",
   delayMs = 0,
-  vol = 0.15
+  vol = 0.15,
 ): void {
   if (muted) return;
   const c = ensureCtx();
@@ -68,7 +68,7 @@ function playError(): void {
 function playWin(): void {
   // C5–E5–G5–C6 arpeggio
   [523.25, 659.25, 783.99, 1046.5].forEach((f, i) =>
-    tone(f, 180, "triangle", i * 90, 0.16)
+    tone(f, 180, "triangle", i * 90, 0.16),
   );
   vibrate([30, 50, 30]);
 }
@@ -97,7 +97,9 @@ export const sounds = {
   error: playError,
   win: playWin,
   lose(): void {
-    [440, 349.23, 293.66].forEach((f, i) => tone(f, 200, "sine", i * 120, 0.14));
+    [440, 349.23, 293.66].forEach((f, i) =>
+      tone(f, 200, "sine", i * 120, 0.14),
+    );
   },
   correct(): void {
     tone(880, 70, "sine", 0, 0.14);
@@ -107,6 +109,8 @@ export const sounds = {
   wrong: playError,
   record(): void {
     playWin();
-    [1046.5, 1318.5].forEach((f, i) => tone(f, 120, "triangle", 380 + i * 110, 0.16));
+    [1046.5, 1318.5].forEach((f, i) =>
+      tone(f, 120, "triangle", 380 + i * 110, 0.16),
+    );
   },
 };

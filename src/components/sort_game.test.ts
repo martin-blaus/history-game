@@ -1,5 +1,10 @@
 import { describe, it, expect } from "vitest";
-import { gradeCards, makeRound, roundReducer, type RoundState } from "./sort_game";
+import {
+  gradeCards,
+  makeRound,
+  roundReducer,
+  type RoundState,
+} from "./sort_game";
 import { MAX_ATTEMPTS } from "../constants";
 import { ev } from "../test_helpers";
 
@@ -12,19 +17,36 @@ const puzzle = [
   ev("f", 1950),
 ];
 // Board order ≠ chronological order.
-const shuffled = [puzzle[2], puzzle[0], puzzle[4], puzzle[1], puzzle[5], puzzle[3]];
+const shuffled = [
+  puzzle[2],
+  puzzle[0],
+  puzzle[4],
+  puzzle[1],
+  puzzle[5],
+  puzzle[3],
+];
 
 const names = (s: RoundState) => s.cards.map((c) => c.event);
 
 describe("gradeCards", () => {
   it("marks each position against the chronological order", () => {
     expect(gradeCards(puzzle, puzzle)).toEqual([
-      "correct", "correct", "correct", "correct", "correct", "correct",
+      "correct",
+      "correct",
+      "correct",
+      "correct",
+      "correct",
+      "correct",
     ]);
     // Swap two cards: only those two positions are wrong.
     const cards = [puzzle[1], puzzle[0], ...puzzle.slice(2)];
     expect(gradeCards(puzzle, cards)).toEqual([
-      "wrong", "wrong", "correct", "correct", "correct", "correct",
+      "wrong",
+      "wrong",
+      "correct",
+      "correct",
+      "correct",
+      "correct",
     ]);
   });
 });
@@ -50,8 +72,12 @@ describe("roundReducer", () => {
   });
 
   it("move_card is a no-op when dropping onto the same slot (src or src+1)", () => {
-    expect(roundReducer(initial, { type: "move_card", src: 2, dst: 2 })).toBe(initial);
-    expect(roundReducer(initial, { type: "move_card", src: 2, dst: 3 })).toBe(initial);
+    expect(roundReducer(initial, { type: "move_card", src: 2, dst: 2 })).toBe(
+      initial,
+    );
+    expect(roundReducer(initial, { type: "move_card", src: 2, dst: 3 })).toBe(
+      initial,
+    );
   });
 
   it("use_hint pins the chronological middle card in its correct slot", () => {
@@ -70,7 +96,11 @@ describe("roundReducer", () => {
 
   it("submit decrements attempts and appends to history; final submit locks the round", () => {
     const graded = gradeCards(puzzle, initial.cards);
-    const afterFirst = roundReducer(initial, { type: "submit", graded, final: false });
+    const afterFirst = roundReducer(initial, {
+      type: "submit",
+      graded,
+      final: false,
+    });
     expect(afterFirst.attemptsLeft).toBe(MAX_ATTEMPTS - 1);
     expect(afterFirst.attemptsHistory).toEqual([graded]);
     expect(afterFirst.submitted).toBe(false);
@@ -90,9 +120,19 @@ describe("roundReducer", () => {
 
   it("clear_flash clears statuses only while the round is still open", () => {
     const graded = gradeCards(puzzle, initial.cards);
-    const open = roundReducer(initial, { type: "submit", graded, final: false });
+    const open = roundReducer(initial, {
+      type: "submit",
+      graded,
+      final: false,
+    });
     expect(roundReducer(open, { type: "clear_flash" }).statuses).toEqual([]);
-    const closed = roundReducer(initial, { type: "submit", graded, final: true });
-    expect(roundReducer(closed, { type: "clear_flash" }).statuses).toEqual(graded);
+    const closed = roundReducer(initial, {
+      type: "submit",
+      graded,
+      final: true,
+    });
+    expect(roundReducer(closed, { type: "clear_flash" }).statuses).toEqual(
+      graded,
+    );
   });
 });

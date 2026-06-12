@@ -1,10 +1,17 @@
 import type { Deck, HistoryEvent } from "../data/types";
 
-export function ev(name: string, year: number, extra: Partial<HistoryEvent> = {}): HistoryEvent {
+export function ev(
+  name: string,
+  year: number,
+  extra: Partial<HistoryEvent> = {},
+): HistoryEvent {
   return { event: name, year, context: `Contexto de ${name}`, ...extra };
 }
 
-export function makeDeck(events: HistoryEvent[], overrides: Partial<Deck> = {}): Deck {
+export function makeDeck(
+  events: HistoryEvent[],
+  overrides: Partial<Deck> = {},
+): Deck {
   return { id: "test", name: "Test", emoji: "🧪", events, ...overrides };
 }
 

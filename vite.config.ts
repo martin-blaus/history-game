@@ -18,7 +18,9 @@ export default defineConfig({
             return;
           }
           let body = "";
-          req.on("data", (chunk: Buffer) => { body += chunk.toString(); });
+          req.on("data", (chunk: Buffer) => {
+            body += chunk.toString();
+          });
           req.on("end", () => {
             try {
               const { deckId, content } = JSON.parse(body);
@@ -43,7 +45,9 @@ export default defineConfig({
                 parsed.events.length === 0
               ) {
                 res.statusCode = 400;
-                res.end(JSON.stringify({ ok: false, error: "invalid deck content" }));
+                res.end(
+                  JSON.stringify({ ok: false, error: "invalid deck content" }),
+                );
                 return;
               }
               fs.writeFileSync(filePath, content, "utf-8");

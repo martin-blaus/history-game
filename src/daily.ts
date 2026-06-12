@@ -62,7 +62,7 @@ export function todayStr(): string {
 
 function formatLocal(d: Date): string {
   return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(
-    d.getDate()
+    d.getDate(),
   ).padStart(2, "0")}`;
 }
 
@@ -73,7 +73,8 @@ function parseLocal(dateStr: string): Date {
 }
 
 export function dayNumber(dateStr: string): number {
-  const diff = parseLocal(dateStr).getTime() - parseLocal(DAILY_EPOCH).getTime();
+  const diff =
+    parseLocal(dateStr).getTime() - parseLocal(DAILY_EPOCH).getTime();
   return Math.round(diff / 86400000) + 1;
 }
 
@@ -103,13 +104,14 @@ function isAscending(events: HistoryEvent[]): boolean {
 
 export function selectDailyPuzzle(
   deck: Deck,
-  dateStr: string
+  dateStr: string,
 ): { puzzle: HistoryEvent[]; shuffled: HistoryEvent[] } {
   const n = deck.puzzleSize ?? 6;
   const rng = dailyRng(dateStr, deck.id);
   // Plain code-unit tiebreak (not localeCompare, which varies by ICU/locale).
   const sorted = [...deck.events].sort(
-    (a, b) => a.year - b.year || (a.event < b.event ? -1 : a.event > b.event ? 1 : 0)
+    (a, b) =>
+      a.year - b.year || (a.event < b.event ? -1 : a.event > b.event ? 1 : 0),
   );
 
   // Candidate windows with unique years (shared with free-play); the pick
@@ -173,7 +175,7 @@ function saveDaily(state: DailyState): void {
 export function getDailyResult(
   state: DailyState,
   deckId: string,
-  date: string
+  date: string,
 ): DailyResult | null {
   return state.decks[deckId]?.results[date] ?? null;
 }
@@ -182,10 +184,17 @@ export function getDailyStreak(state: DailyState, deckId: string): number {
   return state.decks[deckId]?.streak ?? 0;
 }
 
-export function recordDailyResult(deckId: string, result: DailyResult): DailyState {
+export function recordDailyResult(
+  deckId: string,
+  result: DailyResult,
+): DailyState {
   const state = loadDaily();
-  const prev =
-    state.decks[deckId] ?? { results: {}, lastWonDate: null, streak: 0, maxStreak: 0 };
+  const prev = state.decks[deckId] ?? {
+    results: {},
+    lastWonDate: null,
+    streak: 0,
+    maxStreak: 0,
+  };
 
   let { streak, maxStreak, lastWonDate } = prev;
   // Update the streak only the first time a date is recorded (idempotent re-saves).
@@ -217,11 +226,13 @@ export function recordDailyResult(deckId: string, result: DailyResult): DailySta
 export function buildDailyShareText(
   result: DailyResult,
   deckName: string,
-  dayNum: number
+  dayNum: number,
 ): string {
   const grid = result.grid
     .map((row) => row.map((s) => (s === "correct" ? "🟩" : "🟥")).join(""))
     .join("\n");
-  const tries = result.won ? `${result.attemptsUsed}/${MAX_ATTEMPTS}` : `X/${MAX_ATTEMPTS}`;
+  const tries = result.won
+    ? `${result.attemptsUsed}/${MAX_ATTEMPTS}`
+    : `X/${MAX_ATTEMPTS}`;
   return `Historia Diaria #${dayNum} — ${deckName} (${tries})\n\n${grid}\n\n${SHARE_URL}`;
 }

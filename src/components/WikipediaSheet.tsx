@@ -148,8 +148,12 @@ export function WikipediaSheet({
   const [stack, setStack] = useState<PanelView[]>([initial]);
   const [activeTab, setActiveTab] = useState<Tab>("summary");
 
-  const [summary, setSummary] = useState<WikiSummary | null | "loading" | "error">("loading");
-  const [related, setRelated] = useState<RelatedPage[] | "loading" | "error" | null>(null);
+  const [summary, setSummary] = useState<
+    WikiSummary | null | "loading" | "error"
+  >("loading");
+  const [related, setRelated] = useState<
+    RelatedPage[] | "loading" | "error" | null
+  >(null);
   const [revealed, setRevealed] = useState(false);
   const [retryNonce, setRetryNonce] = useState(0);
 
@@ -168,12 +172,21 @@ export function WikipediaSheet({
   // Fetch summary whenever current URL changes (or a retry is requested)
   useEffect(() => {
     setSummary("loading");
-    if (!current.url) { setSummary(null); return; }
+    if (!current.url) {
+      setSummary(null);
+      return;
+    }
     let cancelled = false;
     fetchSummary(current.url)
-      .then((s) => { if (!cancelled) setSummary(s); })
-      .catch(() => { if (!cancelled) setSummary("error"); });
-    return () => { cancelled = true; };
+      .then((s) => {
+        if (!cancelled) setSummary(s);
+      })
+      .catch(() => {
+        if (!cancelled) setSummary("error");
+      });
+    return () => {
+      cancelled = true;
+    };
   }, [current.url, retryNonce]);
 
   // Lazy fetch related when tab is opened (retry resets `related` to null)
@@ -182,9 +195,15 @@ export function WikipediaSheet({
     setRelated("loading");
     let cancelled = false;
     fetchRelated(current.url)
-      .then((p) => { if (!cancelled) setRelated(p); })
-      .catch(() => { if (!cancelled) setRelated("error"); });
-    return () => { cancelled = true; };
+      .then((p) => {
+        if (!cancelled) setRelated(p);
+      })
+      .catch(() => {
+        if (!cancelled) setRelated("error");
+      });
+    return () => {
+      cancelled = true;
+    };
   }, [activeTab, related, current.url]);
 
   function navigate(url: string, title: string) {
@@ -223,7 +242,6 @@ export function WikipediaSheet({
       <div className="fixed inset-0 bg-black/50 z-40" onClick={onClose} />
 
       <div className="wiki-panel fixed top-0 right-0 bottom-0 w-full sm:w-[380px] sm:max-w-[92vw] z-50 bg-bg-card border-l border-border shadow-2xl flex flex-col">
-
         {/* Header */}
         <div className="flex items-start gap-3 p-4 pb-3 shrink-0 border-b border-border">
           {stack.length > 1 && (
@@ -276,7 +294,6 @@ export function WikipediaSheet({
 
         {/* Tab bodies */}
         <div className="overflow-y-auto flex-1 p-4 pb-[max(1rem,env(safe-area-inset-bottom))] flex flex-col gap-4">
-
           {/* ── Resumen ── */}
           {activeTab === "summary" && (
             <>
@@ -306,7 +323,9 @@ export function WikipediaSheet({
                       )}
                       <div
                         className={`text-sm text-text-secondary leading-relaxed transition-[filter] duration-300 ${
-                          revealed ? "" : "blur-[5px] select-none cursor-pointer"
+                          revealed
+                            ? ""
+                            : "blur-[5px] select-none cursor-pointer"
                         }`}
                         onClick={() => !revealed && setRevealed(true)}
                       >

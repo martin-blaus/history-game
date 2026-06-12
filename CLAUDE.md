@@ -54,28 +54,39 @@ This is a single-page React app — a multi-mode history quiz. The flagship mode
 **Entry point:** `src/main.tsx` → mounts `history_game.tsx` (the root `App` component, which is a screen router). `main.tsx` also unlocks audio on the first `pointerdown`.
 
 **Data layer (`data/`):**
+
 - `types.ts` defines the `HistoryEvent` and `Deck` interfaces (the source of truth for types).
 - Each deck is a plain JSON file (`argentina.json`, `mundo.json`, `filosofia.json`).
 - `data/index.ts` imports the JSON files, casts them as `Deck`, and assembles the `DECKS` array — this is what the app imports.
 - To add a new topic: create `data/<topic>.json` matching the `Deck` shape, then add it to `DECKS` in `data/index.ts`.
 
 **Core types (`data/types.ts`):**
+
 ```ts
 interface HistoryEvent {
-  event: string;          // name; also used as the unique key (in stats, React keys)
-  year: number;           // negative = BCE
+  event: string; // name; also used as the unique key (in stats, React keys)
+  year: number; // negative = BCE
   context: string;
-  month?: number; day?: number;
+  month?: number;
+  day?: number;
   image?: string;
   wikipediaUrl?: string;
-  people?: string[];      // figures involved — drives "¿Quién estuvo ahí?"
-  ideas?: string[];       // "Name: definition" strings — drives "¿Quién lo pensó?"
+  people?: string[]; // figures involved — drives "¿Quién estuvo ahí?"
+  ideas?: string[]; // "Name: definition" strings — drives "¿Quién lo pensó?"
 }
-interface Deck { id: string; name: string; emoji: string; events: HistoryEvent[]; puzzleSize?: number; }
+interface Deck {
+  id: string;
+  name: string;
+  emoji: string;
+  events: HistoryEvent[];
+  puzzleSize?: number;
+}
 ```
+
 `puzzleSize` (default 6) controls how many events are drawn per round. Note there is **no `id` field** on `HistoryEvent` — `event` is the identity, so deck names must be unique (the admin validates this). `data/types.ts` also declares `Character`/`BiographyDeck` for a WIP biographies feature not yet wired into the UI.
 
 **Game modes** (each selected from the per-deck mode-select screen in `history_game.tsx`):
+
 - **Ordenar eventos** (`src/components/sort_game.tsx`) — the core drag-sort game. Round state is a `useReducer`; `selectPuzzle` picks the events; FLIP animation + a shared drag hook handle reordering; 5 attempts; hint pins the chronological middle card; emoji-grid share.
 - **Daily** (`src/daily.ts` + `DailyResultScreen`) — Wordle-style date-seeded puzzle, the same for everyone, played through a parameterized `SortGame` (`daily` prop). Separate per-deck streak in `localStorage` key `historia-ar-daily`.
 - **Endless** (`src/endless_game.tsx` + `src/components/endless/*`) — place events into a growing timeline; 3 lives; best score in `localStorage` key `endless-best-score`.
@@ -86,6 +97,7 @@ interface Deck { id: string; name: string; emoji: string; events: HistoryEvent[]
 `src/components/WikipediaSheet.tsx` is the slide-in article panel used across modes; it caches only successful fetches and shows a retry on error.
 
 **Shared helpers:**
+
 - `src/utils.ts` — canonical `shuffle` (Fisher–Yates), `onImgError`/`PLACEHOLDER`, `formatYear`, `extractWikiTitle`. Don't reimplement these.
 - `src/constants.ts` — `MAX_ATTEMPTS`.
 - `src/hooks/use_touch_drag.ts` — shared drag state machine (mouse + touch) consumed by the sort and endless games; geometry stays game-specific via a `resolveTarget` callback.

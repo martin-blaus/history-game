@@ -10,7 +10,9 @@ const ROUNDS = 6;
 // 25-year floor (so narrow decks don't become trivial).
 export function calcScore(guess: number, actual: number, span: number): number {
   const tolerance = Math.max(25, span * 0.1);
-  return Math.round(100 * Math.max(0, 1 - Math.abs(guess - actual) / tolerance));
+  return Math.round(
+    100 * Math.max(0, 1 - Math.abs(guess - actual) / tolerance),
+  );
 }
 
 function pickEvents(deck: Deck): HistoryEvent[] {
