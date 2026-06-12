@@ -26,11 +26,13 @@ export function ContextDetective({ deck, onBack }: {
   deck: Deck;
   onBack: () => void;
 }) {
-  const [rounds] = useState<Round[]>(() => buildRounds(deck));
+  const [rounds, setRounds] = useState<Round[]>(() => buildRounds(deck));
   const [roundIdx, setRoundIdx] = useState(0);
   const [picked, setPicked] = useState<string | null>(null);
-  const [score, setScore] = useState(0);
+  // One entry per answered round; the score is derived from it.
+  const [results, setResults] = useState<boolean[]>([]);
   const [gameOver, setGameOver] = useState(false);
+  const score = results.filter(Boolean).length;
 
   const round = rounds[roundIdx];
   const isCorrect = picked === round?.event.event;
@@ -38,7 +40,7 @@ export function ContextDetective({ deck, onBack }: {
   function pick(eventName: string) {
     if (picked) return;
     setPicked(eventName);
-    if (eventName === round.event.event) setScore(s => s + 1);
+    setResults(r => [...r, eventName === round.event.event]);
   }
 
   function next() {
@@ -86,7 +88,7 @@ export function ContextDetective({ deck, onBack }: {
                   onError={onImgError}
                 />
                 <span className="text-text-secondary text-xs leading-snug flex-1 line-clamp-2">{r.event.event}</span>
-                <span className="shrink-0 text-sm">{/* result tracked per round ideally */}</span>
+                <span className="shrink-0 text-sm">{results[i] ? "✓" : "✗"}</span>
               </div>
             ))}
           </div>
@@ -97,9 +99,10 @@ export function ContextDetective({ deck, onBack }: {
             </button>
             <button
               onClick={() => {
+                setRounds(buildRounds(deck));
                 setRoundIdx(0);
                 setPicked(null);
-                setScore(0);
+                setResults([]);
                 setGameOver(false);
               }}
               className="btn-primary flex-1"
