@@ -8,9 +8,14 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 npm run dev       # Start dev server (localhost:5173)
 npm run build     # Type-check + build to dist/
 npm run preview   # Preview the production build
+npm test          # Vitest unit tests (pure core logic; no jsdom)
+npm run lint      # ESLint (flat config, typescript-eslint + react-hooks)
+npm run format    # Prettier over the repo
 ```
 
-No test suite exists. Type-check with `npx tsc --noEmit`.
+Type-check with `npx tsc --noEmit`. CI (`.github/workflows/ci.yml`) runs tsc, lint, tests, and the build on every push/PR.
+
+Tests live next to their modules (`src/*.test.ts`). `src/daily.test.ts` contains a **golden determinism test** for the daily puzzle: if a refactor changes the selected daily sequence, the refactor is wrong — never update the golden values to make it pass.
 
 ## Wikipedia Utilities
 
@@ -51,7 +56,7 @@ node scripts/find_wikipedia_links.js --force --fix
 
 This is a single-page React app — a multi-mode history quiz. The flagship mode is Wordle-style: drag-sort historical events into chronological order.
 
-**Entry point:** `src/main.tsx` → mounts `history_game.tsx` (the root `App` component, which is a screen router). `main.tsx` also unlocks audio on the first `pointerdown`.
+**Entry point:** `src/main.tsx` → mounts `history_game.tsx` (the root `App` component, which is a screen router). Navigation is hash-routed (`#/<screen>/<deckId>`, e.g. `#/mode_select/argentina`): the hash is the source of truth, so the browser back button walks screens and every screen is deep-linkable; unknown hashes fall back to home. No router library by design. `main.tsx` also unlocks audio on the first `pointerdown`.
 
 **Data layer (`data/`):**
 
@@ -83,7 +88,7 @@ interface Deck {
 }
 ```
 
-`puzzleSize` (default 6) controls how many events are drawn per round. Note there is **no `id` field** on `HistoryEvent` — `event` is the identity, so deck names must be unique (the admin validates this). `data/types.ts` also declares `Character`/`BiographyDeck` for a WIP biographies feature not yet wired into the UI.
+`puzzleSize` (default 6) controls how many events are drawn per round. Note there is **no `id` field** on `HistoryEvent` — `event` is the identity, so deck names must be unique (the admin validates this). `data/types.ts` also declares `Character`/`BiographyDeck` for the **Biografías** feature (`data/biografias.json`): a launched deck of historical figures (San Martín, Alberdi, Sarmiento), each with their own event timeline. The home screen's Biografías tile opens a character-select screen (`biografias_select` in `history_game.tsx`); picking a character converts it to a regular `Deck` via `characterToDeck` (deck id `bio-<characterId>`) and goes straight into the sort game, skipping mode select.
 
 **Game modes** (each selected from the per-deck mode-select screen in `history_game.tsx`):
 
