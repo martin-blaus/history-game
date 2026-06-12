@@ -23,7 +23,7 @@ function buildShareText(history: Status[][], deckName: string, won: boolean): st
   return `${deckName} (${tries})\n\n${grid}\n\nhttps://history-game-7a8e2.web.app`;
 }
 
-function gradeCards(puzzle: HistoryEvent[], cards: HistoryEvent[]): Status[] {
+export function gradeCards(puzzle: HistoryEvent[], cards: HistoryEvent[]): Status[] {
   const sorted = [...puzzle].sort((a, b) => a.year - b.year);
   return cards.map((c, i) => (c.event === sorted[i].event ? "correct" : "wrong"));
 }
@@ -61,7 +61,7 @@ function useIsVertical(): boolean {
 
 // ── Round state ───────────────────────────────────────────────────────────────
 
-interface RoundState {
+export interface RoundState {
   puzzle: HistoryEvent[];
   cards: HistoryEvent[];
   statuses: Status[]; // transient per-card flash after a wrong attempt
@@ -73,7 +73,7 @@ interface RoundState {
   attemptsHistory: Status[][];
 }
 
-type RoundAction =
+export type RoundAction =
   | { type: "load"; puzzle: HistoryEvent[]; shuffled: HistoryEvent[] }
   | { type: "move_card"; src: number; dst: number }
   | { type: "use_hint" }
@@ -81,7 +81,7 @@ type RoundAction =
   | { type: "clear_flash" }
   | { type: "reveal_tick" };
 
-function makeRound(puzzle: HistoryEvent[], shuffled: HistoryEvent[]): RoundState {
+export function makeRound(puzzle: HistoryEvent[], shuffled: HistoryEvent[]): RoundState {
   return {
     puzzle,
     cards: shuffled,
@@ -95,7 +95,7 @@ function makeRound(puzzle: HistoryEvent[], shuffled: HistoryEvent[]): RoundState
   };
 }
 
-function roundReducer(state: RoundState, action: RoundAction): RoundState {
+export function roundReducer(state: RoundState, action: RoundAction): RoundState {
   switch (action.type) {
     case "load":
       return makeRound(action.puzzle, action.shuffled);

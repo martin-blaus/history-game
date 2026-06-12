@@ -3,7 +3,7 @@ import type { Deck, HistoryEvent } from "../data/index";
 import { formatYear, onImgError, shuffle, PLACEHOLDER } from "./utils";
 import confetti from "canvas-confetti";
 
-const ROUNDS = 6;
+export const ROUNDS = 6;
 
 type RoundTypeA = {
   type: "A";
@@ -36,7 +36,7 @@ function extractLabels(e: HistoryEvent, isIdeasMode: boolean): Label[] {
   return (e.people ?? []).map((name) => ({ name }));
 }
 
-function buildRounds(deck: Deck): Round[] {
+export function buildRounds(deck: Deck): Round[] {
   const isIdeasMode = deck.id === "filosofia";
 
   const labelToEvents: Record<string, HistoryEvent[]> = {};
@@ -113,6 +113,12 @@ function buildRounds(deck: Deck): Round[] {
   return rounds;
 }
 
+// Whether the end-of-game confetti should fire. `score` is the score state at
+// the time the last "Siguiente" click is handled.
+export function shouldCelebrate(score: number, lastRoundCorrect: boolean): boolean {
+  return score + (lastRoundCorrect ? 1 : 0) === ROUNDS;
+}
+
 export function WhoWasThere({
   deck,
   onBack,
@@ -171,11 +177,12 @@ export function WhoWasThere({
   function handleNext() {
     if (roundIdx + 1 >= ROUNDS) {
       setGameOver(true);
-      const finalScore = score + (round.type === "A"
-        ? (selectedEvents.filter((name) => (round as RoundTypeA).correctEvents.includes(name)).length === 3 ? 1 : 0)
-        : (selectedPerson === (round as RoundTypeB).correctPerson ? 1 : 0));
-      
-      if (finalScore === ROUNDS) {
+      const lastRoundCorrect =
+        round.type === "A"
+          ? selectedEvents.filter((name) => round.correctEvents.includes(name)).length === 3
+          : selectedPerson === round.correctPerson;
+
+      if (shouldCelebrate(score, lastRoundCorrect)) {
         setTimeout(() => {
           confetti({
             particleCount: 150,

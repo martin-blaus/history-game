@@ -77,7 +77,7 @@ export function dayNumber(dateStr: string): number {
   return Math.round(diff / 86400000) + 1;
 }
 
-function shiftDay(dateStr: string, delta: number): string {
+export function shiftDay(dateStr: string, delta: number): string {
   const d = parseLocal(dateStr);
   d.setDate(d.getDate() + delta);
   return formatLocal(d);
