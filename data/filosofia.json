@@ -2,6 +2,7 @@
   "id": "filosofia",
   "name": "Historia de la Filosofía",
   "emoji": "🏛️",
+  "wwtMode": "ideas",
   "puzzleSize": 6,
   "events": [
     {

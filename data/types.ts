@@ -16,6 +16,10 @@ export interface Deck {
   emoji: string;
   events: HistoryEvent[];
   puzzleSize?: number;
+  // Which label field drives "¿Quién estuvo ahí?": historical figures
+  // (`people`, the default) or idea names with definitions (`ideas`,
+  // "¿Quién lo pensó?").
+  wwtMode?: "ideas" | "people";
 }
 
 export interface Character {

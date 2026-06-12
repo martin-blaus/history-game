@@ -56,7 +56,7 @@ describe("buildRounds", () => {
     }
   });
 
-  it('uses ideas labels ("Name: definition") when deck.id is "filosofia"', () => {
+  it('uses ideas labels ("Name: definition") when wwtMode is "ideas"', () => {
     const ideasDeck = makeDeck(
       [
         ev("f1", -400, { ideas: ["Idea1: la primera definición"] }),
@@ -66,7 +66,7 @@ describe("buildRounds", () => {
         ev("f5", -200, { ideas: ["Idea3: otra"] }),
         ev("f6", -150, { ideas: ["Idea4: otra"] }),
       ],
-      { id: "filosofia" },
+      { wwtMode: "ideas" },
     );
     const rounds = buildRounds(ideasDeck);
     expect(rounds.length).toBe(ROUNDS);

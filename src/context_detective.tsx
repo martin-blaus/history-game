@@ -170,7 +170,7 @@ export function ContextDetective({
         {/* Context clue */}
         <div className="bg-bg-card rounded-2xl border border-border p-5 mb-5">
           <p className="text-xs font-bold text-text-tertiary uppercase tracking-widest mb-3">
-            {deck.id === "filosofia"
+            {deck.wwtMode === "ideas"
               ? "¿De quién es esta descripción?"
               : "¿De qué evento es este contexto?"}
           </p>

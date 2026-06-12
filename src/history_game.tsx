@@ -293,13 +293,13 @@ export default function App() {
       },
       {
         id: "who_was_there",
-        emoji: selectedDeck.id === "filosofia" ? "💡" : "👥",
+        emoji: selectedDeck.wwtMode === "ideas" ? "💡" : "👥",
         title:
-          selectedDeck.id === "filosofia"
+          selectedDeck.wwtMode === "ideas"
             ? "¿Quién lo pensó?"
             : "¿Quién estuvo ahí?",
         desc:
-          selectedDeck.id === "filosofia"
+          selectedDeck.wwtMode === "ideas"
             ? "Asociá filósofos con sus ideas correspondientes"
             : "Asociá figuras históricas con sus eventos correspondientes",
       },

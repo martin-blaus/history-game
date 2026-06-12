@@ -37,7 +37,7 @@ function extractLabels(e: HistoryEvent, isIdeasMode: boolean): Label[] {
 }
 
 export function buildRounds(deck: Deck): Round[] {
-  const isIdeasMode = deck.id === "filosofia";
+  const isIdeasMode = deck.wwtMode === "ideas";
 
   const labelToEvents: Record<string, HistoryEvent[]> = {};
   const definitions: Record<string, string> = {};
@@ -131,7 +131,7 @@ export function WhoWasThere({
   deck: Deck;
   onBack: () => void;
 }) {
-  const isIdeasMode = deck.id === "filosofia";
+  const isIdeasMode = deck.wwtMode === "ideas";
   const [rounds, setRounds] = useState<Round[]>(() => buildRounds(deck));
   const [roundIdx, setRoundIdx] = useState(0);
   // One entry per answered round; the score is derived from it.
