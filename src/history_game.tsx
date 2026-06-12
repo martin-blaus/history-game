@@ -245,10 +245,10 @@ export default function App() {
                 onClick={() => {
                   navigate("game", characterToDeck(c));
                 }}
-                className="flex items-center gap-4 px-5 py-4 rounded-2xl border border-border bg-bg-card hover:border-ar-blue hover:bg-bg-secondary transition-all duration-150 cursor-pointer text-left group"
+                className="tile flex items-center gap-4 px-5 py-4 text-left group"
               >
                 <span className="text-3xl shrink-0">{c.emoji}</span>
-                <div>
+                <div className="flex-1 min-w-0">
                   <div className="font-semibold text-text-primary group-hover:text-ar-blue transition-colors">
                     {c.name}
                   </div>
@@ -257,6 +257,12 @@ export default function App() {
                     {c.description}
                   </div>
                 </div>
+                <span
+                  aria-hidden="true"
+                  className="text-text-tertiary group-hover:text-ar-blue group-hover:translate-x-0.5 transition-all shrink-0"
+                >
+                  ›
+                </span>
               </button>
             ))}
           </div>
@@ -331,7 +337,7 @@ export default function App() {
             return (
               <button
                 onClick={() => navigate("daily")}
-                className="flex items-center gap-4 px-5 py-4 mb-3 rounded-2xl border border-ar-gold/40 bg-ar-gold/5 hover:border-ar-gold hover:bg-ar-gold/10 transition-all duration-150 cursor-pointer text-left w-full"
+                className="flex items-center gap-4 px-5 py-4 mb-3 rounded-2xl border border-ar-gold/40 bg-ar-gold/5 hover:border-ar-gold hover:bg-ar-gold/10 active:scale-[0.98] transition-all duration-150 cursor-pointer text-left w-full"
               >
                 <span className="text-3xl shrink-0">📆</span>
                 <div className="flex-1 min-w-0">
@@ -358,10 +364,10 @@ export default function App() {
               <button
                 key={mode.id}
                 onClick={() => navigate(mode.id)}
-                className="flex items-center gap-4 px-5 py-4 rounded-2xl border border-border bg-bg-card hover:border-ar-blue hover:bg-bg-secondary transition-all duration-150 cursor-pointer text-left group"
+                className="tile flex items-center gap-4 px-5 py-4 text-left group"
               >
                 <span className="text-3xl shrink-0">{mode.emoji}</span>
-                <div>
+                <div className="flex-1 min-w-0">
                   <div className="font-semibold text-text-primary group-hover:text-ar-blue transition-colors">
                     {mode.title}
                   </div>
@@ -369,6 +375,12 @@ export default function App() {
                     {mode.desc}
                   </div>
                 </div>
+                <span
+                  aria-hidden="true"
+                  className="text-text-tertiary group-hover:text-ar-blue group-hover:translate-x-0.5 transition-all shrink-0"
+                >
+                  ›
+                </span>
               </button>
             ))}
           </div>
@@ -402,7 +414,7 @@ export default function App() {
             <button
               key={deck.id}
               onClick={() => selectDeck(deck)}
-              className="flex flex-col items-center gap-2 py-4 px-2 rounded-2xl border border-border bg-bg-card hover:border-ar-blue hover:bg-bg-secondary transition-all duration-150 cursor-pointer group"
+              className="tile flex flex-col items-center gap-2 py-4 px-2 group"
             >
               <span className="text-4xl">{deck.emoji}</span>
               <span className="text-sm font-semibold text-text-primary group-hover:text-ar-blue transition-colors leading-tight">
@@ -412,7 +424,7 @@ export default function App() {
           ))}
           <button
             onClick={() => navigate("biografias_select")}
-            className="flex flex-col items-center gap-2 py-4 px-2 rounded-2xl border border-border bg-bg-card hover:border-ar-blue hover:bg-bg-secondary transition-all duration-150 cursor-pointer group"
+            className="tile flex flex-col items-center gap-2 py-4 px-2 group"
           >
             <span className="text-4xl">{BIOGRAFIAS.emoji}</span>
             <span className="text-sm font-semibold text-text-primary group-hover:text-ar-blue transition-colors leading-tight">

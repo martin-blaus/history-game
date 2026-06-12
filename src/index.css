@@ -23,6 +23,15 @@ body {
   background-color: #0f1923;
   margin: 0;
   color-scheme: dark;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-tap-highlight-color: transparent;
+}
+
+h1,
+h2,
+h3 {
+  text-wrap: balance;
 }
 
 :focus-visible {
@@ -35,7 +44,7 @@ body {
   .btn-primary,
   .btn-secondary,
   .btn-ghost {
-    @apply inline-flex items-center justify-center gap-2 rounded-xl font-semibold text-sm transition-colors cursor-pointer select-none min-h-11 px-4 py-3 disabled:cursor-not-allowed disabled:opacity-50;
+    @apply inline-flex items-center justify-center gap-2 rounded-xl font-semibold text-sm transition-[color,background-color,border-color,scale] cursor-pointer select-none min-h-11 px-4 py-3 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50 disabled:active:scale-100;
   }
   .btn-primary {
     @apply bg-ar-blue text-white hover:bg-ar-blue-dark;
@@ -45,6 +54,11 @@ body {
   }
   .btn-ghost {
     @apply bg-transparent px-2 text-text-tertiary hover:text-text-secondary;
+  }
+  /* Menu tile/row — shared by the home deck grid, mode select and
+     character select lists. */
+  .tile {
+    @apply rounded-2xl border border-border bg-bg-card transition-all duration-150 cursor-pointer hover:border-ar-blue hover:bg-bg-secondary active:scale-[0.98];
   }
 }
 
@@ -185,6 +199,18 @@ input[type="range"]::-moz-range-thumb {
 }
 .fade-in {
   animation: fadeIn 0.25s ease;
+}
+
+/* Reduced motion: collapse animations and transitions; !important also
+   overrides the inline FLIP transition set from JS in sort_game.tsx. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 /* Custom thin scrollbars for card description on hover */

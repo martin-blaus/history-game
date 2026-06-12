@@ -471,7 +471,7 @@ export function SortGame({
             <span className="text-text-tertiary text-sm leading-none">→</span>
           </div>
           <span className="text-xs font-semibold text-text-tertiary tracking-widest uppercase shrink-0">
-            Despues
+            Después
           </span>
         </div>
 
@@ -537,9 +537,25 @@ export function SortGame({
             parent swaps to the daily result screen on completion */}
         {!submitted ? (
           <div className="flex flex-col items-center gap-3 mt-6">
-            <p className="text-sm text-text-secondary">
-              Intentos restantes: {attemptsLeft}
-            </p>
+            <div
+              role="status"
+              aria-label={`Intentos restantes: ${attemptsLeft} de ${MAX_ATTEMPTS}`}
+              className="flex items-center gap-2.5"
+            >
+              <span className="text-xs font-semibold text-text-tertiary tracking-widest uppercase">
+                Intentos
+              </span>
+              <div aria-hidden="true" className="flex gap-1.5">
+                {Array.from({ length: MAX_ATTEMPTS }, (_, i) => (
+                  <span
+                    key={i}
+                    className={`w-2 h-2 rounded-full transition-colors duration-300 ${
+                      i < attemptsLeft ? "bg-ar-blue" : "bg-danger/60"
+                    }`}
+                  />
+                ))}
+              </div>
+            </div>
             <div className="flex gap-3 w-full max-w-sm">
               <button
                 onClick={useHint}
@@ -594,7 +610,7 @@ export function SortGame({
               return (
                 <div className="grid grid-cols-4 bg-bg-card border border-border rounded-xl divide-x divide-border overflow-hidden py-4 text-center my-6 shadow-sm">
                   <div>
-                    <div className="text-xl font-black text-text-primary">
+                    <div className="text-xl font-black text-text-primary tabular-nums">
                       {deckStats.played}
                     </div>
                     <div className="text-2xs text-text-secondary uppercase tracking-wider font-bold mt-1">
@@ -602,7 +618,7 @@ export function SortGame({
                     </div>
                   </div>
                   <div>
-                    <div className="text-xl font-black text-text-primary">
+                    <div className="text-xl font-black text-text-primary tabular-nums">
                       {winRate}%
                     </div>
                     <div className="text-2xs text-text-secondary uppercase tracking-wider font-bold mt-1">
@@ -610,7 +626,7 @@ export function SortGame({
                     </div>
                   </div>
                   <div>
-                    <div className="text-xl font-black text-text-primary">
+                    <div className="text-xl font-black text-text-primary tabular-nums">
                       {deckStats.streak}
                     </div>
                     <div className="text-2xs text-text-secondary uppercase tracking-wider font-bold mt-1">
@@ -618,7 +634,7 @@ export function SortGame({
                     </div>
                   </div>
                   <div>
-                    <div className="text-xl font-black text-text-primary">
+                    <div className="text-xl font-black text-text-primary tabular-nums">
                       {avgTries > 0 ? avgTries.toFixed(1) : "-"}
                     </div>
                     <div className="text-2xs text-text-secondary uppercase tracking-wider font-bold mt-1">

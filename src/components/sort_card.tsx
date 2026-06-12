@@ -1,3 +1,4 @@
+import React from "react";
 import type { HistoryEvent } from "../../data/index";
 import { formatYear, onImgError, PLACEHOLDER } from "../utils";
 

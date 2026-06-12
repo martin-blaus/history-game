@@ -3,8 +3,8 @@ import {
   gradeCards,
   makeRound,
   roundReducer,
-  type RoundState,
 } from "./sort_game";
+import type { RoundState } from "./sort_game";
 import { MAX_ATTEMPTS } from "../constants";
 import { ev } from "../test_helpers";
 
