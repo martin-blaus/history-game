@@ -170,7 +170,7 @@ export function SortGame({
   const { puzzle, cards, statuses, finalStatuses, submitted, revealedCount, hintCardId, attemptsLeft, attemptsHistory } = state;
 
   const [puzzleNum, setPuzzleNum] = useState(1);
-  const [copied, setCopied] = useState(false);
+  const [copyState, setCopyState] = useState<"idle" | "copied" | "failed">("idle");
   const [wikiEvent, setWikiEvent] = useState<HistoryEvent | null>(null);
   const isVertical = useIsVertical();
 
@@ -320,10 +320,11 @@ export function SortGame({
   function share() {
     const allCorrect = finalStatuses.every((x) => x === "correct");
     const text = buildShareText(attemptsHistory, deck.name, allCorrect);
-    navigator.clipboard.writeText(text).then(() => {
-      setCopied(true);
-      setTimeout(() => setCopied(false), COPIED_FEEDBACK_MS);
-    });
+    navigator.clipboard.writeText(text).then(
+      () => setCopyState("copied"),
+      () => setCopyState("failed")
+    );
+    setTimeout(() => setCopyState("idle"), COPIED_FEEDBACK_MS);
   }
 
   const isDragging = drag.isDragging;
@@ -527,12 +528,18 @@ export function SortGame({
               <button
                 onClick={share}
                 className={`flex-1 py-3 px-4 rounded-xl border text-sm font-semibold cursor-pointer transition-colors ${
-                  copied
+                  copyState === "copied"
                     ? "border-success text-success bg-success/5"
+                    : copyState === "failed"
+                    ? "border-danger text-danger bg-danger/5"
                     : "border-border bg-bg-secondary text-text-primary hover:bg-bg-card hover:border-text-secondary"
                 }`}
               >
-                {copied ? "¡Copiado!" : "Compartir resultado"}
+                {copyState === "copied"
+                  ? "¡Copiado!"
+                  : copyState === "failed"
+                  ? "No se pudo copiar"
+                  : "Compartir resultado"}
               </button>
               <button
                 onClick={nextPuzzle}

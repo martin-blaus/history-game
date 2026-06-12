@@ -43,14 +43,15 @@ export function DailyResultScreen({
   streak: number;
   onBack: () => void;
 }) {
-  const [copied, setCopied] = useState(false);
+  const [copyState, setCopyState] = useState<"idle" | "copied" | "failed">("idle");
 
   function share() {
     const text = buildDailyShareText(result, deck.name, dayNum);
-    navigator.clipboard.writeText(text).then(() => {
-      setCopied(true);
-      setTimeout(() => setCopied(false), COPIED_FEEDBACK_MS);
-    });
+    navigator.clipboard.writeText(text).then(
+      () => setCopyState("copied"),
+      () => setCopyState("failed")
+    );
+    setTimeout(() => setCopyState("idle"), COPIED_FEEDBACK_MS);
   }
 
   return (
@@ -117,10 +118,18 @@ export function DailyResultScreen({
         <button
           onClick={share}
           className={`btn-secondary w-full max-w-sm mx-auto ${
-            copied ? "border-success text-success" : ""
+            copyState === "copied"
+              ? "border-success text-success"
+              : copyState === "failed"
+              ? "border-danger text-danger"
+              : ""
           }`}
         >
-          {copied ? "¡Copiado!" : "Compartir resultado"}
+          {copyState === "copied"
+            ? "¡Copiado!"
+            : copyState === "failed"
+            ? "No se pudo copiar"
+            : "Compartir resultado"}
         </button>
       </div>
     </div>

@@ -51,9 +51,10 @@ export function EndlessGame({
   const [lives, setLives] = useState(MAX_LIVES);
   const [score, setScore] = useState(0);
   const [streak, setStreak] = useState(0);
-  const [bestScore, setBestScore] = useState(() =>
-    parseInt(localStorage.getItem(BEST_KEY) ?? "0"),
-  );
+  const [bestScore, setBestScore] = useState(() => {
+    const n = parseInt(localStorage.getItem(BEST_KEY) ?? "0");
+    return Number.isFinite(n) ? n : 0;
+  });
   const [isNewRecord, setIsNewRecord] = useState(false);
   const [phase, setPhase] = useState<Phase>("placing");
   const [chosenGap, setChosenGap] = useState<number | null>(null);
