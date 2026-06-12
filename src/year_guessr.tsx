@@ -4,8 +4,13 @@ import { formatYear, onImgError, shuffle, PLACEHOLDER } from "./utils";
 
 const ROUNDS = 6;
 
-function calcScore(guess: number, actual: number): number {
-  return Math.max(0, Math.round(100 - Math.abs(guess - actual) * 2));
+// Span-relative scoring: an exact guess scores 100 and the score ramps
+// linearly to 0 at `tolerance` years off, where tolerance is 10% of the
+// deck's year span (so wide decks like filosofía stay playable) with a
+// 25-year floor (so narrow decks don't become trivial).
+export function calcScore(guess: number, actual: number, span: number): number {
+  const tolerance = Math.max(25, span * 0.1);
+  return Math.round(100 * Math.max(0, 1 - Math.abs(guess - actual) / tolerance));
 }
 
 function pickEvents(deck: Deck): HistoryEvent[] {
@@ -33,11 +38,12 @@ export function YearGuessr({
   const [scores, setScores] = useState<number[]>([]);
   const [gameOver, setGameOver] = useState(false);
 
+  const span = maxYear - minYear;
   const event = events[round];
-  const roundScore = confirmed ? calcScore(guess, event.year) : null;
+  const roundScore = confirmed ? calcScore(guess, event.year, span) : null;
 
   function confirm() {
-    setScores((prev) => [...prev, calcScore(guess, event.year)]);
+    setScores((prev) => [...prev, calcScore(guess, event.year, span)]);
     setConfirmed(true);
   }
 
@@ -213,14 +219,16 @@ export function YearGuessr({
             <div className={`text-5xl font-extrabold mb-1 ${scoreColor}`}>
               {roundScore} pts
             </div>
+            {/* Feedback follows the (span-relative) score, not raw years,
+                so it stays meaningful on both narrow and wide decks. */}
             <div className={`text-sm font-semibold mb-4 ${scoreColor}`}>
               {diff === 0
                 ? "¡Perfecto!"
-                : diff! <= 5
+                : roundScore! >= 85
                   ? "¡Excelente!"
-                  : diff! <= 15
+                  : roundScore! >= 60
                     ? "¡Bien!"
-                    : diff! <= 30
+                    : roundScore! >= 25
                       ? "Cerca..."
                       : "Lejos"}
             </div>
