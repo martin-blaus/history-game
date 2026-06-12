@@ -19,6 +19,8 @@ export function Card({
   onTouchStart,
   onTouchMove,
   onTouchEnd,
+  onKeyDown,
+  ariaLabel,
   status,
   revealed,
   onWikiClick,
@@ -34,6 +36,8 @@ export function Card({
   onTouchStart: (e: React.TouchEvent, i: number) => void;
   onTouchMove: (e: React.TouchEvent) => void;
   onTouchEnd: () => void;
+  onKeyDown?: (e: React.KeyboardEvent) => void;
+  ariaLabel?: string;
   status: CardStatus;
   revealed: boolean;
   onWikiClick?: () => void;
@@ -57,6 +61,10 @@ export function Card({
       className={`sort-card group flex w-full flex-row min-h-[68px] sm:w-auto sm:flex-1 sm:flex-col sm:min-w-[150px] md:min-w-[170px] sm:max-w-[210px] sm:min-h-0 sm:h-[380px] rounded-xl overflow-hidden select-none bg-bg-card transition-all duration-200 sm:hover:scale-[1.03] sm:hover:-translate-y-1 hover:shadow-2xl hover:shadow-ar-blue/10 ${borderClass} ${shakeClass} ${sourceClass} ${
         canDrag ? "cursor-grab active:cursor-grabbing touch-none" : ""
       }`}
+      role="listitem"
+      tabIndex={canDrag ? 0 : -1}
+      aria-label={ariaLabel ?? item.event}
+      onKeyDown={canDrag ? onKeyDown : undefined}
       draggable={canDrag}
       onDragStart={() => canDrag && onDragStart(index)}
       onDragOver={(e) => {

@@ -204,6 +204,45 @@ export function SortGame({
     sounds.drop();
   }
 
+  // ── Keyboard reordering ───────────────────────────────────────────────────────
+  // Arrow keys move the focused card one slot (Left/Right in the row layout,
+  // Up/Down in the vertical list), dispatching the same move_card action as
+  // drag so FLIP animation and sounds are unchanged. The pinned (hint) card is
+  // skipped over, mirroring drag's canTarget rule.
+  const pendingFocusRef = useRef<string | null>(null);
+
+  function handleCardKeyDown(e: React.KeyboardEvent, i: number) {
+    const back = isVertical ? "ArrowUp" : "ArrowLeft";
+    const fwd = isVertical ? "ArrowDown" : "ArrowRight";
+    let dst: number;
+    if (e.key === back) {
+      dst = i - 1;
+      if (dst >= 0 && cards[dst]?.event === hintCardId) dst -= 1;
+      if (dst < 0) return;
+    } else if (e.key === fwd) {
+      dst = i + 2;
+      if (dst < cards.length && cards[dst]?.event === hintCardId) dst += 1;
+      if (dst > cards.length) return;
+    } else {
+      return;
+    }
+    e.preventDefault();
+    pendingFocusRef.current = cards[i].event;
+    commitDrop(i, dst);
+  }
+
+  // Keep focus on the moved card across the re-render (cards re-mount in a
+  // new order, so refocus by id).
+  useLayoutEffect(() => {
+    const id = pendingFocusRef.current;
+    if (!id) return;
+    pendingFocusRef.current = null;
+    const els = document.querySelectorAll<HTMLElement>(".sort-card");
+    els.forEach((el, i) => {
+      if (cards[i]?.event === id) el.focus();
+    });
+  }, [cards]);
+
   // FLIP steps 2-4: after DOM updates, invert and play
   useLayoutEffect(() => {
     const oldPositions = pendingFlipRef.current;
@@ -378,8 +417,14 @@ export function SortGame({
         </div>
 
         {/* Cards — row on desktop/tablet, vertical list on phones */}
+        <p id="sort-keyboard-help" className="sr-only">
+          Usá Tab para enfocar una carta y las flechas para moverla una
+          posición. La carta fijada por la pista no se puede mover.
+        </p>
         <div
           key={puzzleNum}
+          role="list"
+          aria-describedby="sort-keyboard-help"
           className="fade-in flex flex-col items-stretch gap-2 mb-4 sm:flex-row sm:items-start sm:justify-center sm:gap-3 sm:mb-6 sm:overflow-x-auto sm:overflow-y-hidden sm:h-[430px] py-2 px-1"
           onDragOver={(e) => {
             e.preventDefault();
@@ -405,6 +450,8 @@ export function SortGame({
                   onTouchStart={(e, idx) => drag.onTouchStart(e, idx, idx)}
                   onTouchMove={drag.onTouchMove}
                   onTouchEnd={drag.onTouchEnd}
+                  onKeyDown={(e) => handleCardKeyDown(e, i)}
+                  ariaLabel={`${card.event}, posición ${i + 1} de ${cards.length}`}
                   status={submitted ? null : statuses[i] ?? null}
                   revealed={submitted && revealedCount > i}
                   onWikiClick={card.wikipediaUrl ? () => setWikiEvent(card) : undefined}
