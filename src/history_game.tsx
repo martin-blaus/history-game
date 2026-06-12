@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { DECKS, BIOGRAFIAS, characterToDeck } from "../data/index";
 import type { Deck } from "../data/index";
 import { formatYear } from "./utils";
@@ -23,27 +23,97 @@ import {
 
 const TITLE_CLS = "text-4xl sm:text-5xl font-extrabold tracking-tighter m-0 leading-none";
 
+// ── Hash routing ──────────────────────────────────────────────────────────────
+// The URL hash is the source of truth for navigation (#/mode_select/argentina),
+// so the browser back button walks screens instead of exiting the app, and
+// any screen can be deep-linked or refreshed. No router library by design.
+
+type Screen =
+  | "home"
+  | "mode_select"
+  | "game"
+  | "daily"
+  | "year_guessr"
+  | "endless"
+  | "context_detective"
+  | "who_was_there"
+  | "biografias_select"
+  | "stats"
+  | "admin";
+
+interface Route {
+  screen: Screen;
+  deck: Deck | null;
+}
+
+const DECK_SCREENS: Screen[] = [
+  "mode_select",
+  "game",
+  "daily",
+  "year_guessr",
+  "endless",
+  "context_detective",
+  "who_was_there",
+];
+const PLAIN_SCREENS: Screen[] = ["biografias_select", "stats", "admin"];
+
+// Resolves a deck id from the hash, including bio decks (bio-<characterId>).
+function deckFromId(id: string): Deck | null {
+  const deck = DECKS.find((d) => d.id === id);
+  if (deck) return deck;
+  if (id.startsWith("bio-")) {
+    const character = BIOGRAFIAS.characters.find((c) => `bio-${c.id}` === id);
+    if (character) return characterToDeck(character);
+  }
+  return null;
+}
+
+function parseHash(hash: string): Route {
+  const [name, deckId] = hash.replace(/^#\/?/, "").split("/").filter(Boolean);
+  if (name && (PLAIN_SCREENS as string[]).includes(name)) {
+    return { screen: name as Screen, deck: null };
+  }
+  if (name && deckId && (DECK_SCREENS as string[]).includes(name)) {
+    const deck = deckFromId(decodeURIComponent(deckId));
+    if (deck) return { screen: name as Screen, deck };
+  }
+  // Unknown or invalid hash → home.
+  return { screen: "home", deck: null };
+}
+
+function hashFor(screen: Screen, deck: Deck | null): string {
+  if (screen === "home") return "#/";
+  if ((DECK_SCREENS as string[]).includes(screen) && deck) {
+    return `#/${screen}/${encodeURIComponent(deck.id)}`;
+  }
+  return `#/${screen}`;
+}
+
 export default function App() {
-  const [screen, setScreen] = useState<
-    | "home"
-    | "mode_select"
-    | "game"
-    | "daily"
-    | "year_guessr"
-    | "endless"
-    | "context_detective"
-    | "who_was_there"
-    | "biografias_select"
-    | "stats"
-    | "admin"
-  >("home");
-  const [selectedDeck, setSelectedDeck] = useState<Deck | null>(null);
+  const [route, setRoute] = useState<Route>(() => parseHash(window.location.hash));
+  const { screen, deck: selectedDeck } = route;
   const [stats, setStats] = useState<AppStats>(() => loadStats());
   const [daily, setDaily] = useState<DailyState>(() => loadDaily());
 
+  useEffect(() => {
+    const onHashChange = () => setRoute(parseHash(window.location.hash));
+    window.addEventListener("hashchange", onHashChange);
+    return () => window.removeEventListener("hashchange", onHashChange);
+  }, []);
+
+  // Setting location.hash pushes a history entry and fires hashchange, which
+  // updates `route`. Same-hash navigations update state directly (no entry).
+  function navigate(screen: Screen, deck: Deck | null = route.deck) {
+    const target = hashFor(screen, deck);
+    if (window.location.hash === target) {
+      setRoute({ screen, deck });
+    } else {
+      window.location.hash = target;
+    }
+  }
+
   function selectDeck(deck: Deck) {
-    setSelectedDeck(deck);
-    setScreen("mode_select");
+    navigate("mode_select", deck);
   }
 
   function handleUpdateStats(newStats: AppStats) {
@@ -61,27 +131,27 @@ export default function App() {
   // The admin editor saves through a dev-server-only middleware
   // (/api/save-deck in vite.config.ts), so it's dev-only by design.
   if (screen === "admin" && import.meta.env.DEV)
-    return <AdminScreen onBack={() => setScreen("home")} />;
+    return <AdminScreen onBack={() => navigate("home")} />;
 
   if (screen === "stats")
     return (
       <StatsScreen
         stats={stats}
-        onBack={() => setScreen("home")}
+        onBack={() => navigate("home")}
         onReset={resetStats}
       />
     );
 
   if (screen === "year_guessr" && selectedDeck)
     return (
-      <YearGuessr deck={selectedDeck} onBack={() => setScreen("mode_select")} />
+      <YearGuessr deck={selectedDeck} onBack={() => navigate("mode_select")} />
     );
 
   if (screen === "endless" && selectedDeck)
     return (
       <EndlessGame
         deck={selectedDeck}
-        onBack={() => setScreen("mode_select")}
+        onBack={() => navigate("mode_select")}
       />
     );
 
@@ -89,7 +159,7 @@ export default function App() {
     return (
       <ContextDetective
         deck={selectedDeck}
-        onBack={() => setScreen("mode_select")}
+        onBack={() => navigate("mode_select")}
       />
     );
 
@@ -97,7 +167,7 @@ export default function App() {
     return (
       <WhoWasThere
         deck={selectedDeck}
-        onBack={() => setScreen("mode_select")}
+        onBack={() => navigate("mode_select")}
       />
     );
 
@@ -109,7 +179,7 @@ export default function App() {
         stats={stats}
         onUpdateStats={handleUpdateStats}
         onBack={() =>
-          setScreen(
+          navigate(
             selectedDeck.id.startsWith("bio-") ? "biografias_select" : "mode_select"
           )
         }
@@ -128,7 +198,7 @@ export default function App() {
           result={result}
           dayNum={num}
           streak={streak}
-          onBack={() => setScreen("mode_select")}
+          onBack={() => navigate("mode_select")}
         />
       );
     return (
@@ -137,7 +207,7 @@ export default function App() {
         deck={selectedDeck}
         stats={stats}
         onUpdateStats={handleUpdateStats}
-        onBack={() => setScreen("mode_select")}
+        onBack={() => navigate("mode_select")}
         daily={{
           date,
           num,
@@ -153,7 +223,7 @@ export default function App() {
       <div className="min-h-screen bg-bg flex items-center justify-center">
         <div className="w-full max-w-sm px-6 py-12">
           <button
-            onClick={() => setScreen("home")}
+            onClick={() => navigate("home")}
             className="bg-transparent border-none cursor-pointer text-text-tertiary text-sm hover:text-text-secondary transition-colors mb-8 block"
           >
             ← Volver
@@ -174,8 +244,7 @@ export default function App() {
               <button
                 key={c.id}
                 onClick={() => {
-                  setSelectedDeck(characterToDeck(c));
-                  setScreen("game");
+                  navigate("game", characterToDeck(c));
                 }}
                 className="flex items-center gap-4 px-5 py-4 rounded-2xl border border-border bg-bg-card hover:border-ar-blue hover:bg-bg-secondary transition-all duration-150 cursor-pointer text-left group"
               >
@@ -240,7 +309,7 @@ export default function App() {
       <div className="min-h-screen bg-bg flex items-center justify-center">
         <div className="w-full max-w-sm px-6 py-12">
           <button
-            onClick={() => setScreen("home")}
+            onClick={() => navigate("home")}
             className="bg-transparent border-none cursor-pointer text-text-tertiary text-sm hover:text-text-secondary transition-colors mb-8 block"
           >
             ← Volver
@@ -261,7 +330,7 @@ export default function App() {
             const played = !!getDailyResult(daily, selectedDeck.id, date);
             return (
               <button
-                onClick={() => setScreen("daily")}
+                onClick={() => navigate("daily")}
                 className="flex items-center gap-4 px-5 py-4 mb-3 rounded-2xl border border-ar-gold/40 bg-ar-gold/5 hover:border-ar-gold hover:bg-ar-gold/10 transition-all duration-150 cursor-pointer text-left w-full"
               >
                 <span className="text-3xl shrink-0">📆</span>
@@ -288,7 +357,7 @@ export default function App() {
             {modes.map((mode) => (
               <button
                 key={mode.id}
-                onClick={() => setScreen(mode.id)}
+                onClick={() => navigate(mode.id)}
                 className="flex items-center gap-4 px-5 py-4 rounded-2xl border border-border bg-bg-card hover:border-ar-blue hover:bg-bg-secondary transition-all duration-150 cursor-pointer text-left group"
               >
                 <span className="text-3xl shrink-0">{mode.emoji}</span>
@@ -342,7 +411,7 @@ export default function App() {
             </button>
           ))}
           <button
-            onClick={() => setScreen("biografias_select")}
+            onClick={() => navigate("biografias_select")}
             className="flex flex-col items-center gap-2 py-4 px-2 rounded-2xl border border-border bg-bg-card hover:border-ar-blue hover:bg-bg-secondary transition-all duration-150 cursor-pointer group"
           >
             <span className="text-4xl">{BIOGRAFIAS.emoji}</span>
@@ -353,7 +422,7 @@ export default function App() {
         </div>
 
         <button
-          onClick={() => setScreen("stats")}
+          onClick={() => navigate("stats")}
           className="w-full py-3 rounded-xl border border-border bg-transparent text-text-tertiary text-sm hover:text-text-primary hover:border-text-tertiary transition-colors cursor-pointer"
         >
           📊 Estadísticas
@@ -361,7 +430,7 @@ export default function App() {
 
         {import.meta.env.DEV && (
           <button
-            onClick={() => setScreen("admin")}
+            onClick={() => navigate("admin")}
             className="mt-3 bg-transparent border-none cursor-pointer text-xs text-text-tertiary hover:text-text-secondary transition-colors"
           >
             ⚙ Admin
