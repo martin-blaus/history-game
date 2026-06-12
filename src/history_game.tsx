@@ -58,7 +58,9 @@ export default function App() {
     saveStats(empty);
   }
 
-  if (screen === "admin")
+  // The admin editor saves through a dev-server-only middleware
+  // (/api/save-deck in vite.config.ts), so it's dev-only by design.
+  if (screen === "admin" && import.meta.env.DEV)
     return <AdminScreen onBack={() => setScreen("home")} />;
 
   if (screen === "stats")
@@ -357,12 +359,14 @@ export default function App() {
           📊 Estadísticas
         </button>
 
-        <button
-          onClick={() => setScreen("admin")}
-          className="mt-3 bg-transparent border-none cursor-pointer text-xs text-text-tertiary hover:text-text-secondary transition-colors"
-        >
-          ⚙ Admin
-        </button>
+        {import.meta.env.DEV && (
+          <button
+            onClick={() => setScreen("admin")}
+            className="mt-3 bg-transparent border-none cursor-pointer text-xs text-text-tertiary hover:text-text-secondary transition-colors"
+          >
+            ⚙ Admin
+          </button>
+        )}
       </div>
     </div>
   );
