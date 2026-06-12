@@ -1,8 +1,8 @@
 import type { Deck, HistoryEvent } from "../data/types";
 import { MAX_ATTEMPTS } from "./constants";
+import { buildCandidateWindows, filterUsableWindows } from "./puzzle_windows";
 
 const DAILY_KEY = "historia-ar-daily";
-const MAX_YEAR_GAP = 50;
 // Launch date = daily #1. Day numbers count forward from here in local time.
 export const DAILY_EPOCH = "2026-06-11";
 
@@ -112,34 +112,13 @@ export function selectDailyPuzzle(
     (a, b) => a.year - b.year || (a.event < b.event ? -1 : a.event > b.event ? 1 : 0)
   );
 
-  type Candidate = { events: HistoryEvent[]; maxGap: number };
-  const candidates: Candidate[] = [];
-  for (let i = 0; i < sorted.length; i++) {
-    const evs: HistoryEvent[] = [];
-    const years = new Set<number>();
-    let maxGap = 0;
-    for (let j = i; j < sorted.length; j++) {
-      const ev = sorted[j];
-      if (years.has(ev.year)) continue;
-      years.add(ev.year);
-      evs.push(ev);
-      if (evs.length > 1) {
-        maxGap = Math.max(maxGap, ev.year - evs[evs.length - 2].year);
-      }
-      if (evs.length === n) break;
-    }
-    if (evs.length === n) candidates.push({ events: evs, maxGap });
-  }
-
-  let pool: HistoryEvent[][];
-  if (candidates.length > 0) {
-    const valid = candidates.filter((c) => c.maxGap <= MAX_YEAR_GAP);
-    const minGap = Math.min(...candidates.map((c) => c.maxGap));
-    const usable = valid.length > 0 ? valid : candidates.filter((c) => c.maxGap === minGap);
-    pool = usable.map((c) => c.events);
-  } else {
-    pool = [sorted.slice(0, n)];
-  }
+  // Candidate windows with unique years (shared with free-play); the pick
+  // below is the only daily-specific randomness, via the date-seeded RNG.
+  const candidates = buildCandidateWindows(sorted, n);
+  const pool: HistoryEvent[][] =
+    candidates.length > 0
+      ? filterUsableWindows(candidates).map((c) => c.events)
+      : [sorted.slice(0, n)];
 
   const puzzle = pool[Math.floor(rng() * pool.length)];
 

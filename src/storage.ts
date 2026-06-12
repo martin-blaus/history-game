@@ -1,9 +1,8 @@
 import type { Deck, HistoryEvent } from "../data/types";
 import { MAX_ATTEMPTS } from "./constants";
+import { buildCandidateWindows, filterUsableWindows, MAX_YEAR_GAP } from "./puzzle_windows";
 
 const STORAGE_KEY = "historia-ar-stats";
-// Prefer puzzles whose consecutive events are at most this many years apart.
-const MAX_YEAR_GAP = 50;
 
 export interface EventStat {
   shown: number;
@@ -48,49 +47,15 @@ export function selectPuzzle(deck: Deck, stats: AppStats): HistoryEvent[] {
 
   const shownOf = (ev: HistoryEvent) => stats.events[ev.event]?.shown ?? 0;
 
-  // Generate candidates with unique years
-  type Candidate = { events: HistoryEvent[]; totalShown: number; maxGap: number; r: number };
-  const candidates: Candidate[] = [];
-
-  for (let i = 0; i < sorted.length; i++) {
-    const candidateEvents: HistoryEvent[] = [];
-    const yearsInCandidate = new Set<number>();
-    let totalShown = 0;
-    let maxGap = 0;
-
-    for (let j = i; j < sorted.length; j++) {
-      const ev = sorted[j];
-      if (!yearsInCandidate.has(ev.year)) {
-        yearsInCandidate.add(ev.year);
-        candidateEvents.push(ev);
-        totalShown += shownOf(ev);
-        if (candidateEvents.length > 1) {
-          const gap = ev.year - candidateEvents[candidateEvents.length - 2].year;
-          maxGap = Math.max(maxGap, gap);
-        }
-        if (candidateEvents.length === n) {
-          break;
-        }
-      }
-    }
-
-    if (candidateEvents.length === n) {
-      candidates.push({
-        events: candidateEvents,
-        totalShown,
-        maxGap,
-        r: Math.random(),
-      });
-    }
-  }
-
+  // Candidate windows with unique years (shared with the daily puzzle), then
+  // free-play-specific weighting: least-seen first, random tiebreak.
+  const candidates = buildCandidateWindows(sorted, n);
   if (candidates.length > 0) {
-    const valid = candidates.filter(c => c.maxGap <= MAX_YEAR_GAP);
-    let pool = valid;
-    if (pool.length === 0) {
-      const minGap = Math.min(...candidates.map(c => c.maxGap));
-      pool = candidates.filter(c => c.maxGap === minGap);
-    }
+    const pool = filterUsableWindows(candidates).map(c => ({
+      events: c.events,
+      totalShown: c.events.reduce((sum, ev) => sum + shownOf(ev), 0),
+      r: Math.random(),
+    }));
     pool.sort((a, b) => a.totalShown - b.totalShown || a.r - b.r);
     return pool[0].events;
   }
