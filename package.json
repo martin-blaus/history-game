@@ -10,13 +10,11 @@
   },
   "dependencies": {
     "canvas-confetti": "^1.9.4",
-    "headroom-ai": "^0.22.4",
-    "lightningcss": "^1.32.0",
-    "lightningcss-darwin-arm64": "^1.32.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
   },
   "devDependencies": {
+    "headroom-ai": "^0.22.4",
     "@tailwindcss/vite": "^4.1.7",
     "@types/canvas-confetti": "^1.9.0",
     "@types/react": "^19.1.4",
