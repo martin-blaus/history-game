@@ -113,10 +113,10 @@ export function buildRounds(deck: Deck): Round[] {
   return rounds;
 }
 
-// Whether the end-of-game confetti should fire. `score` is the score state at
-// the time the last "Siguiente" click is handled.
-export function shouldCelebrate(score: number, lastRoundCorrect: boolean): boolean {
-  return score + (lastRoundCorrect ? 1 : 0) === ROUNDS;
+// Whether the end-of-game confetti should fire: one recorded result per round,
+// all of them correct.
+export function shouldCelebrate(results: boolean[]): boolean {
+  return results.length === ROUNDS && results.every(Boolean);
 }
 
 export function WhoWasThere({
@@ -129,8 +129,10 @@ export function WhoWasThere({
   const isIdeasMode = deck.id === "filosofia";
   const [rounds, setRounds] = useState<Round[]>(() => buildRounds(deck));
   const [roundIdx, setRoundIdx] = useState(0);
-  const [score, setScore] = useState(0);
+  // One entry per answered round; the score is derived from it.
+  const [results, setResults] = useState<boolean[]>([]);
   const [gameOver, setGameOver] = useState(false);
+  const score = results.filter(Boolean).length;
 
   // Type A states
   const [selectedEvents, setSelectedEvents] = useState<string[]>([]);
@@ -160,29 +162,21 @@ export function WhoWasThere({
     const correctCount = selectedEvents.filter((name) =>
       (round as RoundTypeA).correctEvents.includes(name)
     ).length;
-
-    if (correctCount === 3) {
-      setScore((s) => s + 1);
-    }
+    setResults((r) => [...r, correctCount === 3]);
   }
 
   function handleSelectPerson(person: string) {
     if (selectedPerson) return;
     setSelectedPerson(person);
-    if (person === (round as RoundTypeB).correctPerson) {
-      setScore((s) => s + 1);
-    }
+    setResults((r) => [...r, person === (round as RoundTypeB).correctPerson]);
   }
 
   function handleNext() {
     if (roundIdx + 1 >= ROUNDS) {
       setGameOver(true);
-      const lastRoundCorrect =
-        round.type === "A"
-          ? selectedEvents.filter((name) => round.correctEvents.includes(name)).length === 3
-          : selectedPerson === round.correctPerson;
-
-      if (shouldCelebrate(score, lastRoundCorrect)) {
+      // `results` already contains the last round (recorded on answer click),
+      // so by this click the array is complete.
+      if (shouldCelebrate(results)) {
         setTimeout(() => {
           confetti({
             particleCount: 150,
@@ -202,7 +196,7 @@ export function WhoWasThere({
   function restart() {
     setRounds(buildRounds(deck));
     setRoundIdx(0);
-    setScore(0);
+    setResults([]);
     setGameOver(false);
     setSelectedEvents([]);
     setSubmittedA(false);

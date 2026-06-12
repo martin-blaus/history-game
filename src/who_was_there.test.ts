@@ -79,17 +79,16 @@ describe("buildRounds", () => {
   });
 });
 
-describe("perfect-game celebration (bug captured by the 2026-06-11 audit)", () => {
-  // `score` state already includes the last round by the time the final
-  // "Siguiente" click is handled, so a perfect game computes 7 ≠ 6 and the
-  // confetti never fires — and a 5/6 game with a correct last round computes
-  // 6 === 6 and fires it wrongly. These two tests are deliberately marked
-  // `.fails`; M1.1 fixes the bug and flips them to plain `it`.
-  it.fails("fires the celebration on a perfect game", () => {
-    expect(shouldCelebrate(ROUNDS, true)).toBe(true);
+describe("perfect-game celebration (bug captured by the 2026-06-11 audit, fixed in M1.1)", () => {
+  it("fires the celebration on a perfect game", () => {
+    expect(shouldCelebrate(Array(ROUNDS).fill(true))).toBe(true);
   });
 
-  it.fails("does not fire the celebration on 5/6 with a correct last round", () => {
-    expect(shouldCelebrate(ROUNDS - 1, true)).toBe(false);
+  it("does not fire the celebration on 5/6 with a correct last round", () => {
+    expect(shouldCelebrate([false, ...Array(ROUNDS - 1).fill(true)])).toBe(false);
+  });
+
+  it("does not fire with an incomplete results array", () => {
+    expect(shouldCelebrate(Array(ROUNDS - 1).fill(true))).toBe(false);
   });
 });
