@@ -1,2 +1,6 @@
-# Firebase
+node_modules/
+dist/
+.DS_Store
 .firebase/
+*.log
+tsconfig.tsbuildinfo
