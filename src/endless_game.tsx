@@ -138,6 +138,9 @@ export function EndlessGame({
       }, WRONG_DELAY_MS);
       return () => clearTimeout(tid);
     }
+    // chosenGap is read only for the scroll target and is stable for the
+    // lifetime of the "correct"/"wrong" phases this effect reacts to.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [phase, lives, pool]);
 
   // Personal best detection — fires once when game ends
@@ -150,7 +153,10 @@ export function EndlessGame({
       sounds.record();
       confetti({ particleCount: 150, spread: 90, origin: { y: 0.4 } });
     }
-  }, [phase]); // score is final when phase changes to gameover/complete
+    // score is final when phase changes to gameover/complete; depending on it
+    // would re-fire the record celebration.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [phase]);
 
   function restart() {
     const { timeline: tl, incoming: inc, pool: p } = makeInitState(deck);
