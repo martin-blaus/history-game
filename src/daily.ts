@@ -1,5 +1,5 @@
 import type { Deck, HistoryEvent } from "../data/types";
-import { MAX_ATTEMPTS } from "./constants";
+import { MAX_ATTEMPTS, SHARE_URL } from "./constants";
 import { buildCandidateWindows, filterUsableWindows } from "./puzzle_windows";
 
 const DAILY_KEY = "historia-ar-daily";
@@ -223,5 +223,5 @@ export function buildDailyShareText(
     .map((row) => row.map((s) => (s === "correct" ? "🟩" : "🟥")).join(""))
     .join("\n");
   const tries = result.won ? `${result.attemptsUsed}/${MAX_ATTEMPTS}` : `X/${MAX_ATTEMPTS}`;
-  return `Historia Diaria #${dayNum} — ${deckName} (${tries})\n\n${grid}\n\nhttps://history-game-7a8e2.web.app`;
+  return `Historia Diaria #${dayNum} — ${deckName} (${tries})\n\n${grid}\n\n${SHARE_URL}`;
 }

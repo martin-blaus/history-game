@@ -5,7 +5,7 @@ import { selectPuzzle, recordResult, recordDeckResult, type AppStats } from "../
 import { Card, InsertionIndicator, statusEmoji } from "./sort_card";
 import { WikipediaSheet } from "./WikipediaSheet";
 import { shuffle } from "../utils";
-import { MAX_ATTEMPTS } from "../constants";
+import { MAX_ATTEMPTS, SHARE_URL } from "../constants";
 import { useTouchDrag } from "../hooks/use_touch_drag";
 import { selectDailyPuzzle, type DailyResult } from "../daily";
 import { sounds } from "../sounds";
@@ -20,7 +20,7 @@ type Status = "correct" | "wrong";
 function buildShareText(history: Status[][], deckName: string, won: boolean): string {
   const grid = history.map(row => row.map(statusEmoji).join("")).join("\n");
   const tries = won ? `${history.length}/${MAX_ATTEMPTS}` : `X/${MAX_ATTEMPTS}`;
-  return `${deckName} (${tries})\n\n${grid}\n\nhttps://history-game-7a8e2.web.app`;
+  return `${deckName} (${tries})\n\n${grid}\n\n${SHARE_URL}`;
 }
 
 export function gradeCards(puzzle: HistoryEvent[], cards: HistoryEvent[]): Status[] {
