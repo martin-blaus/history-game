@@ -5,6 +5,7 @@ import {
   msUntilNextMidnight,
   type DailyResult,
 } from "../daily";
+import { shareText } from "../utils";
 
 const COPIED_FEEDBACK_MS = 2000;
 
@@ -47,11 +48,11 @@ export function DailyResultScreen({
 
   function share() {
     const text = buildDailyShareText(result, deck.name, dayNum);
-    navigator.clipboard.writeText(text).then(
-      () => setCopyState("copied"),
-      () => setCopyState("failed")
-    );
-    setTimeout(() => setCopyState("idle"), COPIED_FEEDBACK_MS);
+    void shareText(text).then((outcome) => {
+      if (outcome === "shared") return;
+      setCopyState(outcome);
+      setTimeout(() => setCopyState("idle"), COPIED_FEEDBACK_MS);
+    });
   }
 
   return (

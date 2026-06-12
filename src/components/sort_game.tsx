@@ -4,7 +4,7 @@ import type { Deck, HistoryEvent } from "../../data/index";
 import { selectPuzzle, recordResult, recordDeckResult, type AppStats } from "../storage";
 import { Card, InsertionIndicator, statusEmoji } from "./sort_card";
 import { WikipediaSheet } from "./WikipediaSheet";
-import { shuffle } from "../utils";
+import { shuffle, shareText } from "../utils";
 import { MAX_ATTEMPTS, SHARE_URL } from "../constants";
 import { useTouchDrag } from "../hooks/use_touch_drag";
 import { selectDailyPuzzle, type DailyResult } from "../daily";
@@ -320,11 +320,11 @@ export function SortGame({
   function share() {
     const allCorrect = finalStatuses.every((x) => x === "correct");
     const text = buildShareText(attemptsHistory, deck.name, allCorrect);
-    navigator.clipboard.writeText(text).then(
-      () => setCopyState("copied"),
-      () => setCopyState("failed")
-    );
-    setTimeout(() => setCopyState("idle"), COPIED_FEEDBACK_MS);
+    void shareText(text).then((outcome) => {
+      if (outcome === "shared") return;
+      setCopyState(outcome);
+      setTimeout(() => setCopyState("idle"), COPIED_FEEDBACK_MS);
+    });
   }
 
   const isDragging = drag.isDragging;
