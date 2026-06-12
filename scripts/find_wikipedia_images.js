@@ -115,85 +115,100 @@ async function processDeck(deckName, options) {
   let brokenCount = 0;
   let fixedCount = 0;
 
-  for (let i = 0; i < deck.events.length; i++) {
-    const event = deck.events[i];
-    let isMissing = !event.image || event.image.trim() === "";
-    let isBroken = false;
+  // Biografías nests events under characters[]; flat decks have them at the
+  // top level. Iterate per group so both shapes work.
+  const eventGroups = Array.isArray(deck.characters)
+    ? deck.characters.map((c) => ({ label: c.name, events: c.events }))
+    : [{ label: null, events: deck.events }];
+  const totalEvents = eventGroups.reduce((n, g) => n + g.events.length, 0);
 
-    if (!isMissing) {
-      // Verify image
-      const ok = await checkUrl(event.image);
-      if (!ok) {
-        isBroken = true;
-        brokenCount++;
+  for (const group of eventGroups) {
+    for (let i = 0; i < group.events.length; i++) {
+      const event = group.events[i];
+      let isMissing = !event.image || event.image.trim() === "";
+      let isBroken = false;
+
+      if (!isMissing) {
+        // Verify image
+        const ok = await checkUrl(event.image);
+        if (!ok) {
+          isBroken = true;
+          brokenCount++;
+          console.log(
+            `${Colors.yellow}[BROKEN]${Colors.reset} "${event.event}" has broken image URL: ${event.image}`,
+          );
+        }
+      } else {
+        missingCount++;
         console.log(
-          `${Colors.yellow}[BROKEN]${Colors.reset} "${event.event}" has broken image URL: ${event.image}`,
+          `${Colors.cyan}[MISSING]${Colors.reset} "${event.event}" has no image.`,
         );
       }
-    } else {
-      missingCount++;
-      console.log(
-        `${Colors.cyan}[MISSING]${Colors.reset} "${event.event}" has no image.`,
-      );
-    }
 
-    if (isMissing || isBroken || options.verifyAll) {
-      // If verifyAll is enabled and image is working, just skip
-      if (options.verifyAll && !isMissing && !isBroken) {
-        continue;
-      }
+      if (isMissing || isBroken || options.verifyAll) {
+        // If verifyAll is enabled and image is working, just skip
+        if (options.verifyAll && !isMissing && !isBroken) {
+          continue;
+        }
 
-      console.log(`  Searching Wikipedia for: "${event.event}"...`);
-      let searchTitle = await searchWikipedia(event.event);
+        console.log(`  Searching Wikipedia for: "${event.event}"...`);
+        let searchTitle = await searchWikipedia(event.event);
 
-      // Fallback search using first person if available
-      if (!searchTitle && event.people && event.people.length > 0) {
-        console.log(
-          `  No search result for event title. Trying person: "${event.people[0]}"...`,
-        );
-        searchTitle = await searchWikipedia(event.people[0]);
-      }
+        // Fallback search using first person (or the character, for biografías)
+        const fallbackName =
+          event.people && event.people.length > 0
+            ? event.people[0]
+            : group.label;
+        if (!searchTitle && fallbackName) {
+          console.log(
+            `  No search result for event title. Trying person: "${fallbackName}"...`,
+          );
+          searchTitle = await searchWikipedia(fallbackName);
+        }
 
-      if (searchTitle) {
-        console.log(`  Found Wikipedia Article: "${searchTitle}"`);
-        const imgUrl = await getPageImage(searchTitle);
-        if (imgUrl) {
-          console.log(`  Found Image: ${Colors.green}${imgUrl}${Colors.reset}`);
-          const check = await checkUrl(imgUrl);
-          if (check) {
+        if (searchTitle) {
+          console.log(`  Found Wikipedia Article: "${searchTitle}"`);
+          const imgUrl = await getPageImage(searchTitle);
+          if (imgUrl) {
             console.log(
-              `    Status: ${Colors.green}VALID (resolves to HTTP 200)${Colors.reset}`,
+              `  Found Image: ${Colors.green}${imgUrl}${Colors.reset}`,
             );
-            if (options.fix) {
-              deck.events[i].image = imgUrl;
-              modified = true;
-              fixedCount++;
+            const check = await checkUrl(imgUrl);
+            if (check) {
               console.log(
-                `    ${Colors.bright}${Colors.green}[UPDATED]${Colors.reset} Set new image for "${event.event}"`,
+                `    Status: ${Colors.green}VALID (resolves to HTTP 200)${Colors.reset}`,
               );
+              if (options.fix) {
+                group.events[i].image = imgUrl;
+                modified = true;
+                fixedCount++;
+                console.log(
+                  `    ${Colors.bright}${Colors.green}[UPDATED]${Colors.reset} Set new image for "${event.event}"`,
+                );
+              } else {
+                console.log(
+                  `    [DRY RUN] Would update "${event.event}" to: ${imgUrl}`,
+                );
+              }
             } else {
               console.log(
-                `    [DRY RUN] Would update "${event.event}" to: ${imgUrl}`,
+                `    Status: ${Colors.red}INVALID image URL (does not resolve)${Colors.reset}`,
               );
             }
           } else {
             console.log(
-              `    Status: ${Colors.red}INVALID image URL (does not resolve)${Colors.reset}`,
+              `    ${Colors.dim}No thumbnail image found on Wikipedia page.${Colors.reset}`,
             );
           }
         } else {
           console.log(
-            `    ${Colors.dim}No thumbnail image found on Wikipedia page.${Colors.reset}`,
+            `    ${Colors.dim}No matching Wikipedia articles found.${Colors.reset}`,
           );
         }
-      } else {
-        console.log(
-          `    ${Colors.dim}No matching Wikipedia articles found.${Colors.reset}`,
-        );
-      }
 
-      // Delay to respect rate limits
-      await sleep(300);
+        // Delay to respect rate limits
+        await sleep(300);
+      }
     }
   }
 
@@ -209,7 +224,7 @@ async function processDeck(deckName, options) {
   }
 
   console.log(`\n${Colors.bright}Deck Summary (${deckName}):${Colors.reset}`);
-  console.log(`  - Total Events: ${deck.events.length}`);
+  console.log(`  - Total Events: ${totalEvents}`);
   console.log(`  - Missing Images Checked: ${missingCount}`);
   console.log(`  - Broken Images Checked: ${brokenCount}`);
   console.log(`  - Successfully Fixed/Proposed: ${fixedCount}`);
@@ -244,7 +259,7 @@ Usage:
   node scripts/find_wikipedia_images.js [options]
 
 Options:
-  --deck <name>     Name of the deck (argentina, filosofia, mundo, all) [default: all]
+  --deck <name>     Name of the deck (argentina, filosofia, mundo, biografias, all) [default: all]
   --dry-run         Query wikipedia and log proposals, do not write to JSON [default]
   --fix             Write successfully validated image URLs to deck JSON files
   --verify-all      Force checking/updating images for all events (even those with existing valid URLs)
@@ -256,7 +271,7 @@ Options:
 
   const decksToProcess =
     options.deck === "all"
-      ? ["argentina", "filosofia", "mundo"]
+      ? ["argentina", "filosofia", "mundo", "biografias"]
       : [options.deck];
 
   console.log(

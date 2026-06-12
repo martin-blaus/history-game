@@ -90,68 +90,81 @@ async function processDeck(deckName, options, unmatchedList) {
   let missingCount = 0;
   let fixedCount = 0;
 
-  for (let i = 0; i < deck.events.length; i++) {
-    const event = deck.events[i];
-    let hasLink = event.wikipediaUrl && event.wikipediaUrl.trim() !== "";
+  // Biografías nests events under characters[]; flat decks have them at the
+  // top level. Iterate per group so both shapes work.
+  const eventGroups = Array.isArray(deck.characters)
+    ? deck.characters.map((c) => ({ label: c.name, events: c.events }))
+    : [{ label: null, events: deck.events }];
+  const totalEvents = eventGroups.reduce((n, g) => n + g.events.length, 0);
 
-    if (!hasLink || options.forceUpdate) {
-      missingCount++;
-      console.log(`Searching link for: "${event.event}"...`);
-      let searchTitle = await searchWikipedia(event.event);
+  for (const group of eventGroups) {
+    for (let i = 0; i < group.events.length; i++) {
+      const event = group.events[i];
+      let hasLink = event.wikipediaUrl && event.wikipediaUrl.trim() !== "";
 
-      // Fallback search using first person if available
-      if (!searchTitle && event.people && event.people.length > 0) {
-        console.log(
-          `  No search result for event. Trying person: "${event.people[0]}"...`,
-        );
-        searchTitle = await searchWikipedia(event.people[0]);
-      }
+      if (!hasLink || options.forceUpdate) {
+        missingCount++;
+        console.log(`Searching link for: "${event.event}"...`);
+        let searchTitle = await searchWikipedia(event.event);
 
-      if (searchTitle) {
-        // Construct canonical Spanish Wikipedia URL
-        const canonicalUrl = `https://es.wikipedia.org/wiki/${encodeURIComponent(searchTitle.replace(/ /g, "_"))}`;
-        console.log(
-          `  Proposed URL: ${Colors.green}${canonicalUrl}${Colors.reset}`,
-        );
+        // Fallback search using first person (or the character, for biografías)
+        const fallbackName =
+          event.people && event.people.length > 0
+            ? event.people[0]
+            : group.label;
+        if (!searchTitle && fallbackName) {
+          console.log(
+            `  No search result for event. Trying person: "${fallbackName}"...`,
+          );
+          searchTitle = await searchWikipedia(fallbackName);
+        }
 
-        const isValid = await checkUrl(canonicalUrl);
-        if (isValid) {
-          console.log(`    Status: ${Colors.green}VALID${Colors.reset}`);
-          if (options.fix) {
-            deck.events[i].wikipediaUrl = canonicalUrl;
-            modified = true;
-            fixedCount++;
-            console.log(
-              `    ${Colors.bright}${Colors.green}[UPDATED]${Colors.reset} Set wikipediaUrl for "${event.event}"`,
-            );
+        if (searchTitle) {
+          // Construct canonical Spanish Wikipedia URL
+          const canonicalUrl = `https://es.wikipedia.org/wiki/${encodeURIComponent(searchTitle.replace(/ /g, "_"))}`;
+          console.log(
+            `  Proposed URL: ${Colors.green}${canonicalUrl}${Colors.reset}`,
+          );
+
+          const isValid = await checkUrl(canonicalUrl);
+          if (isValid) {
+            console.log(`    Status: ${Colors.green}VALID${Colors.reset}`);
+            if (options.fix) {
+              group.events[i].wikipediaUrl = canonicalUrl;
+              modified = true;
+              fixedCount++;
+              console.log(
+                `    ${Colors.bright}${Colors.green}[UPDATED]${Colors.reset} Set wikipediaUrl for "${event.event}"`,
+              );
+            } else {
+              console.log(
+                `    [DRY RUN] Would update "${event.event}" with wikipediaUrl: ${canonicalUrl}`,
+              );
+            }
           } else {
             console.log(
-              `    [DRY RUN] Would update "${event.event}" with wikipediaUrl: ${canonicalUrl}`,
+              `    Status: ${Colors.red}INVALID URL (cannot resolve)${Colors.reset}`,
             );
+            unmatchedList.push({
+              deck: deckName,
+              event: event.event,
+              reason: "Constructed URL failed resolution checks",
+            });
           }
         } else {
           console.log(
-            `    Status: ${Colors.red}INVALID URL (cannot resolve)${Colors.reset}`,
+            `    ${Colors.yellow}No Wikipedia article found for "${event.event}"${Colors.reset}`,
           );
           unmatchedList.push({
             deck: deckName,
             event: event.event,
-            reason: "Constructed URL failed resolution checks",
+            reason: "No matching Wikipedia article found",
           });
         }
-      } else {
-        console.log(
-          `    ${Colors.yellow}No Wikipedia article found for "${event.event}"${Colors.reset}`,
-        );
-        unmatchedList.push({
-          deck: deckName,
-          event: event.event,
-          reason: "No matching Wikipedia article found",
-        });
-      }
 
-      // Delay to respect rate limits
-      await sleep(250);
+        // Delay to respect rate limits
+        await sleep(250);
+      }
     }
   }
 
@@ -167,7 +180,7 @@ async function processDeck(deckName, options, unmatchedList) {
   }
 
   console.log(`\n${Colors.bright}Deck Summary (${deckName}):${Colors.reset}`);
-  console.log(`  - Total Events: ${deck.events.length}`);
+  console.log(`  - Total Events: ${totalEvents}`);
   console.log(`  - Missing Links Checked: ${missingCount}`);
   console.log(`  - Successfully Linked/Proposed: ${fixedCount}`);
 }
@@ -201,7 +214,7 @@ Usage:
   node scripts/find_wikipedia_links.js [options]
 
 Options:
-  --deck <name>     Name of the deck (argentina, filosofia, mundo, all) [default: all]
+  --deck <name>     Name of the deck (argentina, filosofia, mundo, biografias, all) [default: all]
   --dry-run         Query wikipedia and log proposals, do not write to JSON [default]
   --fix             Write successfully validated Wikipedia links to deck JSON files
   --force           Force checking/overwriting links for all events (even those with existing URLs)
@@ -213,7 +226,7 @@ Options:
 
   const decksToProcess =
     options.deck === "all"
-      ? ["argentina", "filosofia", "mundo"]
+      ? ["argentina", "filosofia", "mundo", "biografias"]
       : [options.deck];
 
   console.log(
