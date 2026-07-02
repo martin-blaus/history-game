@@ -95,8 +95,6 @@ interface Deck {
 - **Ordenar eventos** (`src/components/sort_game.tsx`) — the core drag-sort game. Round state is a `useReducer`; `selectPuzzle` picks the events; FLIP animation + a shared drag hook handle reordering; 5 attempts; hint pins the chronological middle card; emoji-grid share.
 - **Daily** (`src/daily.ts` + `DailyResultScreen`) — Wordle-style date-seeded puzzle, the same for everyone, played through a parameterized `SortGame` (`daily` prop). Separate per-deck streak in `localStorage` key `historia-ar-daily`.
 - **Endless** (`src/endless_game.tsx` + `src/components/endless/*`) — place events into a growing timeline; 3 lives; best score in `localStorage` key `endless-best-score`.
-- **Year Guesser** (`src/year_guessr.tsx`) — slider to guess each event's year.
-- **Context Detective** (`src/context_detective.tsx`) — read a description, pick the matching event.
 - **¿Quién estuvo ahí? / ¿Quién lo pensó?** (`src/who_was_there.tsx`) — match figures/ideas to events; mode switches on `deck.id === "filosofia"` (`ideas` vs `people` fields).
 
 `src/components/WikipediaSheet.tsx` is the slide-in article panel used across modes; it caches only successful fetches and shows a retry on error.

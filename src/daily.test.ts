@@ -23,32 +23,32 @@ describe("golden determinism (regression tripwire for the M2.1 refactor)", () =>
   it("argentina @ 2026-06-11 selects the exact known puzzle and board", () => {
     const { puzzle, shuffled } = selectDailyPuzzle(argentina, "2026-06-11");
     expect(puzzle.map((e) => e.event)).toEqual([
-      "Golpe de Estado de Uriburu — primera dictadura militar",
-      "Premio Nobel de la Paz para Carlos Saavedra Lamas",
-      "Revolución del 43 — golpe militar y fin de la Década Infame",
+      "Terremoto de San Juan",
       "Masiva movilización del 17 de octubre",
       "Primera presidencia de Juan Domingo Perón",
       "Declaración de la Independencia Económica",
+      "Sanción de la Constitución de 1949",
+      "Muerte de Eva Perón — Evita",
     ]);
     expect(shuffled.map((e) => e.event)).toEqual([
+      "Sanción de la Constitución de 1949",
+      "Terremoto de San Juan",
       "Primera presidencia de Juan Domingo Perón",
-      "Golpe de Estado de Uriburu — primera dictadura militar",
-      "Revolución del 43 — golpe militar y fin de la Década Infame",
-      "Declaración de la Independencia Económica",
-      "Premio Nobel de la Paz para Carlos Saavedra Lamas",
+      "Muerte de Eva Perón — Evita",
       "Masiva movilización del 17 de octubre",
+      "Declaración de la Independencia Económica",
     ]);
   });
 
   it("argentina @ 2026-07-01 selects the exact known puzzle", () => {
     const { puzzle } = selectDailyPuzzle(argentina, "2026-07-01");
     expect(puzzle.map((e) => e.event)).toEqual([
-      "La Noche de los Lápices",
-      "Primera ronda de las Madres de Plaza de Mayo",
-      "Argentina campeona del mundo — Argentina 1978",
       "Guerra de las Malvinas",
       "Retorno de la democracia — asume Raúl Alfonsín",
       "Juicio a las Juntas Militares",
+      "Argentina campeona del mundo — México 1986",
+      "Sanción de la Ley de Divorcio Vincular",
+      "Hiperinflación — caída anticipada del gobierno de Alfonsín",
     ]);
   });
 });

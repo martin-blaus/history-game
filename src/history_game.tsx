@@ -4,9 +4,7 @@ import type { Deck } from "../data/index";
 import { formatYear } from "./utils";
 import { loadStats, saveStats, type AppStats } from "./storage";
 import { AdminScreen } from "./admin";
-import { YearGuessr } from "./year_guessr";
 import { EndlessGame } from "./endless_game";
-import { ContextDetective } from "./context_detective";
 import { WhoWasThere } from "./who_was_there";
 import { SortGame } from "./components/sort_game";
 import { StatsScreen } from "./components/stats_screen";
@@ -34,9 +32,7 @@ type Screen =
   | "mode_select"
   | "game"
   | "daily"
-  | "year_guessr"
   | "endless"
-  | "context_detective"
   | "who_was_there"
   | "biografias_select"
   | "stats"
@@ -51,9 +47,7 @@ const DECK_SCREENS: Screen[] = [
   "mode_select",
   "game",
   "daily",
-  "year_guessr",
   "endless",
-  "context_detective",
   "who_was_there",
 ];
 const PLAIN_SCREENS: Screen[] = ["biografias_select", "stats", "admin"];
@@ -145,22 +139,9 @@ export default function App() {
       />
     );
 
-  if (screen === "year_guessr" && selectedDeck)
-    return (
-      <YearGuessr deck={selectedDeck} onBack={() => navigate("mode_select")} />
-    );
-
   if (screen === "endless" && selectedDeck)
     return (
       <EndlessGame deck={selectedDeck} onBack={() => navigate("mode_select")} />
-    );
-
-  if (screen === "context_detective" && selectedDeck)
-    return (
-      <ContextDetective
-        deck={selectedDeck}
-        onBack={() => navigate("mode_select")}
-      />
     );
 
   if (screen === "who_was_there" && selectedDeck)
@@ -285,18 +266,6 @@ export default function App() {
         emoji: "♾️",
         title: "Endless",
         desc: "Ubicá eventos en la línea de tiempo — sin límite",
-      },
-      {
-        id: "year_guessr",
-        emoji: "🎯",
-        title: "Year Guesser",
-        desc: "Adiviná en qué año ocurrió cada evento",
-      },
-      {
-        id: "context_detective",
-        emoji: "🔍",
-        title: "Context Detective",
-        desc: "Leé la descripción y adiviná el evento",
       },
       {
         id: "who_was_there",

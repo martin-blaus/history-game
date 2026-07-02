@@ -240,6 +240,19 @@
       "day": 12
     },
     {
+      "event": "Batalla de Chacabuco",
+      "year": 1817,
+      "month": 2,
+      "day": 12,
+      "context": "A días de completar el cruce de los Andes, el Ejército de los Andes al mando de San Martín derrotó a las fuerzas realistas en Chile. La victoria abrió el camino a la liberación de Santiago y consolidó el plan continental sanmartiniano.",
+      "people": [
+        "José de San Martín",
+        "Bernardo O'Higgins"
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Batalla_de_Chacabuco",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Batalla_de_Chacabuco_-_Pedro_Subercaseaux_%28cropped%29.jpg/500px-Batalla_de_Chacabuco_-_Pedro_Subercaseaux_%28cropped%29.jpg"
+    },
+    {
       "event": "Batalla de Maipú",
       "year": 1818,
       "context": "El ejército de José de San Martín y Bernardo O'Higgins derrotó definitivamente a los realistas en Santiago, sellando la independencia de Chile y abriendo el camino hacia la campaña del Perú.",
@@ -393,6 +406,18 @@
       "wikipediaUrl": "https://es.wikipedia.org/wiki/Campa%C3%B1a_de_Rosas_al_Desierto"
     },
     {
+      "event": "Segundo gobierno de Rosas — la suma del poder público",
+      "year": 1835,
+      "month": 4,
+      "day": 13,
+      "context": "Juan Manuel de Rosas volvió a la gobernación de Buenos Aires con facultades extraordinarias y la suma del poder público, plebiscitada por la población porteña. Comenzó así la etapa más férrea de su dominio sobre la Confederación.",
+      "people": [
+        "Juan Manuel de Rosas"
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/%C3%89poca_de_Rosas",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Rosas_2_retouch.jpg/500px-Rosas_2_retouch.jpg"
+    },
+    {
       "event": "Bloqueo francés al Río de la Plata",
       "year": 1838,
       "context": "La armada naval de Francia bloqueó el puerto de Buenos Aires exigiendo beneficios comerciales y en apoyo a opositores a Rosas, afectando severamente la economía de la Confederación.",
@@ -523,6 +548,18 @@
       "wikipediaUrl": "https://es.wikipedia.org/wiki/El_Gaucho_Mart%C3%ADn_Fierro"
     },
     {
+      "event": "Ley Avellaneda de Inmigración y Colonización",
+      "year": 1876,
+      "month": 10,
+      "day": 19,
+      "context": "La Ley 817 creó un régimen estatal de fomento de la inmigración europea, con agencias en el exterior, alojamiento y traslado gratuito. Fue la base legal de la gran ola inmigratoria que transformó demográfica y culturalmente al país.",
+      "people": [
+        "Nicolás Avellaneda"
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Ley_de_Inmigraci%C3%B3n_y_Colonizaci%C3%B3n_N%C2%BA_817",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Hotel_Inmigrantes_Buenos_Aires.jpg/500px-Hotel_Inmigrantes_Buenos_Aires.jpg"
+    },
+    {
       "event": "Conquista del Desierto — campaña militar de Roca",
       "year": 1879,
       "context": "El general Julio A. Roca lanzó una campaña sistemática contra los pueblos mapuches y tehuelches en la Patagonia. Incorporó millones de hectáreas al Estado y permitió la expansión de la frontera agropecuaria.",
@@ -562,6 +599,19 @@
         "Miguel Juárez Celman"
       ],
       "wikipediaUrl": "https://es.wikipedia.org/wiki/Revoluci%C3%B3n_del_Parque"
+    },
+    {
+      "event": "Fundación de la Unión Cívica Radical",
+      "year": 1891,
+      "month": 6,
+      "day": 26,
+      "context": "Tras la Revolución del Parque, Leandro N. Alem fundó el partido que reclamaría elecciones libres frente al régimen conservador. La UCR se convirtió en el partido político más antiguo aún vigente en la Argentina.",
+      "people": [
+        "Leandro N. Alem",
+        "Hipólito Yrigoyen"
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Uni%C3%B3n_C%C3%ADvica_Radical",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Leandro_n_alem_witcomb.jpg/500px-Leandro_n_alem_witcomb.jpg"
     },
     {
       "event": "Fundación del Partido Socialista",
@@ -665,6 +715,19 @@
       "day": 6
     },
     {
+      "event": "Firma del Pacto Roca-Runciman",
+      "year": 1933,
+      "month": 5,
+      "day": 1,
+      "context": "En plena Década Infame, la Argentina garantizó su cuota de exportación de carnes al Reino Unido a cambio de fuertes concesiones económicas. El acuerdo se volvió símbolo de la dependencia comercial británica y alimentó el nacionalismo económico.",
+      "people": [
+        "Julio Argentino Roca (hijo)",
+        "Agustín Pedro Justo"
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Pacto_Roca-Runciman",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Roca_Runciman.jpg/500px-Roca_Runciman.jpg"
+    },
+    {
       "event": "Premio Nobel de la Paz para Carlos Saavedra Lamas",
       "year": 1936,
       "context": "El canciller argentino recibió el prestigioso galardón por su decisiva mediación en la finalización de la Guerra del Chaco entre Bolivia y Paraguay. Fue el primer Nobel de América Latina.",
@@ -684,6 +747,19 @@
       ],
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/PresidentesDeLaRevoluci%C3%B3nDel43Argentina.png/500px-PresidentesDeLaRevoluci%C3%B3nDel43Argentina.png",
       "wikipediaUrl": "https://es.wikipedia.org/wiki/Revoluci%C3%B3n_del_43"
+    },
+    {
+      "event": "Terremoto de San Juan",
+      "year": 1944,
+      "month": 1,
+      "day": 15,
+      "context": "Un sismo destruyó la ciudad de San Juan y dejó cerca de diez mil muertos, la mayor catástrofe natural de la historia argentina. En el festival benéfico por las víctimas, Juan Domingo Perón conoció a Eva Duarte.",
+      "people": [
+        "Juan Domingo Perón",
+        "Eva Perón"
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Terremoto_de_San_Juan_de_1944",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Terremoto_de_1944%2C_San_Juan%2C_Argentina.jpg/500px-Terremoto_de_1944%2C_San_Juan%2C_Argentina.jpg"
     },
     {
       "event": "Masiva movilización del 17 de octubre",
@@ -730,6 +806,16 @@
       "wikipediaUrl": "https://es.wikipedia.org/wiki/Sufragio_femenino_en_Argentina",
       "month": 9,
       "day": 23
+    },
+    {
+      "event": "Premio Nobel de Medicina para Bernardo Houssay",
+      "year": 1947,
+      "context": "Houssay fue premiado por sus estudios sobre la hipófisis y el metabolismo de los azúcares, convirtiéndose en el primer Nobel científico de América Latina. Su escuela de fisiología formó a generaciones de investigadores argentinos.",
+      "people": [
+        "Bernardo Houssay"
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Bernardo_Houssay",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Bernardo_Alberto_Houssay.jpg/500px-Bernardo_Alberto_Houssay.jpg"
     },
     {
       "event": "Sanción de la Constitución de 1949",
@@ -886,6 +972,19 @@
       "wikipediaUrl": "https://es.wikipedia.org/wiki/Exilio_de_Per%C3%B3n"
     },
     {
+      "event": "Masacre de Ezeiza",
+      "year": 1973,
+      "month": 6,
+      "day": 20,
+      "context": "Millones de personas esperaban el regreso definitivo de Perón cuando grupos armados del propio peronismo se enfrentaron a tiros cerca del palco, con decenas de muertos. El episodio anticipó la violencia que marcaría los años siguientes.",
+      "people": [
+        "Juan Domingo Perón",
+        "José López Rega"
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Masacre_de_Ezeiza",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Masacre_de_Ezeiza_-_persona_subiendo_al_palco.jpg/500px-Masacre_de_Ezeiza_-_persona_subiendo_al_palco.jpg"
+    },
+    {
       "event": "Muerte de Perón e inicio del mandato de Isabel",
       "year": 1974,
       "context": "Muere el presidente Juan Domingo Perón; asume la presidencia su viuda y vicepresidenta, María Estela Martínez de Perón (Isabelita), en un clima de creciente violencia.",
@@ -1013,6 +1112,19 @@
       "wikipediaUrl": "https://es.wikipedia.org/wiki/Tratado_de_Asunci%C3%B3n"
     },
     {
+      "event": "Plan de Convertibilidad — un peso, un dólar",
+      "year": 1991,
+      "month": 4,
+      "day": 1,
+      "context": "El ministro Domingo Cavallo fijó por ley la paridad entre el peso y el dólar para frenar la hiperinflación. La convertibilidad estabilizó los precios durante una década, pero su rigidez terminó en la crisis de 2001.",
+      "people": [
+        "Carlos Menem",
+        "Domingo Cavallo"
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Ley_de_Convertibilidad_del_Austral",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/8/8d/Domingo_Felipe_Cavallo.jpg"
+    },
+    {
       "event": "Atentado a la Embajada de Israel en Buenos Aires",
       "year": 1992,
       "context": "Un atentado terrorista con coche bomba destruyó la delegación diplomática, dejando 29 muertos y cientos de heridos, siendo el primer gran ataque internacional perpetrado en territorio nacional.",
@@ -1064,6 +1176,46 @@
       "day": 25
     },
     {
+      "event": "Tragedia de Cromañón",
+      "year": 2004,
+      "month": 12,
+      "day": 30,
+      "context": "Un incendio durante un recital de Callejeros en el boliche República Cromañón mató a 194 personas, en su mayoría jóvenes. La tragedia expuso la corrupción en los controles públicos y provocó la destitución del jefe de Gobierno porteño.",
+      "people": [
+        "Omar Chabán",
+        "Aníbal Ibarra"
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Tragedia_de_Croma%C3%B1%C3%B3n",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Encendiendo_velas_por_las_v%C3%ADctimas_del_incendio_de_Rep%C3%BAblica_Croma%C3%B1%C3%B3n.jpg/500px-Encendiendo_velas_por_las_v%C3%ADctimas_del_incendio_de_Rep%C3%BAblica_Croma%C3%B1%C3%B3n.jpg"
+    },
+    {
+      "event": "Cristina Fernández, primera mujer electa presidenta",
+      "year": 2007,
+      "month": 12,
+      "day": 10,
+      "context": "Cristina Fernández de Kirchner ganó las elecciones en primera vuelta y sucedió a su esposo Néstor Kirchner. Fue la primera mujer en llegar a la presidencia argentina por el voto popular.",
+      "people": [
+        "Cristina Fernández de Kirchner",
+        "Néstor Kirchner"
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Cristina_Fern%C3%A1ndez_de_Kirchner",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Cristinakirchnermensaje2010.jpg/500px-Cristinakirchnermensaje2010.jpg"
+    },
+    {
+      "event": "Conflicto del campo por la Resolución 125",
+      "year": 2008,
+      "month": 3,
+      "day": 11,
+      "context": "El intento de aplicar retenciones móviles a las exportaciones de granos desató cuatro meses de paros y cortes de ruta del sector agropecuario. El conflicto terminó cuando el vicepresidente Cobos desempató en contra del proyecto con su 'voto no positivo'.",
+      "people": [
+        "Cristina Fernández de Kirchner",
+        "Julio Cobos",
+        "Martín Lousteau"
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Paro_agropecuario_patronal_en_Argentina_de_2008",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Road_blockade_by_agricultural_producers_in_Argentina.jpg/500px-Road_blockade_by_agricultural_producers_in_Argentina.jpg"
+    },
+    {
       "event": "Sanción de la Ley de Matrimonio Igualitario",
       "year": 2010,
       "context": "Mediante la Ley 26.618, Argentina hizo historia al ser el primer país en América Latina en consagrar legalmente el matrimonio civil para personas del mismo sexo.",
@@ -1088,16 +1240,40 @@
       "day": 9
     },
     {
+      "event": "Jorge Bergoglio es elegido Papa Francisco",
+      "year": 2013,
+      "month": 3,
+      "day": 13,
+      "context": "El arzobispo de Buenos Aires se convirtió en el primer papa latinoamericano y el primer jesuita en dirigir la Iglesia católica. Adoptó el nombre Francisco en homenaje a Francisco de Asís.",
+      "people": [
+        "Jorge Bergoglio"
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Francisco_(papa)",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Portrait_of_Pope_Francis_%282021%29_FXD_%28removed_figure%29.jpg/500px-Portrait_of_Pope_Francis_%282021%29_FXD_%28removed_figure%29.jpg"
+    },
+    {
       "event": "Sanción de la Ley de Interrupción Voluntaria del Embarazo",
       "year": 2020,
       "context": "Tras años de intensa movilización feminista, el Congreso sancionó la Ley 27.610 que despenalizó y legalizó el aborto libre y gratuito en el país durante las primeras 14 semanas de gestación.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Green_tide_Buenos_Aires_2020.jpg/500px-Green_tide_Buenos_Aires_2020.jpg",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Vigilia_IVE_Buenos_Aires_senadores_titi_nicola_periodicas-7_Aborto_Legal_2020_57.jpg/500px-Vigilia_IVE_Buenos_Aires_senadores_titi_nicola_periodicas-7_Aborto_Legal_2020_57.jpg",
       "people": [
         "Alberto Fernández"
       ],
       "wikipediaUrl": "https://es.wikipedia.org/wiki/Ley_de_Interrupci%C3%B3n_Voluntaria_del_Embarazo_de_Argentina",
       "month": 12,
       "day": 30
+    },
+    {
+      "event": "Muerte de Diego Maradona",
+      "year": 2020,
+      "month": 11,
+      "day": 25,
+      "context": "El ídolo máximo del fútbol argentino murió a los 60 años en Tigre. Multitudes lo despidieron en la Casa Rosada en un velatorio histórico, y su muerte abrió una causa judicial sobre su atención médica.",
+      "people": [
+        "Diego Maradona"
+      ],
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Diego_Maradona",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Maradona-Mundial_86_con_la_copa.JPG/500px-Maradona-Mundial_86_con_la_copa.JPG"
     },
     {
       "event": "Argentina campeona de la Copa América — Brasil 2021",

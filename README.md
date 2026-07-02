@@ -5,8 +5,7 @@ A history quiz game in Spanish, live at <https://history-game-7a8e2.web.app>.
 The flagship mode is Wordle-style: drag historical events into chronological
 order in at most 5 attempts, with a deterministic **daily puzzle** per deck
 (same puzzle for everyone, streaks, emoji-grid sharing). Around it there are
-five more modes — Endless timeline placement, Year Guesser, Context Detective,
-¿Quién estuvo ahí? / ¿Quién lo pensó? — plus **Biografías**: per-character
+three more modes — Endless timeline placement, ¿Quién estuvo ahí? / ¿Quién lo pensó? — plus **Biografías**: per-character
 timelines (San Martín, Alberdi, Sarmiento) played through the sort game.
 
 Decks: Historia Argentina, Historia Mundial, Filosofía. Built with React 19,
