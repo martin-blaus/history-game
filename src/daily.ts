@@ -3,6 +3,7 @@ import { MAX_ATTEMPTS, SHARE_URL } from "./constants";
 import { buildCandidateWindows, filterUsableWindows } from "./puzzle_windows";
 
 const DAILY_KEY = "historia-ar-daily";
+const DAILY_PROGRESS_KEY = "historia-ar-daily-progress";
 // Launch date = daily #1. Day numbers count forward from here in local time.
 export const DAILY_EPOCH = "2026-06-11";
 
@@ -184,10 +185,65 @@ export function getDailyStreak(state: DailyState, deckId: string): number {
   return state.decks[deckId]?.streak ?? 0;
 }
 
+// ── In-progress persistence ──────────────────────────────────────────────────
+// The current board (order, attempts, hint) is saved after every action so a
+// refresh mid-daily resumes instead of resetting the attempt budget. One entry
+// per deck; entries for past dates are ignored and overwritten on next save.
+
+export interface DailyProgress {
+  date: string;
+  order: string[]; // event names, current board arrangement
+  attemptsHistory: Status[][];
+  statuses: Status[]; // feedback still on screen (empty once cleared)
+  hintCardId: string | null;
+}
+
+export function loadDailyProgress(
+  deckId: string,
+  date: string,
+): DailyProgress | null {
+  try {
+    const raw = localStorage.getItem(DAILY_PROGRESS_KEY);
+    if (!raw) return null;
+    const all = JSON.parse(raw) as Record<string, DailyProgress>;
+    const p = all[deckId];
+    if (!p || p.date !== date) return null;
+    if (!Array.isArray(p.order) || !Array.isArray(p.attemptsHistory))
+      return null;
+    if (p.attemptsHistory.length >= MAX_ATTEMPTS) return null;
+    return p;
+  } catch {
+    return null;
+  }
+}
+
+export function saveDailyProgress(
+  deckId: string,
+  progress: DailyProgress,
+): void {
+  try {
+    const raw = localStorage.getItem(DAILY_PROGRESS_KEY);
+    const all = raw ? (JSON.parse(raw) as Record<string, DailyProgress>) : {};
+    all[deckId] = progress;
+    localStorage.setItem(DAILY_PROGRESS_KEY, JSON.stringify(all));
+  } catch {}
+}
+
+export function clearDailyProgress(deckId: string): void {
+  try {
+    const raw = localStorage.getItem(DAILY_PROGRESS_KEY);
+    if (!raw) return;
+    const all = JSON.parse(raw) as Record<string, DailyProgress>;
+    delete all[deckId];
+    localStorage.setItem(DAILY_PROGRESS_KEY, JSON.stringify(all));
+  } catch {}
+}
+
 export function recordDailyResult(
   deckId: string,
   result: DailyResult,
 ): DailyState {
+  clearDailyProgress(deckId);
   const state = loadDaily();
   const prev = state.decks[deckId] ?? {
     results: {},
@@ -221,6 +277,41 @@ export function recordDailyResult(
   };
   saveDaily(next);
   return next;
+}
+
+// Wordle-style aggregates, derived from the stored per-date results (nothing
+// extra is persisted).
+export interface DailyStats {
+  played: number;
+  won: number;
+  winRate: number; // 0-100, rounded
+  maxStreak: number;
+  distribution: number[]; // wins indexed by attemptsUsed - 1
+}
+
+export function computeDailyStats(
+  state: DailyState,
+  deckId: string,
+): DailyStats {
+  const deckState = state.decks[deckId];
+  const distribution = new Array<number>(MAX_ATTEMPTS).fill(0);
+  let played = 0;
+  let won = 0;
+  for (const r of Object.values(deckState?.results ?? {})) {
+    played++;
+    if (r.won) {
+      won++;
+      if (r.attemptsUsed >= 1 && r.attemptsUsed <= MAX_ATTEMPTS)
+        distribution[r.attemptsUsed - 1]++;
+    }
+  }
+  return {
+    played,
+    won,
+    winRate: played > 0 ? Math.round((won / played) * 100) : 0,
+    maxStreak: deckState?.maxStreak ?? 0,
+    distribution,
+  };
 }
 
 export function buildDailyShareText(

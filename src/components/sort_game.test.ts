@@ -118,21 +118,27 @@ describe("roundReducer", () => {
     expect(afterFinal.finalStatuses).toEqual(allCorrect);
   });
 
-  it("clear_flash clears statuses only while the round is still open", () => {
+  it("feedback statuses persist after submit and clear on the next move", () => {
     const graded = gradeCards(puzzle, initial.cards);
     const open = roundReducer(initial, {
       type: "submit",
       graded,
       final: false,
     });
-    expect(roundReducer(open, { type: "clear_flash" }).statuses).toEqual([]);
-    const closed = roundReducer(initial, {
+    // Feedback stays on screen (no timed flash)...
+    expect(open.statuses).toEqual(graded);
+    // ...until the player rearranges the board.
+    const moved = roundReducer(open, { type: "move_card", src: 0, dst: 3 });
+    expect(moved.statuses).toEqual([]);
+  });
+
+  it("use_hint clears feedback statuses (it rearranges the board)", () => {
+    const graded = gradeCards(puzzle, initial.cards);
+    const open = roundReducer(initial, {
       type: "submit",
       graded,
-      final: true,
+      final: false,
     });
-    expect(roundReducer(closed, { type: "clear_flash" }).statuses).toEqual(
-      graded,
-    );
+    expect(roundReducer(open, { type: "use_hint" }).statuses).toEqual([]);
   });
 });

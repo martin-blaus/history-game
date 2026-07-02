@@ -19,12 +19,16 @@ import { WikipediaSheet } from "./WikipediaSheet";
 import { shuffle, shareText } from "../utils";
 import { MAX_ATTEMPTS, SHARE_URL } from "../constants";
 import { useTouchDrag } from "../hooks/use_touch_drag";
-import { selectDailyPuzzle, type DailyResult } from "../daily";
+import {
+  selectDailyPuzzle,
+  loadDailyProgress,
+  saveDailyProgress,
+  type DailyResult,
+} from "../daily";
 import { sounds } from "../sounds";
 import { MuteButton } from "./mute_button";
 
 const REVEAL_INTERVAL_MS = 80;
-const WRONG_FLASH_MS = 1200;
 const COPIED_FEEDBACK_MS = 2000;
 
 type Status = "correct" | "wrong";
@@ -89,7 +93,7 @@ function useIsVertical(): boolean {
 export interface RoundState {
   puzzle: HistoryEvent[];
   cards: HistoryEvent[];
-  statuses: Status[]; // transient per-card flash after a wrong attempt
+  statuses: Status[]; // per-card feedback after an attempt; cleared on the next move
   finalStatuses: Status[];
   submitted: boolean;
   revealedCount: number;
@@ -103,7 +107,6 @@ export type RoundAction =
   | { type: "move_card"; src: number; dst: number }
   | { type: "use_hint" }
   | { type: "submit"; graded: Status[]; final: boolean }
-  | { type: "clear_flash" }
   | { type: "reveal_tick" };
 
 export function makeRound(
@@ -136,7 +139,8 @@ export function roundReducer(
       const next = [...state.cards];
       const [moved] = next.splice(src, 1);
       next.splice(dst > src ? dst - 1 : dst, 0, moved);
-      return { ...state, cards: next };
+      // Rearranging invalidates the last attempt's feedback — clear it.
+      return { ...state, cards: next, statuses: [] };
     }
     case "use_hint": {
       if (state.hintCardId || state.submitted) return state;
@@ -150,7 +154,7 @@ export function roundReducer(
         cards.splice(currentIdx, 1);
         cards.splice(correctIdx, 0, middle);
       }
-      return { ...state, cards, hintCardId: middle.event };
+      return { ...state, cards, hintCardId: middle.event, statuses: [] };
     }
     case "submit":
       return {
@@ -161,8 +165,6 @@ export function roundReducer(
         submitted: action.final,
         finalStatuses: action.final ? action.graded : state.finalStatuses,
       };
-    case "clear_flash":
-      return state.submitted ? state : { ...state, statuses: [] };
     case "reveal_tick":
       return { ...state, revealedCount: state.revealedCount + 1 };
   }
@@ -193,7 +195,25 @@ export function SortGame({
   const [state, dispatch] = useReducer(roundReducer, undefined, () => {
     if (daily) {
       const { puzzle, shuffled } = selectDailyPuzzle(deck, daily.date);
-      return makeRound(puzzle, shuffled);
+      const round = makeRound(puzzle, shuffled);
+      // Resume today's board if a refresh interrupted it (order, attempts
+      // used, feedback and hint all survive — no attempt-budget reset).
+      const progress = loadDailyProgress(deck.id, daily.date);
+      if (progress) {
+        const byName = new Map(puzzle.map((e) => [e.event, e]));
+        const cards = progress.order.flatMap((n) => byName.get(n) ?? []);
+        if (cards.length === puzzle.length) {
+          return {
+            ...round,
+            cards,
+            attemptsHistory: progress.attemptsHistory,
+            attemptsLeft: MAX_ATTEMPTS - progress.attemptsHistory.length,
+            statuses: progress.statuses ?? [],
+            hintCardId: progress.hintCardId,
+          };
+        }
+      }
+      return round;
     }
     const p = selectPuzzle(deck, stats);
     return makeRound(p, shuffle(p));
@@ -403,7 +423,6 @@ export function SortGame({
       }, REVEAL_INTERVAL_MS);
     } else {
       sounds.error();
-      setTimeout(() => dispatch({ type: "clear_flash" }), WRONG_FLASH_MS);
     }
   }
 
@@ -413,6 +432,28 @@ export function SortGame({
     },
     [],
   );
+
+  // Persist the daily board after every action so a refresh resumes mid-round.
+  // recordDailyResult clears the entry once the round completes.
+  const dailyDate = daily?.date;
+  useEffect(() => {
+    if (!dailyDate || submitted) return;
+    saveDailyProgress(deck.id, {
+      date: dailyDate,
+      order: cards.map((c) => c.event),
+      attemptsHistory,
+      statuses,
+      hintCardId,
+    });
+  }, [
+    dailyDate,
+    submitted,
+    cards,
+    attemptsHistory,
+    statuses,
+    hintCardId,
+    deck.id,
+  ]);
 
   function share() {
     const allCorrect = finalStatuses.every((x) => x === "correct");
@@ -537,6 +578,26 @@ export function SortGame({
             parent swaps to the daily result screen on completion */}
         {!submitted ? (
           <div className="flex flex-col items-center gap-3 mt-6">
+            {/* Last attempt's feedback stays on screen (hisorty-style) until
+                the player rearranges the board */}
+            {statuses.length > 0 && (
+              <div
+                role="status"
+                className="flex items-center gap-2 bg-[rgba(245,197,24,0.08)] border border-ar-gold/40 text-ar-gold text-sm font-semibold px-4 py-2.5 rounded-xl"
+              >
+                {(() => {
+                  const ok = statuses.filter((s) => s === "correct").length;
+                  return (
+                    <>
+                      {ok} de {statuses.length} en su lugar —{" "}
+                      {attemptsLeft === 1
+                        ? "último intento"
+                        : `quedan ${attemptsLeft} intentos`}
+                    </>
+                  );
+                })()}
+              </div>
+            )}
             <div
               role="status"
               aria-label={`Intentos restantes: ${attemptsLeft} de ${MAX_ATTEMPTS}`}

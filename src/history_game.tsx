@@ -197,6 +197,7 @@ export default function App() {
           result={result}
           dayNum={num}
           streak={streak}
+          dailyState={daily}
           onBack={() => navigate("mode_select")}
         />
       );
