@@ -53,6 +53,25 @@ export function gradeCards(
   );
 }
 
+// Reorders like a plain splice-move, except cards in `locked` keep their
+// absolute board positions and the free cards flow around them.
+export function moveCardWithLocks(
+  cards: HistoryEvent[],
+  src: number,
+  dst: number,
+  locked: Set<string>,
+): HistoryEvent[] {
+  const moved = cards[src];
+  const free = cards.filter((c, i) => i !== src && !locked.has(c.event));
+  let freeDst = 0;
+  for (let i = 0; i < dst; i++) {
+    if (i !== src && !locked.has(cards[i].event)) freeDst++;
+  }
+  free.splice(freeDst, 0, moved);
+  let fi = 0;
+  return cards.map((c) => (locked.has(c.event) ? c : free[fi++]));
+}
+
 // Maps a pointer coordinate to an insertion index by scanning the rendered
 // cards. Works on either axis: the row layout (desktop/tablet) uses X, the
 // stacked layout (phones) uses Y.
@@ -98,6 +117,7 @@ export interface RoundState {
   submitted: boolean;
   revealedCount: number;
   hintCardId: string | null;
+  lockedIds: string[]; // fixed in place: the hint card + cards verified correct
   attemptsLeft: number;
   attemptsHistory: Status[][];
 }
@@ -121,6 +141,7 @@ export function makeRound(
     submitted: false,
     revealedCount: 0,
     hintCardId: null,
+    lockedIds: [],
     attemptsLeft: MAX_ATTEMPTS,
     attemptsHistory: [],
   };
@@ -136,35 +157,62 @@ export function roundReducer(
     case "move_card": {
       const { src, dst } = action;
       if (src === dst || src + 1 === dst) return state;
-      const next = [...state.cards];
-      const [moved] = next.splice(src, 1);
-      next.splice(dst > src ? dst - 1 : dst, 0, moved);
+      const locked = new Set(state.lockedIds);
+      if (locked.has(state.cards[src].event)) return state;
       // Rearranging invalidates the last attempt's feedback — clear it.
-      return { ...state, cards: next, statuses: [] };
+      return {
+        ...state,
+        cards: moveCardWithLocks(state.cards, src, dst, locked),
+        statuses: [],
+      };
     }
     case "use_hint": {
       if (state.hintCardId || state.submitted) return state;
+      const locked = new Set(state.lockedIds);
       const sorted = [...state.puzzle].sort((a, b) => a.year - b.year);
-      const middle = sorted[Math.floor(sorted.length / 2)];
-      const correctIdx = sorted.indexOf(middle);
+      // Pick the middle of the cards not already locked in place, so the
+      // hint never re-reveals a position the player has already secured.
+      const unlocked = sorted.filter((c) => !locked.has(c.event));
+      if (unlocked.length === 0) return state;
+      const middle = unlocked[Math.floor(unlocked.length / 2)];
+      const correctIdx = sorted.findIndex((c) => c.event === middle.event);
       const currentIdx = state.cards.findIndex((c) => c.event === middle.event);
       let cards = state.cards;
       if (currentIdx !== correctIdx) {
-        cards = [...state.cards];
-        cards.splice(currentIdx, 1);
-        cards.splice(correctIdx, 0, middle);
+        const dst = currentIdx < correctIdx ? correctIdx + 1 : correctIdx;
+        cards = moveCardWithLocks(state.cards, currentIdx, dst, locked);
       }
-      return { ...state, cards, hintCardId: middle.event, statuses: [] };
+      return {
+        ...state,
+        cards,
+        hintCardId: middle.event,
+        lockedIds: [...state.lockedIds, middle.event],
+        statuses: [],
+      };
     }
-    case "submit":
+    case "submit": {
+      // A correctly-placed card is at its final chronological slot — lock it
+      // so later moves can't drag a verified result out of position.
+      const lockedIds = action.final
+        ? state.lockedIds
+        : [
+            ...new Set([
+              ...state.lockedIds,
+              ...state.cards
+                .filter((_, i) => action.graded[i] === "correct")
+                .map((c) => c.event),
+            ]),
+          ];
       return {
         ...state,
         statuses: action.graded,
+        lockedIds,
         attemptsLeft: state.attemptsLeft - 1,
         attemptsHistory: [...state.attemptsHistory, action.graded],
         submitted: action.final,
         finalStatuses: action.final ? action.graded : state.finalStatuses,
       };
+    }
     case "reveal_tick":
       return { ...state, revealedCount: state.revealedCount + 1 };
   }
@@ -210,6 +258,7 @@ export function SortGame({
             attemptsLeft: MAX_ATTEMPTS - progress.attemptsHistory.length,
             statuses: progress.statuses ?? [],
             hintCardId: progress.hintCardId,
+            lockedIds: progress.lockedIds ?? [],
           };
         }
       }
@@ -226,9 +275,11 @@ export function SortGame({
     submitted,
     revealedCount,
     hintCardId,
+    lockedIds,
     attemptsLeft,
     attemptsHistory,
   } = state;
+  const lockedSet = new Set(lockedIds);
 
   const [puzzleNum, setPuzzleNum] = useState(1);
   const [copyState, setCopyState] = useState<"idle" | "copied" | "failed">(
@@ -273,8 +324,8 @@ export function SortGame({
   // ── Keyboard reordering ───────────────────────────────────────────────────────
   // Arrow keys move the focused card one slot (Left/Right in the row layout,
   // Up/Down in the vertical list), dispatching the same move_card action as
-  // drag so FLIP animation and sounds are unchanged. The pinned (hint) card is
-  // skipped over, mirroring drag's canTarget rule.
+  // drag so FLIP animation and sounds are unchanged. Locked cards (hint or
+  // verified correct) are skipped over, mirroring drag's canTarget rule.
   const pendingFocusRef = useRef<string | null>(null);
 
   function handleCardKeyDown(e: React.KeyboardEvent, i: number) {
@@ -283,11 +334,11 @@ export function SortGame({
     let dst: number;
     if (e.key === back) {
       dst = i - 1;
-      if (dst >= 0 && cards[dst]?.event === hintCardId) dst -= 1;
+      while (dst >= 0 && lockedSet.has(cards[dst].event)) dst -= 1;
       if (dst < 0) return;
     } else if (e.key === fwd) {
       dst = i + 2;
-      if (dst < cards.length && cards[dst]?.event === hintCardId) dst += 1;
+      while (dst < cards.length && lockedSet.has(cards[dst].event)) dst += 1;
       if (dst > cards.length) return;
     } else {
       return;
@@ -344,7 +395,7 @@ export function SortGame({
   // ── Drag (mouse + touch share one state machine) ──────────────────────────────
   const drag = useTouchDrag<number, number>({
     resolveTarget: (x, y) => resolveDropTarget(isVertical ? y : x, isVertical),
-    canTarget: (t) => !(t < cards.length && cards[t]?.event === hintCardId),
+    canTarget: (t) => !(t < cards.length && lockedSet.has(cards[t].event)),
     onDrop: commitDrop,
     retainTargetOnMiss: true,
   });
@@ -444,6 +495,7 @@ export function SortGame({
       attemptsHistory,
       statuses,
       hintCardId,
+      lockedIds,
     });
   }, [
     dailyDate,
@@ -452,6 +504,7 @@ export function SortGame({
     attemptsHistory,
     statuses,
     hintCardId,
+    lockedIds,
     deck.id,
   ]);
 
@@ -519,7 +572,8 @@ export function SortGame({
         {/* Cards — row on desktop/tablet, vertical list on phones */}
         <p id="sort-keyboard-help" className="sr-only">
           Usá Tab para enfocar una carta y las flechas para moverla una
-          posición. La carta fijada por la pista no se puede mover.
+          posición. Las cartas fijadas (por la pista o verificadas en su lugar)
+          no se pueden mover.
         </p>
         <div
           key={puzzleNum}
@@ -546,6 +600,7 @@ export function SortGame({
                   index={i}
                   isDragSource={drag.dragSource === i}
                   isHinted={card.event === hintCardId}
+                  isLocked={lockedSet.has(card.event)}
                   onDragStart={(idx) => drag.startDrag(idx, idx)}
                   onDragOver={handleCardDragOver}
                   onDragEnd={drag.endDrag}

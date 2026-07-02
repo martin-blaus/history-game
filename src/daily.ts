@@ -196,6 +196,7 @@ export interface DailyProgress {
   attemptsHistory: Status[][];
   statuses: Status[]; // feedback still on screen (empty once cleared)
   hintCardId: string | null;
+  lockedIds?: string[]; // cards fixed in place (hint + verified correct)
 }
 
 export function loadDailyProgress(

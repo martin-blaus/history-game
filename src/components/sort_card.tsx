@@ -13,6 +13,7 @@ export function Card({
   index,
   isDragSource,
   isHinted,
+  isLocked,
   onDragStart,
   onDragOver,
   onDragEnd,
@@ -30,6 +31,7 @@ export function Card({
   index: number;
   isDragSource: boolean;
   isHinted: boolean;
+  isLocked: boolean;
   onDragStart: (i: number) => void;
   onDragOver: (
     i: number,
@@ -48,7 +50,7 @@ export function Card({
   revealed: boolean;
   onWikiClick?: () => void;
 }) {
-  const canDrag = !revealed && !isHinted;
+  const canDrag = !revealed && !isHinted && !isLocked;
 
   const borderClass =
     status === "correct"
@@ -57,7 +59,9 @@ export function Card({
         ? "border-2 border-danger bg-[#2a0f0f]/40"
         : isHinted && !revealed
           ? "border-2 border-ar-gold"
-          : "border border-border";
+          : isLocked && !revealed
+            ? "border-2 border-success/60 bg-[#0f2a1a]/25"
+            : "border border-border";
 
   const shakeClass = status === "wrong" ? "card-shake" : "";
   const sourceClass = isDragSource ? "opacity-40 scale-95" : "";
@@ -98,11 +102,15 @@ export function Card({
           draggable={false}
           onError={onImgError}
         />
-        {isHinted && !revealed && (
+        {isHinted && !revealed ? (
           <div className="absolute top-2 right-2 bg-ar-gold text-black text-xs font-bold px-2 py-1 rounded-md">
             📌
           </div>
-        )}
+        ) : isLocked && !revealed ? (
+          <div className="absolute top-2 right-2 bg-success text-black text-xs font-bold px-2 py-1 rounded-md">
+            🔒
+          </div>
+        ) : null}
       </div>
 
       <div className="px-3 py-2 sm:py-3 flex-1 flex flex-col justify-between min-h-0 min-w-0">
